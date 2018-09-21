@@ -19,7 +19,7 @@ https://www.youtube.com/watch?v=Zd4Hw6PsrV0&w=532&rel=0
 
 ## Installation ## 
 
-The latest version of the Zigaform plugin ZIP file can be [**downloaded**](https://softdiscover.github.io/ZigaForm-PHP-Cost-Estimator-Lite/dist/zigaform-php-cost-estimator.zip) from https://softdiscover.github.io/ZigaForm-PHP-Cost-Estimator-Lite/
+The latest version of the Zigaform software ZIP file can be [**downloaded**](https://softdiscover.github.io/ZigaForm-PHP-Cost-Estimator-Lite/dist/zigaform-php-cost-estimator.zip) from https://softdiscover.github.io/ZigaForm-PHP-Cost-Estimator-Lite/
  
 Follow the installation process here: 
 https://kb.softdiscover.com/docs/zigaform-php-cost-estimator/installation/via-wizard-installer/
