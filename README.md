@@ -1,27 +1,19 @@
 # Zigaform - PHP Calculator & Cost Estimation Form Builder Lite
 
-Ultimate PHP Calculator & Cost Estimation form builder . See more at https://softdiscover.github.io/ZigaForm-PHP-Cost-Estimator-Lite/
-
-**Contributors:** softdiscover  
-**Donate link:** https://codecanyon.net/item/zigaform-php-calculator-cost-estimation-form-builder/15883447?ref=softdiscover 
-**License:** GPLv3  
-**License URI:** http://www.gnu.org/licenses/gpl.html  
-**Tags:** calculator, wizard, form builder, bootstrap, estimation, AJAX, Akismet, captcha, contact, contact form, email, feedback, form, multilingual  
-**Stable tag:** 3.9.4.2 
-
-Create estimation forms using this powerful drag and drop estimation form builder which makes you to build estimation forms on few minutes. you can embed on any platform (wordpress, joomla, magento or any site)
-
-## Description ## 
-
 **Zigaform - PHP Calculator & Cost Estimation Form Builder**  is a real-time drag and drop form builder which makes you to build your estimation forms on few easy steps. it can estimate any service for your clients and you can proceed checkout using payment gateway.  Also it provides an advanced grid system and skin customizer that makes you to build professional forms. Also it provides an administration section where site admins manage tons of form options. It's really easy to customize and you don't need programming skills. 
 
 https://www.youtube.com/watch?v=Zd4Hw6PsrV0&w=532&rel=0
 
+See more at https://softdiscover.github.io/ZigaForm-PHP-Cost-Estimator-Lite/
+
 ## Installation ## 
 
-The latest version of the Zigaform software ZIP file can be [**downloaded**](https://softdiscover.github.io/ZigaForm-PHP-Cost-Estimator-Lite/dist/zigaform-php-cost-estimator.zip) from https://softdiscover.github.io/ZigaForm-PHP-Cost-Estimator-Lite/
+The latest version of the Zigaform software ZIP file can be [**downloaded**](https://github.com/Softdiscover/ZigaForm-PHP-Cost-Estimator-Lite/zipball/master) from https://softdiscover.github.io/ZigaForm-PHP-Cost-Estimator-Lite/
  
 Follow the installation process here: 
+
+1) uncompress the zip file and copy all files under the folder to your host via ftp.
+2) then follow the next: 
 https://kb.softdiscover.com/docs/zigaform-php-cost-estimator/installation/via-wizard-installer/
 
 
@@ -29,7 +21,7 @@ https://kb.softdiscover.com/docs/zigaform-php-cost-estimator/installation/via-wi
 
 Please see https://php-cost-estimator.zigaform.com/#contact for more details.
 
-### Features (Free Lite version):
+### Features:
 * real-time drag and drop form builder which makes to build estimation forms
 * Cost estimation and calculation feature (math formula)
 * Offline Payment Gateway included
@@ -269,18 +261,5 @@ Their support is immaculate and the zigaform is one of the best you’ll find fo
 
 https://www.youtube.com/watch?v=Zd4Hw6PsrV0&w=532&rel=0
 
-== Screenshots ==
-
-1. Main form editor panel
-2. Form detailed entries report
-3. Saved forms in list
-4. graphic chart entry report by form
-5. Export form feature
-6. Import form feature
-7. Preview form
-
-## Change Log ##
-
-### 3.9.4.2
-- first release of lite version
+ 
 
