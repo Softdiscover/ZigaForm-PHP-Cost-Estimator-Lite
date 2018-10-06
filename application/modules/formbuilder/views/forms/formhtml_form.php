@@ -96,7 +96,7 @@ ob_start();
     <?php }?>
       
     <?php if(isset($main['price_currency_symbol'])){?>
-        <input type="hidden" class="_rockfm_form_price_symbol" value="<?php echo $main['price_currency_symbol'];?>">
+        <input type="hidden" class="_rockfm_form_price_symbol" value="<?php echo urldecode($main['price_currency_symbol']);?>">
     <?php } ?>
     <?php if(isset($main['price_currency'])){?>
         <input type="hidden" class="_rockfm_form_price_currency" value="<?php echo $main['price_currency'];?>">
