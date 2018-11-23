@@ -53,6 +53,16 @@ if(obj_form.find('.rockfm-captcha').length){if(parseInt(obj_form.find('.rockfm-c
 var rockfm_capcha_refobj=obj_form.find('.rockfm-captcha .rockfm-inp6-wrap-refrescaptcha a');rocketfm.captcha_refreshImage(rockfm_capcha_refobj);}
 if(obj_form.find('.rockfm-input7-datepic').length){var rockfm_datepic_d=obj_form.find('.rockfm-input7-datepic');var rkfm_datepic_tmp1,rkfm_datepic_tmp2;rockfm_datepic_d.each(function(i){$(this).datetimepicker({format:'L'});rkfm_datepic_tmp1=$(this).attr('data-rkfm-language');if(rkfm_datepic_tmp1){$(this).data('DateTimePicker').locale(rkfm_datepic_tmp1);}
 rkfm_datepic_tmp2=$(this).attr('data-rkfm-showformat');if(rkfm_datepic_tmp2){$(this).data('DateTimePicker').dayViewHeaderFormat(rkfm_datepic_tmp2);$(this).data('DateTimePicker').format(rkfm_datepic_tmp2);}});}
+if(obj_form.find('.uifm-input-flatpickr').length){var rockfm_datepic_d=obj_form.find('.uifm-input-flatpickr');var rkfm_datepic_tmp1,rkfm_datepic_tmp2;rockfm_datepic_d.each(function(i){var tmp={};tmp['wrap']=true;if(parseInt($(this).attr('data-rkfm-enabletime'))===1){tmp['enableTime']=true;}else{tmp['enableTime']=false;}
+if(parseInt($(this).attr('data-rkfm-nocalendar'))===1){tmp['noCalendar']=true;}else{tmp['noCalendar']=false;}
+if(parseInt($(this).attr('data-rkfm-time24hr'))===1){tmp['time_24hr']=true;}else{tmp['time_24hr']=false;}
+if(parseInt($(this).attr('data-rkfm-altinput'))===1){tmp['altInput']=true;}else{tmp['altInput']=false;}
+if(String($(this).attr('data-rkfm-altformat')).length>0){tmp['altFormat']=$(this).attr('data-rkfm-altformat');}else{tmp['altFormat']="F j, Y";}
+if(String($(this).attr('data-rkfm-dateformat')).length>0){tmp['dateFormat']=$(this).attr('data-rkfm-dateformat');}else{tmp['dateFormat']="Y-m-d";}
+tmp['locale']=$(this).attr('data-rkfm-language');if(String($(this).attr('data-rkfm-mindate')).length>0){tmp['minDate']=$(this).attr('data-rkfm-mindate');}
+if(String($(this).attr('data-rkfm-maxdate')).length>0){tmp['maxDate']=$(this).attr('data-rkfm-maxdate');}
+if(String($(this).attr('data-rkfm-defaultdate')).length>0){tmp['defaultDate']=$(this).attr('data-rkfm-defaultdate');}
+flatpickr($(this)[0],tmp);});}
 if(obj_form.find('.rockfm-input7-timepic').length){var rockfm_timepic_d=obj_form.find('.rockfm-input7-timepic');rockfm_timepic_d.each(function(i){$(this).datetimepicker({format:'LT'});});}
 if(obj_form.find('.rockfm-input7-datetimepic').length){var rockfm_datetm_d=obj_form.find('.rockfm-input7-datetimepic');var rkfm_datetm_tmp1,rkfm_datetm_tmp2;rockfm_datetm_d.each(function(i){$(this).datetimepicker({minDate:new Date()});rkfm_datetm_tmp1=$(this).attr('data-rkfm-language');if(rkfm_datetm_tmp1){$(this).data('DateTimePicker').locale(rkfm_datetm_tmp1);}
 rkfm_datetm_tmp2=$(this).attr('data-rkfm-showformat');if(rkfm_datetm_tmp2){$(this).data('DateTimePicker').dayViewHeaderFormat(rkfm_datetm_tmp2);}});obj_form.find('.rockfm-input7-datetimepic').datetimepicker();}
@@ -66,9 +76,9 @@ if(obj_form.find('._zgfm_form_opt')){obj_form.zgpb_datafrm(obj_form.find('._zgfm
 if($('.uiform-main-form [data-toggle="tooltip"]').length){$('.uiform-main-form [data-toggle="tooltip"]').tooltip({'selector':'','placement':'top','container':obj_form,html:true});}
 if(obj_form.find('.uiform-sticky-sidebar-box').length&&(parseInt(obj_form.find('._rockfm_sticky_st').val())===1)){zgfm_front_cost.costest_sticky_init(obj_form);}else{}
 if(obj_form.find('.uiform-stickybox-symbol').length)
-{obj_form.find('.uiform-stickybox-symbol').html(obj_form.find('._rockfm_form_price_symbol').val());}
+{obj_form.find('.uiform-stickybox-symbol').html(decodeURIComponent(obj_form.find('._rockfm_form_price_symbol').val()));}
 if(obj_form.find('.uiform-stickybox-currency').length)
-{obj_form.find('.uiform-stickybox-currency').html(obj_form.find('._rockfm_form_price_currency').val());}
+{obj_form.find('.uiform-stickybox-currency').html(decodeURIComponent(obj_form.find('._rockfm_form_price_currency').val()));}
 if(obj_form.find('.rockfm-costest-field').length){zgfm_front_cost.costest_listenEvents(obj_form);zgfm_front_cost.costest_refresh(obj_form);}
 obj_form.find('input, textarea').placeholder();if(String(uifmvariable.externalVars["fm_loadmode"])==="iframe"){if('parentIFrame'in window){parentIFrame.size();}}
 if(parseInt(obj_form.data('zgpb_datafrm').getData("onload_scroll"))===1){if(String(uifmvariable.externalVars["fm_loadmode"])==="iframe"){if('parentIFrame'in window){parentIFrame.scrollTo(0,obj_form.offset().top);}}else{$('html,body').animate({scrollTop:obj_form.offset().top},'slow');}}
@@ -83,12 +93,12 @@ catch(ex){console.error(" genpdf_inforecord : ",ex.message);var uifm_iframeform=
 {var object=this;object.time=new Date().getTime();object.form=$('<form action="'+url+'" target="iframe'+object.time+'" method="post" style="display:none;" id="form'+object.time+'"></form>');object.addParameter=function(parameter,value)
 {$("<input type='hidden' />").attr("name",parameter).attr("value",value).appendTo(object.form);}
 object.send=function()
-{var iframe=$('<iframe data-time="'+object.time+'" style="display:none;" id="iframe'+object.time+'"></iframe>');$("body").append(iframe);$("body").append(object.form);object.form.submit();iframe.load(function(){$('#form'+$(this).data('time')).remove();$(this).remove();});}};var tmpSend=new uifm_iframeform(rockfm_vars.url_site+'?uifm_costestimator_api_handler&action=uifm_est_api_handler&uifm_action=show_record&uifm_mode=pdf&id='+rec_id);tmpSend.send();}};arguments.callee.genpdf_infoinvoice=function(rec_id){try{$("body").append("<iframe src='"+rockfm_vars.url_site+"?uifm_costestimator_api_handler&action=uifm_est_api_handler&uifm_action=show_invoice&uifm_mode=pdf&id="+rec_id+"' style='display: none;' ></iframe>");}
+{var iframe=$('<iframe data-time="'+object.time+'" style="display:none;" id="iframe'+object.time+'"></iframe>');$("body").append(iframe);$("body").append(object.form);object.form.submit();iframe.load(function(){$('#form'+$(this).data('time')).remove();$(this).remove();});}};var tmpSend=new uifm_iframeform(rockfm_vars.uifm_siteurl+"formbuilder/records/action_pdf_show_record/?id="+rec_id);tmpSend.send();}};arguments.callee.genpdf_infoinvoice=function(rec_id){try{$("body").append("<iframe src='"+rockfm_vars.uifm_siteurl+"formbuilder/records/action_pdf_show_invoice/?id="+rec_id+"' style='display: none;' ></iframe>");}
 catch(ex){console.error(" genpdf_inforecord : ",ex.message);var uifm_iframeform=function(url)
 {var object=this;object.time=new Date().getTime();object.form=$('<form action="'+url+'" target="iframe'+object.time+'" method="post" style="display:none;" id="form'+object.time+'"></form>');object.addParameter=function(parameter,value)
 {$("<input type='hidden' />").attr("name",parameter).attr("value",value).appendTo(object.form);}
 object.send=function()
-{var iframe=$('<iframe data-time="'+object.time+'" style="display:none;" id="iframe'+object.time+'"></iframe>');$("body").append(iframe);$("body").append(object.form);object.form.submit();iframe.load(function(){$('#form'+$(this).data('time')).remove();$(this).remove();});}};var tmpSend=new uifm_iframeform(rockfm_vars.url_site+'?uifm_costestimator_api_handler&action=uifm_est_api_handler&uifm_action=show_invoice&uifm_mode=pdf&id='+rec_id);tmpSend.send();}};arguments.callee.add_formloaded=function(value){var temp;temp=this.getInnerVariable('form_loaded');if(temp===''){temp=[];this.setInnerVariable('form_loaded',[]);}
+{var iframe=$('<iframe data-time="'+object.time+'" style="display:none;" id="iframe'+object.time+'"></iframe>');$("body").append(iframe);$("body").append(object.form);object.form.submit();iframe.load(function(){$('#form'+$(this).data('time')).remove();$(this).remove();});}};var tmpSend=new uifm_iframeform(rockfm_vars.uifm_siteurl+"formbuilder/records/action_pdf_show_invoice/?id="+rec_id);tmpSend.send();}};arguments.callee.add_formloaded=function(value){var temp;temp=this.getInnerVariable('form_loaded');if(temp===''){temp=[];this.setInnerVariable('form_loaded',[]);}
 temp.push(value);this.setInnerVariable('form_loaded',temp);};arguments.callee.run_form=function(form_id){var check_field=$.inArray(form_id,this.getInnerVariable('form_loaded'));if(check_field<0){this.add_formloaded(form_id);this.loadform_content(form_id);}};arguments.callee.loadform_content=function(form_id){var form_obj=$('#uifm_container_'+form_id);$.ajax({async:true,type:"post",url:UIFORM_WWW+'uiformbuilder/getform',data:"id="+encodeURIComponent(form_id),dataType:"html",beforeSend:function(){},success:function(response){var msg;if(response){var arrJson=$.parseJSON(response);msg=decodeURIComponent(arrJson.html_content);}else{msg='Error. Try refresh again.';}
 form_obj.html(msg);rocketfm.loadform_init();},complete:function()
 {},error:function(data,errorThrown)

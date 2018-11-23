@@ -65,6 +65,11 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
         <!--container  -->    
             <?php include('settings_field_input_18.php');?>
         <!--\end container -->
+        <!--container  -->    
+            <?php include('settings_field_input_19.php');?>
+        <!--\end container -->
+        
+        
         <div class="uifm-set-section-inputprice">
         <div class="space20"></div>
         <div class="sfdc-row">

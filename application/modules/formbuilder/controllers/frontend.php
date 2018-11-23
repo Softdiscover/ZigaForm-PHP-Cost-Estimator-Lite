@@ -1892,7 +1892,7 @@ class Frontend extends MX_Controller {
         $data2['head_extra']=$head_extra;
         $data2['content']=$content;
         $tmp_html=modules::run('formbuilder/frontend/pdf_global_template',$data2);                      
-        uifm_generate_pdf($tmp_html,'invoice_'.$rec_id, true);
+        generate_pdf($tmp_html,'invoice_'.$rec_id, true);
         die();
     }
     

@@ -28,8 +28,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                           enctype="multipart/form-data"
                           method="post"
                           >
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Name','FRocket_admin')?></label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Name','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <input name="pg_name" 
                              id="pg_name" type="text" 
@@ -37,8 +37,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                              class="sfdc-form-control col-md-7" value="<?php echo (isset($pg_name))?$pg_name:'';?>">
                     </div>
                   </div>
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Paypal mail','FRocket_admin')?></label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Paypal mail','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <input name="paypal_email" 
                              id="paypal_email" 
@@ -47,8 +47,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                              value="<?php echo (!empty($paypal_email))?$paypal_email:'';?>">
                     </div>
                   </div>
-                 <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Currency','FRocket_admin')?></label>
+                 <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Currency','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                           <select class="sfdc-form-control input-sm" 
                                   name="paypal_currency"  
@@ -68,8 +68,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                         </select>
                     </div>
                   </div>
-                      <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Method','FRocket_admin')?></label>
+                      <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Method','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <label class="radio-inline">
                         <input name="paypal_method" id="optionsRadios5" value="1" type="radio" <?php Uiform_Form_Helper::getChecked($paypal_method, 1); ?>>
@@ -81,8 +81,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                       </label>
                     </div>
                   </div>
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Return URL','FRocket_admin')?></label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Return URL','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <input name="paypal_return_url" id="paypal_return_url" 
                              type="text" 
@@ -91,8 +91,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                              value="<?php echo (isset($paypal_return_url))?$paypal_return_url:'';?>">
                     </div>
                   </div>
-                       <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Cancel URL','FRocket_admin')?></label>
+                       <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Cancel URL','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <input name="paypal_cancel_url" id="paypal_cancel_url" 
                              type="text" 
@@ -101,8 +101,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                              value="<?php echo (isset($paypal_cancel_url))?$paypal_cancel_url:'';?>">
                     </div>
                   </div>
-                 <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Status','FRocket_admin')?></label>
+                 <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Status','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <label class="radio-inline">
                         <input name="flag_status" id="optionsRadios1" value="1" type="radio" <?php Uiform_Form_Helper::getChecked($flag_status, 1); ?>>
@@ -114,8 +114,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                       </label>
                     </div>
                   </div>
-                 <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Test mode','FRocket_admin')?></label>
+                 <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Test mode','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <label class="radio-inline">
                         <input name="pg_modtest" id="optionsRadios3" value="1" type="radio" <?php Uiform_Form_Helper::getChecked($pg_modtest, 1); ?>>
@@ -128,8 +128,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                     </div>
                   </div>
                       
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Description','FRocket_admin')?></label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Description','FRocket_admin')?></label>
                       <div class="sfdc-col-md-10">
                         <textarea name="pg_description" 
                                   id="pg_description" 
@@ -138,14 +138,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                                   class="sfdc-form-control col-md-7"><?php echo $pg_description?></textarea>
                       </div>
                   </div>
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Payment order','FRocket_admin')?></label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Payment order','FRocket_admin')?></label>
                     <div class="sfdc-col-md-4">
                         <input name="pg_order" id="pg_order" value="<?php echo (isset($pg_order))?$pg_order:'';?>">
                     </div>
                   </div>
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label" style="padding-top:0px;">IPN URL</label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label" style="padding-top:0px;">IPN URL</label>
                     <div class="sfdc-col-md-10">
                       <label class="label label-default">
                        <?php echo site_url('gateways/paypal/ipn'); ?>

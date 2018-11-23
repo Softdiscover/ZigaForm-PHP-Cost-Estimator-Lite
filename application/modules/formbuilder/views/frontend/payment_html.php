@@ -79,7 +79,7 @@ if (!defined('BASEPATH')) {
                         
                         
                         <p class="uiform-pg-summbox-p text-right"> <?php echo __('Total', 'frocket_front');?>:&nbsp;&nbsp; 
-                            <span class="uiform-pg-summbox-total "><?php echo $currency['symbol']; ?> <span class="uiform-pg-summbox-amount"> <?php echo $amount;?></span> <?php echo $currency['cur']; ?></span>
+                            <span class="uiform-pg-summbox-total "><?php echo urldecode($currency['symbol']); ?> <span class="uiform-pg-summbox-amount"> <?php echo $amount;?></span> <?php echo $currency['cur']; ?></span>
                         </p>
                         <div style="display:none;" class="uiform-pg-summbox-agreement text-right">
                             <label class="">

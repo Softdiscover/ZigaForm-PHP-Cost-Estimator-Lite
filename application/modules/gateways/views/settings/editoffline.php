@@ -28,8 +28,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                           enctype="multipart/form-data"
                           method="post"
                           >
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Name','FRocket_admin')?></label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Name','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <input name="pg_name" 
                              id="pg_name" type="text" 
@@ -38,8 +38,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                     </div>
                   </div>
                   
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Return URL','FRocket_admin')?></label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Return URL','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <input name="offline_return_url" id="offline_return_url" 
                              type="text" 
@@ -49,8 +49,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                     </div>
                   </div>
                       
-                 <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Status','FRocket_admin')?></label>
+                 <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Status','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
                       <label class="radio-inline">
                         <input name="flag_status" id="optionsRadios1" value="1" type="radio" <?php Uiform_Form_Helper::getChecked($flag_status, 1); ?>>
@@ -63,8 +63,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                     </div>
                   </div>
                    
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Description','FRocket_admin')?></label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Description','FRocket_admin')?></label>
                       <div class="sfdc-col-md-10">
                         <textarea name="pg_description" 
                                   id="pg_description" 
@@ -73,8 +73,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                                   class="sfdc-form-control col-md-7"><?php echo $pg_description?></textarea>
                       </div>
                   </div>
-                  <div class="sfdc-form-group">
-                    <label class=" col-md-2 control-label"><?php echo __('Payment order','FRocket_admin')?></label>
+                  <div class="sfdc-form-group clearfix">
+                    <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Payment order','FRocket_admin')?></label>
                     <div class="sfdc-col-md-4">
                         <input name="pg_order" id="pg_order" value="<?php echo (isset($pg_order))?$pg_order:'';?>">
                     </div>

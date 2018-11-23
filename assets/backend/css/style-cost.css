@@ -269,3 +269,11 @@ select.uifm-input2-opt-main{
     vertical-align: baseline;
     width: 100%;
 }
+
+/*gateawy*/
+
+#uiform-form-editgateway .sfdc-form-group{
+    
+    margin-bottom: 10px;
+    display:block!important;
+}
