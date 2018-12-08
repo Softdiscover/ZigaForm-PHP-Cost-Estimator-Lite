@@ -1,3 +1,9 @@
+Version 3.9.6.7
+   [update] - minor changes
+-----------------------------------------------------------------------------------------------------------------
+Version 3.9.6.5
+   [fixed] - issue on amounts in paypal
+-----------------------------------------------------------------------------------------------------------------
 Version 3.9.6.4
    [update] - only php cost estimator - pdf on frontend, not working
    [fixed] - wizard issue 

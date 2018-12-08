@@ -530,18 +530,18 @@ class Uiform_Form_Helper {
            // if (is_numeric($value)) { // is number
                 
                 if(isset($opts['price_format_st']) && intval($opts['price_format_st'])===1){
-                   $value =  number_format($value,$opts['price_sep_precision'],$opts['price_sep_decimal'],$opts['price_sep_thousand']);
+                   $value =  number_format((float)$value,$opts['price_sep_precision'],$opts['price_sep_decimal'],$opts['price_sep_thousand']);
                    return $value; 
                 }else{
                    if (strstr($value, ".")) { // is decimal
                         $tmp = explode(".", $value);
                         $int = empty($tmp[0]) ? '0' : $tmp[0];
                         $dec = $tmp[1];
-                        $value = number_format($int, 0) . "." . $dec;
+                        $value = number_format((float)$int, 0) . "." . $dec;
                         return $value;
                     }
 
-                    $value =  number_format($value);
+                    $value =  number_format((float)$value);
                     return $value; 
                 }
             //}

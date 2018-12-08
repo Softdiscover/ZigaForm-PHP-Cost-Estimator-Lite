@@ -2265,7 +2265,7 @@ class Frontend extends MX_Controller {
                     $pg_data = json_decode($value->pg_data, true);
                     $data2 = array();
                     $data2['amount'] = (isset($this->form_response['amount']))?$this->form_response['amount']:0;
-                    $data2['amount'] = number_format(round($data2['amount'],2,PHP_ROUND_HALF_EVEN),2);
+                    $data2['amount'] = number_format(round($data2['amount'],2,PHP_ROUND_HALF_EVEN),2,'.', '');
                     $data2['vis_uniqueid'] = (isset($this->form_response['vis_uniqueid']))?$this->form_response['vis_uniqueid']:'';
                     $data2['pg_name'] = (isset($value->pg_name))?$value->pg_name:'';
                     $data2['mod_test'] = (isset($value->pg_modtest))?$value->pg_modtest:0;

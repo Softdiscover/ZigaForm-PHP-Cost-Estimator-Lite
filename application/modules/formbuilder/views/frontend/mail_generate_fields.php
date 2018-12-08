@@ -78,7 +78,7 @@ ob_start();
                                     
                                     break;
                                 case 16:
-                                case 17:
+                                case 18:
                                     /*slider, spinner*/    
                                         $tmp_output_st ='';
                                           if(intval($value2['qty'])>0){
