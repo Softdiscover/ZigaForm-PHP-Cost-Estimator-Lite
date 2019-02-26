@@ -116,7 +116,7 @@ class Uiform_Form_Helper {
         $string = filter_var($string, FILTER_SANITIZE_STRING);
         $string = stripslashes($string);
         $string = str_replace(array('‘', '’', '“', '”'), array("'", "'", '"', '"'), $string);
-        $string = html_entity_decode(strip_tags($string), ENT_QUOTES, 'UTF-8');
+        $string = html_entity_decode($string, ENT_QUOTES, 'UTF-8');
         $string = preg_replace('/[\n\r\t]/', ' ', $string);
         $string = trim($string, "\x00..\x1F");
         //$string = sanitize_text_field($string);
@@ -131,10 +131,9 @@ class Uiform_Form_Helper {
      * @return array
      */
     public static function sanitizeInput_html($string) {
-        $string = filter_var($string, FILTER_SANITIZE_STRING);
         $string = stripslashes($string);
         $string = str_replace(array('‘', '’', '“', '”'), array("'", "'", '"', '"'), $string);
-        $string = html_entity_decode(strip_tags($string), ENT_QUOTES, 'UTF-8');
+        $string = html_entity_decode($string, ENT_QUOTES, 'UTF-8');
         $string = preg_replace('/[\n\r\t]/', ' ', $string);
         $string = trim($string, "\x00..\x1F");
         return $string;

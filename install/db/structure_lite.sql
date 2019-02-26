@@ -295,7 +295,7 @@ CREATE TABLE `cepf_cest_uiform_visitor` (
   `vis_page` longtext,
   `vis_referer` longtext,
   `vis_ip` longtext,
-  `vis_last_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `vis_last_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `vis_params` longtext,
   PRIMARY KEY (`vis_id`)
 ) DEFAULT CHARSET=utf8;
@@ -312,7 +312,7 @@ CREATE TABLE `cepf_cest_uiform_visitor_error` (
   `vis_referer` longtext,
   `vis_error` longtext CHARACTER SET latin1,
   `vis_ip` varchar(40) DEFAULT NULL,
-  `vis_last_date` timestamp NULL ON UPDATE CURRENT_TIMESTAMP,
+  `vis_last_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`vis_id`)
 ) DEFAULT CHARSET=utf8;
 
