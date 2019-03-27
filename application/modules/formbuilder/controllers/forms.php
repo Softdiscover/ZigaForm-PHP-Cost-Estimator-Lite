@@ -2665,13 +2665,11 @@ public $gen_post_src;
      * @return 
      */
     public function create_uiform() {
-        require_once( FCPATH . 'libs/styles-font-menu/plugin.php');
-        $objsfm = new SFM_Plugin();
-
+                            
         $data = array();
         $data['form_id'] = (isset($_GET['form_id']) && $_GET['form_id']) ? Uiform_Form_Helper::sanitizeInput(trim($_GET['form_id'])) : 0;
         $data['action'] = 'create_uiform';
-        $data['obj_sfm'] = $objsfm;
+        $data['obj_sfm'] = Uiform_Form_Helper::get_font_library();
         $this->template->loadPartial('layout-editform', 'forms/create_form', $data);
     }
 
