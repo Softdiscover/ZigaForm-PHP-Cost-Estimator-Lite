@@ -404,6 +404,12 @@ var zgfm_back_calc = function(){
                     string_res+='<option value="value">'+zgfm_back_calc.calc_variables_getActName('value')+'</option>';
                     string_res+='<option value="price">'+zgfm_back_calc.calc_variables_getActName('price')+'</option>';
                   break;
+                 
+                case 24:
+                
+                 case 26:    
+                    string_res+='<option value="value">'+zgfm_back_calc.calc_variables_getActName('value')+'</option>';
+                  break; 
                   
             }
             

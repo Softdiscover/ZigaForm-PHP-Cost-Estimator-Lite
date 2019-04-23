@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS `cepf_cest_uiform_fields`;
 CREATE TABLE `cepf_cest_uiform_fields` (
   `fmf_id` int(6) NOT NULL AUTO_INCREMENT,
   `fmf_uniqueid` varchar(255) DEFAULT NULL,
-  `fmf_data` mediumtext,
+  `fmf_data` longtext,
   `fmf_fieldname` varchar(255) DEFAULT NULL,
   `flag_status` smallint(5) DEFAULT NULL,
   `created_date` timestamp NULL,

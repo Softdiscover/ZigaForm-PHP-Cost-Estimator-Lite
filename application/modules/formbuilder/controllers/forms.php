@@ -616,7 +616,9 @@ public $gen_post_src;
      */
     public function ajax_save_form() {
         try{
-                                    
+             if(!Uiform_Form_Helper::check_User_Access()){
+                throw new Exception(__('Error! User has no permission to edit this form','FRocket_admin'));
+            }                        
              ob_start();
         $data = array();
 
@@ -849,6 +851,9 @@ public $gen_post_src;
             
             $json=array();
             $json['status'] = 'failed';
+            $json['modal_header'] = __('Error on saving form','FRocket_admin');
+            $json['modal_footer'] = '';
+            $json['Message'] = $e->getMessage();
         }
         //return data to ajax callback
         header('Content-Type: application/json');
