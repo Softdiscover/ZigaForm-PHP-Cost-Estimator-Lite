@@ -294,7 +294,7 @@ var zgfm_back_calc = function(){
                                                                                                                                                                                     
     this.calc_refreshvars_init = function() {
                 try{
-                      var arr_types_allowed=[8,9,10,11,16,18,24,26,40,41,42];
+                      var arr_types_allowed=[6,7,8,9,10,11,16,18,24,26,28,29,30,40,41,42];
                       var field=$('#uifm_frm_calc_cmbo_field_var');
                        var var_fields=rocketform.getUiData('steps_src');
                        
@@ -377,6 +377,14 @@ var zgfm_back_calc = function(){
             string_res+='<option value="">Select an option</option>';
             
             switch(parseInt(rtype)){
+                case 6:
+                 case 7:
+                 case 28:
+                 case 29:
+                 case 30:
+                   //textbox
+                   string_res+='<option value="value">'+zgfm_back_calc.calc_variables_getActName('value')+'</option>';
+                   break;
                 case 8:
                  case 9:
                  case 10:
@@ -812,9 +820,14 @@ var zgfm_back_calc = function(){
              $.each(tmp_content_parent.find('div.CodeMirror-code .cm-comment'), function(i, value) {
                    tmp_comments.push($(this).html());
                 });
+                
+             RegExp.escape = function(s) {
+                    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                };   
+                
                  //replace all function
             var replaceAll = function (str, find, replace) {
-                    return str.replace(new RegExp(find, 'g'), replace);
+                         return str.replace(new RegExp(RegExp.escape(find), 'g'), replace);
                 }
              //remove comments
                $.each(tmp_comments, function(i, value) {

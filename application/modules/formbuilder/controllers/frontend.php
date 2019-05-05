@@ -1095,8 +1095,8 @@ class Frontend extends MX_Controller {
             
             $form_id = ($_POST['_rockfm_form_id']) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['_rockfm_form_id'])) : 0;
             $this->current_form_id=$form_id;
-                $form_fields = (isset($_POST['uiform_fields']) && $_POST['uiform_fields']) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive'), $_POST['uiform_fields']) : array();
-                $form_avars = (isset($_POST['zgfm_avars']) && $_POST['zgfm_avars']) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive'), $_POST['zgfm_avars']) : array();
+                $form_fields = (isset($_POST['uiform_fields']) && $_POST['uiform_fields']) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), $_POST['uiform_fields']) : array();
+                $form_avars = (isset($_POST['zgfm_avars']) && $_POST['zgfm_avars']) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), $_POST['zgfm_avars']) : array();
                 $form_f_tmp = array();
                 $form_f_rec_tmp = array();
                 $form_cost_total = 0;
@@ -1662,6 +1662,7 @@ class Frontend extends MX_Controller {
                 //mail template
                 $mail_template_msg = (isset($form_data_onsubm['onsubm']['mail_template_msg'])) ? urldecode($form_data_onsubm['onsubm']['mail_template_msg']) : '';
                 $mail_template_msg =do_shortcode($mail_template_msg);
+                $mail_template_msg = html_entity_decode($mail_template_msg, ENT_QUOTES, 'UTF-8');
                 $mail_template_msg = $this->load->view('formbuilder/frontend/mail_global_template',array('content'=>$mail_template_msg,'html_wholecont'=>$mail_html_wholecont),true);
                 
                 $email_recipient = (isset($form_data_onsubm['onsubm']['mail_recipient'])) ? $form_data_onsubm['onsubm']['mail_recipient'] : model_settings::$db_config['admin_mail'];
@@ -1695,6 +1696,7 @@ class Frontend extends MX_Controller {
                 if(intval($mail_usr_st)===1){
                     $mail_template_msg = (isset($form_data_onsubm['onsubm']['mail_usr_template_msg'])) ? urldecode($form_data_onsubm['onsubm']['mail_usr_template_msg']) : '';
                     $mail_template_msg =do_shortcode($mail_template_msg);
+                    $mail_template_msg = html_entity_decode($mail_template_msg, ENT_QUOTES, 'UTF-8');
                     $mail_template_msg = $this->load->view('formbuilder/frontend/mail_global_template', array('content'=>$mail_template_msg,'html_wholecont'=>$mail_html_wholecont),true);
 
                     $mail_usr_cc = (isset($form_data_onsubm['onsubm']['mail_usr_cc'])) ? $form_data_onsubm['onsubm']['mail_usr_cc'] : '';
