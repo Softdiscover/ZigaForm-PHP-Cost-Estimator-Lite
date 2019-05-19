@@ -46,7 +46,7 @@ class model_gateways_records extends CI_Model {
     
     function getRecordById($id) {
         $query = sprintf('
-            select uf.*
+            select uf.pgr_id,uf.type_pg_id,uf.pgr_payment_status,uf.pgr_payment_amount,uf.pgr_currency,uf.pgr_data,uf.flag_status,uf.created_date,uf.updated_date,uf.fbh_id
             from %s uf
             where uf.pgr_id=%s
             ', $this->table, $id);
@@ -91,7 +91,7 @@ class model_gateways_records extends CI_Model {
     
     function getListRecords($per_page = '', $segment = '') {
         $query = sprintf('
-            select gr.*,f.fmb_name
+            select gr.pgr_id,gr.type_pg_id,gr.pgr_payment_status,gr.pgr_payment_amount,gr.pgr_currency,gr.pgr_data,gr.flag_status,gr.created_date,gr.updated_date,gr.fbh_id,f.fmb_name
             from %s gr
             join %s fr on fr.fbh_id=gr.fbh_id
             join %s f on fr.form_fmb_id=f.fmb_id

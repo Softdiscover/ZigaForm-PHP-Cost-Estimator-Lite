@@ -51,7 +51,7 @@ class model_gateways extends CI_Model {
      */
     function getListGateways() {
         $query = sprintf('
-            select c.*
+            select c.pg_id,c.pg_name,c.pg_modtest,c.pg_data,c.flag_status,c.pg_order,c.pg_description
             from %s c
             where c.flag_status>=0 
             ', $this->table);
@@ -62,7 +62,7 @@ class model_gateways extends CI_Model {
     
     function getAvailableGateways() {
         $query = sprintf('
-            select c.*
+            select c.pg_id,c.pg_name,c.pg_modtest,c.pg_data,c.flag_status,c.pg_order,c.pg_description
             from %s c
             where c.flag_status=1
             ORDER BY c.pg_order asc
@@ -73,7 +73,7 @@ class model_gateways extends CI_Model {
     
     function getGatewayById($id) {
         $query = sprintf('
-            select uf.*
+            select c.pg_id,c.pg_name,c.pg_modtest,c.pg_data,c.flag_status,c.pg_order,c.pg_description
             from %s uf
             where uf.pg_id=%s
             ', $this->table, $id);
