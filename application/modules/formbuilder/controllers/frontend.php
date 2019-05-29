@@ -1384,7 +1384,6 @@ class Frontend extends MX_Controller {
                                     /*spinner*/    
                                    $tmp_fdata= json_decode($tmp_field_name->data,true);
                                 
-                                    $tmp_options = array();
                                     $tmp_field_label=(!empty($tmp_fdata['label']['text']))?$tmp_fdata['label']['text']:$tmp_field_name->fieldname;
                                     $form_f_tmp[$key]['type']=$tmp_field_name->type;
                                     $form_f_tmp[$key]['fieldname']=$tmp_field_name->fieldname;
@@ -1394,33 +1393,33 @@ class Frontend extends MX_Controller {
                                     
                                    // foreach ($value as $key2=>$value2) {
                                         $tmp_options_row=array();
-                                        $tmp_options_row['label']='';
+                                        
+                                        
                                         
                                            $tmp_options_row['cost']= floatval($tmp_fdata['price']['unit_price']);
                                            
                                            $tmp_options_row['qty']=  floatval($value);
-                                           $tmp_options_row['label']=floatval($value);
+                                           $tmp_options_row['value']=floatval($value);
                                            //for records
                                            $form_f_rec_tmp[$key] = $value;
                                            
                                 
-                                            
                                             if(isset($tmp_fdata['price']['enable_st'])
                                                     && intval($this->current_cost['st'])===1 
                                                     && intval($tmp_fdata['price']['enable_st'])===1){
                                                 /*cost estimate*/
                                                 $form_cost_total+=floatval($value)*floatval($tmp_fdata['price']['unit_price']);
+                                                
                                 
                                                 
                                             }
-                                            
-                                            $tmp_options_row['amount']=  floatval($value)*floatval($tmp_fdata['price']['unit_price']);
-                                        
-                                        $tmp_options[] = $tmp_options_row;
+                                
+                                        $tmp_options_row['amount']=  floatval($value)*floatval($tmp_fdata['price']['unit_price']);
+                                
                                    // }
                                     /*saving data to field array*/
-                                    $form_f_tmp[$key]['input'] = $tmp_options;
-                                     $form_f_tmp[$key]['input_cost_amt']= floatval($value)*floatval($tmp_fdata['price']['unit_price']);
+                                    $form_f_tmp[$key]['input'] = $tmp_options_row;
+                                    $form_f_tmp[$key]['input_cost_amt']= floatval($value)*floatval($tmp_fdata['price']['unit_price']);
                                    break;
                                case 40:
                                     /*switch*/
@@ -1434,8 +1433,9 @@ class Frontend extends MX_Controller {
                                     $form_f_tmp[$key]['price_st']=isset($tmp_fdata['price']['enable_st'])?$tmp_fdata['price']['enable_st']:0;
                                     $form_f_tmp[$key]['lbl_show_st']=isset($tmp_fdata['price']['lbl_show_st'])?$tmp_fdata['price']['lbl_show_st']:0;
                                     
+                                    
                                     //foreach ($value as $key2=>$value2) {
-                                        $tmp_options_row=array();
+                                
                                         if($value==='on'){
                                          $tmp_options_row['label']=(!empty($tmp_fdata['input15']['txt_yes']))?$tmp_fdata['input15']['txt_yes']:$value;
                                          $form_f_rec_tmp[$key] = 1;  
@@ -1447,6 +1447,8 @@ class Frontend extends MX_Controller {
                                         if(isset($tmp_fdata['price']['unit_price'])){
                                            $tmp_options_row['cost']= floatval($tmp_fdata['price']['unit_price']);
                                            $tmp_options_row['amount']= $tmp_options_row['cost'];
+                                
+                                            
                                             if(isset($tmp_fdata['price']['enable_st'])
                                                     && intval($this->current_cost['st'])===1 
                                                     && intval($tmp_fdata['price']['enable_st'])===1){
@@ -1457,13 +1459,12 @@ class Frontend extends MX_Controller {
                                             }
                                 
                                         }
-                                        
-                                        $tmp_options[] = $tmp_options_row;
+                                
                                     //}
                                     /*saving data to field array*/
-                                    $form_f_tmp[$key]['input'] = $tmp_options;
+                                    $form_f_tmp[$key]['input'] = $tmp_options_row;
                                     $form_f_tmp[$key]['input_cost_amt']= floatval($tmp_fdata['price']['unit_price']);
-                                   break;    
+                                   break;        
                                 case 41;
                                 /*dyn checkbox*/
                                 case 42;

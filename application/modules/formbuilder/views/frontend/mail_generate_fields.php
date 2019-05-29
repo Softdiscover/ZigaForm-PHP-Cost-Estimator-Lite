@@ -30,8 +30,7 @@ ob_start();
                 <?php if(is_array($value['input'])){
                     ?>
                     <ul> 
-                        <?php foreach ($value['input'] as $key2 => $value2) { ?>
-                         
+                        
                         <?php
                         
                             switch (intval($value['type'])){
@@ -39,9 +38,11 @@ ob_start();
                                 case 9:
                                 case 10:
                                 case 11:
-                                    /*checkbox, radiobutton, select, multiselect*/
+                                      /*checkbox, radiobutton, select, multiselect*/
                                      $tmp_output_st ='';
-                                        $tmp_output_st.=$value2['value'];
+                                    foreach ($value['input'] as $key2 => $value2) {
+                                        $tmp_output_st_inner='';
+                                        $tmp_output_st_inner.=$value2['value'];
 
                                         if(isset($value['price_st'])
                                              && intval($current_cost_st)===1
@@ -51,38 +52,46 @@ ob_start();
                                             
                                             if( isset($form_data_calc_enable)   
                                              && intval($form_data_calc_enable)===1  ){
-                                                $tmp_output_st.=' - amount:  '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['cost']); 
+                                                $tmp_output_st_inner.=' - amount:  '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['cost']); 
                                             }else{
-                                                $tmp_output_st.=' - amount: '.$current_cost_symbol.' '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['cost']).' '.$current_cost_cur;  
+                                                $tmp_output_st_inner.=' - amount: '.$current_cost_symbol.' '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['cost']).' '.$current_cost_cur;  
                                             }
                                         } 
+                                        
+                                       if(!empty($tmp_output_st_inner)){
+                                           $tmp_output_st.='<li>'.$tmp_output_st_inner.'</li>';
+                                       } 
+                                    }   
                                     break;
                                 case 40:
                                     /*switch*/        
                                       $tmp_output_st ='';
-                                        $tmp_output_st.=$value2['label'];
+                                        $tmp_output_st.=$value['label'];
 
                                         if(isset($value['price_st'])
                                              && intval($current_cost_st)===1
                                              && intval($value['price_st'])===1  
-                                             && isset($value2['cost'])  
+                                             && isset($value['input']['cost'])    
                                                 ){
                                             
                                             if( isset($form_data_calc_enable)   
                                              && intval($form_data_calc_enable)===1  ){
-                                                $tmp_output_st.=' - amount:  '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['cost']); 
+                                                $tmp_output_st.=' - amount:  '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value['input']['cost']); 
                                             }else{
-                                                $tmp_output_st.=' - amount: '.$current_cost_symbol.' '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['cost']).' '.$current_cost_cur;  
+                                                $tmp_output_st.=' - amount: '.$current_cost_symbol.' '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value['input']['cost']).' '.$current_cost_cur;  
                                             }
                                         } 
-                                    
+                                        if(!empty($tmp_output_st)){
+                                           $tmp_output_st='<li>'.$tmp_output_st.'</li>';
+                                       } 
                                     break;
                                 case 16:
+                                case 17:    
                                 case 18:
                                     /*slider, spinner*/    
                                         $tmp_output_st ='';
-                                          if(intval($value2['qty'])>0){
-                                                 $tmp_output_st.='  qty:  '.$value2['qty'].' '.__('Units','frocket_front');    
+                                          if(intval($value['input']['qty'])>0){
+                                                 $tmp_output_st.='  qty:  '.$value['input']['qty'].' '.__('Units','frocket_front');    
                                              }
                                             
                                     
@@ -100,14 +109,20 @@ ob_start();
                                                 $tmp_output_st.=' - amount: '.$current_cost_symbol.' '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value['input_cost_amt']).' '.$current_cost_cur;  
                                             }
                                         } 
+                                        
+                                        if(!empty($tmp_output_st)){
+                                           $tmp_output_st='<li>'.$tmp_output_st.'</li>';
+                                       } 
                                     break;
                                 case 41:
                                 case 42:
                                     /*dyn checkbox and radio button*/
-                                    $tmp_output_st ='';
-                                        $tmp_output_st.=$value2['label'];
+                                     $tmp_output_st ='';
+                                    foreach ($value['input'] as $key2 => $value2) {
+                                        $tmp_output_st_inner='';
+                                        $tmp_output_st_inner.=$value2['label'];
                                         if(intval($value2['qty'])>0){
-                                                 $tmp_output_st.=' - qty:  '.$value2['qty'].' '.__('Units','frocket_front');    
+                                                 $tmp_output_st_inner.=' - qty:  '.$value2['qty'].' '.__('Units','frocket_front');    
                                              }
                                         if(isset($value['price_st'])
                                              && intval($current_cost_st)===1
@@ -119,12 +134,16 @@ ob_start();
                                             
                                             if( isset($form_data_calc_enable)   
                                              && intval($form_data_calc_enable)===1  ){
-                                                $tmp_output_st.=' - amount:  '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['amount']); 
+                                                $tmp_output_st_inner.=' - amount:  '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['amount']); 
                                             }else{
-                                                $tmp_output_st.=' - amount: '.$current_cost_symbol.' '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['amount']).' '.$current_cost_cur;  
+                                                $tmp_output_st_inner.=' - amount: '.$current_cost_symbol.' '.Uiform_Form_Helper::cformat_numeric($format_price_conf,$value2['amount']).' '.$current_cost_cur;  
                                             }
                                         }
                                     
+                                        if(!empty($tmp_output_st_inner)){
+                                           $tmp_output_st.='<li>'.$tmp_output_st_inner.'</li>';
+                                       } 
+                                    }  
                                     break;
                                 default:
                                     $tmp_output_st ='';
@@ -135,9 +154,9 @@ ob_start();
                       
                         
                         ?>
-                         <li> <?php echo $tmp_output_st;?></li>
+                         <?php echo $tmp_output_st;?> 
                         <?php                     
-                        }?>
+                        ?>
                     </ul>
               <?php
                 }else{
