@@ -52,11 +52,11 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                  <div class="sfdc-form-group clearfix">
                     <label class="sfdc-col-md-2 sfdc-control-label"><?php echo __('Status','FRocket_admin')?></label>
                     <div class="sfdc-col-md-10">
-                      <label class="radio-inline">
+                      <label class="sfdc-radio-inline">
                         <input name="flag_status" id="optionsRadios1" value="1" type="radio" <?php Uiform_Form_Helper::getChecked($flag_status, 1); ?>>
                         <?php echo __('Enabled','FRocket_admin')?>
                       </label> 
-                      <label class="radio-inline">
+                      <label class="sfdc-radio-inline">
                         <input name="flag_status" id="optionsRadios2" value="0" type="radio" <?php Uiform_Form_Helper::getChecked($flag_status, 0); ?> >
                         <?php echo __('Disabled','FRocket_admin')?>
                       </label>

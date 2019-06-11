@@ -74,8 +74,8 @@ class model_gateways extends CI_Model {
     function getGatewayById($id) {
         $query = sprintf('
             select c.pg_id,c.pg_name,c.pg_modtest,c.pg_data,c.flag_status,c.pg_order,c.pg_description
-            from %s uf
-            where uf.pg_id=%s
+            from %s c
+            where c.pg_id=%s
             ', $this->table, $id);
         
         $query2 = $this->db->query($query);

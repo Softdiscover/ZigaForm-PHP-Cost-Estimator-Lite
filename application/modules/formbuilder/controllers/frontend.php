@@ -1094,6 +1094,7 @@ class Frontend extends MX_Controller {
             
             
             $form_id = ($_POST['_rockfm_form_id']) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['_rockfm_form_id'])) : 0;
+            $is_demo = ($_POST['zgfm_is_demo']) ? intval(Uiform_Form_Helper::sanitizeInput(trim($_POST['zgfm_is_demo']))) : 0;
             $this->current_form_id=$form_id;
                 $form_fields = (isset($_POST['uiform_fields']) && $_POST['uiform_fields']) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), $_POST['uiform_fields']) : array();
                 $form_avars = (isset($_POST['zgfm_avars']) && $_POST['zgfm_avars']) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), $_POST['zgfm_avars']) : array();
@@ -1652,7 +1653,10 @@ class Frontend extends MX_Controller {
                 $this->flag_submitted = $idActivate;
                                 
                  //preparing mail
-                                
+                
+                //is demo
+                if($is_demo === 0){
+                
                 $mail_from_email = (isset($form_data_onsubm['onsubm']['mail_from_email'])) ? $form_data_onsubm['onsubm']['mail_from_email'] : '';
                 $mail_from_name = (isset($form_data_onsubm['onsubm']['mail_from_name'])) ? $form_data_onsubm['onsubm']['mail_from_name'] : '';
                 
@@ -1675,7 +1679,7 @@ class Frontend extends MX_Controller {
                 $mail_replyto = (isset($form_data_onsubm['onsubm']['mail_replyto'])) ? $form_data_onsubm['onsubm']['mail_replyto'] : '';
                 
                 $data_mail=array();
-                $data_mail['from_mail']=$mail_from_email;
+                $data_mail['from_mail']=html_entity_decode(do_shortcode($mail_from_email));
                 $data_mail['from_name']=html_entity_decode(do_shortcode($mail_from_name));
                 $data_mail['message']=$mail_template_msg;
                 $data_mail['subject']=html_entity_decode($mail_subject);
@@ -1726,7 +1730,7 @@ class Frontend extends MX_Controller {
                     
                     
                     $data_mail=array();
-                    $data_mail['from_mail']=$mail_from_email;
+                    $data_mail['from_mail']=html_entity_decode(do_shortcode($mail_from_email));
                     $data_mail['from_name']=html_entity_decode(do_shortcode($mail_from_name));
                     $data_mail['message']=$mail_template_msg;
                     $data_mail['subject']=html_entity_decode(do_shortcode($mail_usr_subject));
@@ -1739,7 +1743,7 @@ class Frontend extends MX_Controller {
                     }
                     $mail_errors=$this->process_mail($data_mail);
                 }
-                
+                }
                 //success message
                 
                 $tmp_sm_successtext = (isset($form_data_onsubm['onsubm']['sm_successtext'])) ? urldecode($form_data_onsubm['onsubm']['sm_successtext']) : '';
