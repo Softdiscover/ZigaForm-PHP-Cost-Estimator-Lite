@@ -83,6 +83,7 @@ class Records extends MX_Controller {
          $this->auth->authenticate(true);
         //list all forms
         $data = $config = array();
+        $offset = (isset($_GET['offset'])) ? Uiform_Form_Helper::sanitizeInput($_GET['offset']) : 0;
         //create pagination
         $this->load->library('pagination');
         $config['base_url'] = site_url() . 'gateways/records/list_records';

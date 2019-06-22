@@ -3,7 +3,7 @@ require.config({
     baseUrl: UIFORM_SRC,
     paths: {
        
-        script1: 'assets/frontend/js/iframe/3.5.5/iframeResizer.min'
+        script1: 'assets/frontend/js/iframe/4.1.1/iframeResizer.min'
     },
    waitSeconds: 0
 });
@@ -16,7 +16,8 @@ function(iFrameResize) {
 				log                     : false,
                                 autoResize: true,
                                 sizeWidth: true,
-                                scrollCallback: function (coords) {
+                                warningTimeout:0,
+                                onScroll: function (coords) {
                                     /*console.log("[OVERRIDE] overrode scrollCallback x: " + coords.x + " y: " + coords.y);*/
                                 }
 			},'#zgfm-iframe-'+_uifmvar.fm_ids[i]);
