@@ -170,13 +170,14 @@ ob_start();
                 </div>
             </div>
         </div>
-     <!-- calculation variables -->
+    <!-- calculation variables -->
     <?php if(isset($calculation['enable_st']) && intval($calculation['enable_st'])===1){?>
     <?php foreach ($calculation['variables'] as $key => $value) { ?>  
-    <input type="hidden" value="" class="_zgfm_avars_calc_<?php echo $key;?>" name="zgfm_avars[calc][<?php echo $key;?>]">
+    <input type="hidden" value="" class="_zgfm_avars_calc_<?php echo $value['id'];?>" name="zgfm_avars[calc][<?php echo $value['id'];?>]">
     <?php } ?>
     
     <?php } ?>
+    
 </form>
  <?php if(isset($main['add_js']) && !empty($main['add_js'])){?>
 
@@ -189,6 +190,7 @@ ob_start();
 <?php } ?>
     
 <?php if(isset($calculation['enable_st']) && intval($calculation['enable_st'])===1){?>
+
 <script type="text/javascript">
     var _zgfm_front_vars = _zgfm_front_vars || {};
     _zgfm_front_vars.form = _zgfm_front_vars.form || {};
@@ -197,7 +199,7 @@ ob_start();
     _zgfm_front_vars.form[<?php echo $form_id;?>]['calc']['vars_str'] = "<?php echo $calculation['vars_str'];?>";
     _zgfm_front_vars.form[<?php echo $form_id;?>]['calc']['vars_num'] = <?php echo count($calculation['variables']);?>;
 <?php foreach ($calculation['variables'] as $key => $value) { ?>
-var zgfm_<?php echo $form_id;?>_calculation_cont<?php echo $key;?> = function(){
+var zgfm_<?php echo $form_id;?>_calculation_cont<?php echo $calculation['variables'][$key]['id'];?> = function(){
     <?php 
     echo str_replace('[%formid%]',$form_id, stripslashes(urldecode($calculation['variables'][$key]['content_front'])));?>   
 }

@@ -21,10 +21,10 @@ var zgfm_back_helper = function(){
               obj.hasOwnProperty(p) && count++;
             }
             return count;
-    }
+    };
      
     this.generateUniqueID = function (nrodec) {
-                var number = Math.random() // 0.9394456857981651
+                var number = Math.random(); // 0.9394456857981651
                 number.toString(36); // '0.xtis06h6'
                 var id = number.toString(36).substr(2, nrodec); // 'xtis06h6'
                 return id;
@@ -260,9 +260,9 @@ var zgfm_back_helper = function(){
     
     this.delData6 = function(mainarr,name,index,key,section,option,option2) {
                 delete mainarr[name][index][key][section][option][option2];
-            };
+    };
     
-   
+    
     
 };
 window.zgfm_back_helper = zgfm_back_helper = $.zgfm_back_helper = new zgfm_back_helper();
@@ -270,3 +270,62 @@ window.zgfm_back_helper = zgfm_back_helper = $.zgfm_back_helper = new zgfm_back_
 
 })($uifm,window);
 } 
+
+if( typeof zgfm_helper == 'undefined' ) {
+  var zgfm_helper = { } ;
+}
+
+zgfm_helper.arr = {
+         /**
+     * Function to sort multidimensional array
+     * 
+     * <a href="/param">@param</a> {array} [arr] Source array
+     * <a href="/param">@param</a> {array} [columns] List of columns to sort
+     * <a href="/param">@param</a> {array} [order_by] List of directions (ASC, DESC)
+     * @returns {array}
+     */
+    multisort: function(arr, columns, order_by) {
+        if(typeof columns == 'undefined') {
+            columns = [];
+            for(x=0;x<arr[0].length;x++) {
+                columns.push(x);
+            }
+        }
+
+        if(typeof order_by == 'undefined') {
+            order_by = [];
+            for(x=0;x<arr[0].length;x++) {
+                order_by.push('ASC');
+            }
+        }
+
+        function multisort_recursive(a,b,columns,order_by,index) {  
+            var direction = String(order_by[index]) === 'DESC' ? 1 : 0;
+            
+            a[columns[index]] = $.isNumeric(parseInt(a[columns[index]]))?parseInt(a[columns[index]]):0;
+            b[columns[index]] = $.isNumeric(parseInt(b[columns[index]]))?parseInt(b[columns[index]]):0;
+            
+            var is_numeric = !isNaN( a[columns[index]] - b[columns[index]] );
+            
+            var x = is_numeric ? a[columns[index]] : a[columns[index]].toLowerCase();
+            var y = is_numeric ? b[columns[index]] : b[columns[index]].toLowerCase();
+
+            if(x < y) {
+                    return (direction === 0) ? -1 : 1;
+            }
+
+            if(x === y)  {               
+                return columns.length-1 > index ? multisort_recursive(a,b,columns,order_by,index+1) : 0;
+            }
+
+            return (direction === 0) ? 1 : -1;
+        }
+
+        return arr.sort(function (a,b) {
+            return multisort_recursive(a,b,columns,order_by,0);
+        });
+    }
+};
+
+
+ 
