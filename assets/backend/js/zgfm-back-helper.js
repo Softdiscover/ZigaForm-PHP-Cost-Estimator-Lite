@@ -271,10 +271,12 @@ window.zgfm_back_helper = zgfm_back_helper = $.zgfm_back_helper = new zgfm_back_
 })($uifm,window);
 } 
 
-if( typeof zgfm_helper == 'undefined' ) {
-  var zgfm_helper = { } ;
-}
 
+$uifm(document).ready(function ($) {
+    
+if(typeof(zgfm_helper) === 'undefined') {
+  var zgfm_helper = {} ;
+}  
 zgfm_helper.arr = {
          /**
      * Function to sort multidimensional array
@@ -327,5 +329,6 @@ zgfm_helper.arr = {
     }
 };
 
+window.zgfm_helper = zgfm_helper
 
- 
+ });

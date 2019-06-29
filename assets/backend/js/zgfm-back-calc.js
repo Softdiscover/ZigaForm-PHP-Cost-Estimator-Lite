@@ -67,9 +67,9 @@ var zgfm_back_calc = function(){
      * @returns {undefined}
      */
     this.mathCalc_SortOrder = function() {
-       
+       try {
       this.mathCalc_updateCalcOrder(); 
-       
+      
       var tmp_calc_arr_len = rocketform.getUiData2('calculation','variables');
       //var len = $.map(tmp_calc_arr_len, function(n, i) { return i; }).length;
  
@@ -77,10 +77,10 @@ var zgfm_back_calc = function(){
       var array = $.map(tmp_calc_arr_len, function(value, index) {
             return [value];
         });
- 
+
       // sort this list by points, if points is equal, sort by name.
         var ranking = zgfm_helper.arr.multisort(array, ['order'], ['ASC']);
- 
+  
        //conver array to object 
         var result= this.Calcvars_ArrayToObject(ranking);
        //len = $.map(result, function(n, i) { return i; }).length;
@@ -88,7 +88,13 @@ var zgfm_back_calc = function(){
         rocketform.setUiData2('calculation','variables',{});
         rocketform.setUiData2('calculation','variables',result);
         
-        
+                }
+        catch(error) {
+          console.error(error);
+          // expected output: ReferenceError: nonExistentFunction is not defined
+          // Note - error messages will vary depending on browser
+        }
+
     };
     
     /*
@@ -234,7 +240,7 @@ var zgfm_back_calc = function(){
        zgfm_back_calc.calc_tab_refreshSortable();
        
        //refresh order of math variables
-        zgfm_back_calc.mathCalc_SortOrder();
+       zgfm_back_calc.mathCalc_SortOrder();
        
     };
     
@@ -827,9 +833,9 @@ var zgfm_back_calc = function(){
          var field_obj_inp_html;
                         var te_html;
                                           var tmp_codemiror_instance = $('#uifm_frm_calc_content'+index).data('CodeMirrorInstance'); 
-                                          
+                                           
                                           if(tmp_codemiror_instance){
-                                               
+                                              
                                           }else{
                                                
                                                 //codemirror
