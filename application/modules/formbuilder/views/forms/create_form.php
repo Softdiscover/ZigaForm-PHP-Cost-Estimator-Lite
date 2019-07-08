@@ -73,9 +73,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                       <li  class="sfdc-active"><a href="#zgfm-menu-main-tab-1"  role="tab" data-toggle="sfdc-tab"><?php echo __('Main','FRocket_admin'); ?></a></li>
                       <li ><a href="#zgfm-menu-main-tab-2"  role="tab" data-toggle="sfdc-tab"><?php echo __('Import','FRocket_admin'); ?></a></li>
                       <li ><a href="#zgfm-menu-main-tab-3"  role="tab" data-toggle="sfdc-tab"><?php echo __('Price','FRocket_admin'); ?></a></li>
-                      <li ><a href="#zgfm-menu-main-tab-4"  class="zgfm_gsettings_additional" role="tab" data-toggle="sfdc-tab"><?php echo __('Additional','FRocket_admin'); ?></a></li>
+                      <li ><a href="#zgfm-menu-main-tab-4" class="zgfm_gsettings_additional"  role="tab" data-toggle="sfdc-tab"><?php echo __('Additional','FRocket_admin'); ?></a></li>
                       <li ><a href="#zgfm-menu-main-tab-5"  role="tab" data-toggle="sfdc-tab"><?php echo __('PDF','FRocket_admin'); ?></a></li>
                       <li ><a href="#zgfm-menu-main-tab-6"  role="tab" data-toggle="sfdc-tab"><?php echo __('Email','FRocket_admin'); ?></a></li>
+                      <li ><a href="#zgfm-menu-main-tab-7"  role="tab" data-toggle="sfdc-tab"><?php echo __('Records','FRocket_admin'); ?></a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -105,19 +106,26 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                             <?php  include('settings_form_main_pdf.php');?>
                           </div>
                       </div>
-                         <div  class="sfdc-tab-pane" id="zgfm-menu-main-tab-6">
+                        <div  class="sfdc-tab-pane" id="zgfm-menu-main-tab-6">
                           <div class="uiformc-tab-content-inner3">
                             <?php  include('settings_form_main_email.php');?>
                           </div>
                       </div>
+                      <div  class="sfdc-tab-pane" id="zgfm-menu-main-tab-7">
+                          <div class="uiformc-tab-content-inner3">
+                            <?php  include('settings_form_main_record.php');?>
+                          </div>
+                      </div>  
+                        
+                        
                     </div>
                 
               
             </div>
         </div>
-       
+      
         <div id="uiformc-menu-sec6" class="sfdc-tab-pane ">
-           <div class="uiformc-tab-content-inner2">
+            <div class="uiformc-tab-content-inner2">
                 <?php  include('settings_form_calc.php');?>
              
             </div>

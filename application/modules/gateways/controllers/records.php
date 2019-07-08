@@ -30,7 +30,7 @@ if (!defined('BASEPATH')) {
 class Records extends MX_Controller {
 
     const VERSION = '0.1';
-    var $per_page = 5;
+    var $per_page = 50;
     protected $modules;
     
     /**
@@ -45,6 +45,7 @@ class Records extends MX_Controller {
         $this->template->set('controller', $this);
         $this->load->model('model_gateways');
         $this->load->model('model_gateways_records');
+        $this->load->model('formbuilder/model_record');
        // global $wpdb;
         //$this->wpdb = $wpdb;
         //$this->model_gateways_records = self::$_models['gateways']['records'];
@@ -75,7 +76,14 @@ class Records extends MX_Controller {
         $data = array();
         $data['record_id']=$id_rec;
         
-        $data['show_summary']=modules::run('formbuilder/frontend/get_summaryInvoice',$id_rec);
+        $form_rec_data = $this->model_record->getFormDataById($id_rec);
+        
+        $data['fmb_inv_tpl_st'] = $form_rec_data->fmb_inv_tpl_st;
+        $data['base_url']=base_url().'/';
+        $data['form_id']=$form_rec_data->form_fmb_id;
+        $data['url_form']=site_url().'formbuilder/frontend/pdf_show_invoice/?uifm_mode=pdf&is_html=1&id='.$id_rec;
+        $data['show_summary'] = $this->load->view('formbuilder/frontend/form_summary_custom',$data,true);
+        
         $this->template->loadPartial('layout', 'gateways/records/info_record', $data);
     }
     

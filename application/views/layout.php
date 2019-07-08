@@ -29,7 +29,7 @@ if (!defined('BASEPATH')) {
     <!-- jquery ui -->
     <link href="<?php echo base_url(); ?>assets/common/js/jqueryui/1.10.3/themes/start/jquery-ui.min.css" rel="stylesheet">
     <!-- bootstrap -->
-     <link href="<?php echo base_url(); ?>assets/common/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/common/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/common/bootstrap/3.3.7/css/bootstrap-theme.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/common/bootstrap/3.3.7/css/bootstrap-sfdc.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/common/bootstrap/3.3.7/css/bootstrap-theme-sfdc.css" rel="stylesheet">
@@ -79,6 +79,7 @@ if (!defined('BASEPATH')) {
     <link href="<?php echo base_url(); ?>assets/common/js/blueimp/2.16.0/css/blueimp-gallery.min.css" rel="stylesheet">
     <!-- blueimp image gallery -->
     <link href="<?php echo base_url(); ?>assets/common/js/bgallery/3.1.3/css/bootstrap-image-gallery.css" rel="stylesheet">
+    
     
     
     <link href="<?php echo base_url(); ?>assets/backend/css/admin-css.css" rel="stylesheet">
@@ -149,6 +150,10 @@ if (!defined('BASEPATH')) {
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/lzstring/lz-string.min.js"></script>
     <!-- validation -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/frontend/js/jquery-validation/1.13.1/jquery.validate.min.js"></script>
+    
+    <!-- iframe -->
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/frontend/js/iframe/4.1.1/iframeResizer.min.js"></script>
+    
     <script type='text/javascript'>
     var rockfm_vars={"ajaxurl":"",
         "uifm_baseurl":"<?php echo base_url(); ?>",

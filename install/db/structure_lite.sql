@@ -111,6 +111,10 @@ CREATE TABLE `cepf_cest_uiform_form` (
   `fmb_skin_data` longtext,
   `fmb_skin_type` smallint(5) DEFAULT '1',
   `fmb_data2` longtext,
+    `fmb_rec_tpl_html` longtext NULL ,
+    `fmb_inv_tpl_html` longtext NULL ,
+    `fmb_rec_tpl_st` TINYINT(1) NULL DEFAULT 0 ,
+    `fmb_inv_tpl_st` TINYINT(1) NULL DEFAULT 0 ,
   PRIMARY KEY (`fmb_id`)
 ) DEFAULT CHARSET=utf8;
 
@@ -255,7 +259,7 @@ CREATE TABLE `cepf_cest_uiform_settings` (
 -- ----------------------------
 -- Records of cepf_cest_uiform_settings
 -- ----------------------------
-INSERT INTO `cepf_cest_uiform_settings` VALUES ('3.8.9.9', '1', '', '0', '', '', '/usr/sbin/sendmail', 'en', '1', 'Zigaform - Cost Estimation - Contact & Survey', 'test@example.com', '2016-02-17 13:05:33', '1980-01-01 00:00:01');
+INSERT INTO `cepf_cest_uiform_settings` VALUES ('3.9.9.6.1', '1', '', '0', '', '', '/usr/sbin/sendmail', 'en', '1', 'Zigaform - Cost Estimation - Contact & Survey', 'test@example.com', '2016-02-17 13:05:33', '1980-01-01 00:00:01');
 
 
 -- ----------------------------

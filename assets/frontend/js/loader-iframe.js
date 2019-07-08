@@ -10,9 +10,10 @@ require.config({
 
 require(['script1'], 
 function(iFrameResize) {
-    
     for( var i in _uifmvar.fm_ids ) {
-        iFrameResize({
+        
+        document.getElementById('zgfm-iframe-'+_uifmvar.fm_ids[i]).onload = function() {
+         iFrameResize({
 				log                     : false,
                                 autoResize: true,
                                 sizeWidth: true,
@@ -21,6 +22,9 @@ function(iFrameResize) {
                                     /*console.log("[OVERRIDE] overrode scrollCallback x: " + coords.x + " y: " + coords.y);*/
                                 }
 			},'#zgfm-iframe-'+_uifmvar.fm_ids[i]);
+    };
+        
+        
         
     }
     

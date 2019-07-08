@@ -299,7 +299,7 @@ class model_record extends CI_Model
         
     }
     function getFormDataById($id_rec){
-        $query = sprintf('select  f.fmb_name, frec.form_fmb_id,f.fmb_data,frec.fbh_total_amount
+        $query = sprintf('select  f.fmb_name,frec.form_fmb_id,f.fmb_data,f.fmb_data2,frec.fbh_total_amount,f.fmb_rec_tpl_st,f.fmb_rec_tpl_html,frec.fbh_data,f.fmb_inv_tpl_html,f.fmb_inv_tpl_st
         from %s frec
         join %s f on f.fmb_id=frec.form_fmb_id
         where frec.flag_status>0
@@ -355,7 +355,7 @@ class model_record extends CI_Model
 
     function getRecordById($id) {
         $query = sprintf('
-            select uf.fbh_id,uf.fbh_data,uf.fbh_data_rec,uf.fbh_data2,uf.fbh_data_rec2,uf.fbh_data_rec2_xml,
+            select uf.fbh_id,uf.fbh_data,uf.fbh_data_rec,uf.fbh_data2,uf.fbh_data_rec2,uf.fbh_data_rec2_xml,uf.created_ip,
             uf.fbh_total_amount,uf.created_date,uf.flag_status,uf.fbh_data_user,uf.form_fmb_id,uf.fbh_data_rec_xml,uf.fbh_user_agent,uf.fbh_page,
             uf.fbh_referer,uf.fbh_params,uf.vis_uniqueid
             from %s uf

@@ -27,8 +27,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                 
             </div>  
             <div class="widget-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered dataTable" id="users">
+                <div class="sfdc-table-responsive">
+                    <table class="sfdc-table sfdc-table-striped sfdc-table-bordered dataTable" id="users">
                     <thead>
                         <tr>
                             <th><?php echo __('Name Form','FRocket_admin');?></th>
@@ -68,7 +68,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
     ?>
                             </td>
                             <td>
-                                <div class="btn-group">
+                                <div class="sfdc-btn-group">
                                     <ul class="unstyled">
                                     <li><a 
                                             class="sfdc-btn sfdc-btn-default"

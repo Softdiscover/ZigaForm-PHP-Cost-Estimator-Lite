@@ -42,7 +42,7 @@ class Records extends MX_Controller {
      *
      * @var string
      */
-    var $per_page = 10;
+    var $per_page = 50;
     protected $modules;
 
     /**
@@ -368,7 +368,18 @@ class Records extends MX_Controller {
         );
         
         $data['info_export'] = Uiform_Form_Helper::base64url_encode(json_encode($data2));
-        $data['record_info_str'] = $this->get_info_records($new_record_user,$data); 
+        $data['record_info_str'] = $this->get_info_records($new_record_user,$data);
+        
+        $data['fmb_rec_tpl_st'] = $form_rec_data->fmb_rec_tpl_st;
+        if(intval($data['fmb_rec_tpl_st'])===1){
+            $data['base_url']=base_url().'/';
+            $data['form_id']=$form_rec_data->form_fmb_id;
+            $data['url_form']=site_url().'/formbuilder/frontend/pdf_show_record/?uifm_mode=pdf&is_html=1&id='.$id_rec;
+            $data['custom_template'] = $this->load->view('formbuilder/frontend/form_summary_custom',$data,true);
+        }else{
+            $data['custom_template']='';
+        }
+        
         $this->template->loadPartial('layout', 'records/info_record', $data);
     }
     

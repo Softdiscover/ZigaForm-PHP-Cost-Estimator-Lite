@@ -57,7 +57,7 @@ class model_gateways_records extends CI_Model {
     }
     
     function getInvoiceDataByFormRecId($id_rec){
-        $query = sprintf('select  f.fmb_name,f.fmb_id,f.fmb_data,frec.fbh_total_amount,pr.pgr_id,pr.created_date
+        $query = sprintf('select  f.fmb_name,f.fmb_id,f.fmb_data,frec.fbh_total_amount,pr.pgr_id,pr.created_date,f.fmb_inv_tpl_html,f.fmb_inv_tpl_st
         from %s frec
         join %s f on f.fmb_id=frec.form_fmb_id
         join %s pr on pr.fbh_id=frec.fbh_id

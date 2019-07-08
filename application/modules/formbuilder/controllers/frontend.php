@@ -353,20 +353,23 @@ class Frontend extends MX_Controller {
         $pdf_show_onpage = (isset($form_data_onsubm['main']['pdf_show_onpage'])) ? $form_data_onsubm['main']['pdf_show_onpage'] : '0';
             
         $resp = array();
-        $resp['show_summary']=Uiform_Form_Helper::encodeHex($this->get_summaryInvoice($id_rec));
-        
         $resp['show_summary_title']=__('Invoice', 'frocket_front');
         if(intval($pdf_show_onpage)===1){
         $resp['show_summary_title']='<a class="sfdc-btn sfdc-btn-warning pull-right" onclick="javascript:rocketfm.genpdf_infoinvoice('.$id_rec.');" href="javascript:void(0);"><i class="fa fa-file-pdf-o"></i> '.__('Export to PDF', 'frocket_front').'</a>';
         }
         
-        /*$resp['sm_redirect_st'] = $resp['sm_redirect_st'];
-        $resp['sm_redirect_url'] = $resp['sm_redirect_url'];*/
+          $data=array();
+          $data['base_url']=base_url().'/';
+          $data['form_id']=$form_id;
+          $data['url_form']=site_url().'formbuilder/frontend/pdf_show_invoice/?uifm_mode=pdf&is_html=1&id='.$id_rec;
+          $resp['show_summary'] = Uiform_Form_Helper::encodeHex($this->load->view('formbuilder/frontend/form_summary_custom',$data,true)); 
+                    
         
         //return data to ajax callback
-        header('Content-Type: text/html; charset=UTF-8');
-        echo json_encode($resp);
-        die();
+        $data = array();
+        $data['json'] = $resp;
+
+        $this->load->view('html_view', $data);
     }
     
     public function ajax_payment_seesummary() {
@@ -378,19 +381,31 @@ class Frontend extends MX_Controller {
         $pdf_show_onpage = (isset($form_data_onsubm['main']['pdf_show_onpage'])) ? $form_data_onsubm['main']['pdf_show_onpage'] : '0';
            
         $resp = array();
-        $resp['show_summary']=Uiform_Form_Helper::encodeHex(do_shortcode($this->get_summaryRecord($id_rec)));
+        
         $resp['show_summary_title']=__('Order summary', 'frocket_front');
         if(intval($pdf_show_onpage)===1){
             $resp['show_summary_title'].=' <a class="sfdc-btn sfdc-btn-warning pull-right" onclick="javascript:rocketfm.genpdf_inforecord('.$id_rec.');" href="javascript:void(0);"><i class="fa fa-file-pdf-o"></i> '.__('Export to PDF', 'frocket_front').'</a>';
         }
-        //return data to ajax callback
-        header('Content-Type: text/html; charset=UTF-8');
-        echo json_encode($resp);
-        die();
+        
+         if(isset($temp->fmb_rec_tpl_st) && intval($temp->fmb_rec_tpl_st)===1){
+
+                 $data=array();
+                 $data['base_url']=base_url().'/';
+                 $data['form_id']=$form_id;
+                 $data['url_form']=site_url().'/formbuilder/frontend/pdf_show_record/?uifm_mode=pdf&is_html=1&id='.$id_rec;
+           $resp['show_summary']=Uiform_Form_Helper::encodeHex($this->load->view('formbuilder/frontend/form_summary_custom',$data,true));
+        }else{
+           $resp['show_summary']=Uiform_Form_Helper::encodeHex(do_shortcode($this->get_summaryRecord($id_rec)));
+        }
+                    
+        $data = array();
+        $data['json'] = $resp;
+
+        $this->load->view('html_view', $data);
     }
     
-    public function get_summaryInvoice($id_rec){
-         
+    public function get_summaryInvoice(){
+        $id_rec = (isset($_GET['id'])) ? Uiform_Form_Helper::sanitizeInput($_GET['id']) :'';
         $form_id = (isset($_POST['form_id'])) ? Uiform_Form_Helper::sanitizeInput($_POST['form_id']) : '';
         
         $name_fields = $this->model_record->getNameInvoiceField($id_rec);
@@ -504,6 +519,7 @@ class Frontend extends MX_Controller {
         $data['invoice_to_info4'] = isset($form_data_invoice['to_text4'])?urldecode($this->model_record->getFieldOptRecord($id_rec,'',$form_data_invoice['to_text4'],'input')):'';
         $data['invoice_to_info5'] = isset($form_data_invoice['to_text5'])?urldecode($form_data_invoice['to_text5']):'';
         $form_summary=$this->load->view('formbuilder/frontend/form_invoice',$data,true);
+        
         return $form_summary;
     }
     
@@ -638,9 +654,10 @@ class Frontend extends MX_Controller {
         
         
         //return data to ajax callback
-        header('Content-Type: text/html; charset=UTF-8');
-        echo json_encode($resp);
-        die();
+        $data = array();
+        $data['json'] = $resp;
+
+        $this->load->view('html_view', $data);
     }
     
     public function uifm_set_newuser_cookie() {
@@ -926,7 +943,25 @@ class Frontend extends MX_Controller {
                     
                     break;    
                 case "rec_summ":
-                     $output=$this->form_rec_msg_summ;
+                        
+                    $tmp_data=json_decode($data->fbh_data, true);
+                    $form_data_onsubm = json_decode($data->fmb_data2, true);
+                        
+                     //price numeric format
+                $format_price_conf=array();
+                $format_price_conf['price_format_st']=(isset($form_data_onsubm['main']['price_format_st']))?$form_data_onsubm['main']['price_format_st']:'0';
+                $format_price_conf['price_sep_decimal']=(isset($form_data_onsubm['main']['price_sep_decimal']))?$form_data_onsubm['main']['price_sep_decimal']:'.';
+                $format_price_conf['price_sep_thousand']=(isset($form_data_onsubm['main']['price_sep_thousand']))?$form_data_onsubm['main']['price_sep_thousand']:',';
+                $format_price_conf['price_sep_precision']=(isset($form_data_onsubm['main']['price_sep_precision']))?$form_data_onsubm['main']['price_sep_precision']:'2';
+                
+                    $data2=array();
+                    $data2['data']=$tmp_data;
+                    $data2['format_price_conf'] = $format_price_conf;
+                    $data2['form_cost_total'] = $data->fbh_total_amount;
+                    $data2['current_cost_st'] = (isset($form_data_onsubm['main']['price_st']))?$form_data_onsubm['main']['price_st']:'USD';
+                    $data2['current_cost_symbol'] = (isset($form_data_onsubm['main']['price_currency_symbol']))?$form_data_onsubm['main']['price_currency_symbol']:'$';
+                    $data2['current_cost_cur'] = (isset($form_data_onsubm['main']['price_currency']))?$form_data_onsubm['main']['price_currency']:'USD';
+                    $output = $this->load->view('formbuilder/frontend/mail_generate_fields',$data2,true);
                     break;
                 case "rec_url_fm":
                      $output= isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : '';
@@ -979,12 +1014,7 @@ class Frontend extends MX_Controller {
         
         $resp['sm_redirect_st'] = $resp['sm_redirect_st'];
         $resp['sm_redirect_url'] = $resp['sm_redirect_url'];
-        
-        //return data to ajax callback
-        header('Content-Type: text/html; charset=UTF-8');
-        //return data to ajax callback
-        echo json_encode($resp);
-        die();
+                        
         $data = array();
         $data['json'] = $resp;
 
@@ -1057,10 +1087,11 @@ class Frontend extends MX_Controller {
             $captcha_key = 'Rocketform-' . $_SERVER['HTTP_HOST'];
             $resp['code'] = Uiform_Form_Helper::data_encrypt($phrase, $captcha_key);
 
-            //return data to ajax callback
-            header('Content-Type: text/html; charset=UTF-8');
-            echo json_encode($resp);
-            die();
+                   //return data to ajax callback
+            $data = array();
+            $data['json'] = $resp;
+
+            $this->load->view('html_view', $data);
         }
     }
 
@@ -1821,32 +1852,67 @@ class Frontend extends MX_Controller {
     
     public function pdf_show_record() {
          $rec_id=isset($_GET['id']) ? Uiform_Form_Helper::sanitizeInput($_GET['id']) :'';
-         $form_data = $this->model_record->getFormDataById($rec_id);                       
+         $is_html=isset($_GET['is_html']) ? Uiform_Form_Helper::sanitizeInput($_GET['is_html']) :0;
+         
+         
+         $form_data = $this->model_record->getFormDataById($rec_id);
+                                
          if(intval($rec_id)>0){
              ob_start();
         ?>
-        <div style="width:600px;margin: 0 100px;">
+        
                     <!-- if p tag is removed, title will dissapear, idk -->
                     <h1><?php echo $form_data->fmb_name;?></h1>
                     <h4><?php echo __('Order summary','FRocket_admin');?></h4>
                   
-                  
                    <?php
-                   
                    echo modules::run('formbuilder/frontend/get_summaryRecord',$rec_id);
                 ?>
-                </div>
-
+                
         <?php
         $content = ob_get_contents();
         ob_end_clean();
+        
+        //update form id
+        $this->flag_submitted = $rec_id;
+        
+        //custom template
+        if(intval($form_data->fmb_rec_tpl_st)===1){
+             
+            $template_msg =do_shortcode($form_data->fmb_rec_tpl_html);
+            $template_msg = html_entity_decode($template_msg, ENT_QUOTES, 'UTF-8');
+            $content=$template_msg;
+         }
+                
+        $pos = strpos($content,'</body>');
+        $pos2 = strpos($content,'</html>');
+        
+        if($pos === false && $pos2 === false){
+            $full_page=0;
+        }else{
+            $full_page=1;
+            if(intval($is_html)===1){
+                $content = str_replace("</head>", '<script type="text/javascript" src="'.base_url().'/assets/frontend/js/iframe/4.1.1/iframeResizer.contentWindow.min.js"></script></head>', $content);        
+            }
+            
+        }
+        
         $output = '';
         $data2=array();
         $data2['rec_id']=$rec_id;
-        //$data2['pdf_font']=$data['pdf_font'];
+        $data2['html_wholecont']=$full_page; 
         $data2['content']=$content;
-        $tmp_html=modules::run('formbuilder/frontend/pdf_global_template',$data2);                      
-         generate_pdf($tmp_html,'record_'.$rec_id, true);
+        $data2['is_html']=$is_html;
+        $tmp_html = modules::run('formbuilder/frontend/pdf_global_template',$data2); 
+        
+        if(intval($is_html)===1){
+            header('Content-type: text/html');
+            
+            echo $tmp_html;
+        }else{
+            generate_pdf($tmp_html,'record_'.$rec_id, true);
+        }
+        
         die();
         
          }
@@ -1855,7 +1921,9 @@ class Frontend extends MX_Controller {
     
     public function pdf_show_invoice() {
         
-        $rec_id=isset($_GET['id']) ? Uiform_Form_Helper::sanitizeInput($_GET['id']) :'';
+       $rec_id=isset($_GET['id']) ? Uiform_Form_Helper::sanitizeInput($_GET['id']) :'';
+       $form_data = $this->model_gateways_records->getInvoiceDataByFormRecId($rec_id);
+       $is_html=isset($_GET['is_html']) ? Uiform_Form_Helper::sanitizeInput($_GET['is_html']) :0;
           
        ob_start();
         ?>
@@ -1872,6 +1940,12 @@ class Frontend extends MX_Controller {
                     .uifm_invoice_container{
                     margin: 10px 20px 20px;
                     }
+                    html,body{
+                        /*background:#eee;*/
+                    }
+                    table{
+                        background:#fff;
+                    }
                 </style>
 
         <?php
@@ -1881,25 +1955,57 @@ class Frontend extends MX_Controller {
         
         ob_start();
         ?>
-        <div style="width:600px;margin: 0 100px;">
+        
                     <!-- if p tag is removed, title will dissapear, idk -->
                     <p>&nbsp;</p>
                    <?php
                echo modules::run('formbuilder/frontend/get_summaryInvoice',$rec_id);
                 ?>
-                </div>
-
+                
         <?php
         $content = ob_get_contents();
         ob_end_clean();
+        
+        //update form id
+        $this->flag_submitted = $rec_id;
+        
+        //custom template
+        if(intval($form_data->fmb_inv_tpl_st)===1){
+             
+            $template_msg =do_shortcode($form_data->fmb_inv_tpl_html);
+            $template_msg = html_entity_decode($template_msg, ENT_QUOTES, 'UTF-8');
+            $content=$template_msg;
+         }
+        
+         
+        $pos = strpos($content,'</body>');
+        $pos2 = strpos($content,'</html>');
+       
+        if($pos === false && $pos2 === false){
+            $full_page=0;
+        }else{
+            $full_page=1;
+            if(intval($is_html)===1){
+                                $content = str_replace("</body>", '<script type="text/javascript" src="'.base_url().'/assets/frontend/js/iframe/4.1.1/iframeResizer.contentWindow.min.js"></script></body>', $content);        
+            }
+        }
         
         $output = '';
         $data2=array();
         $data2['rec_id']=$rec_id;
         $data2['head_extra']=$head_extra;
         $data2['content']=$content;
-        $tmp_html=modules::run('formbuilder/frontend/pdf_global_template',$data2);                      
-        generate_pdf($tmp_html,'invoice_'.$rec_id, true);
+        $data2['is_html']=$is_html;
+        //$tmp_html = self::$_modules['formbuilder']['frontend']->pdf_global_template($data2);
+        $tmp_html = modules::run('formbuilder/frontend/pdf_global_template',$data2); 
+        if(intval($is_html)===1){
+            header('Content-type: text/html');
+            
+            echo $tmp_html;
+        }else{
+             generate_pdf($tmp_html,'invoice_'.$rec_id, true);
+        }
+       
         die();
     }
     
@@ -1919,7 +2025,8 @@ class Frontend extends MX_Controller {
         $data2['head_extra']=isset($data['head_extra'])?$data['head_extra']:'';
         $data2['content']=$data['content'];
         $data2['html_wholecont']=isset($data['html_wholecont'])?$data['html_wholecont']:'0';
-        $content=$this->load->view('formbuilder/frontend/pdf_global_template',$data2,true);
+        $data2['is_html']=isset($data['is_html'])?$data['is_html']:'0';
+        $content=$this->load->view('formbuilder/forms/pdf_global_template',$data2,true);
         return $content; 
    }
     

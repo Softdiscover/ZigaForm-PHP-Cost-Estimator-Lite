@@ -13,7 +13,7 @@
  */
 if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 ?>
-<div id="uiform-container" class="uiform-wrap uiform-page_records">
+<div id="uiform-container" class="uiform-wrap uiform-page_records uifm-gateway-inv-info">
     <input type="hidden" id="rec_id" value="<?php echo $record_id;?>">
     
     <div id="uiform-inforecord-container">

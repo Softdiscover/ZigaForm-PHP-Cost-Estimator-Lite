@@ -15,16 +15,17 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 ?>
 <div id="uiform-container" class="uiform-wrap uiform-page_records">
     <input type="hidden" id="rec_id" value="<?php echo $record_id;?>">
-    
+    <?php if(isset($fmb_rec_tpl_st) && intval($fmb_rec_tpl_st)===0){?>
     <div id="uiform-inforecord-container">
          <div class="space20"></div>
     <div class="sfdc-row">
         <div class="sfdc-col-md-6">
             <div class="uifm-inforecord-box-info clearfix">
-                 <h1><?php echo $form_name;?></h1>
+                <h1><?php echo $form_name;?></h1>
                 <h4 class="zgfm-no-margin zgfm-margin-bottom-20"><?php echo __('Submitted form data','FRocket_admin');?></h4>
                
-                <?php echo  $record_info_str;?>
+                <?php echo  $record_info_str;?>  
+                
                   <?php if(isset($form_subtotal_amount) && floatval($form_subtotal_amount)>0){?>
                     <span class="uiform-inforecord-subtotal-amount"><b><?php echo __('Sub total','frocket_front');?></b> : <?php echo Uiform_Form_Helper::cformat_numeric($price_format,$form_subtotal_amount);?></span>
                      <br>
@@ -69,6 +70,12 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
         </div>
     </div>
     </div>
+    
+    <?php }else{
+        
+        echo $custom_template;
+        
+    }?>
     <div class="space10"></div>
    <div class="sfdc-row">
        <div class="sfdc-col-md-12">
