@@ -65,6 +65,11 @@ var zgfm_back_fld_options = function(){
                                         $('#uiform-build-field-tab').html(msg.modal_body);
                                         
                                     }
+                                    //autocomplete off - chrome issue
+                                    $('input,textarea').attr('autocomplete', 'off');
+                                       $('#zgfm_edit_panel').disableAutoFill({
+                                        passwordField: '.password'}
+                                    );
                                      
                                     //refresh type and id
                                     $('#uifm-field-selected-id').val(id);

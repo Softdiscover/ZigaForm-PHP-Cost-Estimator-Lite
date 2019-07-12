@@ -168,6 +168,31 @@ ob_start();
                                     </tbody>
                                 </table>  
                              </div>
+                          <h3><?php echo __('Invoice', 'FRocket_admin'); ?></h3>
+                           <div class="zgfm-modal-calc-wrap-table">
+                               <table class="sfdc-table sfdc-table-striped sfdc-table-bordered sfdc-table-condensed uifm-tab-box-vars-2">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="150"><?php echo __('variables', 'FRocket_admin'); ?></th>
+                                                        <th ><?php echo __('Code', 'FRocket_admin'); ?></th>
+                                                    </tr>
+                                                    
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><?php echo __('Invoice Number', 'FRocket_admin'); ?></td>
+                                                        <td><textarea onclick="this.select();">[uifm_var opt="form_inv_number"]</textarea></td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td><?php echo __('Invoice date', 'FRocket_admin'); ?></td>
+                                                        <td><textarea onclick="this.select();">[uifm_var opt="form_inv_date"]</textarea></td>
+                                                        
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                           </div>
                             <h3><?php echo __('Calculation', 'FRocket_admin'); ?></h3>
                             <div class="zgfm-modal-calc-wrap-table">
                                 <table class="sfdc-table sfdc-table-striped sfdc-table-bordered sfdc-table-condensed uifm-tab-box-vars-2" id="zgfm-tbl-calc-variables">

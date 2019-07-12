@@ -84,7 +84,7 @@ if (!defined('BASEPATH')) {
    
     
     
-    <link href="<?php echo base_url(); ?>assets/backend/css/admin-css.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/backend/css/admin-css.php" rel="stylesheet">
     
      <!-- codemirror -->
     <link href="<?php echo base_url(); ?>assets/common/js/codemirror/codemirror.css" rel="stylesheet">
@@ -180,6 +180,9 @@ if (!defined('BASEPATH')) {
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/common/js/codemirror/addon/edit/matchbrackets.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/common/js/codemirror/addon/display/autorefresh.js"></script>
     
+    <!-- disable autofill-->
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/disableautofill/jquery.disableAutoFill.js"></script>
+    
     
     <script type='text/javascript'>
     var rockfm_vars={"ajaxurl":"",
@@ -207,7 +210,7 @@ if (!defined('BASEPATH')) {
         <?php include('layout-dev-1.php');?>
     <?php 
     }else{ ?>
-        <script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/admin-js.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/admin-js.php"></script>
     <?php    
     }
     ?>
@@ -261,7 +264,7 @@ if (!defined('BASEPATH')) {
    <body class="tundra ">
     
     <div id="wrapper">
-
+    <form id="zgfm_edit_panel" autocomplete="off">
       <!-- Sidebar -->
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <?php $this->load->view('header'); ?>   
@@ -292,7 +295,7 @@ if (!defined('BASEPATH')) {
         <?php include('captions.php');?> 
 
       </div><!-- /#page-wrapper -->
-       
+      </form> 
     </div><!-- /#wrapper -->
 
   </body>
