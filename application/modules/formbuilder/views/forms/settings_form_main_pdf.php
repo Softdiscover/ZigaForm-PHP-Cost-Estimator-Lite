@@ -37,6 +37,40 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
        
     </div>
     <div class="space10 zgfm-opt-divider-stl1"></div> 
+    <div class="sfdc-row">
+        <div class="sfdc-form-group">
+            <div class="sfdc-col-sm-4">
+                <label ><?php echo __('Dimensions of paper sizes in points', 'FRocket_admin'); ?></label> 
+            </div>
+            <div class="sfdc-col-sm-8">
+                 <select name="uifm_frm_main_pdf_papersize"
+                        id="uifm_frm_main_pdf_papersize">
+                     <?php foreach ($pdf_paper_size as $key => $value) { ?>
+                     
+                     <option value="<?php echo $key;?>"><?php echo $key.' - '.$value[2].'x'.$value[3];?></option>
+                     
+                     <?php }?>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="space10 zgfm-opt-divider-stl1"></div>
+    <div class="sfdc-row">
+        <div class="sfdc-form-group">
+            <div class="sfdc-col-sm-4">
+                <label ><?php echo __('Orientation of Paper', 'FRocket_admin'); ?></label> 
+            </div>
+            <div class="sfdc-col-sm-8">
+                <select name="uifm_frm_main_pdf_paperorien"
+                        id="uifm_frm_main_pdf_paperorien">
+                    <option value="landscape"><?php echo __('landscape', 'FRocket_admin'); ?></option>
+                    <option value="letter"><?php echo __('letter', 'FRocket_admin'); ?></option>
+                    <option value="portrait"><?php echo __('portrait', 'FRocket_admin'); ?></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="space10 zgfm-opt-divider-stl1"></div> 
     
     
      <div class="sfdc-help-block">
