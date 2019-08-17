@@ -336,6 +336,10 @@ public $gen_post_src;
         $data_form['fmb_data'] = json_decode($dump_form['fmb_data']);
         $data_form['fmb_html_backend'] = $dump_form['fmb_html_backend'];
         $data_form['fmb_name'] = $dump_form['fmb_name'];
+        $data_form['fmb_rec_tpl_html'] = $dump_form['fmb_rec_tpl_html'];
+        $data_form['fmb_inv_tpl_html'] = $dump_form['fmb_inv_tpl_html'];
+        $data_form['fmb_rec_tpl_st'] = $dump_form['fmb_rec_tpl_st'];
+        $data_form['fmb_inv_tpl_st'] = $dump_form['fmb_inv_tpl_st'];
         $json = array();
         $json['data'] = $data_form;
         header('Content-Type: application/json');
@@ -2471,6 +2475,10 @@ public $gen_post_src;
         $data_exp['fmb_data'] = $data_form->fmb_data;
         $data_exp['fmb_html_backend'] = $data_form->fmb_html_backend;
         $data_exp['fmb_name'] = $data_form->fmb_name;
+        $data_exp['fmb_rec_tpl_html'] = $data_form->fmb_rec_tpl_html;
+        $data_exp['fmb_inv_tpl_html'] = $data_form->fmb_inv_tpl_html;
+        $data_exp['fmb_rec_tpl_st'] = $data_form->fmb_rec_tpl_st;
+        $data_exp['fmb_inv_tpl_st'] = $data_form->fmb_inv_tpl_st;
         $code_export = Uiform_Form_Helper::base64url_encode(serialize($data_exp));
         echo $code_export;
         die();
@@ -2714,11 +2722,12 @@ public $gen_post_src;
 
             $formdata=$this->model_forms->getFormById($data['form_id']);
 
-
+/*
+             * delete after a month
             $data['uifm_frm_invoice_tpl_enable']=$formdata->fmb_inv_tpl_st;
             $data['uifm_frm_invoice_tpl_content']=$formdata->fmb_inv_tpl_html;
             $data['uifm_frm_record_tpl_enable']=$formdata->fmb_rec_tpl_st;
-            $data['uifm_frm_record_tpl_content']=$formdata->fmb_rec_tpl_html;
+            $data['uifm_frm_record_tpl_content']=$formdata->fmb_rec_tpl_html;*/
         }
        
        $pdf_paper_size = array(
