@@ -284,7 +284,7 @@ var zgfm_back_calc = function(){
     };
     
     this.calc_tab_changeTitle = function(el) {
-       let index= $('#zgfm-tab-calc-sourcecode-wrapper').find('.sfdc-active a').attr('data-zgfm-id');
+       let index= $('#zgfm-tab-calc-sourcecode-wrapper').find('.zgfm-tab-calc-mathvar-item.sfdc-active a').attr('data-zgfm-id');
        
       /* if(String(index)==="0"){
            return;
@@ -300,15 +300,25 @@ var zgfm_back_calc = function(){
     };
     
     this.calc_delete_tab= function() {
-       let index= $('#zgfm-tab-calc-sourcecode-wrapper').find('.sfdc-active a').attr('data-zgfm-id');
+       
+        //weird issue, temp solution
+        // string keys of object are  changed to numeric for some reason when deleting
+        zgfm_back_calc.calc_dev_cleanAll_fixkeys();
+       
+         /*show loader window*/
+        rocketform.loading_panelbox2(1);
+        
+       var index= $('#zgfm-tab-calc-sourcecode-wrapper').find('.zgfm-tab-calc-mathvar-item.sfdc-active a').attr('data-zgfm-id');
+       
        if(String(index)==="0"){
+           rocketform.loading_panelbox2(0);
            return;
        }
        //delete in main array
       
        rocketform.delUiData3('calculation','variables',String(index));
        
-       var tmp_arr = rocketform.getUiData2('calculation','variables');
+       /*var tmp_arr = rocketform.getUiData2('calculation','variables');
        
                                                 var tmp_len = tmp_arr.length, tmp_i;
                                                 for(tmp_i = 0; tmp_i < tmp_len; tmp_i++ )
@@ -316,14 +326,19 @@ var zgfm_back_calc = function(){
                                                 if($.isArray(tmp_arr)){
                                                     tmp_arr.splice(0 ,tmp_len);
                                                     rocketform.setUiData2('calculation','variables',tmp_arr);
-                                                     
-                                                }
+                                                }*/
         //refresh on backend
         $('#zgfm-tab-calc-sourcecode-wrapper  a[data-zgfm-id='+index+']').parent().remove();
         $('#zgfm-menu-calc-tab-'+index).remove();
         /*calc variables*/    
         zgfm_back_calc.calc_table_refreshCodes();
         
+        //got to last variable
+        $('#zgfm-tab-calc-list-mathvars').find('.zgfm-tab-calc-mathvar-item').last().find('a').trigger('click');
+       
+        //hide panel
+        rocketform.loading_panelbox2(0);
+       
     };
     
     this.calc_addNew_CalcVar = function() {
@@ -345,11 +360,11 @@ var zgfm_back_calc = function(){
         }
         
         
-        rocketform.addIndexUiData2('calculation','variables',parseInt(numorder));
+        rocketform.addIndexUiData2('calculation','variables',String(optindex));
          
       
         //save to main array
-        rocketform.setUiData3('calculation','variables',parseInt(numorder),{
+        rocketform.setUiData3('calculation','variables',String(optindex),{
             "hash": "",
             "tab_title":'Optional Var '+numorder,
             "id":optindex,
@@ -380,26 +395,31 @@ var zgfm_back_calc = function(){
     
     this.calc_dev_cleanAll = function() {
         
-       var tmp_calc = rocketform.getUiData2('calculation','variables'); 
+        //refresh keys
+        this.calc_dev_cleanAll_fixkeys();
+        
+        //generate preview
+        this.preview_genTabContent();
+    };
+     
+    this.calc_dev_cleanAll_fixkeys = function() {
+            var tmp_calc = rocketform.getUiData2('calculation','variables'); 
       
       rocketform.setUiData2('calculation','variables',{});
       
         for (var key in tmp_calc) {
            
-           rocketform.addIndexUiData2('calculation','variables',String(key));
-           rocketform.setUiData3('calculation','variables',key,{hash:tmp_calc[key]['hash']||'',
+           rocketform.addIndexUiData2('calculation','variables',String(tmp_calc[key]['id']));
+           rocketform.setUiData3('calculation','variables',String(tmp_calc[key]['id']),{hash:tmp_calc[key]['hash']||'',
                                                             "tab_title":tmp_calc[key]['tab_title'],
-                                                            "id":String(key),
+                                                            "id":tmp_calc[key]['id'],
                                                             "order":tmp_calc[key]['order']||'',
                                                             "is_main":tmp_calc[key]['is_main']||'',
                                                             "content":tmp_calc[key]['content']||'',
                                                             "content_front":tmp_calc[key]['content_front']||'',
                                                             "fields":tmp_calc[key]['fields']||{}
                                                         });
-            
-        }                                         
-      //generate preview
-        this.preview_genTabContent();
+        }
     };
     
     
@@ -772,7 +792,7 @@ var zgfm_back_calc = function(){
     this.calc_variables_addVarByButton = function() {
         
         //get index
-        var tmp_cur_index = $('#zgfm-tab-calc-sourcecode-wrapper .sfdc-nave .sfdc-active').attr('data-zgfm-id') ||0;
+        var tmp_cur_index = $('#zgfm-tab-calc-sourcecode-wrapper .zgfm-tab-calc-mathvar-item.sfdc-active a').attr('data-zgfm-id') ||0;
         
         var editor_template = $('#uifm_frm_calc_content'+tmp_cur_index).data('CodeMirrorInstance');
         var str=$('#uifm_frm_calc_cmbo_addvar').find('textarea').val();
@@ -793,7 +813,7 @@ var zgfm_back_calc = function(){
     this.calc_variables_addVar2ByButton = function() {
         
         //get index
-        var tmp_cur_index = $('#zgfm-tab-calc-sourcecode-wrapper .sfdc-nave .sfdc-active').attr('data-zgfm-id') ||0;
+        var tmp_cur_index = $('#zgfm-tab-calc-sourcecode-wrapper .zgfm-tab-calc-mathvar-item.sfdc-active a').attr('data-zgfm-id') ||0;
         
         var editor_template = $('#uifm_frm_calc_content'+tmp_cur_index).data('CodeMirrorInstance');
         var str=$('#uifm_frm_calc_cmbo_addvar4').find('textarea').val();
