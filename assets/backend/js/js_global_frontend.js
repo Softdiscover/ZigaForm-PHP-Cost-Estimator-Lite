@@ -75,7 +75,7 @@ if(obj_form.find('.rockfm-input2-chk-styl1').length){tmp_load_obj=obj_form.find(
 if(obj_form.find('.rockfm-colorpicker-wrap').length){var rockfm_cpicker_d=obj_form.find('.rockfm-colorpicker-wrap');rockfm_cpicker_d.each(function(i){$(this).colorpicker();});}
 if(obj_form.find('[data-rockfm-gfont]').length){var rockfm_tmp=obj_form.find('[data-rockfm-gfont]');var rockfm_uniq_font=[];rockfm_tmp.each(function(i){if($.inArray($(this).attr('data-rockfm-gfont'),rockfm_uniq_font)===-1){var atImport='@import url(//fonts.googleapis.com/css?family='+$(this).attr('data-rockfm-gfont');$('<style>').append(atImport).appendTo('head');rockfm_uniq_font.push($(this).attr('data-rockfm-gfont'));}});}
 if(obj_form.find('.rockfm-clogic-fcond').length){obj_form.zgfm_logicfrm(obj_form.find('.rockfm_clogic_data').val());obj_form.data('zgfm_logicfrm').setData();obj_form.data('zgfm_logicfrm').refreshfields();}
-if(obj_form.find('._zgfm_form_opt')){obj_form.zgpb_datafrm(obj_form.find('._zgfm_form_opt').val());}else{obj_form.zgpb_datafrm();}
+if(obj_form.find('.rockfm_main_data')){obj_form.zgpb_datafrm(obj_form.find('.rockfm_main_data').val());}else{obj_form.zgpb_datafrm();}
 if($('.uiform-main-form [data-toggle="tooltip"]').length){$('.uiform-main-form [data-toggle="tooltip"]').tooltip({'selector':'','placement':'top','container':obj_form,html:true});}
 if(obj_form.find('.uiform-sticky-sidebar-box').length&&(parseInt(obj_form.find('._rockfm_sticky_st').val())===1)){zgfm_front_cost.costest_sticky_init(obj_form);}else{}
 if(obj_form.find('.uiform-stickybox-symbol').length)

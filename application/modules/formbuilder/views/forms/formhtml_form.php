@@ -25,12 +25,7 @@ ob_start();
       data-zgfm-price-tax-val="<?php echo isset($main['price_tax_val'])?$main['price_tax_val']:'0'?>"
       enctype="multipart/form-data" 
       id="rockfm_form_<?php echo $form_id;?>">
-    
-    <input type="hidden" 
-           value="<?php echo htmlentities(json_encode($main)); ?>"
-           value="1" class="_zgfm_form_opt" >
-    
-    
+     
     <input type="hidden" value="<?php echo $form_id;?>" class="_rockfm_form_id" name="_rockfm_form_id">
     <input type="hidden" value="<?php echo $calculation['enable_st'];?>" class="_rockfm_form_calc_math_enable" name="_rockfm_form_calc_math_enable">
    
@@ -131,9 +126,9 @@ ob_start();
     <!--/ sticky bottom out section -->
     
     <?php if(!empty($clogic)){?>
-        <input type="hidden" class="rockfm_clogic_data" value="<?php echo htmlentities(json_encode($clogic)); ?>">
+        <input type="hidden" class="rockfm_clogic_data" value="<?php echo htmlentities(Uiform_Form_Helper::raw_json_encode($clogic), ENT_QUOTES, "UTF-8"); ?>">
     <?php }?>
-        <input type="hidden" class="rockfm_main_data" value="<?php echo htmlentities(json_encode($main)); ?>">
+        <input type="hidden" class="rockfm_main_data" value="<?php echo htmlentities(Uiform_Form_Helper::raw_json_encode($main), ENT_QUOTES, "UTF-8"); ?>">
    
     <div class="space10"></div>
     <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->

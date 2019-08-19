@@ -424,16 +424,16 @@ class Records extends MX_Controller {
                                 //spinner  
                                 $tmp_form_info.='<ul>';
                                 $tmp_form_info.='<li>'; 
-                                if(isset($value['value']['input_cost_amt'])){
+                                
                                     if(intval($data['form_calculation'])===1){
                                         //with math calculation
-                                        $tmp_form_info.=' : '.Uiform_Form_Helper::cformat_numeric($data['price_format'],$value['value']['input_cost_amt']);
+                                        $tmp_form_info.=' : '.Uiform_Form_Helper::cformat_numeric($data['price_format'],$value['value']['value']);
                                     }else{
                                         //withoout math calc
-                                        $tmp_form_info.=' cost : '.$value['value']['input'][0]['cost'].' -  qty: '.$value['value']['input'][0]['qty'].' - '.__('Amount','FRocket_admin').' : '.Uiform_Form_Helper::cformat_numeric($data['price_format'],$value['value']['input_cost_amt']).' '.$data['form_currency'].' '.$data['form_currency'];
+                                        $tmp_form_info.=' cost : '.$value['value']['cost'].' -  qty: '.$value['value']['qty'].' - '.__('Amount','FRocket_admin').' : '.Uiform_Form_Helper::cformat_numeric($data['price_format'],$value['value']['amount']).' '.$data['form_currency'].' '.$data['form_currency'];
                                     }
 
-                                }
+                                
                                 $tmp_form_info.='</li>'; 
                                 $tmp_form_info.='</ul>';
                                 break;
