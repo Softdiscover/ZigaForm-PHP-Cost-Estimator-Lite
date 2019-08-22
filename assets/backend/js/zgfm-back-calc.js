@@ -202,7 +202,7 @@ var zgfm_back_calc = function(){
                                     "order":'0',
                                     "content": "",
                                     "content_front": "",
-                                    "fields": []
+                                    "fields": {}
                                 }
                             });
                             
@@ -284,7 +284,7 @@ var zgfm_back_calc = function(){
     };
     
     this.calc_tab_changeTitle = function(el) {
-       let index= $('#zgfm-tab-calc-sourcecode-wrapper').find('.zgfm-tab-calc-mathvar-item.sfdc-active a').attr('data-zgfm-id');
+       let index= $('#zgfm-tab-calc-sourcecode-wrapper').find('.zgfm-tab-calc-mathvar-item.sfdc-active a').attr('data-zgfm-order');
        
       /* if(String(index)==="0"){
            return;
@@ -292,7 +292,7 @@ var zgfm_back_calc = function(){
         var tmp_val= $(el).val();
        
         //refresh on backend
-        $('#zgfm-tab-calc-sourcecode-wrapper .sfdc-active a[data-zgfm-id='+index+']').html(tmp_val);
+        $('#zgfm-tab-calc-sourcecode-wrapper .sfdc-active a[data-zgfm-order='+index+']').html(tmp_val);
         
         //update main core
         rocketform.setUiData4('calculation','variables',index,'tab_title',tmp_val);
@@ -300,15 +300,11 @@ var zgfm_back_calc = function(){
     };
     
     this.calc_delete_tab= function() {
-       
-        //weird issue, temp solution
-        // string keys of object are  changed to numeric for some reason when deleting
-        zgfm_back_calc.calc_dev_cleanAll_fixkeys();
-       
+   
          /*show loader window*/
         rocketform.loading_panelbox2(1);
         
-       var index= $('#zgfm-tab-calc-sourcecode-wrapper').find('.zgfm-tab-calc-mathvar-item.sfdc-active a').attr('data-zgfm-id');
+       var index= $('#zgfm-tab-calc-sourcecode-wrapper').find('.zgfm-tab-calc-mathvar-item.sfdc-active a').attr('data-zgfm-order');
        
        if(String(index)==="0"){
            rocketform.loading_panelbox2(0);
@@ -318,7 +314,7 @@ var zgfm_back_calc = function(){
       
        rocketform.delUiData3('calculation','variables',String(index));
        
-       /*var tmp_arr = rocketform.getUiData2('calculation','variables');
+       var tmp_arr = rocketform.getUiData2('calculation','variables');
        
                                                 var tmp_len = tmp_arr.length, tmp_i;
                                                 for(tmp_i = 0; tmp_i < tmp_len; tmp_i++ )
@@ -326,9 +322,9 @@ var zgfm_back_calc = function(){
                                                 if($.isArray(tmp_arr)){
                                                     tmp_arr.splice(0 ,tmp_len);
                                                     rocketform.setUiData2('calculation','variables',tmp_arr);
-                                                }*/
+                                                }
         //refresh on backend
-        $('#zgfm-tab-calc-sourcecode-wrapper  a[data-zgfm-id='+index+']').parent().remove();
+        $('#zgfm-tab-calc-sourcecode-wrapper  a[data-zgfm-order='+index+']').parent().remove();
         $('#zgfm-menu-calc-tab-'+index).remove();
         /*calc variables*/    
         zgfm_back_calc.calc_table_refreshCodes();
@@ -338,7 +334,6 @@ var zgfm_back_calc = function(){
        
         //hide panel
         rocketform.loading_panelbox2(0);
-       
     };
     
     this.calc_addNew_CalcVar = function() {
@@ -352,7 +347,7 @@ var zgfm_back_calc = function(){
         if(parseInt(lenArrs)===0){
            optindex='0'; 
            is_main='1';
-           numorder=1;
+           numorder=0;
         }else{
            numorder=parseInt(lenArrs)+1; 
            optindex = zgfm_back_helper.generateUniqueID(5);
@@ -360,11 +355,11 @@ var zgfm_back_calc = function(){
         }
         
         
-        rocketform.addIndexUiData2('calculation','variables',String(optindex));
+        rocketform.addIndexUiData2('calculation','variables',numorder);
          
       
         //save to main array
-        rocketform.setUiData3('calculation','variables',String(optindex),{
+        rocketform.setUiData3('calculation','variables',numorder,{
             "hash": "",
             "tab_title":'Optional Var '+numorder,
             "id":optindex,
@@ -372,7 +367,7 @@ var zgfm_back_calc = function(){
             "order":numorder,
             "content": "",
             "content_front": "",
-            "fields": []
+            "fields": {}
           }); 
           
          //generate preview
@@ -404,21 +399,22 @@ var zgfm_back_calc = function(){
      
     this.calc_dev_cleanAll_fixkeys = function() {
             var tmp_calc = rocketform.getUiData2('calculation','variables'); 
-      
       rocketform.setUiData2('calculation','variables',{});
       
         for (var key in tmp_calc) {
+           if(tmp_calc[key].hasOwnProperty('id') && tmp_calc[key]['id']!=''){
+                 rocketform.addIndexUiData2('calculation','variables',parseInt(tmp_calc[key]['order']));
+                rocketform.setUiData3('calculation','variables',parseInt(tmp_calc[key]['order']),{hash:tmp_calc[key]['hash']||'',
+                                                                 "tab_title":tmp_calc[key]['tab_title'],
+                                                                 "id":tmp_calc[key]['id'],
+                                                                 "order":tmp_calc[key]['order']||'',
+                                                                 "is_main":tmp_calc[key]['is_main']||'',
+                                                                 "content":tmp_calc[key]['content']||'',
+                                                                 "content_front":tmp_calc[key]['content_front']||'',
+                                                                 "fields":tmp_calc[key]['fields']||{}
+                                                             });
+            }
            
-           rocketform.addIndexUiData2('calculation','variables',String(tmp_calc[key]['id']));
-           rocketform.setUiData3('calculation','variables',String(tmp_calc[key]['id']),{hash:tmp_calc[key]['hash']||'',
-                                                            "tab_title":tmp_calc[key]['tab_title'],
-                                                            "id":tmp_calc[key]['id'],
-                                                            "order":tmp_calc[key]['order']||'',
-                                                            "is_main":tmp_calc[key]['is_main']||'',
-                                                            "content":tmp_calc[key]['content']||'',
-                                                            "content_front":tmp_calc[key]['content_front']||'',
-                                                            "fields":tmp_calc[key]['fields']||{}
-                                                        });
         }
     };
     
