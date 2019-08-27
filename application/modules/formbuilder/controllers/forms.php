@@ -2807,6 +2807,9 @@ public $gen_post_src;
         "11x17" => array(0, 0, 792.00, 1224.00),
     );
         $data['pdf_paper_size']=$pdf_paper_size;
+        
+        $data['fields_fastload'] = get_option( 'zgfm_fields_fastload', 0 );
+        
         $this->template->loadPartial('layout-editform', 'forms/create_form', $data);
     }
 
