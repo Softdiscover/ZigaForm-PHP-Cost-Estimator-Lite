@@ -2424,6 +2424,25 @@ class Frontend extends MX_Controller {
                         //get data from invoice
                         $form_rec_data = $this->model_gateways_records->getInvoiceDataByFormRecId($data['fbh_id']);
                         $form_data=json_decode($form_rec_data->fmb_data, true);
+                        
+                         
+                        $form_data_calc_st = (isset($form_data['calculation']['enable_st'])) ? $form_data['calculation']['enable_st'] : '0';
+                        
+                        if(intval($form_data_calc_st)===1){
+                            //math calculation
+                            
+                            $tmp_invoice_row=array();
+                            $tmp_invoice_row['item_uniqueid']=0;
+                            $tmp_invoice_row['item_id']=0;
+                            $tmp_invoice_row['item_qty']=1;
+                            $tmp_invoice_row['item_num']=1;
+                            $tmp_invoice_row['item_name']= (isset($form_data['calculation']['variables'][0]['tab_title'])) ? $form_data['calculation']['variables'][0]['tab_title'] : 'Main Calc Variable';
+                            $tmp_invoice_row['item_amount']=$form_rec_data->fbh_total_amount;
+                            $new_record_user[] = $tmp_invoice_row; 
+                        }else{
+                        
+                        
+                        
                         //processs tax
                         $form_data_tax_st = (isset($form_data['main']['price_tax_st'])) ? $form_data['main']['price_tax_st'] : '0';
                         $form_data_tax_val = (isset($form_data['main']['price_tax_val'])) ? $form_data['main']['price_tax_val'] : '';
@@ -2462,32 +2481,44 @@ class Frontend extends MX_Controller {
 
                                 $tmp_invoice_row['item_uniqueid']=$key2;
                                 $tmp_invoice_row['item_id']=$field_id;
-
+                                
+                                if(isset($value['price_st'])  && intval($value['price_st'])===1){
                                 if(is_array($value['input'])){
-                                    foreach ($value['input'] as $key3 => $value2) {
-
-                                        $tmp_invoice_row['item_qty']=1;
-                                        $tmp_invoice_row['item_name']='';
-                                        $tmp_invoice_row['item_num']=$item_count;
-                                        if(isset($value2['cost'])){
-                                           if(isset($value2['qty'])){
-                                            $tmp_invoice_row['item_qty']=$value2['qty'];
-                                            $tmp_invoice_row['item_amount']=$value2['cost'];
+                                    
+                                    
+                                     if(isset($value['input']['amount'])){
+                                                $tmp_invoice_row['item_qty']=1;
+                                                $tmp_invoice_row['item_num']=$item_count;
+                                                $tmp_invoice_row['item_name']= $value['label'];
+                                                $tmp_invoice_row['item_amount']=$value['input']['amount'];
+                                                $new_record_user[] = $tmp_invoice_row; 
+                                                $item_count++;
                                             }else{
-                                                $tmp_invoice_row['item_amount']=$value2['cost'];
-                                            } 
-                                        }
+                                                foreach ($value['input'] as $key3 => $value2) {
+                                                    $tmp_invoice_row['item_qty']=1;
+                                                    $tmp_invoice_row['item_name']='';
+                                                    $tmp_invoice_row['item_num']=$item_count;
+                                                    if(isset($value2['cost'])){
+                                                       if(isset($value2['qty'])){
+                                                        $tmp_invoice_row['item_qty']=$value2['qty'];
+                                                        $tmp_invoice_row['item_amount']=$value2['cost'];
+                                                        }else{
+                                                            $tmp_invoice_row['item_amount']=$value2['cost'];
+                                                        } 
+                                                    }
 
 
-                                        $tmp_inp_label=$value['label'];
-                                        if(!empty($value2['label'])){
-                                        $tmp_inp_label.=' - '.$value2['label'];   
-                                        }
-                                        $tmp_invoice_row['item_name']=$tmp_inp_label;
+                                                    $tmp_inp_label=$value['label'];
+                                                    if(!empty($value2['label'])){
+                                                    $tmp_inp_label.=' - '.$value2['label'];   
+                                                    }
+                                                    $tmp_invoice_row['item_name']=$tmp_inp_label;
 
-                                        $new_record_user[] = $tmp_invoice_row;
-                                        $item_count++;
-                                    }
+                                                    $new_record_user[] = $tmp_invoice_row;
+                                                    $item_count++;
+                                                }
+                                            }
+                                    
                                 }else{
                                     $tmp_invoice_row['item_qty']=0;
                                     $tmp_invoice_row['item_num']=$item_count;
@@ -2496,6 +2527,8 @@ class Frontend extends MX_Controller {
                                     $new_record_user[] = $tmp_invoice_row; 
                                     $item_count++;
                                 }
+                                }
+                                
 
                             }
 
@@ -2510,7 +2543,7 @@ class Frontend extends MX_Controller {
                             $tmp_invoice_row['item_amount']=$data['form_tax'];
                             $new_record_user[] = $tmp_invoice_row; 
                         }
-                        
+                        }
                         $data2['paypal_individuals'] = $new_record_user;
                     }
                     $gateways[$key]->html_view=$this->load->view('gateways/frontend/paypal', $data2,true);
