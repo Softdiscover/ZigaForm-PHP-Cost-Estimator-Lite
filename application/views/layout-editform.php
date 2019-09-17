@@ -84,7 +84,7 @@ if (!defined('BASEPATH')) {
    
     
     
-    <link href="<?php echo base_url(); ?>assets/backend/css/admin-css.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/backend/css/admin-css.php" rel="stylesheet">
     
      <!-- codemirror -->
     <link href="<?php echo base_url(); ?>assets/common/js/codemirror/codemirror.css" rel="stylesheet">
@@ -211,7 +211,7 @@ if (!defined('BASEPATH')) {
         <?php include('layout-dev-1.php');?>
     <?php 
     }else{ ?>
-        <script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/admin-js.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/admin-js.php"></script>
     <?php    
     }
     ?>

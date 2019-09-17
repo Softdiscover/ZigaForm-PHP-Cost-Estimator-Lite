@@ -392,7 +392,7 @@ class Frontend extends MX_Controller {
                  $data=array();
                  $data['base_url']=base_url().'/';
                  $data['form_id']=$form_id;
-                 $data['url_form']=site_url().'/formbuilder/frontend/pdf_show_record/?uifm_mode=pdf&is_html=1&id='.$id_rec;
+                 $data['url_form']=site_url().'formbuilder/frontend/pdf_show_record/?uifm_mode=pdf&is_html=1&id='.$id_rec;
            $resp['show_summary']=Uiform_Form_Helper::encodeHex($this->load->view('formbuilder/frontend/form_summary_custom',$data,true));
         }else{
            $resp['show_summary']=Uiform_Form_Helper::encodeHex(do_shortcode($this->get_summaryRecord($id_rec)));
