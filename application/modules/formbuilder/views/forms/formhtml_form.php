@@ -31,7 +31,7 @@ ob_start();
    
     <?php if(isset($wizard['enable_st']) 
             && intval($wizard['enable_st'])===1
-            && count($wizard['tabs'])>1
+            && intval($tab_count)>1
             ){?>
         <input type="hidden" value="1" class="_rockfm_wizard_st" >
     <?php } else {?>
