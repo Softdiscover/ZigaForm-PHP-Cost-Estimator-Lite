@@ -15,7 +15,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 ob_start();
 ?>
  <div class="rockfm-input4-wrap">
-    <div class="rockfm-input4-number"><?php echo floatval($input4['set_default']);?></div>
+    
         <input class="rockfm-input4-slider" 
                 type="text"
                 data-uifm-inp-price="<?php echo floatval($price['unit_price']);?>"
@@ -27,8 +27,9 @@ ob_start();
                 value="<?php echo floatval($input4['set_default']);?>"
                 name="uiform_fields[<?php echo $id;?>]"
                 />
-        
-    </div>
+        <div class="rockfm-input4-output">
+            <div class="rockfm-input4-number"><?php echo floatval($input4['set_default']);?></div>
+    
 <?php
             if(isset($price['lbl_show_st']) && intval($price['lbl_show_st'])===1){
                 $tmp_price_label=urldecode($price['lbl_show_format']);
@@ -39,6 +40,9 @@ ob_start();
                  }
             }
             ?>
+            
+     </div>
+    </div>            
 <?php
 $cntACmp = ob_get_contents();
 $cntACmp = Uiform_Form_Helper::sanitize_output($cntACmp);

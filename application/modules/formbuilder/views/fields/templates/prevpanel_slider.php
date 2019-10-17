@@ -42,13 +42,17 @@ $id_field=(!empty($id))?$id:'';
                     <div class="rkfm-col-sm-10">
                         <div class="uifm-input-container">
                                 <div class="uifm-input4-wrap">
-                                    <div class="uifm-inp4-number"></div>
+                                    
                                     <input class="uifm-inp4-fld" 
                                            type="text"
                                            data-check-hash=""
                                            />
-                                </div>
-                            <span class="uifm_frm_price_lbl_cont"></span>
+                                    <div class="uifm-inp4-output">
+                                        <div class="uifm-inp4-number"></div>
+                                        <span class="uifm_frm_price_lbl_cont"></span>
+                                    </div>
+                                    
+                            </div>
                         </div>
                         <div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
                             <?php echo __('Help block text','FRocket_admin'); ?>
