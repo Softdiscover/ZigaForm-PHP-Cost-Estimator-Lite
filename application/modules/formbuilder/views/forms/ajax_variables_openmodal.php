@@ -124,7 +124,7 @@ ob_start();
                                             foreach ($fmb_data['calculation']['variables'] as $key => $value) {?>
                                     <tr>
                                         <td> <?php echo $value['tab_title'];?></td>
-                                        <td><textarea onclick="this.select();" style="width: 284px;">[uifm_var opt="calc" atr1="<?php echo $key;?>"]</textarea></td>
+                                        <td><textarea onclick="this.select();" style="width: 284px;">[uifm_var opt="calc" atr1="<?php echo $value['id'];?>"]</textarea></td>
                                     </tr>
                                     <?php }}?>
                                 </tbody>
