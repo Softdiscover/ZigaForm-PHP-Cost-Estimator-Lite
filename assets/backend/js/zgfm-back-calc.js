@@ -190,7 +190,7 @@ var zgfm_back_calc = function(){
     this.preview_genTabContent = function() {
          var tmp_variable = rocketform.getUiData2('calculation','variables');
                         var tmp_tab_cont;
-                        
+                    
                         //check if array has zero
                         if(parseInt(tmp_variable.length)===0){
                             rocketform.setUiData2('calculation','variables',{
@@ -334,6 +334,7 @@ var zgfm_back_calc = function(){
        
         //hide panel
         rocketform.loading_panelbox2(0);
+       
     };
     
     this.calc_addNew_CalcVar = function() {
@@ -417,8 +418,7 @@ var zgfm_back_calc = function(){
            
         }
     };
-    
-    
+     
     this.calc_addNew_onlyPreview = function(optindex,numorder) {
         var tmp_tab = $('#zgfm-tab-calc-sourcecode-wrapper');
         var tmp_tab_title="Optional Var "+numorder;
@@ -540,6 +540,9 @@ var zgfm_back_calc = function(){
             };         
     this.calc_variables_getaction = function() {
         
+        //hide data type wrapper
+          $('#uifm_frm_calc_cmbo_field_var7_wrapper').hide();
+
           var rtype = $('#uifm_frm_calc_cmbo_field_var option:selected').data('type');
           if(rtype){
               //get action
@@ -625,7 +628,10 @@ var zgfm_back_calc = function(){
         
     }; 
     this.calc_variables_getoption = function() {
-        
+         var rtype = $('#uifm_frm_calc_cmbo_field_var option:selected').data('type');
+      //hide data type wrapper
+          $('#uifm_frm_calc_cmbo_field_var7_wrapper').hide();
+
           var raction = $('#uifm_frm_calc_cmbo_field_var2 option:selected').val();
           if(raction){
               
@@ -634,13 +640,49 @@ var zgfm_back_calc = function(){
               //place code
              tmp_uniqueid = $('#uifm_frm_calc_cmbo_field_var option:selected').data('uniqueid');
                     
-            
+          
+          //hide data type wrapper
+          $('#uifm_frm_calc_cmbo_field_var7_wrapper').hide();
+
               switch(String(raction)){
+         
+                case 'value':
+
+                    //show variable box
+                    $('#uifm_frm_calc_cmbo_addvar').show();
+                    $('#uifm_frm_calc_cmbo_field_var3_wrapper').hide();
+
+                    switch(parseInt(rtype)){
+                        case 6:
+                        case 28:
+                        case 29:
+                        case 30:
+                        case 8:
+                        case 9:
+                        case 10:
+                        case 11:
+                          $('#uifm_frm_calc_cmbo_addvar').hide();
+                           //show data type
+                            $('#uifm_frm_calc_cmbo_field_var7_wrapper').show(); 
+                           //update data type
+                          $('#uifm_frm_calc_cmbo_field_var7').val("").trigger('chosen:updated'); 
+
+                          break;
+                    }
+                   
+                    tmp_gen_code = "fld_"+tmp_uniqueid+"_"+raction;
+ 
+                    //set variable
+                    $('#uifm_frm_calc_cmbo_addvar').find('textarea').html(tmp_gen_code);
+                    
+
+
+
+                    break;
                 case 'price':
                 case 'isChecked':
                 case 'isUnchecked':
                 case 'isFilled':
-                case 'value':
                 case 'quantity':
                     
                     //show variable box
@@ -652,7 +694,7 @@ var zgfm_back_calc = function(){
                     //set variable
                     $('#uifm_frm_calc_cmbo_addvar').find('textarea').html(tmp_gen_code);
                     
-                    break;
+                    break;    
                 case 'optprice':
                 case 'optIsChecked':
                 case 'optIsUnchecked':
@@ -665,7 +707,7 @@ var zgfm_back_calc = function(){
                    
                    var f_step=$('#'+tmp_uniqueid).closest('.uiform-step-pane').data('uifm-step');
                     
-                   var rtype = $('#uifm_frm_calc_cmbo_field_var option:selected').data('type');
+                  
                    var tmp_opts;
                    switch(parseInt(rtype)){
                          case 8:
@@ -725,6 +767,41 @@ var zgfm_back_calc = function(){
           }
     };
     
+  this.calc_variables_dataTypeOption = function(){
+    
+    var rtype = $('#uifm_frm_calc_cmbo_field_var7 option:selected').val();
+    var raction = $('#uifm_frm_calc_cmbo_field_var2 option:selected').val();
+    var tmp_gen_code;
+            var tmp_uniqueid;
+       //place code
+             tmp_uniqueid = $('#uifm_frm_calc_cmbo_field_var option:selected').data('uniqueid');
+
+            tmp_gen_code = "fld_"+tmp_uniqueid+"_"+raction;
+
+    //show variable box
+                    $('#uifm_frm_calc_cmbo_addvar').show();
+                    $('#uifm_frm_calc_cmbo_field_var3_wrapper').hide();
+
+    switch(rtype){
+      case 'num':
+          //set variable
+                    $('#uifm_frm_calc_cmbo_addvar').find('textarea').html(tmp_gen_code);
+        break;
+      case 'char':
+              //set variable
+                    $('#uifm_frm_calc_cmbo_addvar').find('textarea').html(tmp_gen_code+'_char');
+        break;
+        default:
+          $('#uifm_frm_calc_cmbo_addvar').hide();
+                    $('#uifm_frm_calc_cmbo_field_var3_wrapper').hide();
+          break;
+    }
+
+
+
+
+  };
+
    this.calc_variables_chooseOption = function() {
        var rtype = $('#uifm_frm_calc_cmbo_field_var3 option:selected').val();
           if(rtype){
@@ -1081,7 +1158,6 @@ var zgfm_back_calc = function(){
          tmp_field_detail['field']=value;
         
          var tmp_content_front=rocketform.getInnerVariable('calculation_cont_front');
-         
          //replace all function
         var replaceAll = function (str, find, replace) {
                 return str.replace(new RegExp(find, 'g'), replace);
@@ -1096,6 +1172,8 @@ var zgfm_back_calc = function(){
          
          //action
          var tmp_field_action = tmp_field_detail['action']=tmp_field_val[2];
+
+         var tmp_field_datatype = tmp_field_val[3];
          
          //function to replace
          var tmp_function = "zgfm_front_calc.calc_field_get(%vars%)";
@@ -1113,6 +1191,11 @@ var zgfm_back_calc = function(){
              var tmp_step_num=$('#'+tmp_field_detail['unique_id']).closest('.uiform-step-pane').data('uifm-step');
              
              switch(parseInt(tmp_field_type)){
+                 case 6:
+                 case 28:
+                 case 29:
+                 case 30:
+                    //textbox
                  case 8:
                     //radio button
                  case 9:
@@ -1137,25 +1220,27 @@ var zgfm_back_calc = function(){
                             case 'optIsUnchecked':     
                                 var tmp_field_opt=tmp_field_val[3];
                                 tmp_option = tmp_field_opt;
-                               
+                                tmp_params.push(tmp_option);
                                 break;
                             case 'price':
                             case 'isChecked':
                             case 'isUnchecked':
                             case 'isFilled':
                             case 'date':
-                            case 'value':
                             case 'quantity':
                                  //store index
-                               
+                                tmp_params.push(tmp_option);
                                 break;
+                            case 'value':
+                                tmp_params.push(tmp_field_datatype);
+                                break;    
                                 
                         }
                      
                      
                      break;
              }
-              tmp_params.push(tmp_option);
+              
            
                     tmp_str = "'"+tmp_params.join("','")+"'";
                     tmp_function = replaceAll(tmp_function,'%vars%',tmp_str);

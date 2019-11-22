@@ -174,11 +174,11 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
             <span class="fa fa-area-chart"></span> <?php echo __('Charts','FRocket_admin'); ?> 
             </a>
         </li>
-        <!-- <li class="divider-menu"></li>
+         <li class="divider-menu"></li>
         <li ><a href="<?php echo site_url().'formbuilder/settings/view_settings';?>">
             <i class="fa fa-cog"></i> <?php echo __('Settings','FRocket_admin'); ?>
             </a>
-        </li>-->
+        </li>
        <li class="divider-menu"></li>
         <li ><a href="<?php echo site_url().'formbuilder/settings/backup_settings';?>">
             <i class="fa fa-cloud-download"></i> <?php echo __('Backup','FRocket_admin'); ?>

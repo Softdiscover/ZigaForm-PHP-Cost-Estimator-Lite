@@ -244,8 +244,9 @@ CREATE TABLE `cepf_cest_uiform_settings` (
   `type_email` smallint(1) DEFAULT NULL,
   `smtp_host` varchar(255) DEFAULT NULL,
   `smtp_port` smallint(6) DEFAULT NULL,
-  `smtp_user` varchar(50) DEFAULT NULL,
-  `smtp_pass` varchar(50) DEFAULT NULL,
+  `smtp_user` varchar(255) DEFAULT NULL,
+  `smtp_pass` varchar(255) DEFAULT NULL,
+  `smtp_conn` varchar(255) DEFAULT NULL,
   `sendmail_path` varchar(255) DEFAULT NULL,
   `language` varchar(45) DEFAULT NULL,
   `id` int(1) NOT NULL AUTO_INCREMENT,
@@ -259,7 +260,7 @@ CREATE TABLE `cepf_cest_uiform_settings` (
 -- ----------------------------
 -- Records of cepf_cest_uiform_settings
 -- ----------------------------
-INSERT INTO `cepf_cest_uiform_settings` VALUES ('3.9.9.8', '1', '', '0', '', '', '/usr/sbin/sendmail', 'en', '1', 'Zigaform - Cost Estimation - Contact & Survey', 'test@example.com', '2016-02-17 13:05:33', '1980-01-01 00:00:01');
+INSERT INTO `cepf_cest_uiform_settings` VALUES ('3.9.9.8', '1', '', '0', '', '','', '/usr/sbin/sendmail', 'en', '1', 'Zigaform - Cost Estimation - Contact & Survey', 'test@example.com', '2016-02-17 13:05:33', '1980-01-01 00:00:01');
 
 
 -- ----------------------------

@@ -128,6 +128,25 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
                                                        </div>
                                                 </div>
                                          </div>
+                                          <div id="uifm_frm_calc_cmbo_field_var7_wrapper" style="display:none">
+                                             <div class="space20"></div>
+                                                <div class="sfdc-row">
+                                                       <div class="sfdc-form-group">
+                                                           <div class="sfdc-col-sm-4">
+                                                               <label><?php echo __('DATA TYPE','FRocket_admin'); ?></label> 
+                                                           </div>
+                                                           <div class="sfdc-col-sm-8">
+                                                                <select id="uifm_frm_calc_cmbo_field_var7" class="chzn-select"
+                                                                        onchange="javascript:zgfm_back_calc.calc_variables_dataTypeOption();"
+                                                                        name="uifm_frm_calc_cmbo_field_var7">
+                                                                   <option value=""><?php echo __('Select an option','FRocket_admin'); ?></option>
+                                                                   <option value="num"><?php echo __('Numeric','FRocket_admin'); ?></option>
+                                                                   <option value="char"><?php echo __('Character','FRocket_admin'); ?></option>
+                                                               </select>
+                                                           </div>
+                                                       </div>
+                                                </div>
+                                         </div>
                                          <div id="uifm_frm_calc_cmbo_addvar" style="display:none">
                                             
                                                    <div class="space20"></div>

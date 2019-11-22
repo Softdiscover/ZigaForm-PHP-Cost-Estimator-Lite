@@ -35,6 +35,7 @@ if (!function_exists('emailConfiguration')) {
                 'smtp_port' => model_settings::$db_config['smtp_port'],
                 'smtp_user' => model_settings::$db_config['smtp_user'],
                 'smtp_pass' => model_settings::$db_config['smtp_pass'],
+                'smtp_conn' => model_settings::$db_config['smtp_conn'],
                 'smtp_timeout' => 30,
                 'mailtype' => 'html',
                 'charset' => "utf-8",

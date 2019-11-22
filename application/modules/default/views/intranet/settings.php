@@ -28,7 +28,7 @@ if ($this->session->flashdata('message')) {
     <?php 
 }
 ?>
-<div class="sfdc-row">
+<div class="">
 <div class="sfdc-col-lg-12">
     <div class="widget widget-padding span12">
         <div class="widget-header">
@@ -107,13 +107,13 @@ echo form_open(site_url().'default/intranet/savesettings', $attributes);
                     </div> 
                     <div class="showsmtp" >
                         <div class="sfdc-form-group">
-                            <label class=" col-sm-2 control-label">SMTP port (ssl)</label>
+                            <label class=" col-sm-2 control-label">SMTP host</label>
                             <div class="sfdc-col-sm-10">
                                 <input name="smtp_host" type="text" placeholder="<?php echo __('Type','FRocket_admin'); ?> smtp host" class="sfdc-form-control col-md-7" value="<?php echo (isset($smtp_host)) ? $smtp_host : ''; ?>">
                             </div>
                         </div>
                         <div class="sfdc-form-group">
-                            <label class=" col-sm-2 control-label">SMTP port (ssl)</label>
+                            <label class=" col-sm-2 control-label">SMTP port</label>
                             <div class="sfdc-col-sm-10">
                                 <input name="smtp_port" type="text" placeholder="<?php echo __('Type','FRocket_admin'); ?> smtp port" class="sfdc-form-control col-md-7" value="<?php echo (isset($smtp_port)) ? $smtp_port : ''; ?>">
                             </div>
@@ -128,6 +128,31 @@ echo form_open(site_url().'default/intranet/savesettings', $attributes);
                             <label class=" col-sm-2 control-label">SMTP password</label>
                             <div class="sfdc-col-sm-10">
                                 <input name="smtp_pass" type="password" placeholder="<?php echo __('Type','FRocket_admin'); ?> smtp password" class="sfdc-form-control col-md-7" value="<?php echo (isset($smtp_pass)) ? $smtp_pass : ''; ?>">
+                            </div>
+                        </div>
+                        
+                        <div class="sfdc-form-group">
+                            <label class=" col-sm-2 control-label">SMTP Connection Security</label>
+                            <div class="sfdc-col-sm-10">
+                                
+                                <select class="sfdc-form-control input-sm" name="smtp_conn" class="chzn-select" id="smtp_conn" data-placeholder="Select here.." >
+                                    <?php
+                                    $sel = " selected=\"selected\"";
+                                    ?>
+                                    <option value="ssl" <?php
+                                                      if (intval($smtp_conn) === 'ssl') {
+                                                          echo $sel;
+                                                      }
+                                    ?>>ssl</option>
+                                    <option value="tls" <?php
+                                                      if (intval($smtp_conn) === 'tls') {
+                                                          echo $sel;
+                                                      }
+                                    ?>>tls</option>
+                                   
+                                </select>
+
+
                             </div>
                         </div>
                     </div>  
