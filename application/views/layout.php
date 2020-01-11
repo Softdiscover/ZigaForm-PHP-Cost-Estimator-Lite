@@ -179,6 +179,8 @@ if (!defined('BASEPATH')) {
     <?php    
     }
     ?>
+    <?php do_action('admin_enqueue_scripts');?>
+    <?php //$this->addon->load_addons_Head(); ?>
   </head>
    <body class="tundra">
     

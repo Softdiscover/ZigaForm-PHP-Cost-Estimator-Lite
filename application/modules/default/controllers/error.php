@@ -28,7 +28,7 @@ if (!defined('BASEPATH')) {
  * @version   Release: 1.00
  * @link      https://php-cost-estimator.zigaform.com/
  */
-class Error extends CI_Controller
+class Error extends MX_Controller
 {
     
     /**

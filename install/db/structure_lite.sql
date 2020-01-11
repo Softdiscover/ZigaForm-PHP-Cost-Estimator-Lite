@@ -300,6 +300,7 @@ CREATE TABLE `cepf_cest_uiform_visitor` (
   `vis_page` longtext,
   `vis_referer` longtext,
   `vis_ip` longtext,
+    `vis_error` longtext,
   `vis_last_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `vis_params` longtext,
   PRIMARY KEY (`vis_id`)
@@ -315,7 +316,7 @@ CREATE TABLE `cepf_cest_uiform_visitor_error` (
   `vis_user_agent` varchar(250) DEFAULT NULL,
   `vis_page` longtext,
   `vis_referer` longtext,
-  `vis_error` longtext CHARACTER SET latin1,
+  `vis_error` longtext,
   `vis_ip` varchar(40) DEFAULT NULL,
   `vis_last_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`vis_id`)
@@ -390,9 +391,9 @@ CREATE TABLE `cepf_cest_addon_details_log` (
 DROP TABLE IF EXISTS `cepf_cest_uiform_options`;
 CREATE TABLE `cepf_cest_uiform_options`  (
   `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `option_name` varchar(191) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `option_value` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `autoload` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'yes',
+  `option_name` varchar(191)  NOT NULL DEFAULT '',
+  `option_value` longtext  NOT NULL,
+  `autoload` varchar(20)  NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`) USING BTREE,
   UNIQUE INDEX `option_name`(`option_name`) USING BTREE
 ) DEFAULT CHARSET=utf8;

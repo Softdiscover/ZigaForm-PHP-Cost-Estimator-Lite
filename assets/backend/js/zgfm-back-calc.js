@@ -149,13 +149,13 @@ var zgfm_back_calc = function(){
                
               
                tmp_txt_value=  $('#uifm_frm_calc_content'+tmp_calc_arr_len[index]['id']).data('CodeMirrorInstance').getValue();
-            
+               
                tmp_content_val=encodeURIComponent(tmp_txt_value);
                
                 let tmp_hash= rocketform.getUiData4('calculation','variables',index,'hash');
                 let tmp_new_hash = CryptoJS.MD5(JSON.stringify(tmp_content_val));
                
-                if((String(tmp_hash)!=String(tmp_new_hash))){
+                //if((String(tmp_hash)!=String(tmp_new_hash))){
 
                     rocketform.setUiData4('calculation','variables',index,'hash',String(tmp_new_hash));
                      
@@ -168,7 +168,7 @@ var zgfm_back_calc = function(){
                      //store content front
                      let tmp_content_front = rocketform.getInnerVariable('calculation_cont_front');
                      rocketform.setUiData4('calculation','variables',index,'content_front',encodeURIComponent(tmp_content_front));
-                }
+               // }
                  
            }else{
                tmp_content_val='';
@@ -964,9 +964,9 @@ var zgfm_back_calc = function(){
                                                        let tmp_obj= cm.getTextArea();
                                                        let tmp_obj_num=$(tmp_obj).attr('data-num');
                                                        zgfm_back_calc.calc_variables_showusedvars(tmp_obj_num); 
-                                                       
+                                                      // console.log(f_val);
                                                       // console.log('onchange codemirror : '+f_val);
-                                                      // zgpb_core.updateModalFieldCoreAndPreview(f_store,f_val);
+                                                       //zgpb_core.updateModalFieldCoreAndPreview(f_store,f_val);
                                                  });
 
                                                  field_obj_inp_html.foldCode(CodeMirror.Pos(0, 0));
@@ -1089,12 +1089,9 @@ var zgfm_back_calc = function(){
               
              var tmp_content_front=rocketform.getInnerVariable('calculation_cont_front');
              
-             //search for comments
-             $.each(tmp_content_parent.find('div.CodeMirror-code .cm-comment'), function(i, value) {
-                   tmp_comments.push($(this).html());
-                });
-                
-             RegExp.escape = function(s) {
+              
+             
+               RegExp.escape = function(s) {
                     return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
                 };   
                 
@@ -1102,30 +1099,97 @@ var zgfm_back_calc = function(){
             var replaceAll = function (str, find, replace) {
                          return str.replace(new RegExp(RegExp.escape(find), 'g'), replace);
                 }
+             
+             /*
+             //search for comments
+             $.each(tmp_content_parent.find('div.CodeMirror-code .cm-comment'), function(i, value) {
+                   tmp_comments.push($(this).html());
+                });
+                
+           
              //remove comments
             
                $.each(tmp_comments, function(i, value) {
                       tmp_content_front = replaceAll(tmp_content_front,value,'');
                 });
+                
+                */
+            tmp_content_front=tmp_content_front.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g,'');
+             
              //store content front
             rocketform.setInnerVariable('calculation_cont_front',tmp_content_front);
              
              
              //search for variables
-             $.each(tmp_content_parent.find('div.CodeMirror-code .cm-variable'), function(i, value) {
+             /*$.each(tmp_content_parent.find('div.CodeMirror-code .cm-variable'), function(i, value) {
                    tmp_variables.push($(this).html());
-                });
-              
-              //remove duplicate
-              tmp_variables = tmp_variables.filter(function(elem, index, self) {
+                });*/
+               
+            
+             var tmp_field_store={};
+              var tmp_field_detail=[];
+             //search fld variables   
+            let tmp_variables_arr=tmp_content_front.match(/\b(\w*fld_\w*)\b/g);
+            
+            try {
+    if(typeof tmp_variables_arr !== 'undefined' && tmp_variables_arr.length > 0){
+                 //remove duplicate
+              tmp_variables_arr = tmp_variables_arr.filter(function(elem, index, self) {
                     return index == self.indexOf(elem);
                 })
+                
+                //process variable
+               $.each(tmp_variables_arr, function(i, value) {
+                  
+                    
+                        tmp_field_detail=[];
+                       tmp_field_detail=zgfm_back_calc.calculation_getDetailField(value);
+                       tmp_field_store[tmp_field_detail['unique_id']]=tmp_field_detail;
+                   
+                
+                }); 
+            }
+                } catch (e) {
+
+                }
+            
+            
+          
+            
+              
+              //search fldopt_variables   
+            let tmp_variables_arr2=tmp_content_front.match(/\b(\w*fldopt_\w*)\b/g);
+            
+            try {
+                 if(typeof tmp_variables_arr2 !== 'undefined' && tmp_variables_arr2.length > 0){
+                        //remove duplicate
+                     tmp_variables_arr2 = tmp_variables_arr2.filter(function(elem, index, self) {
+                           return index == self.indexOf(elem);
+                       })
+
+                       //process variable
+                      $.each(tmp_variables_arr2, function(i, value) {
+
+                             tmp_field_val = value.split("_"); 
+
+                              //function to replace
+                              tmp_function = "zgfm_[%formid%]_calculation_cont"+tmp_field_val[1]+"()";
+                               tmp_content_front=rocketform.getInnerVariable('calculation_cont_front');
+                              tmp_content_front = replaceAll(tmp_content_front,value,tmp_function);
+                              //store content front
+                               rocketform.setInnerVariable('calculation_cont_front',tmp_content_front);
+
+                       }); 
+                   } 
+             } catch (e) {
+
+                }
+           
              
-              var tmp_field_store={};
-              var tmp_field_detail=[];
+             
               //process variable
-               $.each(tmp_variables, function(i, value) {
-                 
+             /*  $.each(tmp_variables, function(i, value) {
+                  
                     if(value.startsWith('fld_')){
                         tmp_field_detail=[];
                        tmp_field_detail=zgfm_back_calc.calculation_getDetailField(value);
@@ -1142,7 +1206,7 @@ var zgfm_back_calc = function(){
                        //store content front
                         rocketform.setInnerVariable('calculation_cont_front',tmp_content_front);
                     }
-                });
+                });*/
               
                 rocketform.setUiData4('calculation','variables',keyindex,'fields',tmp_field_store);
                 //mainrformb['calculation']['variables'][index]['fields']=JSON.stringify(tmp_field_store);

@@ -27,7 +27,7 @@ if (!defined('BASEPATH')) {
  * @version   Release: 1.00
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-class Records extends MX_Controller {
+class Records extends BackendController {
 
     const VERSION = '0.1';
     var $per_page = 50;
@@ -51,11 +51,11 @@ class Records extends MX_Controller {
         //$this->model_gateways_records = self::$_models['gateways']['records'];
        // delete record
        //add_action('wp_ajax_rocket_fbuilder_invoice_delete_records', array(&$this, 'ajax_delete_records'));
-       // $this->auth->authenticate(true);
+       // 
     }
     
     public function ajax_delete_records() {
-         $this->auth->authenticate(true);
+         
         
         $pgr_id = (isset($_POST['pgr_id']) && $_POST['pgr_id']) ? Uiform_Form_Helper::sanitizeInput($_POST['pgr_id']) : 0;
         $where = array(
@@ -71,7 +71,7 @@ class Records extends MX_Controller {
     }
     
     public function info_record() {
-         $this->auth->authenticate(true);
+         
         $id_rec = (isset($_GET['id_rec']) && $_GET['id_rec']) ? Uiform_Form_Helper::sanitizeInput($_GET['id_rec']) : 0;
         $data = array();
         $data['record_id']=$id_rec;
@@ -88,7 +88,7 @@ class Records extends MX_Controller {
     }
     
     public function list_records($offset = 0) {
-         $this->auth->authenticate(true);
+         
         //list all forms
         $data = $config = array();
         $offset = (isset($_GET['offset'])) ? Uiform_Form_Helper::sanitizeInput($_GET['offset']) : 0;

@@ -27,7 +27,7 @@ if (!defined('BASEPATH')) {
  * @version   Release: 1.00
  * @link      https://php-cost-estimator.zigaform.com/
  */
-class Dashboard extends MX_Controller {
+class Dashboard extends BackendController {
 
     /**
      * Intranet::__construct()
@@ -42,7 +42,7 @@ class Dashboard extends MX_Controller {
 
         $this->load->model('user/model_user');
         $this->load->model('visitor/model_visitor');
-        $this->auth->authenticate(true);
+        
     }
 
     /**
@@ -55,7 +55,7 @@ class Dashboard extends MX_Controller {
     {
             //generate cache
             //check if cache exist
-            
+          /*  
         $this->load->library('cache');
             $data1 = $this->cache->get('addon_back');
             $data2 = $this->cache->get('addon_front');
@@ -82,7 +82,7 @@ class Dashboard extends MX_Controller {
                             
                
                
-            } 
+            } */
         redirect(site_url() . 'formbuilder/forms/list_uiforms');    
     }
 

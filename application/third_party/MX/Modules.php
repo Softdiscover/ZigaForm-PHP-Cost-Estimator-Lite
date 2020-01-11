@@ -103,6 +103,8 @@ class Modules
 			/* create and register the new controller */
 			$controller = ucfirst($class);	
 			self::$registry[$alias] = new $controller($params);
+                        //settings instance
+                        self::$registry[$alias]->set_instance(self::$registry[$alias]);
 		}
 		
 		return self::$registry[$alias];

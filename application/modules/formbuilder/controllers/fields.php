@@ -28,7 +28,7 @@ if (!defined('BASEPATH')) {
  * @version   Release: 1.00
  * @link      https://php-cost-estimator.zigaform.com/
  */
-class Fields extends MX_Controller {
+class Fields extends BackendController {
     /**
      * max number of forms in order show by pagination
      *
@@ -56,7 +56,7 @@ class Fields extends MX_Controller {
         $this->template->set('controller', $this);
         $this->load->model('model_fields');
         $this->load->model('addon/model_addon');
-        $this->auth->authenticate(true);
+        
     }
     
     
@@ -193,7 +193,7 @@ class Fields extends MX_Controller {
          * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
          * @link      http://wordpress-form-builder.uiform.com/
          */
-        if (!defined('ABSPATH')) {exit('No direct script access allowed');}
+        if (!defined('BASEPATH')) {exit('No direct script access allowed');}
         ?&gt;
         &lt;!-- options --&gt;<?php
         $html_output_head= ob_get_contents();
@@ -257,7 +257,7 @@ class Fields extends MX_Controller {
         
         //addons
             
-        $json['addons'] = $this->model_addon->getActiveAddonsNamesOnBack();
+        //$json['addons'] = $this->model_addon->getActiveAddonsNamesOnBack();
         
         header('Content-Type: application/json');
         echo json_encode($json);
@@ -322,7 +322,7 @@ class Fields extends MX_Controller {
                         break;
                 }
                 
-                $data['modules_field_more']=$this->addon->get_modulesBySection('back_field_opt_more');
+                $data['modules_field_more']=modules::run('addon/zfad_backend/addons_doActions','back_field_opt_more');
                 
                 $data['obj_sfm'] = Uiform_Form_Helper::get_font_library();
                     $output.= $this->load->view('formbuilder/fields/modal/field_opt_text', $data, true);

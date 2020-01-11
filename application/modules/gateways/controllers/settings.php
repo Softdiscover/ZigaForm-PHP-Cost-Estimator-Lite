@@ -30,7 +30,7 @@ if (class_exists('Uiform_Pg_Controller_Settings')) {
  * @version   Release: 1.00
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-class Settings extends MX_Controller {
+class Settings extends BackendController {
 
     const VERSION = '0.1';
  
@@ -53,7 +53,7 @@ class Settings extends MX_Controller {
        // $this->model_gateways = self::$_models['gateways']['gateways'];
        // save settings options
         //add_action('wp_ajax_rocket_fbuilder_setting_saveGateway', array(&$this, 'ajax_save_options'));
-        $this->auth->authenticate(true);
+        
         
     }
     
