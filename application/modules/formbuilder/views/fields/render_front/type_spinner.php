@@ -17,7 +17,7 @@ ob_start();
  <div class="rockfm-input4-wrap">
     <input class="rockfm-input4-spinner"
            name="uiform_fields[<?php echo $id;?>]"
-           data-uifm-inp-price="<?php echo floatval($price['unit_price']);?>"
+           data-uifm-inp-price="<?php echo (isset($price['unit_price']))?floatval($price['unit_price']):'';?>"
            data-uifm-tabnum="<?php echo $tab_num;?>"
                 data-rockfm-min="<?php echo floatval($input4['set_min']);?>" 
                 data-rockfm-max="<?php echo floatval($input4['set_max']);?>"

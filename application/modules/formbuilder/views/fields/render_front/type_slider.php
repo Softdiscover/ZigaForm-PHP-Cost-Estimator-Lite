@@ -18,7 +18,7 @@ ob_start();
     
         <input class="rockfm-input4-slider" 
                 type="text"
-                data-uifm-inp-price="<?php echo floatval($price['unit_price']);?>"
+                data-uifm-inp-price="<?php echo (isset($price['unit_price']))?floatval($price['unit_price']):'';?>"
                 data-uifm-tabnum="<?php echo $tab_num;?>"
                 data-slider-min="<?php echo floatval($input4['set_min']);?>" 
                 data-slider-max="<?php echo floatval($input4['set_max']);?>"

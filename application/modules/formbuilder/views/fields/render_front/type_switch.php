@@ -17,7 +17,7 @@ ob_start();
  <div class="rockfm-input15-wrap">
         <input class="rockfm-input15-switch" 
                 type="checkbox"
-                data-uifm-inp-price="<?php echo floatval($price['unit_price']);?>"
+                data-uifm-inp-price="<?php echo (isset($price['unit_price']))?floatval($price['unit_price']):'';?>"
                 data-uifm-tabnum="<?php echo $tab_num;?>"
                 data-uifm-txt-yes="<?php echo $input15['txt_yes'];?>" 
                 data-uifm-txt-no="<?php echo $input15['txt_no'];?>"
