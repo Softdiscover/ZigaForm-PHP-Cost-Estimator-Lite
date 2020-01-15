@@ -28,7 +28,7 @@ if (!defined('BASEPATH')) {
  * @version   Release: 1.00
  * @link      https://php-cost-estimator.zigaform.com/
  */
-class Intranet extends CommonController
+class Intranet extends BackendController
 {
     /**
     * max number of user in order show by pagination

@@ -54,7 +54,7 @@ class Intranet extends CommonController {
      * @return void
      */
     public function dashboard() {
-        
+        $this->auth->authenticate(true);
         redirect(site_url() . 'default/dashboard/index');
     }
 
@@ -160,7 +160,7 @@ class Intranet extends CommonController {
      * @return array
      */
     public function settings() {
-        
+        $this->auth->authenticate(true);
         $data = array();
         $rdata = $this->model_settings->getSettings();
         $data['site_title'] = $rdata->site_title;
@@ -187,7 +187,7 @@ class Intranet extends CommonController {
      * @return array
      */
     public function showfilemanager() {
-        
+        $this->auth->authenticate(true);
         $data = array();
        
 
@@ -201,7 +201,7 @@ class Intranet extends CommonController {
      * @return array
      */
     public function help() {
-        
+        $this->auth->authenticate(true);
         $data = array();
         $this->template->loadPartial('layout_blank', 'intranet/help', $data);
     }
@@ -213,7 +213,7 @@ class Intranet extends CommonController {
      * @return array
      */
     public function about() {
-        
+        $this->auth->authenticate(true);
         $data = array();
         $this->template->loadPartial('layout_blank', 'intranet/about', $data);
     }
@@ -226,7 +226,7 @@ class Intranet extends CommonController {
      * @return array
      */
     public function gopro() {
-        
+        $this->auth->authenticate(true);
         $data = array();
         $this->template->loadPartial('layout_blank', 'intranet/gopro', $data);
     }
@@ -239,7 +239,7 @@ class Intranet extends CommonController {
      * @return void
      */
     public function savesettings() {
-        
+        $this->auth->authenticate(true);
         // deleting cache before inserting data
         $this->cache->delete('settings');
         $data = array();
@@ -270,7 +270,7 @@ class Intranet extends CommonController {
      * @return void
      */
     public function logout() {
-        
+        $this->auth->authenticate(true);
         $this->auth->logout('default/intranet/login');
     }
 
