@@ -8,6 +8,8 @@ class CommonController extends MX_Controller
     public static $_addons = array();
     public static $_addons_actions = array();
     public static $_addons_jsactions = array();
+     
+    
     public static $_form_data = array();
     
     

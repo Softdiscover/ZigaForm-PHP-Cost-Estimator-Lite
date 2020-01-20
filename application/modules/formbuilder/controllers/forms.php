@@ -556,24 +556,12 @@ public $gen_post_src;
         $content = '';
             $content = site_url() . 'formbuilder/frontend/viewform/?form=' . $form_id;
             $data['url'] = escape_text($content);
-  //load form variables
-            $form_variables=array();
-            $form_variables['_uifmvar']['addon']=self::$_addons_jsactions;
-            $form_variables['_uifmvar']['is_demo']=0;
-            $form_variables['_uifmvar']['is_dev']=0;
-            $form_variables['enqueue_scripts']=do_filter('zgfm_front_enqueue_scripts', array());
-            $form_variables['ajaxurl']='';
-            $form_variables['uifm_baseurl']=base_url();
-            $form_variables['uifm_siteurl']=site_url();
-            $form_variables['uifm_sfm_baseurl']=base_url().'libs/styles-font-menu/styles-fonts/png/';
-            $form_variables['imagesurl']= base_url().'assets/frontend/images';
             
             $temp=array();
             $temp['url_form']=$data['url'].'&lmode=1';
             $temp['base_url']=base_url();
             $temp['form_id']=$form_id;
-            /*$data_addon_front = $this->cache->get('addon_front');*/
-            $temp['rockfm_vars_arr']= $form_variables;
+            
             $data['iframe'] = $this->load->view('formbuilder/forms/get_code_iframe', $temp, true);
             echo $data['iframe'];
         ?>
@@ -2931,27 +2919,13 @@ public $gen_post_src;
                             
             $preload_noconflict = (isset($form_data_onsubm['main']['preload_noconflict'])) ? $form_data_onsubm['main']['preload_noconflict'] : '1';    
             
-  //load form variables
-            $form_variables=array();
-            $form_variables['_uifmvar']['addon']=self::$_addons_jsactions;
-            $form_variables['_uifmvar']['is_demo']=0;
-            $form_variables['_uifmvar']['is_dev']=0;
-            $form_variables['enqueue_scripts']=do_filter('zgfm_front_enqueue_scripts', array());
-            $form_variables['ajaxurl']='';
-            $form_variables['uifm_baseurl']=base_url();
-            $form_variables['uifm_siteurl']=site_url();
-            $form_variables['uifm_sfm_baseurl']=base_url().'libs/styles-font-menu/styles-fonts/png/';
-            $form_variables['imagesurl']= base_url().'assets/frontend/images';
-            
+                            
                      
             $temp=array();
             $temp['id_form']=$id_form;
             $temp['site_url']=site_url();
             $temp['base_url']=base_url();
-            $temp['onload_scroll']=$onload_scroll;
-            $temp['preload_noconflict']=$preload_noconflict;
-            //$data_addon_front = $this->cache->get('addon_front');
-            $temp['rockfm_vars_arr']= $form_variables;
+                            
             $data['script'] = escape_text($this->load->view('formbuilder/forms/get_code_widget', $temp, true));
 
             $content = '';
@@ -2962,12 +2936,18 @@ public $gen_post_src;
             $temp['url_form']=$data['url'].'&lmode=1';
             $temp['base_url']=base_url();
             $temp['form_id']=$id_form;
-            //$data_addon_front = $this->cache->get('addon_front');
-            $temp['rockfm_vars_arr']= $form_variables;
+                            
             $data['iframe'] = escape_text($this->load->view('formbuilder/forms/get_code_iframe', $temp, true));
                             
             $json = array();
             $json['html_title'] = __('Shortcodes','FRocket_admin');
+            
+            
+            $cached_content=modules::run('formbuilder/frontend/generate_cache',$id_form);
+                            
+            $data['cached_scripts']=escape_text($cached_content['scripts']);
+            $data['cached_content']=escape_text($cached_content['html']);
+            
             $json['html'] = $this->load->view('formbuilder/forms/getcode', $data, true);
             //return data to ajax callback
             header('Content-type: text/html');
@@ -2998,18 +2978,7 @@ public $gen_post_src;
             $onload_scroll = (isset($form_data_onsubm['main']['onload_scroll'])) ? $form_data_onsubm['main']['onload_scroll'] : '1';
                             
             $preload_noconflict = (isset($form_data_onsubm['main']['preload_noconflict'])) ? $form_data_onsubm['main']['preload_noconflict'] : '1';    
-            
-  //load form variables
-            $form_variables=array();
-            $form_variables['_uifmvar']['addon']=self::$_addons_jsactions;
-            $form_variables['_uifmvar']['is_demo']=0;
-            $form_variables['_uifmvar']['is_dev']=0;
-            $form_variables['enqueue_scripts']=do_filter('zgfm_front_enqueue_scripts', array());
-            $form_variables['ajaxurl']='';
-            $form_variables['uifm_baseurl']=base_url();
-            $form_variables['uifm_siteurl']=site_url();
-            $form_variables['uifm_sfm_baseurl']=base_url().'libs/styles-font-menu/styles-fonts/png/';
-            $form_variables['imagesurl']= base_url().'assets/frontend/images';
+                            
                         
             $temp=array();
             $temp['id_form']=$id_form;
@@ -3017,8 +2986,7 @@ public $gen_post_src;
             $temp['base_url']=base_url();
             $temp['onload_scroll']=$onload_scroll;
             $temp['preload_noconflict']=$preload_noconflict;
-            //$data_addon_front = $this->cache->get('addon_front');
-            $temp['rockfm_vars_arr']= $form_variables;
+                            
             $data['script'] = escape_text($this->load->view('formbuilder/forms/get_code_widget', $temp, true));
             $data['id_form'] = $id_form;
             $content = '';
@@ -3029,8 +2997,7 @@ public $gen_post_src;
             $temp['url_form']=$data['url'].'&lmode=1';
             $temp['base_url']=base_url();
             $temp['form_id']=$id_form;
-            $data_addon_front = $this->cache->get('addon_front');
-            $temp['rockfm_vars_arr']= $form_variables;
+                            
             $data['iframe'] = escape_text($this->load->view('formbuilder/forms/get_code_iframe', $temp, true));
 
              //  echo $this->load->view('formbuilder/forms/form_success', $data, true);

@@ -250,35 +250,16 @@ class Frontend extends FrontendController {
             //get data from form
             $form_data = $this->model_forms->getFormById_2($rdata->fmb_id);
             $form_data_onsubm = json_decode($form_data->fmb_data2, true);
-                
-            $onload_scroll = (isset($form_data_onsubm['main']['onload_scroll'])) ? $form_data_onsubm['main']['onload_scroll'] : '1';
-                            
+                    
             $preload_noconflict = (isset($form_data_onsubm['main']['preload_noconflict'])) ? $form_data_onsubm['main']['preload_noconflict'] : '1';    
-            
-              //load form variables
-            $form_variables=array();
-            $form_variables['_uifmvar']['addon']=self::$_addons_jsactions;
-            $form_variables['_uifmvar']['is_demo']=0;
-            $form_variables['_uifmvar']['is_dev']=0;
-            $form_variables['enqueue_scripts']=do_filter('zgfm_front_enqueue_scripts', array());
-            $form_variables['ajaxurl']='';
-            $form_variables['uifm_baseurl']=base_url();
-            $form_variables['uifm_siteurl']=site_url();
-            $form_variables['uifm_sfm_baseurl']=base_url().'libs/styles-font-menu/styles-fonts/png/';
-            $form_variables['imagesurl']= base_url().'assets/frontend/images';
-            
+                    
             $temp=array();
             $temp['id_form']=$rdata->fmb_id;
             $temp['site_url']=site_url();
             $temp['base_url']=base_url();
-            $temp['onload_scroll']=$onload_scroll;
+          
             $temp['preload_noconflict']=$preload_noconflict;
-            
-            //addon
-            
-            //$data_addon_front = $this->cache->get('addon_front');
-            $temp['rockfm_vars_arr']= $form_variables;
-            
+                    
             $data['script'] = $this->load->view('formbuilder/forms/get_code_widget', $temp, true);
             
 
@@ -302,7 +283,95 @@ class Frontend extends FrontendController {
 
         $this->template->loadPartial('frontend/layout', 'frontend/index', $data);
     }
+    
+    /*
+     * Generate cached form
+     */
+    public function generate_cache($form_id){
+       
+       $this->auth->authenticate(true);
+                    
+        $output=array();
+        $output['scripts']='';
+        $output['html']='';
+                    
+        if (intval($form_id) === 0) {
+           return $output;
+        } 
+                    
+        $rdata = $this->model_forms->getFormById($form_id);
+        
+        $response = array();
+        $form_data_onsubm = json_decode($rdata->fmb_data2, true);
+         $onload_scroll = (isset($form_data_onsubm['main']['onload_scroll'])) ? $form_data_onsubm['main']['onload_scroll'] : '1';
+                            
+            $preload_noconflict = (isset($form_data_onsubm['main']['preload_noconflict'])) ? $form_data_onsubm['main']['preload_noconflict'] : '1';    
+            
+          //load form variables
+            $form_variables=array();
+            $form_variables['_uifmvar']['addon']=self::$_addons_jsactions;
+            $form_variables['_uifmvar']['is_demo']=0;
+            $form_variables['_uifmvar']['is_dev']=0;
+            $form_variables['onload_scroll']=$onload_scroll;
+            $form_variables['preload_noconflict']=$preload_noconflict;
+            $enqueue_scripts=do_filter('zgfm_front_enqueue_scripts', array());
+            
+            
+            $data_scripts=array();
+            $data_styles=array();
+            if(!empty($enqueue_scripts && is_array($enqueue_scripts))){
+                    
+                foreach ($enqueue_scripts as $key => $value) {
+                    if(!empty($value) && is_array($value))
+                        foreach ($value as $key2 => $value2) {
+                            if(!empty($value2) && is_array($value2))
+                            foreach ($value2 as $key3 => $value3) {
+                                
+                                switch (strval($key3)) {
+                                    case 'scripts':
+                                            foreach ($value3 as $key4 => $value4) {
+                                               $data_scripts[]=$value4['src'];
 
+                                            }
+                                        break;
+                                    case 'styles':
+                                            foreach ($value3 as $key4 => $value4) {
+                                               $data_styles[]=$value4['src'];
+
+                                            }
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }    
+                        }
+                }
+                
+            }
+            $data_scripts = array_unique($data_scripts);
+            $data_styles = array_unique($data_styles);
+            $response['site_url']=site_url();
+            $response['base_url']=base_url();                        
+            $response['id_form']=$form_id;
+            $response['scripts']=$data_scripts;
+            $response['styles']=$data_styles;
+            $form_variables['ajaxurl']='';
+            $form_variables['uifm_baseurl']=base_url();
+            $form_variables['uifm_siteurl']=site_url();
+            $form_variables['uifm_sfm_baseurl']=base_url().'libs/styles-font-menu/styles-fonts/png/';
+            $form_variables['imagesurl']= base_url().'assets/frontend/images';
+            $response['rockfm_vars_arr']= $form_variables;
+                                    
+        if (!empty($rdata)) {
+            $response['html_content'] = do_shortcode($rdata->fmb_html);         
+        }
+        
+       $output['scripts']=$this->load->view('formbuilder/forms/get_code_cached_scripts',$response, true);
+       $output['html']=$this->load->view('formbuilder/forms/get_code_cached_html',$response, true);
+                                    
+        return $output;
+    }
+    
     /**
      * Frontend::getform()
      * Get form by form id
@@ -336,16 +405,35 @@ class Frontend extends FrontendController {
         $this->db->insert($this->model_visitor->table);*/
 
         $data = array();
-
+        $response = array();
         if (intval($form_id) === 0) {
             return;
-        } else {
+        } 
 
-
-            $rdata = $this->model_forms->getFormById($form_id);
-        }
-                    
-        $response = array();
+        $rdata = $this->model_forms->getFormById($form_id);
+        
+        
+        $form_data_onsubm = json_decode($rdata->fmb_data2, true);
+         $onload_scroll = (isset($form_data_onsubm['main']['onload_scroll'])) ? $form_data_onsubm['main']['onload_scroll'] : '1';
+                            
+            $preload_noconflict = (isset($form_data_onsubm['main']['preload_noconflict'])) ? $form_data_onsubm['main']['preload_noconflict'] : '1';    
+            
+          //load form variables
+            $form_variables=array();
+            $form_variables['_uifmvar']['addon']=self::$_addons_jsactions;
+            $form_variables['_uifmvar']['is_demo']=0;
+            $form_variables['_uifmvar']['is_dev']=0;
+            $form_variables['onload_scroll']=$onload_scroll;
+            $form_variables['preload_noconflict']=$preload_noconflict;
+            $form_variables['enqueue_scripts']=do_filter('zgfm_front_enqueue_scripts', array());
+            $form_variables['ajaxurl']='';
+            $form_variables['uifm_baseurl']=base_url();
+            $form_variables['uifm_siteurl']=site_url();
+            $form_variables['uifm_sfm_baseurl']=base_url().'libs/styles-font-menu/styles-fonts/png/';
+            $form_variables['imagesurl']= base_url().'assets/frontend/images';
+            $response['rockfm_vars_arr']= $form_variables;
+            
+        
         if (!empty($rdata)) {
             $response['html_content'] = Uiform_Form_Helper::encodeHex(do_shortcode($rdata->fmb_html));         
         }
@@ -1284,7 +1372,7 @@ class Frontend extends FrontendController {
                                             
                                             
                                             if(isset($tmp_fdata['input2']['options'][$value2])){
-                                            $tmp_options_row['cost']=  floatval($tmp_fdata['input2']['options'][$value2]['price']); 
+                                            $tmp_options_row['cost']=  (isset($tmp_fdata['input2']['options'][$value2]['price']))?floatval($tmp_fdata['input2']['options'][$value2]['price']):0; 
                                             $tmp_options_row['amount']=  $tmp_options_row['cost']; 
                                             
                                 
@@ -1341,7 +1429,7 @@ class Frontend extends FrontendController {
                                         $form_f_rec_tmp[$key] = $tmp_options_row['label'];
                                         
                                         if(isset($tmp_fdata['input2']['options'][$value])){
-                                           $tmp_options_row['cost']=  floatval($tmp_fdata['input2']['options'][$value]['price']); 
+                                           $tmp_options_row['cost']=  (isset($tmp_fdata['input2']['options'][$value]['price']))?floatval($tmp_fdata['input2']['options'][$value]['price']):0; 
                                            $tmp_options_row['amount']=  $tmp_options_row['cost'];
                                            
                                             if(isset($tmp_fdata['price']['enable_st'])
@@ -1455,9 +1543,7 @@ class Frontend extends FrontendController {
                                     
                                    // foreach ($value as $key2=>$value2) {
                                         $tmp_options_row=array();
-                                        
-                                        
-                                        
+                                
                                            $tmp_options_row['cost']= floatval($tmp_fdata['price']['unit_price']);
                                            
                                            $tmp_options_row['qty']=  floatval($value);
@@ -2202,7 +2288,7 @@ class Frontend extends FrontendController {
                         $mail->addReplyTo($data['mail_replyto'], $mail_replyto_name);
                         
                         //$this->email->reply_to($data['mail_replyto']);
-                        $data['subject'].=" - ".$data['mail_replyto'];
+                        //$data['subject'].=" - ".$data['mail_replyto'];
                         
                         }
                         //cc
@@ -2354,17 +2440,7 @@ class Frontend extends FrontendController {
             $onload_scroll = (isset($form_data_onsubm['main']['onload_scroll'])) ? $form_data_onsubm['main']['onload_scroll'] : '1';
                             
             $preload_noconflict = (isset($form_data_onsubm['main']['preload_noconflict'])) ? $form_data_onsubm['main']['preload_noconflict'] : '1';    
-  //load form variables
-            $form_variables=array();
-            $form_variables['_uifmvar']['addon']=self::$_addons_jsactions;
-            $form_variables['_uifmvar']['is_demo']=0;
-            $form_variables['_uifmvar']['is_dev']=0;
-            $form_variables['enqueue_scripts']=do_filter('zgfm_front_enqueue_scripts', array());
-            $form_variables['ajaxurl']='';
-            $form_variables['uifm_baseurl']=base_url();
-            $form_variables['uifm_siteurl']=site_url();
-            $form_variables['uifm_sfm_baseurl']=base_url().'libs/styles-font-menu/styles-fonts/png/';
-            $form_variables['imagesurl']= base_url().'assets/frontend/images';
+                        
             
             $temp=array();
             $temp['id_form']=$rdata->fmb_id;
@@ -2375,9 +2451,7 @@ class Frontend extends FrontendController {
             $temp['preload_noconflict']=$preload_noconflict;
             
             //addon
-            
-            //$data_addon_front = $this->cache->get('addon_front');
-            $temp['rockfm_vars_arr']= $form_variables;
+                        
             
             $data['script'] = $this->load->view('formbuilder/forms/get_code_widget', $temp, true);
         
