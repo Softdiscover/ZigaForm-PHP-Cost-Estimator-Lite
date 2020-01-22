@@ -21,6 +21,7 @@ ob_start();
       name="" 
       method="post" 
       data-zgfm-type="2"
+      data-zgfm-version="<?php echo UIFORM_VERSION;?>"
       data-zgfm-price-tax-st="<?php echo isset($main['price_tax_st'])?$main['price_tax_st']:'0'?>"
       data-zgfm-price-tax-val="<?php echo isset($main['price_tax_val'])?$main['price_tax_val']:'0'?>"
       enctype="multipart/form-data" 
