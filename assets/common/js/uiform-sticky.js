@@ -340,7 +340,7 @@
                 case 1:
                     if (parseInt(settings.backend) === 1) {
                         data.sidebar_obj.css({
-                            'position': 'static',
+                            'position': 'absolute',
                             'float': 'right'
                         });
                     } else {
@@ -355,7 +355,7 @@
                     //sidebar left
                     if (parseInt(settings.backend) === 1) {
                         data.sidebar_obj.css({
-                            'position': 'static',
+                            'position': 'absolute',
                             'float': 'left'
                         });
                     } else {

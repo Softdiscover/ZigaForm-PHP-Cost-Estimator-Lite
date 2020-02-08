@@ -2883,7 +2883,7 @@ public $gen_post_src;
 
         //$data['modules_tab_extension']= self::$_modules['addon']['backend']->addons_doActions('back_exttab_block');
         
-        $data['modules_tab_extension']= modules::run('addon/zfad_backend/addons_doActions','back_exttab_block' );
+        $data['modules_tab_extension']= modules::run('addon/zfad_backend/addons_doActions','back_exttab_block',true);
         
         $this->template->loadPartial('layout-editform', 'forms/create_form', $data);
     }
