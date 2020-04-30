@@ -206,7 +206,7 @@ var zgfm_<?php echo $form_id; ?>_calculation_cont<?php echo $calculation['variab
 		echo str_replace( '[%formid%]', $form_id, stripslashes( urldecode( $calculation['variables'][ $key ]['content_front'] ) ) );
 		?>
 	   
-}
+};
 	<?php } ?>
 </script>
 <?php } ?>

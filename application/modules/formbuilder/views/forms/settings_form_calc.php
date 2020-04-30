@@ -280,7 +280,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 					</div>
 				</div>
 				<div class="sfdc-col-md-6">
-					<a class="sfdc-btn sfdc-btn-danger sfdc-pull-right" onclick="javascript:zgfm_back_calc.calc_delete_tab();" href="javascript:void(0);">
+					<a style="display:none;" class="zgfm-tab-calc-vars-delbtn sfdc-btn sfdc-btn-danger sfdc-pull-right" onclick="javascript:zgfm_back_calc.calc_delete_tab();" href="javascript:void(0);">
 						  <?php echo __( 'Delete', 'FRocket_admin' ); ?> </a>
 				</div>
 			</div>

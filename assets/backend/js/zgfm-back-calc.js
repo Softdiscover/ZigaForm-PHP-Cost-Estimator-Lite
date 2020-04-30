@@ -420,6 +420,9 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 				tmp_content.find('textarea.uifm_frm_calc_content').attr('id', 'uifm_frm_calc_content' + optindex);
 				tmp_content.find('textarea.uifm_frm_calc_content').attr('data-num', optindex);
 				tmp_content.find('input.uifm_frm_calc_tabtitle').val(tmp_tab_title);
+				//delete del btn
+				if (String(optindex) != '0')
+				tmp_content.find('.zgfm-tab-calc-vars-delbtn').show();
 
 				//update shortcod
 				//tmp_content.find('.uifm_txtarea_var').html('[zgfm_fvar opt="calc" atr1="'+optindex+'"]');
