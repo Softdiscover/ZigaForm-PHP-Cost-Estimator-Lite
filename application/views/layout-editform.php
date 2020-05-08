@@ -252,14 +252,15 @@ if ( ! defined( 'BASEPATH' ) ) {
 				],
 				relative_urls : false,
 				remove_script_host : false,
-				convert_urls : true,
-				browser_spellcheck : true ,
+				convert_urls : false,
+				browser_spellcheck : false ,
 				verify_html: false,
 				codemirror: {
 				indentOnInit: true, // Whether or not to indent code on init.
 				path: 'CodeMirror'
 				},
 				image_advtab: true,
+                                apply_source_formatting : false,                //added option
 				toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
 				toolbar2: "| image | media | link unlink anchor | forecolor backcolor | print preview code | youtube | qrcode | flickr | picasa ",
 				file_browser_callback : elFinderBrowser,
