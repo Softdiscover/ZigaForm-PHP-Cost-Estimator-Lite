@@ -14,7 +14,7 @@
  */
 ?>
 <?php
-error_reporting(0);
+error_reporting(E_ALL);
 require_once "includes/functions.php";
 define('ZIGAFORM_C_LITE',1);
 session_start();

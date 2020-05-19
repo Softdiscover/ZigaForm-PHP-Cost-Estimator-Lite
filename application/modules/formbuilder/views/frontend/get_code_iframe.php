@@ -19,7 +19,7 @@ ob_start();
 		var uiform = document.createElement('script');
 		uiform.type = 'text/javascript';
 		uiform.async = true;
-		uiform.src = ('https:' == document.location.protocol ? UIFORM_SRC : UIFORM_SRC) + 'assets/frontend/js/iframe.php';
+		uiform.src = ('https:' == document.location.protocol ? UIFORM_SRC : UIFORM_SRC) + 'assets/frontend/js/loader-iframe.js';
 		var s = document.getElementsByTagName('script')[0];
 			   s.parentNode.insertBefore(uiform, s);
 		   })();</script>   
