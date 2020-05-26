@@ -87,9 +87,9 @@ ob_start();
 </html>
 <?php
 $cntACmp = ob_get_contents();
-//$cntACmp = str_replace("\n", '', $cntACmp);
-//$cntACmp = str_replace("\t", '', $cntACmp);
-//$cntACmp = str_replace("\r", '', $cntACmp);
+// $cntACmp = str_replace("\n", '', $cntACmp);
+// $cntACmp = str_replace("\t", '', $cntACmp);
+// $cntACmp = str_replace("\r", '', $cntACmp);
 $cntACmp = str_replace( '//-->', ' ', $cntACmp );
 $cntACmp = str_replace( '//<!--', ' ', $cntACmp );
 $cntACmp = Uiform_Form_Helper::sanitize_output( $cntACmp );

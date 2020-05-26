@@ -75,12 +75,12 @@ class Paypal extends MX_Controller {
 			ob_start();
 			$this->_requirePostMethod();
 
-			//visitor data
+			// visitor data
 			$agent   = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
 			$referer = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : '';
 			$ip      = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : '';
 
-			//get paypal data
+			// get paypal data
 			$paypal_data = $this->model_gateways->getGatewayById( 2 );
 			$pg_data     = json_decode( $paypal_data->pg_data, true );
 			// STEP 1: read POST data
@@ -158,7 +158,7 @@ class Paypal extends MX_Controller {
 				$receiver_email   = $_POST['receiver_email'];
 				$payer_email      = $_POST['payer_email'];
 
-				//log data
+				// log data
 					$data3                   = array();
 					$data3['vis_uniqueid']   = '';
 					$data3['vis_user_agent'] = $agent;
@@ -192,7 +192,7 @@ class Paypal extends MX_Controller {
 					$this->db->set( $data );
 					$this->db->where( 'pgr_id', $custom );
 					$this->db->update( $this->model_gateways_records->table );
-					//sending email
+					// sending email
 					$data            = array();
 					$subject         = 'Paypal order completed successfully - ' . $txn_id . ' - ' . $custom;
 					$data['message'] = 'Hi, paypal order completed sucessfully. ';
@@ -206,7 +206,7 @@ class Paypal extends MX_Controller {
 					}
 					// get domain part
 					list( $user, $domain ) = explode( '@', $mail_from );
-					//verify if mail is allowed
+					// verify if mail is allowed
 					$mail_from = ( $sitename == $domain ) ? $mail_from : "wordpress@$sitename";
 					$from_name = empty( $mail_from ) ? $mail_from : model_settings::$db_config['admin_mail'];
 
@@ -232,9 +232,9 @@ class Paypal extends MX_Controller {
 					$this->email->send();
 
 				} else {
-					//sending email
+					// sending email
 					$message = 'Paypal order not completed - ' . $txn_id . ' - ' . $custom;
-					//log data
+					// log data
 					$data3                   = array();
 					$data3['vis_uniqueid']   = '';
 					$data3['vis_user_agent'] = $agent;
@@ -258,7 +258,7 @@ class Paypal extends MX_Controller {
 				$txn_id      = $_POST['txn_id'];
 
 				$message = 'The response from IPN was: <b>' . $res . '</b>';
-				//log data
+				// log data
 					$data3                   = array();
 					$data3['vis_uniqueid']   = '';
 					$data3['vis_user_agent'] = $agent;
@@ -275,7 +275,7 @@ class Paypal extends MX_Controller {
 				$this->db->set( $data4 );
 				$this->db->insert( $this->model_gateways_logs->table );
 			} else {
-				//log data
+				// log data
 					$data3                   = array();
 					$data3['vis_uniqueid']   = '';
 					$data3['vis_user_agent'] = $agent;
@@ -292,9 +292,9 @@ class Paypal extends MX_Controller {
 				$this->db->insert( $this->model_gateways_logs->table );
 			}
 
-			//checking errors
+			// checking errors
 			$previousOutput = ob_get_contents();
-			 //putting at the of script
+			 // putting at the of script
 			/*
 			if ($previousOutput) {
 			   $previousOutput = "[" . date('d-m-Y H:i:s', time()) . "] invoice \n" . $previousOutput . "\n";
@@ -317,7 +317,7 @@ class Paypal extends MX_Controller {
 			$hash       = hash( 'crc32', md5( $ip . $user_agent ) );
 			$referer    = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : '';
 
-			//log data
+			// log data
 				$data3                   = array();
 				$data3['vis_uniqueid']   = $hash;
 				$data3['vis_user_agent'] = $user_agent;

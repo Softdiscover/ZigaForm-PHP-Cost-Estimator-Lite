@@ -11,7 +11,8 @@
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+if ( ! defined( 'BASEPATH' ) ) {
+	exit( 'No direct script access allowed' );}
 ?>
 
 <div class="uifm-set-section-input4">
@@ -20,7 +21,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-md-6">
 			   <div class="sfdc-form-group">
-					<label ><?php echo __('Minimum','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Minimum', 'FRocket_admin' ); ?></label>
 					<input  
 						id="uifm_fld_inp4_spinner_opt1"
 						data-field-store="input4-set_min"
@@ -30,7 +31,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			</div>
 		 <div class="sfdc-col-sm-6">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Maximum','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Maximum', 'FRocket_admin' ); ?></label>
 					<input  
 						id="uifm_fld_inp4_spinner_opt2"
 						data-field-store="input4-set_max"
@@ -46,7 +47,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			<div class="sfdc-col-md-6">
 				<div class="uifm-set-section-input4-defaultvalue">
 		<div class="sfdc-form-group">
-					<label ><?php echo __('Default value','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Default value', 'FRocket_admin' ); ?></label>
 					<input  
 						id="uifm_fld_inp4_spinner_opt3"
 						data-field-store="input4-set_default"
@@ -58,7 +59,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			</div>
 		 <div class="sfdc-col-sm-6">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Step','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Step', 'FRocket_admin' ); ?></label>
 					<input  
 						id="uifm_fld_inp4_spinner_opt4"
 						data-field-store="input4-set_step"
@@ -72,7 +73,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		<div class="sfdc-row">
 				<div class="sfdc-col-md-6">
 			   <div class="sfdc-form-group">
-						<label ><?php echo __('Range 1','FRocket_admin'); ?></label>
+						<label ><?php echo __( 'Range 1', 'FRocket_admin' ); ?></label>
 						<input  
 							id="uifm_fld_inp4_spinner_opt5"
 							data-field-store="input4-set_range1"
@@ -82,7 +83,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 				</div>
 			<div class="sfdc-col-sm-6">
 				<div class="sfdc-form-group">
-						<label ><?php echo __('Range 2','FRocket_admin'); ?></label>
+						<label ><?php echo __( 'Range 2', 'FRocket_admin' ); ?></label>
 						<input
 							id="uifm_fld_inp4_spinner_opt6"
 							data-field-store="input4-set_range2"
@@ -100,14 +101,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<div class="sfdc-col-md-12">
 						<div class="divider2">
 						<div class="mask"></div>
-						<span><i><?php echo __('Skin','FRocket_admin'); ?></i></span>
+						<span><i><?php echo __( 'Skin', 'FRocket_admin' ); ?></i></span>
 						</div>
 					</div>
 				</div>
 		<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
-					<label ><?php echo __('Custom width','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Custom width', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-3">
 							<input 
@@ -120,7 +121,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="sfdc-col-md-9">
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Max width','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Max width', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 												<input  

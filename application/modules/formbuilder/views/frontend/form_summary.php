@@ -36,7 +36,8 @@ ob_start();
 
 								echo isset( $value2['label'] ) ? $value2['label'] : '';
 
-								/*if(isset($value2['qty']) && floatval($value2['qty'])>0){
+								/*
+								if(isset($value2['qty']) && floatval($value2['qty'])>0){
 								echo ' &#8594 '.$value2['qty'].' '.__('Units','FRocket_admin').' &#8594 ';
 								}*/
 

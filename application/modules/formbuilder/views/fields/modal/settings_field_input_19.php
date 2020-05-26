@@ -11,20 +11,21 @@
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+if ( ! defined( 'BASEPATH' ) ) {
+	exit( 'No direct script access allowed' );}
 ?>
 
 <div id="uifm-fld-inp-date2-box">
 	
 	<fieldset>
-					<legend><?php echo __('Margin','FRocket_admin'); ?> </legend>
+					<legend><?php echo __( 'Margin', 'FRocket_admin' ); ?> </legend>
 					<div class="zgpb-modal-body-tab-inner">
 						<div class="sfdc-row ">
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('Enable time','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('Enable time','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'Enable time', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'Enable time', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 									   <input class="switch-field"
@@ -41,8 +42,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('No calendar','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('No calendar','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'No calendar', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'No calendar', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 									   <input class="switch-field"
@@ -59,8 +60,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('time 24 hour','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('No calendar','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'time 24 hour', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'No calendar', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 									   <input class="switch-field"
@@ -77,8 +78,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('Alternative input','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('Alternative input','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'Alternative input', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'Alternative input', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 									   <input class="switch-field"
@@ -95,8 +96,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('Alternative input format','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('Alternative format input','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'Alternative input format', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'Alternative format input', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 										
@@ -114,8 +115,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('Inline display','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('Inline display','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'Inline display', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'Inline display', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 									   <input class="switch-field"
@@ -132,8 +133,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('Date format','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('Date format','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'Date format', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'Date format', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 										
@@ -152,8 +153,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('Language','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('Language','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'Language', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'Language', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 										<select id="uifm_fld_inp19_language" 
@@ -161,14 +162,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 												onchange=""
 												data-field-store="input_date2-language"
 												class="sfdc-form-control uifm-f-setoption">
-											<option value="en"><?php echo __('English','FRocket_admin'); ?></option>
-											<option value="es"><?php echo __('Spanish','FRocket_admin'); ?></option>
-											<option value="fr"><?php echo __('French','FRocket_admin'); ?></option>
-											<option value="ir"><?php echo __('Italian','FRocket_admin'); ?></option>
-											<option value="ja"><?php echo __('Japanese','FRocket_admin'); ?></option>
-											<option value="pt"><?php echo __('Portuguese','FRocket_admin'); ?></option>
-											<option value="ru"><?php echo __('Russian','FRocket_admin'); ?></option>
-											<option value="zh"><?php echo __('Chinese','FRocket_admin'); ?></option>
+											<option value="en"><?php echo __( 'English', 'FRocket_admin' ); ?></option>
+											<option value="es"><?php echo __( 'Spanish', 'FRocket_admin' ); ?></option>
+											<option value="fr"><?php echo __( 'French', 'FRocket_admin' ); ?></option>
+											<option value="ir"><?php echo __( 'Italian', 'FRocket_admin' ); ?></option>
+											<option value="ja"><?php echo __( 'Japanese', 'FRocket_admin' ); ?></option>
+											<option value="pt"><?php echo __( 'Portuguese', 'FRocket_admin' ); ?></option>
+											<option value="ru"><?php echo __( 'Russian', 'FRocket_admin' ); ?></option>
+											<option value="zh"><?php echo __( 'Chinese', 'FRocket_admin' ); ?></option>
 											
 										</select>
 										
@@ -182,8 +183,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('Minimum date','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('Minimum date','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'Minimum date', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'Minimum date', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 										
@@ -202,8 +203,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('Maximum date','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('Maximum date','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'Maximum date', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'Maximum date', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 										
@@ -222,8 +223,8 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="sfdc-col-md-12">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-6">
-										<label for=""><?php echo __('Default date','FRocket_admin'); ?></label> 
-										<a data-original-title="<?php echo __('Default date','FRocket_admin'); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
+										<label for=""><?php echo __( 'Default date', 'FRocket_admin' ); ?></label> 
+										<a data-original-title="<?php echo __( 'Default date', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a>
 									</div>
 									<div class="sfdc-col-md-6">
 										

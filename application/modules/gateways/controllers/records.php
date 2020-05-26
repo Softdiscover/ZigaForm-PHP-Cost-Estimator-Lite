@@ -47,10 +47,10 @@ class Records extends BackendController {
 		$this->load->model( 'model_gateways_records' );
 		$this->load->model( 'formbuilder/model_record' );
 		// global $wpdb;
-		//$this->wpdb = $wpdb;
-		//$this->model_gateways_records = self::$_models['gateways']['records'];
+		// $this->wpdb = $wpdb;
+		// $this->model_gateways_records = self::$_models['gateways']['records'];
 		// delete record
-		//add_action('wp_ajax_rocket_fbuilder_invoice_delete_records', array(&$this, 'ajax_delete_records'));
+		// add_action('wp_ajax_rocket_fbuilder_invoice_delete_records', array(&$this, 'ajax_delete_records'));
 		//
 	}
 
@@ -88,10 +88,10 @@ class Records extends BackendController {
 
 	public function list_records( $offset = 0 ) {
 
-		//list all forms
+		// list all forms
 		$data   = $config = array();
 		$offset = ( isset( $_GET['offset'] ) ) ? Uiform_Form_Helper::sanitizeInput( $_GET['offset'] ) : 0;
-		//create pagination
+		// create pagination
 		$this->load->library( 'pagination' );
 		$config['base_url']        = site_url() . 'gateways/records/list_records';
 		$config['total_rows']      = $this->model_gateways_records->CountRecords();
@@ -176,7 +176,7 @@ class Records extends BackendController {
 				generate_pdf( $tmp_html, 'record_' . $tmp_recid, true );
 
 		}
-		 //die all
+		 // die all
 		 die();
 	}
 

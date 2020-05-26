@@ -57,7 +57,6 @@ class Records extends BackendController {
 		$this->load->model( 'model_forms' );
 		$this->load->model( 'model_fields' );
 		$this->load->model( 'model_record' );
-		//
 	}
 
 	/**
@@ -96,7 +95,7 @@ class Records extends BackendController {
 		$this->db->set( $data );
 		$this->db->where( $where );
 		$this->db->update( $this->model_fields->table );
-		//update the fields to show in list
+		// update the fields to show in list
 		if ( ! empty( $data_fields ) ) {
 			foreach ( $data_fields as $value ) {
 				$where = array(
@@ -111,7 +110,7 @@ class Records extends BackendController {
 			}
 		}
 
-		//update order for all fields according to form
+		// update order for all fields according to form
 		if ( ! empty( $data_fields2 ) ) {
 			foreach ( $data_fields2 as $value ) {
 				$where = array(
@@ -181,11 +180,11 @@ class Records extends BackendController {
 	public function ajax_load_record_byform() {
 
 		$form_id = ( isset( $_POST['form_id'] ) && $_POST['form_id'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['form_id'] ) : 0;
-		//records to show
+		// records to show
 		$name_fields            = $this->model_record->getNameFieldEnabledByForm( $form_id, true );
 		$data                   = array();
 		$data['datatable_head'] = $name_fields;
-		//process record
+		// process record
 		$flag_types = array();
 		foreach ( $name_fields as $key => $value ) {
 
@@ -205,7 +204,7 @@ class Records extends BackendController {
 					switch ( intval( $flag_types[ $count1 ] ) ) {
 						case 12:
 						case 13:
-							//checking if image exists
+							// checking if image exists
 							if ( @is_array( getimagesize( $value2 ) ) ) {
 								 $new_record[ $key ][ $key2 ] = '<img width="100px" src="' . $value2 . '"/>';
 							}
@@ -271,14 +270,14 @@ class Records extends BackendController {
 
 		$form_data_currency = ( isset( $form_data['main']['price_currency'] ) ) ? $form_data['main']['price_currency'] : '';
 
-		   //price numeric format
+		   // price numeric format
 		$format_price_conf                        = array();
 		$format_price_conf['price_format_st']     = ( isset( $form_data['main']['price_format_st'] ) ) ? $form_data['main']['price_format_st'] : '0';
 		$format_price_conf['price_sep_decimal']   = ( isset( $form_data['main']['price_sep_decimal'] ) ) ? $form_data['main']['price_sep_decimal'] : '.';
 		$format_price_conf['price_sep_thousand']  = ( isset( $form_data['main']['price_sep_thousand'] ) ) ? $form_data['main']['price_sep_thousand'] : ',';
 		$format_price_conf['price_sep_precision'] = ( isset( $form_data['main']['price_sep_precision'] ) ) ? $form_data['main']['price_sep_precision'] : '2';
 
-		//calculation
+		// calculation
 		$form_calculation = ( isset( $form_data['calculation']['enable_st'] ) ) ? $form_data['calculation']['enable_st'] : '0';
 
 		$name_fields_check = array();
@@ -309,7 +308,7 @@ class Records extends BackendController {
 					case 12:
 					case 13:
 						$value_new = $value['input'];
-						//checking if image exists
+						// checking if image exists
 						if ( @is_array( getimagesize( $value_new ) ) ) {
 							 $value_new = '<img width="100px" src="' . $value_new . '"/>';
 						}
@@ -333,7 +332,7 @@ class Records extends BackendController {
 		$data  = array();
 		$data2 = array();
 
-		   //processs tax
+		   // processs tax
 		  $form_data_tax_st = ( isset( $form_data['main']['price_tax_st'] ) ) ? $form_data['main']['price_tax_st'] : '0';
 		$form_data_tax_val  = ( isset( $form_data['main']['price_tax_val'] ) ) ? $form_data['main']['price_tax_val'] : '';
 
@@ -355,7 +354,7 @@ class Records extends BackendController {
 
 		$data['info_date'] = $data2['info_date'] = date( 'F j, Y, g:i a', strtotime( $data_record->created_date ) );
 		$data['info_ip']   = $data2['info_ip'] = $data_record->created_ip;
-		require_once( APPPATH . '/helpers/clientsniffer.php' );
+		require_once APPPATH . '/helpers/clientsniffer.php';
 		$data['info_useragent'] = $data2['info_useragent'] = ClientSniffer::test( array( $data_record->fbh_user_agent ) );
 		$data['info_referer']   = $data2['info_referer'] = $data_record->fbh_referer;
 		$data['form_name']      = $data2['form_name'] = $form_rec_data->fmb_name;
@@ -387,7 +386,8 @@ class Records extends BackendController {
 	}
 
 	public function get_info_records( $new_record_user, $data ) {
-		/*echo json_encode($new_record_user);
+		/*
+		echo json_encode($new_record_user);
 		die();*/
 		 $tmp_form_info = '<ul>';
 		foreach ( $new_record_user as $value ) {
@@ -421,17 +421,17 @@ class Records extends BackendController {
 							$tmp_form_info .= '</ul>';
 						break;
 					case 16:
-						//slider
+						// slider
 					case 18:
-						//spinner
+						// spinner
 						$tmp_form_info .= '<ul>';
 						$tmp_form_info .= '<li>';
 
 						if ( intval( $data['form_calculation'] ) === 1 ) {
-							//with math calculation
+							// with math calculation
 							$tmp_form_info .= ' : ' . Uiform_Form_Helper::cformat_numeric( $data['price_format'], $value['value']['value'] );
 						} else {
-							//withoout math calc
+							// withoout math calc
 							$tmp_form_info .= ' cost : ' . $value['value']['cost'] . ' -  qty: ' . $value['value']['qty'] . ' - ' . __( 'Amount', 'FRocket_admin' ) . ' : ' . Uiform_Form_Helper::cformat_numeric( $data['price_format'], $value['value']['amount'] ) . ' ' . $data['form_currency'] . ' ' . $data['form_currency'];
 						}
 
@@ -501,10 +501,10 @@ class Records extends BackendController {
 	 */
 	public function list_records( $offset = 0 ) {
 
-		//list all forms
+		// list all forms
 		$data   = $config = array();
 		$offset = ( isset( $_GET['offset'] ) ) ? Uiform_Form_Helper::sanitizeInput( $_GET['offset'] ) : 0;
-		//create pagination
+		// create pagination
 		$this->load->library( 'pagination' );
 		$config['base_url']             = site_url() . 'formbuilder/records/list_records';
 		$config['total_rows']           = $this->model_record->CountRecords();
@@ -556,7 +556,7 @@ class Records extends BackendController {
 
 	public function csv_showAllForms( $form_id ) {
 
-		require_once( APPPATH . '/helpers/exporttocsv.php' );
+		require_once APPPATH . '/helpers/exporttocsv.php';
 		if ( false ) {
 			$name_fields = $this->model_record->getNameFieldEnabledByForm( $form_id, true );
 		} else {

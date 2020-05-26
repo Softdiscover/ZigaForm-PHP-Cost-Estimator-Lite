@@ -236,7 +236,7 @@ var zgfm_<?php echo $form_id; ?>_calculation_cont<?php echo $calculation['variab
 <?php
 $cntACmp = ob_get_contents();
 $cntACmp = Uiform_Form_Helper::sanitize_output( $cntACmp );
-//$cntACmp = Uiform_Form_Helper::remove_non_tag_space($cntACmp);
+// $cntACmp = Uiform_Form_Helper::remove_non_tag_space($cntACmp);
 ob_end_clean();
 echo $cntACmp;
 ?>

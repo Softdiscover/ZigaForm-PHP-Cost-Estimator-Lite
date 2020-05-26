@@ -11,23 +11,24 @@
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+if ( ! defined( 'BASEPATH' ) ) {
+	exit( 'No direct script access allowed' );}
 ?>
 <div class="uiform-set-field-wrap" id="uiform-set-form-clogic">
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
 				
-						<?php if(ZIGAFORM_C_LITE == 1){ ?>
+						<?php if ( ZIGAFORM_C_LITE == 1 ) { ?>
 				<div 
 					style="cursor: pointer;"
 					onclick="javascript:rocketform.showFeatureLocked(this);"
-					data-blocked-feature="<?php echo __('Conditional logic','FRocket_admin'); ?>"
+					data-blocked-feature="<?php echo __( 'Conditional logic', 'FRocket_admin' ); ?>"
 					>
 				 <label >
-					 <?php echo __('Enable Conditional logic','FRocket_admin'); ?> <span class="rkfm-express-lock-wrap"
+							<?php echo __( 'Enable Conditional logic', 'FRocket_admin' ); ?> <span class="rkfm-express-lock-wrap"
 					   data-toggle="tooltip" data-placement="right" 
-					   data-original-title="<?php echo __('feature locked','FRocket_admin'); ?>"
+					   data-original-title="<?php echo __( 'feature locked', 'FRocket_admin' ); ?>"
 					   ><i class="fa fa-lock"></i></span></label>
 						<div class="">
 							<div class="sfdc-col-md-6">
@@ -42,11 +43,11 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						</div>
 				</div>
 				
-				<?php $message= __('Conditional logic','FRocket_admin');?>
-				<?php include(APPPATH . '/modules/formbuilder/views/settings/blocked_getmessage.php');?>
+							<?php $message = __( 'Conditional logic', 'FRocket_admin' ); ?>
+							<?php include APPPATH . '/modules/formbuilder/views/settings/blocked_getmessage.php'; ?>
 				
-					<?php }else{ ?>
-						<label ><?php echo __('Enable Conditional logic','FRocket_admin'); ?></label>
+					<?php } else { ?>
+						<label ><?php echo __( 'Enable Conditional logic', 'FRocket_admin' ); ?></label>
 						<div class="">
 							<div class="sfdc-col-md-6">
 								<input 
@@ -77,18 +78,18 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								style="width:85px;display: inline;" 
 								data-field-store="clogic-f_show"
 								class="sfdc-form-control uifm-f-setoption">
-							<option selected="selected" value="1"><?php echo __('Show','FRocket_admin'); ?></option>
-							<option value="2"><?php echo __('Hide','FRocket_admin'); ?></option>
+							<option selected="selected" value="1"><?php echo __( 'Show', 'FRocket_admin' ); ?></option>
+							<option value="2"><?php echo __( 'Hide', 'FRocket_admin' ); ?></option>
 						</select>
-						<label style="display: inline;" > <?php echo __('this field if','FRocket_admin'); ?></label>
+						<label style="display: inline;" > <?php echo __( 'this field if', 'FRocket_admin' ); ?></label>
 						<select id="uifm_frm_clogic_all" 
 								style="width:64px;display:inline;" 
 								data-field-store="clogic-f_all"
 								class="sfdc-form-control uifm-f-setoption">
-							<option value="1"><?php echo __('All','FRocket_admin'); ?></option>
-							<option selected="selected" value="2"><?php echo __('Any','FRocket_admin'); ?></option>
+							<option value="1"><?php echo __( 'All', 'FRocket_admin' ); ?></option>
+							<option selected="selected" value="2"><?php echo __( 'Any', 'FRocket_admin' ); ?></option>
 						</select>
-						<label style="display: inline;" ><?php echo __('of the following rule match','FRocket_admin'); ?>:</label>
+						<label style="display: inline;" ><?php echo __( 'of the following rule match', 'FRocket_admin' ); ?>:</label>
 					</div>
 				</div>
 				<div class="space20">
@@ -98,10 +99,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<div class="sfdc-form-group">
 						<button onclick="javascript:rocketform.clogic_addNewConditional();" 
 								class="sfdc-btn sfdc-btn-primary" type="button">
-							<?php echo __('Add new conditional Logic','FRocket_admin'); ?>
+							<?php echo __( 'Add new conditional Logic', 'FRocket_admin' ); ?>
 						</button>
 						<button class="sfdc-btn sfdc-btn-sm sfdc-btn-danger" onclick="javascript:rocketform.clogic_removeAll();">
-			 <i class="fa fa-trash-o"></i> <?php echo __('Remove all','FRocket_admin'); ?></button>
+			 <i class="fa fa-trash-o"></i> <?php echo __( 'Remove all', 'FRocket_admin' ); ?></button>
 					</div>
 
 
@@ -136,16 +137,16 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<select 
 		onchange="javascript:rocketform.clogic_changeMtype(this);"
 		class="sfdc-form-control uifm_clogic_mtypeinp uifm_clogic_mtypeinp_1">
-		<option selected="selected" value="1"><?php echo __('is','FRocket_admin'); ?></option>
-		<option value="2"><?php echo __('is not','FRocket_admin'); ?></option>
+		<option selected="selected" value="1"><?php echo __( 'is', 'FRocket_admin' ); ?></option>
+		<option value="2"><?php echo __( 'is not', 'FRocket_admin' ); ?></option>
 	</select>
 	<select 
 		onchange="javascript:rocketform.clogic_changeMtype(this);"
 		class="sfdc-form-control uifm_clogic_mtypeinp uifm_clogic_mtypeinp_2">
-		<option selected="selected" value="1"><?php echo __('is','FRocket_admin'); ?></option>
-		<option value="2"><?php echo __('is not','FRocket_admin'); ?></option>
-		<option value="3"><?php echo __('greater than','FRocket_admin'); ?></option>
-		<option value="4"><?php echo __('less than','FRocket_admin'); ?></option>
+		<option selected="selected" value="1"><?php echo __( 'is', 'FRocket_admin' ); ?></option>
+		<option value="2"><?php echo __( 'is not', 'FRocket_admin' ); ?></option>
+		<option value="3"><?php echo __( 'greater than', 'FRocket_admin' ); ?></option>
+		<option value="4"><?php echo __( 'less than', 'FRocket_admin' ); ?></option>
 	</select>
 	
 	<div data-row-index="0"

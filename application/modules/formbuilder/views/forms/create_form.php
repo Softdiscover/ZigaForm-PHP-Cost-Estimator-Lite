@@ -60,22 +60,22 @@ if ( ! defined( 'BASEPATH' ) ) {
 	<div class="sfdc-tab-content">
 		<div id="uiformc-menu-sec1" class="sfdc-tab-pane sfdc-in sfdc-active">
 			<!-- editing form -->    
-			<?php include( 'create_form_main.php' ); ?>
+			<?php require 'create_form_main.php'; ?>
 			<!--\end editing form -->
 		</div>
 		<div id="uiformc-menu-sec2" class="sfdc-tab-pane ">
 			<div class="uiformc-tab-content-inner">
-				<?php include( 'settings_form_email.php' ); ?>
+				<?php require 'settings_form_email.php'; ?>
 			</div>
 		</div>
 		<div id="uiformc-menu-sec3" class="sfdc-tab-pane ">
 			<div class="uiformc-tab-content-inner">
-			   <?php include( 'settings_form_submission.php' ); ?>
+			   <?php require 'settings_form_submission.php'; ?>
 			</div>
 		</div>
 		<div id="uiformc-menu-sec4" class="sfdc-tab-pane ">
 			<div class="uiformc-tab-content-inner">
-			  <?php include( 'settings_form_invoice.php' ); ?>
+			  <?php require 'settings_form_invoice.php'; ?>
 			</div>
 		</div>
 		<div id="uiformc-menu-sec5" class="sfdc-tab-pane ">
@@ -95,37 +95,37 @@ if ( ! defined( 'BASEPATH' ) ) {
 					<div class="sfdc-tab-content">
 					  <div  class="sfdc-tab-pane sfdc-in sfdc-active" id="zgfm-menu-main-tab-1">
 						  <div class="uiformc-tab-content-inner3">
-							<?php include( 'settings_form_main.php' ); ?>
+							<?php require 'settings_form_main.php'; ?>
 						  </div>
 					  </div>
 					  <div  class="sfdc-tab-pane" id="zgfm-menu-main-tab-2">
 						  <div class="uiformc-tab-content-inner3">
-							<?php include( 'settings_form_main_imp.php' ); ?>
+							<?php require 'settings_form_main_imp.php'; ?>
 						  </div>
 					  </div>
 					  <div  class="sfdc-tab-pane" id="zgfm-menu-main-tab-3">
 						  <div class="uiformc-tab-content-inner3">
-							<?php include( 'settings_form_main_cur.php' ); ?>
+							<?php require 'settings_form_main_cur.php'; ?>
 						  </div>
 					  </div>
 					  <div  class="sfdc-tab-pane" id="zgfm-menu-main-tab-4">
 						  <div class="uiformc-tab-content-inner3">
-							<?php include( 'settings_form_main_add.php' ); ?>
+							<?php require 'settings_form_main_add.php'; ?>
 						  </div>
 					  </div>
 					  <div  class="sfdc-tab-pane" id="zgfm-menu-main-tab-5">
 						  <div class="uiformc-tab-content-inner3">
-							<?php include( 'settings_form_main_pdf.php' ); ?>
+							<?php require 'settings_form_main_pdf.php'; ?>
 						  </div>
 					  </div>
 						<div  class="sfdc-tab-pane" id="zgfm-menu-main-tab-6">
 						  <div class="uiformc-tab-content-inner3">
-							<?php include( 'settings_form_main_email.php' ); ?>
+							<?php require 'settings_form_main_email.php'; ?>
 						  </div>
 					  </div>
 					  <div  class="sfdc-tab-pane" id="zgfm-menu-main-tab-7">
 						  <div class="uiformc-tab-content-inner3">
-							<?php include( 'settings_form_main_record.php' ); ?>
+							<?php require 'settings_form_main_record.php'; ?>
 						  </div>
 					  </div>  
 						
@@ -138,7 +138,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 	  
 		<div id="uiformc-menu-sec6" class="sfdc-tab-pane ">
 			<div class="uiformc-tab-content-inner2">
-				<?php include( 'settings_form_calc.php' ); ?>
+				<?php require 'settings_form_calc.php'; ?>
 			 
 			</div>
 		</div>
@@ -270,13 +270,13 @@ if ( ! defined( 'BASEPATH' ) ) {
    
 </div>
 <!--templates -->    
-	<?php include( 'templates_fields.php' ); ?>
+	<?php require 'templates_fields.php'; ?>
 <!--\end templates -->
 <!-- modals -->    
-	<?php include( 'create_form_modals.php' ); ?>
+	<?php require 'create_form_modals.php'; ?>
 <!--\ modals -->
 <?php if ( intval( $fields_fastload ) === 1 ) { ?>
 <!-- modals -->    
-	<?php include( 'fieldoptions_data.php' ); ?>
+	<?php include 'fieldoptions_data.php'; ?>
 <!--\ modals -->
 <?php } ?>

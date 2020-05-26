@@ -25,7 +25,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 				<h1><?php echo $form_name; ?></h1>
 				<h4 class="zgfm-no-margin zgfm-margin-bottom-20"><?php echo __( 'Submitted form data', 'FRocket_admin' ); ?></h4>
 				
-				<?php echo  $record_info_str; ?>  
+				<?php echo $record_info_str; ?>  
 				
 				  <?php if ( isset( $form_subtotal_amount ) && floatval( $form_subtotal_amount ) > 0 ) { ?>
 					<span class="uiform-inforecord-subtotal-amount"><b><?php echo __( 'Sub total', 'frocket_front' ); ?></b> : <?php echo Uiform_Form_Helper::cformat_numeric( $price_format, $form_subtotal_amount ); ?></span>

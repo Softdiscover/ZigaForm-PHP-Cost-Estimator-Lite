@@ -11,7 +11,8 @@
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+if ( ! defined( 'BASEPATH' ) ) {
+	exit( 'No direct script access allowed' );}
 ?>
 
 <div class="uifm-set-section-input3">
@@ -19,13 +20,17 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
 				<label class="sfdc-control-label" for="">
-					<?php echo __('Custom html content','FRocket_admin'); ?>
+					<?php echo __( 'Custom html content', 'FRocket_admin' ); ?>
 				</label>
 				<div class="sfdc-controls sfdc-form-group">
 					<?php
 					/*pending add this tinymce*/
-					$settings = array( 'media_buttons' => true,'textarea_rows'=>5,'wpautop'=> true);
-			//wp_editor('', 'uifm_fld_inp3_html',$settings );
+					$settings = array(
+						'media_buttons' => true,
+						'textarea_rows' => 5,
+						'wpautop'       => true,
+					);
+					// wp_editor('', 'uifm_fld_inp3_html',$settings );
 					?>
 <textarea 
 							class="uifm_tinymce_obj"
@@ -39,7 +44,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
-					<label for="uifm_fld_lbl_txt"><?php echo __('Text','FRocket_admin'); ?></label>
+					<label for="uifm_fld_lbl_txt"><?php echo __( 'Text', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-input-group">
 						<div class="uifm-set-section-input1-txtvalue">
 							 <input type="text"
@@ -57,13 +62,13 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 									data-width="80px"
 									class="uifm_field_font_selectpicker uifm-f-setoption-font">
 								<optgroup label="Font size" data-max-options="2">
-									<?php 
-								for ($i = 8; $i <= 48; $i++) {
-								?>
-								<option value="<?php echo $i;?>"><?php echo $i.' px';?></option>
-								<?php    
-								}
-								?>
+									<?php
+									for ( $i = 8; $i <= 48; $i++ ) {
+										?>
+								<option value="<?php echo $i; ?>"><?php echo $i . ' px'; ?></option>
+										<?php
+									}
+									?>
 								</optgroup>
 							</select>
 						</div>
@@ -96,7 +101,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	 <div class="sfdc-row">
 			<div class="sfdc-col-md-4">
 			   <div class="sfdc-form-group">
-					<label ><?php echo __('Color','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Color', 'FRocket_admin' ); ?></label>
 					<div 
 						data-field-store="input3-color"
 						class="sfdc-input-group uifm-custom-color">
@@ -110,17 +115,17 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			</div>
 		 <div class="sfdc-col-sm-8">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Font family','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Font family', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-input-group uifm-custom-font">
-						<?php 
-						$attributes = array(
-							'name' => 'uifm_fld_inp3_font',
-							'id' => 'uifm_fld_inp3_font',
-							'data-field-store'=>'input3-font'
-							);
+						<?php
+						$attributes    = array(
+							'name'             => 'uifm_fld_inp3_font',
+							'id'               => 'uifm_fld_inp3_font',
+							'data-field-store' => 'input3-font',
+						);
 						$default_value = '{"family":"Arial, Helvetica, sans-serif","name":"Arial","classname":"arial"}';
 						?>
-						<?php $obj_sfm->get_view_menu($attributes,$default_value); ?>
+						<?php $obj_sfm->get_view_menu( $attributes, $default_value ); ?>
 						<span class="sfdc-input-group-addon">
 						<input 
 							data-field-store="input3-font_st"
@@ -138,7 +143,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		</div>
 	<div class="sfdc-row">
 					<div class="sfdc-col-md-12">
-						<label ><?php echo __('Input value alignment','FRocket_admin'); ?></label>
+						<label ><?php echo __( 'Input value alignment', 'FRocket_admin' ); ?></label>
 						<div class="sfdc-controls sfdc-form-group">
 							<div class="sfdc-btn-group sfdc-btn-group-justified" data-toggle="buttons">
 								<label 
@@ -149,7 +154,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 									class="sfdc-btn sfdc-btn-success uifm-f-setoption-btn" >
 								<input type="radio" 
 									id="uifm_fld_inp3_align_1"
-									name="uifm_fld_inp3_align_1" value="0"> <i class="fa fa-align-left"></i> <?php echo __('Left','FRocket_admin'); ?>
+									name="uifm_fld_inp3_align_1" value="0"> <i class="fa fa-align-left"></i> <?php echo __( 'Left', 'FRocket_admin' ); ?>
 								</label>
 								<label 
 									data-field-store="input3-val_align"
@@ -159,7 +164,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 									class="sfdc-btn sfdc-btn-success uifm-f-setoption-btn" >
 								<input type="radio" 
 									id="uifm_fld_inp3_align_2"
-									name="uifm_fld_inp3_align_2" value="1"> <i class="fa fa-align-center"></i> <?php echo __('Center','FRocket_admin'); ?>
+									name="uifm_fld_inp3_align_2" value="1"> <i class="fa fa-align-center"></i> <?php echo __( 'Center', 'FRocket_admin' ); ?>
 								</label>
 								<label 
 									data-field-store="input3-val_align"
@@ -169,7 +174,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 									class="sfdc-btn sfdc-btn-success uifm-f-setoption-btn" >
 								<input type="radio" 
 									id="uifm_fld_inp3_align_3" 
-									name="uifm_fld_inp3_align_3" value="2"> <i class="fa fa-align-right"></i> <?php echo __('Right','FRocket_admin'); ?>
+									name="uifm_fld_inp3_align_3" value="2"> <i class="fa fa-align-right"></i> <?php echo __( 'Right', 'FRocket_admin' ); ?>
 								</label>
 							</div>
 						</div>

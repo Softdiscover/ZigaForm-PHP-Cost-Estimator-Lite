@@ -11,7 +11,8 @@
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link      http://wordpress-form-builder.uiform.com/
  */
-if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+if ( ! defined( 'BASEPATH' ) ) {
+	exit( 'No direct script access allowed' );}
 ?>
  <script type="text/html" id="tmpl-zgpb-modal-field-loader">
 	<div id="zgpb-modal-field-loader" >
@@ -41,7 +42,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 															case 4:
 															case 5:
 																#>
-															<span><?php echo __('Row','FRocket_admin'); ?></span>
+															<span><?php echo __( 'Row', 'FRocket_admin' ); ?></span>
 															 <# break;
 															default:
 																#>
@@ -69,7 +70,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 															case 4:
 															case 5:
 																#>
-															<span><?php echo __('Column','FRocket_admin'); ?></span> 
+															<span><?php echo __( 'Column', 'FRocket_admin' ); ?></span> 
 															<# break;
 															default:
 																#>
@@ -87,7 +88,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 												<div class="zgpb-fields-quick-options-side1 zgpb-fields-qopt-color1">
 													 <a class="zgpb-fields-qopt-move uiform-field-move" title="Move field block" href="javascript:void(0);">
 														<span class="zgpb-field-qopt-block">
-															<span><?php echo __('Field','FRocket_admin'); ?></span>
+															<span><?php echo __( 'Field', 'FRocket_admin' ); ?></span>
 															<i class="fa fa-arrows"></i></span>
 													  </a>
 													<a class="zgpb-fields-qopt-edit" title="Edit" onclick="javascript:rocketform.fields2_fieldQuickOptions_EditField(this,true);" href="javascript:void(0);">
@@ -111,7 +112,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 										<div class="zgpb-fields-quick-options2">
 									<div class="zgpb-fields-quick-options-wrap zgpb-fields-qopt-color3">
 										 <a class="zgpb-fields-qopt-move uiform-field-move" title="Move field block" href="javascript:void(0);">
-											<span class="zgpb-field-qopt-block"><span><?php echo __('Field','FRocket_admin'); ?></span> <i class="fa fa-arrows"></i></span>
+											<span class="zgpb-field-qopt-block"><span><?php echo __( 'Field', 'FRocket_admin' ); ?></span> <i class="fa fa-arrows"></i></span>
 										 </a>
 										 <a class="zgpb-fields-qopt-edit" title="Edit" onclick="javascript:rocketform.fields2_fieldQuickOptions_EditField(this,true);" href="javascript:void(0);">
 												<span class="zgpb-field-qopt-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
@@ -160,10 +161,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 				<div class="sfdc-modal-footer">
 					<button type="button" class="sfdc-btn sfdc-btn-default pull-left prev">
 						<i class="sfdc-glyphicon sfdc-glyphicon-chevron-left"></i>
-						<?php echo __('Previous','FRocket_admin'); ?>
+						<?php echo __( 'Previous', 'FRocket_admin' ); ?>
 					</button>
 					<button type="button" class="sfdc-btn sfdc-btn-primary next">
-						<?php echo __('Next','FRocket_admin'); ?>
+						<?php echo __( 'Next', 'FRocket_admin' ); ?>
 						<i class="sfdc-glyphicon sfdc-glyphicon-chevron-right"></i>
 					</button>
 				</div>
@@ -432,10 +433,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
@@ -447,7 +448,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								   type="text" value="">
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -467,10 +468,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textarea label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textarea label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textarea sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textarea sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -483,7 +484,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								   ></textarea>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -506,10 +507,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -526,7 +527,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 											 >
 										</span>
 										
-										<span class="uifm-inp2-label  uifm-input2-opt-main"><?php echo __('option','FRocket_admin'); ?> 1</span>
+										<span class="uifm-inp2-label  uifm-input2-opt-main"><?php echo __( 'option', 'FRocket_admin' ); ?> 1</span>
 										<span class="uifm_frm_price_lbl_cont"></span>
 									</label>
 								 </div>
@@ -535,7 +536,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -557,10 +558,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -577,7 +578,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 											 >   
 										</span>
 										
-										<span class="uifm-inp2-label  uifm-input2-opt-main"><?php echo __('option','FRocket_admin'); ?> 1</span>
+										<span class="uifm-inp2-label  uifm-input2-opt-main"><?php echo __( 'option', 'FRocket_admin' ); ?> 1</span>
 										<span class="uifm_frm_price_lbl_cont"></span>
 									</label>
 								 </div>
@@ -586,7 +587,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -608,10 +609,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -620,15 +621,15 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="uifm-input-container">
 							<div class="uifm-input2-wrap">
 								<select class="sfdc-form-control uifm-input2-opt-main" >
-									<option data-inp2-opt-index="0" > <?php echo __('option','FRocket_admin'); ?> 1 </option> 
-									<option data-inp2-opt-index="1"> <?php echo __('option','FRocket_admin'); ?> 2 </option> 
-									<option data-inp2-opt-index="2"> <?php echo __('option','FRocket_admin'); ?> 3 </option> 
+									<option data-inp2-opt-index="0" > <?php echo __( 'option', 'FRocket_admin' ); ?> 1 </option> 
+									<option data-inp2-opt-index="1"> <?php echo __( 'option', 'FRocket_admin' ); ?> 2 </option> 
+									<option data-inp2-opt-index="2"> <?php echo __( 'option', 'FRocket_admin' ); ?> 3 </option> 
 								</select>
 								<span class="uifm_frm_price_lbl_cont"></span>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -650,10 +651,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -663,16 +664,16 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="uifm-input2-wrap">
 								<select class="sfdc-form-control uifm-input2-opt-main" multiple >
 									<option data-inp2-opt-index="0" > 
-										<?php echo __('option','FRocket_admin'); ?> 1 
+										<?php echo __( 'option', 'FRocket_admin' ); ?> 1 
 									</option> 
-									<option data-inp2-opt-index="1"> <?php echo __('option','FRocket_admin'); ?> 2 </option> 
-									<option data-inp2-opt-index="2"> <?php echo __('option','FRocket_admin'); ?> 3 </option> 
+									<option data-inp2-opt-index="1"> <?php echo __( 'option', 'FRocket_admin' ); ?> 2 </option> 
+									<option data-inp2-opt-index="2"> <?php echo __( 'option', 'FRocket_admin' ); ?> 3 </option> 
 								</select>
 								<span class="uifm_frm_price_lbl_cont"></span>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -694,10 +695,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -709,16 +710,16 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								<div class="sfdc-form-control" data-trigger="fileinput">
 									<i class="sfdc-glyphicon sfdc-glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
 								<span class="sfdc-input-group-addon sfdc-btn sfdc-btn-default btn-file">
-									<span class="fileinput-new"><?php echo __('Select file','FRocket_admin'); ?></span>
-									<span class="fileinput-exists"><?php echo __('Change','FRocket_admin'); ?></span>
+									<span class="fileinput-new"><?php echo __( 'Select file', 'FRocket_admin' ); ?></span>
+									<span class="fileinput-exists"><?php echo __( 'Change', 'FRocket_admin' ); ?></span>
 									<input type="file" name="..."></span>
 								<a href="#" class="sfdc-input-group-addon sfdc-btn sfdc-btn-default fileinput-exists" 
-								   data-dismiss="fileinput"><?php echo __('Remove','FRocket_admin'); ?></a>
+								   data-dismiss="fileinput"><?php echo __( 'Remove', 'FRocket_admin' ); ?></a>
 								</div>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -740,10 +741,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -755,17 +756,17 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								<div class="fileinput-preview sfdc-thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
 								<div>
 									<span class="sfdc-btn sfdc-btn-default btn-file">
-										<span class="fileinput-new"><?php echo __('Select image','FRocket_admin'); ?></span>
-										<span class="fileinput-exists"><?php echo __('Change','FRocket_admin'); ?></span>
+										<span class="fileinput-new"><?php echo __( 'Select image', 'FRocket_admin' ); ?></span>
+										<span class="fileinput-exists"><?php echo __( 'Change', 'FRocket_admin' ); ?></span>
 										<input type="file" name="..."></span>
 									<a href="#" class="sfdc-btn sfdc-btn-default fileinput-exists" 
-									   data-dismiss="fileinput"><?php echo __('Remove','FRocket_admin'); ?></a>
+									   data-dismiss="fileinput"><?php echo __( 'Remove', 'FRocket_admin' ); ?></a>
 								</div>
 								</div>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -787,10 +788,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -802,7 +803,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -824,10 +825,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -840,7 +841,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								   type="text" value="">
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -862,10 +863,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -881,7 +882,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -903,10 +904,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -922,7 +923,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -944,10 +945,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -964,7 +965,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -986,10 +987,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -1010,7 +1011,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1032,10 +1033,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -1051,7 +1052,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1073,10 +1074,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -1091,7 +1092,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<span class="uifm_frm_price_lbl_cont"></span>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1113,10 +1114,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -1129,7 +1130,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 									height="60" 
 									title="CAPTCHA" 
 									alt="CAPTCHA"
-									src="<?php echo base_url();?>libs/uiform-lib-captcha.php?rkver=eyJjYV90eHRfZ2VuIjoiN3BmcTcifQ==" 
+									src="<?php echo base_url(); ?>libs/uiform-lib-captcha.php?rkver=eyJjYV90eHRfZ2VuIjoiN3BmcTcifQ==" 
 									class="uifm-inp6-captcha-img" 
 									>
 
@@ -1141,7 +1142,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 									<a  title="Refresh captcha" 
 										rel="nofollow"
 										data-rkver="eyJjYV90eHRfZ2VuIjoiN3BmcTcifQ=="
-										data-rkurl="<?php echo base_url();?>libs/uiform-lib-captcha.php?rkver="
+										data-rkurl="<?php echo base_url(); ?>libs/uiform-lib-captcha.php?rkver="
 										onclick="javascript:rocketform.input6settings_refreshCaptcha(this);"
 										href="javascript:void(0);">
 										<i class="fa fa-refresh"></i></a>
@@ -1153,13 +1154,13 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 									data-check-hash=""
 									class="sfdc-form-control uifm-inp6-captcha-inputcode">
 								<label for="rockfm-inp6-captcha-inputcode" 
-									class="rockfm-inp6-captcha-label"><?php echo __('CAPTCHA Code','FRocket_admin'); ?></label>
+									class="rockfm-inp6-captcha-label"><?php echo __( 'CAPTCHA Code', 'FRocket_admin' ); ?></label>
 								<span ><i class="sfdc-glyphicon sfdc-glyphicon-asterisk"></i></span>
 							</div>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1181,10 +1182,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -1196,7 +1197,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1218,10 +1219,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -1240,7 +1241,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1262,10 +1263,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 							 
 						</div>
@@ -1284,7 +1285,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1305,10 +1306,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
@@ -1326,7 +1327,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1347,10 +1348,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
@@ -1363,7 +1364,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								   value="Submit button">
 						</div>
 						<div data-field-option="uifm-help-block"  style="display: none;" class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1395,10 +1396,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
@@ -1410,7 +1411,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 									 data-step="1">
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1431,10 +1432,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
@@ -1447,7 +1448,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1481,21 +1482,21 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
 					<div class="rkfm-col-sm-10">
 						<div class="uifm-input-container">
 							<div class="uifm-input-heading-wrap">
-								<h1 class="uifm-txtbox-inp-val"><?php echo __('Type your heading H1 here','FRocket_admin'); ?></h1>
+								<h1 class="uifm-txtbox-inp-val"><?php echo __( 'Type your heading H1 here', 'FRocket_admin' ); ?></h1>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  style="display: none;" class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1516,21 +1517,21 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
 					<div class="rkfm-col-sm-12">
 						<div class="uifm-input-container">
 							<div class="uifm-input-heading-wrap">
-								<h2 class="uifm-txtbox-inp-val"><?php echo __('Type your heading H2 here','FRocket_admin'); ?></h2>
+								<h2 class="uifm-txtbox-inp-val"><?php echo __( 'Type your heading H2 here', 'FRocket_admin' ); ?></h2>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  style="display: none;" class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1550,21 +1551,21 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
 					<div class="rkfm-col-sm-12">
 						<div class="uifm-input-container">
 							<div class="uifm-input-heading-wrap">
-								<h3 class="uifm-txtbox-inp-val"><?php echo __('Type your heading H3 here','FRocket_admin'); ?></h3>
+								<h3 class="uifm-txtbox-inp-val"><?php echo __( 'Type your heading H3 here', 'FRocket_admin' ); ?></h3>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  style="display: none;" class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1584,21 +1585,21 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
 					<div class="rkfm-col-sm-12">
 						<div class="uifm-input-container">
 							<div class="uifm-input-heading-wrap">
-								<h4 class="uifm-txtbox-inp-val"><?php echo __('Type your heading H4 here','FRocket_admin'); ?></h4>
+								<h4 class="uifm-txtbox-inp-val"><?php echo __( 'Type your heading H4 here', 'FRocket_admin' ); ?></h4>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  style="display: none;" class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1618,21 +1619,21 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
 					<div class="rkfm-col-sm-12">
 						<div class="uifm-input-container">
 							<div class="uifm-input-heading-wrap">
-								<h5 class="uifm-txtbox-inp-val"><?php echo __('Type your heading H5 here','FRocket_admin'); ?></h5>
+								<h5 class="uifm-txtbox-inp-val"><?php echo __( 'Type your heading H5 here', 'FRocket_admin' ); ?></h5>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  style="display: none;" class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1652,21 +1653,21 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
 					<div class="rkfm-col-sm-12">
 						<div class="uifm-input-container">
 							<div class="uifm-input-heading-wrap">
-								<h6 class="uifm-txtbox-inp-val"><?php echo __('Type your heading H6 here','FRocket_admin'); ?></h6>
+								<h6 class="uifm-txtbox-inp-val"><?php echo __( 'Type your heading H6 here', 'FRocket_admin' ); ?></h6>
 							</div>
 						</div>
 						<div data-field-option="uifm-help-block"  style="display: none;" class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1681,15 +1682,15 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="uifm-input-container">                               
 							<button class="sfdc-btn uiform-btn-wizprev uifm-txtbox-inp13-val">
 									<i class="fa fa-arrow-left"></i>
-									<div class="uifm-inp-lbl"><?php echo __('Prev','FRocket_admin'); ?></div>
+									<div class="uifm-inp-lbl"><?php echo __( 'Prev', 'FRocket_admin' ); ?></div>
 							</button>
 							<button class="sfdc-btn uiform-btn-wiznext uifm-txtbox-inp12-val">
-								   <div class="uifm-inp-lbl"><?php echo __('Next','FRocket_admin'); ?></div>
+								   <div class="uifm-inp-lbl"><?php echo __( 'Next', 'FRocket_admin' ); ?></div>
 									<i class="fa fa-arrow-right"></i>
 							</button>								
 						</div>
 						<div data-field-option="uifm-help-block"  style="display: none;" class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1710,10 +1711,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
@@ -1727,7 +1728,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<span class="uifm_frm_price_lbl_cont"></span>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1748,10 +1749,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
@@ -1768,7 +1769,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<span class="uifm_frm_price_lbl_cont"></span>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1789,10 +1790,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
@@ -1807,7 +1808,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<span class="uifm_frm_price_lbl_cont"></span>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1851,10 +1852,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</span> 
 							   <span  data-field-store="label-text"
 									  data-field-option="uifm-label"
-									  class="uifm-label uifm-f-option"><?php echo __('Textbox label','FRocket_admin'); ?></span>
+									  class="uifm-label uifm-f-option"><?php echo __( 'Textbox label', 'FRocket_admin' ); ?></span>
 							   <span data-field-store="sublabel-text"
 									  data-field-option="uifm-sublabel"
-									  class="uifm-sublabel uifm-f-option"><?php echo __('Textbox sublabel','FRocket_admin'); ?></span>
+									  class="uifm-sublabel uifm-f-option"><?php echo __( 'Textbox sublabel', 'FRocket_admin' ); ?></span>
 							</label>
 						</div>
 					</div>
@@ -1875,7 +1876,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								</div>
 						</div>
 						<div data-field-option="uifm-help-block"  class="uifm-help-block uifm-f-option">
-							<?php echo __('Help block text','FRocket_admin'); ?>
+							<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 						</div>
 					</div>
 				</div>
@@ -1903,7 +1904,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		 </div>
 		 <div class="sfdc-modal-footer">
 			<button type="button" class="sfdc-btn sfdc-btn-default" 
-			   data-dismiss="modal"><?php echo __('Close','FRocket_admin'); ?>
+			   data-dismiss="modal"><?php echo __( 'Close', 'FRocket_admin' ); ?>
 			</button>
 		   
 		 </div>
@@ -1916,7 +1917,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
  <div style="display:none;">
 	 
 	<div class="zgpb-hidden-editor">
-			<?php //wp_editor(' ', 'zgpbrefeditor', array('wpautop' => true)); ?>
+			<?php // wp_editor(' ', 'zgpbrefeditor', array('wpautop' => true)); ?>
 		 <textarea 
 							class=""
 							name="zgpbrefeditor"
@@ -1934,15 +1935,15 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		  <div class="sfdc-modal-header" >
 			<button type="button" class="sfdc-close" data-dismiss="modal">&times;</button>
 			<div class="zgpb-modal-header-inner">
-				<img src="<?php echo base_url();?>assets/backend/image/ajax-loader-black.gif"/>
+				<img src="<?php echo base_url(); ?>assets/backend/image/ajax-loader-black.gif"/>
 			</div>
 		  </div>
 		  <div class="sfdc-modal-body" style="padding:40px 50px;">
-				<img src="<?php echo base_url();?>assets/backend/image/ajax-loader-black.gif"/>
+				<img src="<?php echo base_url(); ?>assets/backend/image/ajax-loader-black.gif"/>
 		  </div>
 		  <div class="sfdc-modal-footer">
 				 <div class="zgpb-modal-footer-wrap">
-					<img src="<?php echo base_url();?>assets/backend/image/ajax-loader-black.gif"/>
+					<img src="<?php echo base_url(); ?>assets/backend/image/ajax-loader-black.gif"/>
 			  </div>
 		  </div>
 		</div>
@@ -1953,13 +1954,13 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 <div style="display:none;">
 	
 	
-	<input type="hidden" id="zgpb_fld_del_box_title" value="<?php echo __('Delete field selected','FRocket_admin'); ?>" >
-	<input type="hidden" id="zgpb_fld_del_box_msg" value="<?php echo __('Are you sure?','FRocket_admin'); ?>" >
-	<input type="hidden" id="zgpb_fld_del_box_bt1_title" value="<?php echo __('Cancel','FRocket_admin'); ?>" >
-	<input type="hidden" id="zgpb_fld_del_box_bt2_title" value="<?php echo __('Yes','FRocket_admin'); ?>" >
+	<input type="hidden" id="zgpb_fld_del_box_title" value="<?php echo __( 'Delete field selected', 'FRocket_admin' ); ?>" >
+	<input type="hidden" id="zgpb_fld_del_box_msg" value="<?php echo __( 'Are you sure?', 'FRocket_admin' ); ?>" >
+	<input type="hidden" id="zgpb_fld_del_box_bt1_title" value="<?php echo __( 'Cancel', 'FRocket_admin' ); ?>" >
+	<input type="hidden" id="zgpb_fld_del_box_bt2_title" value="<?php echo __( 'Yes', 'FRocket_admin' ); ?>" >
 </div>
 <div id="zgpb_confirmation-func-action-dialog" style="display: none;">
-	<?php echo __('Are you sure about this?','FRocket_admin'); ?>
+	<?php echo __( 'Are you sure about this?', 'FRocket_admin' ); ?>
 </div>
 
 <!--  template option input 2--->
@@ -1979,7 +1980,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							onfocus="rocketform.input2settings_labelOption(this);"
 							onchange="rocketform.input2settings_labelOption(this);"
 							class="uifm_frm_inp2_opt_label_evt col-md-12"
-							placeholder="<?php echo __('Type label','FRocket_admin'); ?>"  class="sfdc-form-control"></textarea>
+							placeholder="<?php echo __( 'Type label', 'FRocket_admin' ); ?>"  class="sfdc-form-control"></textarea>
 			</div>
 		</div>
 		<div class="sfdc-col-md-4">
@@ -1990,7 +1991,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							onfocus="rocketform.input2settings_valueOption(this);"
 							onchange="rocketform.input2settings_valueOption(this);"
 							class="uifm_frm_inp2_opt_value_evt col-md-12"
-							placeholder="<?php echo __('Type value','FRocket_admin'); ?>"  class="sfdc-form-control">   
+							placeholder="<?php echo __( 'Type value', 'FRocket_admin' ); ?>"  class="sfdc-form-control">   
 			</div>
 		</div>
 		<div class="sfdc-col-md-2">
@@ -2000,7 +2001,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					onfocus="rocketform.input2settings_priceOption(this);"
 					onchange="rocketform.input2settings_priceOption(this);"
 				   class="uifm_frm_inp2_opt_price_evt col-md-12"
-				   placeholder="<?php echo __('Price','FRocket_admin'); ?>"  class="sfdc-form-control"
+				   placeholder="<?php echo __( 'Price', 'FRocket_admin' ); ?>"  class="sfdc-form-control"
 				   >
 		</div>
 		<div class="sfdc-col-md-1">
@@ -2020,7 +2021,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 											name="" 
 											 >
 										</span>
-										<span class="uifm-inp2-label uifm-input2-opt-main"><?php echo __('option','FRocket_admin'); ?> 3</span>
+										<span class="uifm-inp2-label uifm-input2-opt-main"><?php echo __( 'option', 'FRocket_admin' ); ?> 3</span>
 										 <span class="uifm_frm_price_lbl_cont"></span>
 									</label>
 								 </div>
@@ -2032,7 +2033,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 											name="" 
 											 >
 										</span>
-										<span class="uifm-inp2-label uifm-input2-opt-main"><?php echo __('option','FRocket_admin'); ?> 3</span>
+										<span class="uifm-inp2-label uifm-input2-opt-main"><?php echo __( 'option', 'FRocket_admin' ); ?> 3</span>
 										 <span class="uifm_frm_price_lbl_cont"></span>
 									</label>
 								 </div>
@@ -2070,7 +2071,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			<div class="space10"></div>
 			<div class="sfdc-col-md-12">
 				<div class="sfdc-col-md-6">
-					<label><?php echo __('Price per unit','FRocket_admin'); ?></label>
+					<label><?php echo __( 'Price per unit', 'FRocket_admin' ); ?></label>
 				</div>
 					<div class="sfdc-col-md-6">
 					<input type="text"
@@ -2086,7 +2087,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			<div class="sfdc-col-md-12">
 				<div class="sfdc-col-md-6">
 						<div class="sfdc-form-group">
-						<label><?php echo __('Enable quantity','FRocket_admin'); ?></label>
+						<label><?php echo __( 'Enable quantity', 'FRocket_admin' ); ?></label>
 						<input 
 							class="switch-field-17 uifm_frm_inp17_opt_qty_st"
 							type="checkbox"/>
@@ -2095,7 +2096,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 				</div>
 					<div class="sfdc-col-md-6">
 					<div class="sfdc-form-group">
-						<label><?php echo __('Maximum quantity','FRocket_admin'); ?></label>
+						<label><?php echo __( 'Maximum quantity', 'FRocket_admin' ); ?></label>
 						 <input  
 							class="uifm_fld_inp17_spinner uifm_frm_inp17_opt_qty_max"
 							type="text"
@@ -2107,10 +2108,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			<div class="sfdc-col-md-12 uifm_frm_inp17_opt_img_list_1" >
 				<div class="sfdc-col-md-12">
 						<div class="sfdc-form-group">
-						<label><?php echo __('Images','FRocket_admin'); ?></label>
+						<label><?php echo __( 'Images', 'FRocket_admin' ); ?></label>
 						<a href="javascript:void(0);" class="sfdc-btn sfdc-btn-sm sfdc-btn-success"
 					onclick="javascript:rocketform.input17settings_addNewImg(this);">
-					<i class="fa fa-plus-square"></i> <?php echo __('Add new','FRocket_admin'); ?>
+					<i class="fa fa-plus-square"></i> <?php echo __( 'Add new', 'FRocket_admin' ); ?>
 				</a>
 						<div class="space10"></div>
 						<div class="uifm_frm_inp17_opt_img_list_wrap clearfix">
@@ -2121,7 +2122,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			<div class="sfdc-col-md-12 uifm_frm_inp17_opt_img_list_2">
 				<div class="sfdc-col-md-12">
 						<div class="sfdc-form-group">
-						<label><?php echo __('Images','FRocket_admin'); ?></label>
+						<label><?php echo __( 'Images', 'FRocket_admin' ); ?></label>
 						<div class="space10"></div>
 						<div class="uifm_frm_inp17_opt_img_list_2_wrap clearfix">
 						</div>

@@ -16,9 +16,9 @@ ob_start();
 			
 			font-family:"<?php echo $font_temp['family']; ?>";
 				<?php
-				//storing to global fonts
+				// storing to global fonts
 				Uiform_Form_Helper::form_store_fonts( $font_temp );
-				//end storing to global fonts
+				// end storing to global fonts
 				?>
 			<?php } ?>
 			

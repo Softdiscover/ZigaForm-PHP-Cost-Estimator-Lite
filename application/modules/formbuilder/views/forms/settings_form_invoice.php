@@ -364,7 +364,7 @@ $default_template = ob_get_clean();
 															$default_template = urldecode( $uifm_frm_invoice_tpl_content );
 														}
 
-														//wp_editor($default_template, 'uifm_frm_invoice_tpl_content',$settings );
+														// wp_editor($default_template, 'uifm_frm_invoice_tpl_content',$settings );
 														?>
 														<textarea 
 																class="uifm_tinymce_obj"
@@ -381,7 +381,7 @@ $default_template = ob_get_clean();
 	 <?php if ( ZIGAFORM_C_LITE == 1 ) { ?>
 		<div id="zgfm-blocked-feature-pdf-box">
 			<?php $message = __( 'Invoice', 'FRocket_admin' ); ?>
-				<?php include( APPPATH . '/modules/formbuilder/views/settings/blocked_getmessage.php' ); ?>
+				<?php include APPPATH . '/modules/formbuilder/views/settings/blocked_getmessage.php'; ?>
 			</div>
 		<?php } else { ?>
 			

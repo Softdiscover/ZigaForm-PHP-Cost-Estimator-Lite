@@ -82,20 +82,20 @@ if ( ! defined( 'BASEPATH' ) ) {
 	
 	
 	
-		<?php 
-	if(UIFORM_DEBUG===1){
-		?>
-
-		<link href="<?php echo base_url(); ?>assets/backend/css/admin.debug.css?v<?php echo date( 'YmdHis' );?>" rel="stylesheet">
-
 		<?php
-	}else{
-		?>
+		if ( UIFORM_DEBUG === 1 ) {
+			?>
+
+		<link href="<?php echo base_url(); ?>assets/backend/css/admin.debug.css?v<?php echo date( 'YmdHis' ); ?>" rel="stylesheet">
+
+			<?php
+		} else {
+			?>
 		<link href="<?php echo base_url(); ?>assets/backend/css/admin.min.css" rel="stylesheet">
-		<?php
-	}
+			<?php
+		}
 
-	?>
+		?>
 	<link rel="Favicon Icon" href="favicon.ico">
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -184,13 +184,13 @@ if ( ! defined( 'BASEPATH' ) ) {
 		"csrf_field_name":"<?php echo $this->security->get_csrf_hash(); ?>"
 		};
 	</script>
-	<?php 
-	if(UIFORM_DEBUG===1){
+	<?php
+	if ( UIFORM_DEBUG === 1 ) {
 		?>
 
-		<script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/admin.debug.js?v=<?php echo date( 'YmdHis' );?>"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/admin.debug.js?v=<?php echo date( 'YmdHis' ); ?>"></script>
 		<?php
-	}else{
+	} else {
 		?>
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/admin.min.js"></script>
 		<?php
@@ -198,7 +198,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 
 	?>
 	<?php do_action( 'admin_enqueue_scripts' ); ?>
-	<?php //$this->addon->load_addons_Head(); ?>
+	<?php // $this->addon->load_addons_Head(); ?>
   </head>
    <body class="tundra">
 	
@@ -212,7 +212,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 	  <div id="page-wrapper">
 		  <div id="rocketform-bk-dashboard" class="sfdc-wrap">
 			<div id="rocketform-bk-header">
-				<?php include( 'header-uiform.php' ); ?>
+				<?php require 'header-uiform.php'; ?>
 			</div>
 			<div id="rocketform-bk-content">
 				<div id="uiform-panel-loadingst" style="display:none;">
@@ -225,11 +225,11 @@ if ( ! defined( 'BASEPATH' ) ) {
 				<div class="clear"></div>
 			</div>
 			<div id="rocketform-bk-footer">
-				<?php include( 'footer.php' ); ?>
+				<?php require 'footer.php'; ?>
 			</div>
-			 <?php include( 'notice_footer.php' ); ?>
+			 <?php require 'notice_footer.php'; ?>
 		</div>
-		<?php include( 'captions.php' ); ?>
+		<?php require 'captions.php'; ?>
 
 	  </div><!-- /#page-wrapper -->
 

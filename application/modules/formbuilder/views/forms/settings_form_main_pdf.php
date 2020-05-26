@@ -164,7 +164,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 	 <?php if ( ZIGAFORM_C_LITE == 1 ) { ?>
 		<div id="zgfm-blocked-feature-pdf-box">
 			<?php $message = __( 'PDF EXPORT', 'FRocket_admin' ); ?>
-				<?php include( APPPATH . '/modules/formbuilder/views/settings/blocked_getmessage.php' ); ?>
+				<?php include APPPATH . '/modules/formbuilder/views/settings/blocked_getmessage.php'; ?>
 			</div>
 		<?php } else { ?>
 			

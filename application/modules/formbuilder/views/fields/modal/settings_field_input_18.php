@@ -11,7 +11,8 @@
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+if ( ! defined( 'BASEPATH' ) ) {
+	exit( 'No direct script access allowed' );}
 ?>
 
 <div class="uifm-set-section-input18">
@@ -20,12 +21,15 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 				<div class="sfdc-col-sm-12">
 					<div class="sfdc-form-group">
 					<label class="sfdc-control-label" for="">
-						<?php echo __('Custom text','FRocket_admin'); ?>
+						<?php echo __( 'Custom text', 'FRocket_admin' ); ?>
 					</label>
 					<div class="sfdc-controls sfdc-form-group">
 						<?php
 						/*pending add this tinymce*/
-						$settings = array( 'media_buttons' => true,'textarea_rows'=>5);
+						$settings = array(
+							'media_buttons' => true,
+							'textarea_rows' => 5,
+						);
 						   // wp_editor('', 'uifm_frm_inp18_txt_cont',$settings );
 						?>
 						<textarea 
@@ -40,7 +44,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
   <div class="sfdc-row">
 			<div class="sfdc-col-md-12">
 			   <div class="sfdc-form-group">
-					<label ><?php echo __('Show text','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Show text', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-controls sfdc-form-group">
 						<input class="switch-field"
 								   data-field-store="input18-text-show_st"
@@ -54,7 +58,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		</div>  
  <div class="sfdc-row">
 		<div class="sfdc-col-md-12">
-			<label ><?php echo __('Help block position','FRocket_admin'); ?></label>
+			<label ><?php echo __( 'Help block position', 'FRocket_admin' ); ?></label>
 			<div class="sfdc-controls sfdc-form-group">
 				<div class="sfdc-btn-group sfdc-btn-group-justified" data-toggle="buttons">
 					<label 
@@ -66,7 +70,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<input type="radio"  
 						   id="uifm_fld_inp18_txt_pos_1" 
 						   name="uifm_fld_inp18_txt_pos"   
-						   value="1"> <i class="fa fa-hand-o-down"></i> <?php echo __('Top','FRocket_admin'); ?>
+						   value="1"> <i class="fa fa-hand-o-down"></i> <?php echo __( 'Top', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="input18-text-html_pos"
@@ -77,7 +81,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_inp18_txt_pos_2" 
 						   name="uifm_fld_inp18_txt_pos"   
-						   value="2"> <i class="fa fa-hand-o-up"></i> <?php echo __('Right','FRocket_admin'); ?>
+						   value="2"> <i class="fa fa-hand-o-up"></i> <?php echo __( 'Right', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="input18-text-html_pos"
@@ -88,7 +92,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_inp18_txt_pos_3" 
 						   name="uifm_fld_inp18_txt_pos"   
-						   value="3"> <i class="fa fa-question-circle"></i> <?php echo __('bottom','FRocket_admin'); ?>
+						   value="3"> <i class="fa fa-question-circle"></i> <?php echo __( 'bottom', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="input18-text-html_pos"
@@ -99,7 +103,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_inp18_txt_pos_4" 
 						   name="uifm_fld_inp18_txt_pos"   
-						   value="0"><i class="fa fa-question-circle"></i> <?php echo __('left','FRocket_admin'); ?>
+						   value="0"><i class="fa fa-question-circle"></i> <?php echo __( 'left', 'FRocket_admin' ); ?>
 					</label>
 				</div>
 			</div>
@@ -108,7 +112,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
  <div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
-					<label ><?php echo __('Custom padding','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Custom padding', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-3">
 							<input 
@@ -121,7 +125,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="sfdc-col-md-9">
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Padding top','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Padding top', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 												<input  
@@ -133,7 +137,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 						  <div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Padding right','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Padding right', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 												<input  
@@ -145,7 +149,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Padding bottom','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Padding bottom', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 												<input  
@@ -157,7 +161,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Padding left','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Padding left', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 												<input  
@@ -176,7 +180,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
-					<label ><?php echo __('Custom margin','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Custom margin', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-3">
 							<input 
@@ -189,7 +193,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="sfdc-col-md-9">
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Margin top','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Margin top', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 												<input  
@@ -201,7 +205,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 						  <div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Margin right','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Margin right', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 												<input  
@@ -213,7 +217,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Margin bottom','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Margin bottom', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 												<input  
@@ -225,7 +229,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Margin left','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Margin left', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 												<input  
@@ -246,14 +250,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		<div class="sfdc-col-md-12">
 			<div class="divider2">
 			<div class="mask"></div>
-			<span><i><?php echo __('Background','FRocket_admin'); ?></i></span>
+			<span><i><?php echo __( 'Background', 'FRocket_admin' ); ?></i></span>
 			</div>
 		</div>
 	</div>
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
-					<label ><?php echo __('Background color','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Background color', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-3">
 							<input class="switch-field"
@@ -264,7 +268,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="sfdc-col-md-9">
 							 <div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('Type','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Type', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 										<div class="sfdc-controls sfdc-form-group">
@@ -277,7 +281,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 													data-settings-option="group-radiobutton"
 													id="uifm_frm_inp18_fmbg_type_1"
 													class="sfdc-btn sfdc-btn-warning uifm-f-setoption-btn" >
-												<input type="radio"  value="1">  <?php echo __('Solid','FRocket_admin'); ?>
+												<input type="radio"  value="1">  <?php echo __( 'Solid', 'FRocket_admin' ); ?>
 												</label>
 												<label 
 													data-field-store="input18-pane_background-type"
@@ -286,7 +290,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 													data-settings-option="group-radiobutton"
 													id="uifm_frm_inp18_fmbg_type_2"
 													class="sfdc-btn sfdc-btn-warning uifm-f-setoption-btn" >
-												<input type="radio"  value="2" checked> <?php echo __('Gradient','FRocket_admin'); ?>
+												<input type="radio"  value="2" checked> <?php echo __( 'Gradient', 'FRocket_admin' ); ?>
 												</label>
 											</div>
 										</div>
@@ -294,14 +298,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('Color','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Color', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 										<div class="sfdc-form-group">
 											<div data-field-store="input18-pane_background-solid_color"
 												 class="sfdc-input-group uifm-custom-color">
 												<span class="sfdc-input-group-addon"><i></i></span>
-												<input  placeholder="<?php echo __('Pick the color','FRocket_admin'); ?>"
+												<input  placeholder="<?php echo __( 'Pick the color', 'FRocket_admin' ); ?>"
 														id="uifm_frm_inp18_fmbg_color_1"
 														type="text" 
 														value="" 
@@ -313,7 +317,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('Start color','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Start color', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 										<div class="sfdc-form-group">
@@ -321,7 +325,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 												data-field-store="input18-pane_background-start_color"
 												class="sfdc-input-group uifm-custom-color">
 												<span class="sfdc-input-group-addon"><i></i></span>
-												<input  placeholder="<?php echo __('Pick the color','FRocket_admin'); ?>"
+												<input  placeholder="<?php echo __( 'Pick the color', 'FRocket_admin' ); ?>"
 														type="text" value=""
 														id="uifm_frm_inp18_fmbg_color_2"
 														name="" class="sfdc-form-control" />
@@ -331,7 +335,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('End color','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'End color', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 										<div class="sfdc-form-group">
@@ -339,7 +343,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 												data-field-store="input18-pane_background-end_color"
 												class="sfdc-input-group uifm-custom-color">
 												<span class="sfdc-input-group-addon"><i></i></span>
-												<input  placeholder="<?php echo __('Pick the color','FRocket_admin'); ?>" 
+												<input  placeholder="<?php echo __( 'Pick the color', 'FRocket_admin' ); ?>" 
 														id="uifm_frm_inp18_fmbg_color_3"
 														type="text" value="" name="" class="sfdc-form-control" />
 											</div>
@@ -349,7 +353,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							
 							 <div class="sfdc-row">
 								<div class="sfdc-col-md-4">
-								   <label ><?php echo __('Background image','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Background image', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-8">
 										<div class="sfdc-form-group">
@@ -362,7 +366,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 												value=""                                                
 												type="hidden">
 												<input id="uifm_frm_inp18_bg_btnadd" onclick="javascript:rocketform.input18settings_changeSrcImg(this);"
-													value="<?php echo __('Update Image','flexy_admin');?>" 
+													value="<?php echo __( 'Update Image', 'flexy_admin' ); ?>" 
 													class="button-secondary" 
 													type="button">
 												<a href="javascript:void(0);"
@@ -389,14 +393,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		<div class="sfdc-col-md-12">
 			<div class="divider2">
 			<div class="mask"></div>
-			<span><i><?php echo __('Border','FRocket_admin'); ?></i></span>
+			<span><i><?php echo __( 'Border', 'FRocket_admin' ); ?></i></span>
 			</div>
 		</div>
 	</div>
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
-					<label ><?php echo __('Border radius','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Border radius', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-3">
 							<input 
@@ -424,7 +428,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
-					<label ><?php echo __('Border','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Border', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-3">
 							<input 
@@ -437,14 +441,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="sfdc-col-md-9">
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('Color','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Color', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 										<div class="sfdc-form-group">
 											<div data-field-store="input18-pane_border-color"
 												 class="sfdc-input-group uifm-custom-color">
 												<span class="sfdc-input-group-addon"><i></i></span>
-												<input  placeholder="<?php echo __('Pick the color','FRocket_admin'); ?>" 
+												<input  placeholder="<?php echo __( 'Pick the color', 'FRocket_admin' ); ?>" 
 														type="text" 
 														value="" 
 														name="uifm_frm_inp18_fmbor_color"
@@ -457,7 +461,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						   
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('border style','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'border style', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 										<div class="sfdc-controls sfdc-form-group">
@@ -469,7 +473,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 													data-settings-option="group-radiobutton"
 													id="uifm_frm_inp18_fmbor_style_1"
 													class="sfdc-btn sfdc-btn-warning uifm-f-setoption-btn" >
-												<input type="radio"  value="1" checked><?php echo __('Solid','FRocket_admin'); ?>
+												<input type="radio"  value="1" checked><?php echo __( 'Solid', 'FRocket_admin' ); ?>
 												</label>
 												<label 
 													data-field-store="input18-pane_border-style"
@@ -478,7 +482,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 													data-settings-option="group-radiobutton"
 													id="uifm_frm_inp18_fmbor_style_2"
 													class="sfdc-btn sfdc-btn-warning uifm-f-setoption-btn" >
-												<input type="radio"  value="2">  <?php echo __('Dotted','FRocket_admin'); ?>
+												<input type="radio"  value="2">  <?php echo __( 'Dotted', 'FRocket_admin' ); ?>
 												</label>
 											</div>
 										</div>
@@ -486,7 +490,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							</div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('Border width','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Border width', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input 
@@ -511,7 +515,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
-					<label ><?php echo __('Box Shadow','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Box Shadow', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-3">
 							<input class="switch-field"
@@ -523,14 +527,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="sfdc-col-md-9">
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('Color','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Color', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 										<div class="sfdc-form-group">
 											<div  data-field-store="input18-pane_shadow-color"
 												  class="sfdc-input-group uifm-custom-color">
 												<span class="sfdc-input-group-addon"><i></i></span>
-												<input  placeholder="<?php echo __('Pick the color','FRocket_admin'); ?>"
+												<input  placeholder="<?php echo __( 'Pick the color', 'FRocket_admin' ); ?>"
 														type="text"
 														value=""
 														id="uifm_frm_inp18_sha_co"
@@ -544,7 +548,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="space20"></div>
 						   <div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('horizontal','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'horizontal', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input type="text"
@@ -560,7 +564,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						  <div class="space20"></div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('vertical','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'vertical', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input type="text"
@@ -577,7 +581,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="space20"></div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('blur','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'blur', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input type="text"

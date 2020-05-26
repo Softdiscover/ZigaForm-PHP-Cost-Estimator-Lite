@@ -11,7 +11,8 @@
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+if ( ! defined( 'BASEPATH' ) ) {
+	exit( 'No direct script access allowed' );}
 ?>
 
 <div class="uifm-set-section-input9">
@@ -19,7 +20,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Text star 1','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text star 1', 'FRocket_admin' ); ?></label>
 						<input type="text"
 							   data-field-store="input9-txt_star1"
 							   id="uifm_fld_input9_star1"
@@ -30,7 +31,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Text star 2','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text star 2', 'FRocket_admin' ); ?></label>
 				   
 						<input type="text"
 							   data-field-store="input9-txt_star2"
@@ -42,7 +43,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Text star 3','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text star 3', 'FRocket_admin' ); ?></label>
 				   
 						<input type="text"
 							   data-field-store="input9-txt_star3"
@@ -54,7 +55,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Text star 4','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text star 4', 'FRocket_admin' ); ?></label>
 				   
 						<input type="text"
 							   data-field-store="input9-txt_star4"
@@ -66,7 +67,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Text star 5','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text star 5', 'FRocket_admin' ); ?></label>
 				   
 						<input type="text"
 							   data-field-store="input9-txt_star5"
@@ -78,7 +79,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Not rated text','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Not rated text', 'FRocket_admin' ); ?></label>
 				   
 						<input type="text"
 							   data-field-store="input9-txt_norate"

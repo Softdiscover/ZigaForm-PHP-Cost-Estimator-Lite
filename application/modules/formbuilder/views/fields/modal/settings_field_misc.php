@@ -11,7 +11,8 @@
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+if ( ! defined( 'BASEPATH' ) ) {
+	exit( 'No direct script access allowed' );}
 ?>
 <div class="uiform-set-field-wrap" id="uiform-set-field-lbl-panel">
 	<div class="space20"></div>
@@ -20,7 +21,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		<div class="sfdc-col-md-12">
 			<div class="divider2">
 			<div class="mask"></div>
-			<span><i><?php echo __('Help block','FRocket_admin'); ?></i></span>
+			<span><i><?php echo __( 'Help block', 'FRocket_admin' ); ?></i></span>
 			</div>
 		</div>
 	</div>
@@ -30,12 +31,15 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 				 
 				
 				<label class="sfdc-control-label" for="">
-					<?php echo __('Help block text','FRocket_admin'); ?>
+					<?php echo __( 'Help block text', 'FRocket_admin' ); ?>
 				</label>
 				<div class="sfdc-controls sfdc-form-group">
-					<?php 
-					$settings = array( 'media_buttons' => true,'textarea_rows'=>5);
-			//wp_editor('', 'uifm_fld_msc_text',$settings );
+					<?php
+					$settings = array(
+						'media_buttons' => true,
+						'textarea_rows' => 5,
+					);
+					// wp_editor('', 'uifm_fld_msc_text',$settings );
 					?>
 					 <textarea 
 							class="uifm_tinymce_obj"
@@ -49,7 +53,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-md-4">
 			   <div class="sfdc-form-group">
-					<label ><?php echo __('Show help block','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Show help block', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-controls sfdc-form-group">
 						<input class="switch-field" name="uifm_fld_lbl_block" type="checkbox" checked/>
 					</div>
@@ -57,10 +61,10 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			</div>
 		 <div class="sfdc-col-sm-8">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Text Font','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text Font', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-input-group uifm-custom-font">
 						<input type="hidden" value="" name="uifm_fld_lbl_font">
-						<?php //do_action( 'styles_font_menu' ); ?>
+						<?php // do_action( 'styles_font_menu' ); ?>
 						<span class="sfdc-input-group-addon">
 						<input type="checkbox">
 						</span>
@@ -71,7 +75,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		</div>
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
-			<label ><?php echo __('Help block alignment (temp - delete)','FRocket_admin'); ?></label>
+			<label ><?php echo __( 'Help block alignment (temp - delete)', 'FRocket_admin' ); ?></label>
 			<div class="sfdc-controls sfdc-form-group">
 				<div class="sfdc-btn-group sfdc-btn-group-justified" data-toggle="buttons">
 					<label data-toggle-enable="sfdc-btn-success"
@@ -98,7 +102,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	</div>
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
-			<label ><?php echo __('Help block position','FRocket_admin'); ?></label>
+			<label ><?php echo __( 'Help block position', 'FRocket_admin' ); ?></label>
 			<div class="sfdc-controls sfdc-form-group">
 				<div class="sfdc-btn-group sfdc-btn-group-justified" data-toggle="buttons">
 					<label data-toggle-enable="sfdc-btn-warning"
@@ -135,14 +139,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		<div class="sfdc-col-md-12">
 			<div class="divider2">
 			<div class="mask"></div>
-			<span><i><?php echo __('Validators','FRocket_admin'); ?></i></span>
+			<span><i><?php echo __( 'Validators', 'FRocket_admin' ); ?></i></span>
 			</div>
 		</div>
 	</div>
 	<div class="sfdc-row">
 			<div class="sfdc-col-md-6">
 			   <div class="sfdc-form-group">
-					<label ><?php echo __('Required','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Required', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-controls sfdc-form-group">
 						<input class="switch-field" name="uifm_fld_lbl_block" type="checkbox" checked/>
 					</div>
@@ -150,7 +154,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			</div>
 		 <div class="sfdc-col-sm-6">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Allow whitespace','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Allow whitespace', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-controls sfdc-form-group">
 						<input class="switch-field" name="uifm_fld_lbl_block" type="checkbox"/>
 					</div>
@@ -159,7 +163,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	</div>
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
-			<label><?php echo __('Add validator','FRocket_admin'); ?></label>
+			<label><?php echo __( 'Add validator', 'FRocket_admin' ); ?></label>
 			<div class="sfdc-controls sfdc-form-group tooltip-val-container">
 				
 				<!-- checkbox group buttons -->
@@ -223,11 +227,11 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="uifm-custom-validator">
 		<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
-			<label ><?php echo __('Validator configuration: ','FRocket_admin'); ?> <?php echo __('Less than','FRocket_admin'); ?></label>
+			<label ><?php echo __( 'Validator configuration: ', 'FRocket_admin' ); ?> <?php echo __( 'Less than', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-6">
 							<div class="sfdc-form-group">
-									<label ><?php echo __('Default Message','FRocket_admin'); ?></label>
+									<label ><?php echo __( 'Default Message', 'FRocket_admin' ); ?></label>
 								   <div>
 									   here goes the default error message
 								   </div>
@@ -235,7 +239,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						</div>
 						<div class="sfdc-col-md-6">
 									<div class="sfdc-form-group">
-									<label ><?php echo __('Custom Error Message','FRocket_admin'); ?></label>
+									<label ><?php echo __( 'Custom Error Message', 'FRocket_admin' ); ?></label>
 									<input type="text" value="" name="uifm_fld_inp_color" class="sfdc-form-control" />
 									</div>
 						</div>
@@ -246,7 +250,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	</div>
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
-			<label ><?php echo __('Alert position','FRocket_admin'); ?></label>
+			<label ><?php echo __( 'Alert position', 'FRocket_admin' ); ?></label>
 			<div class="sfdc-controls sfdc-form-group">
 				<div class="sfdc-btn-group sfdc-btn-group-justified" data-toggle="buttons">
 					<label data-toggle-enable="sfdc-btn-success"
@@ -280,7 +284,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-md-4">
 			   <div class="sfdc-form-group">
-					<label ><?php echo __('Set required icon','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Set required icon', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-controls sfdc-form-group">
 						<input class="switch-field" name="uifm_fld_lbl_block" type="checkbox" checked/>
 					</div>
@@ -288,7 +292,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			</div>
 		 <div class="sfdc-col-sm-8">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Choose required icon','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Choose required icon', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-controls sfdc-form-group">
 						<button class="sfdc-btn sfdc-btn-default" data-iconset="glyphicon" role="iconpicker"></button>
 					</div>
@@ -298,20 +302,20 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-md-12">
 			   <div class="sfdc-form-group">
-					<label ><?php echo __('Required icon position','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Required icon position', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-controls sfdc-form-group">
 						<div class="sfdc-btn-group sfdc-btn-group-justified" data-toggle="buttons">
 					<label data-toggle-enable="sfdc-btn-success"
 						data-toggle-disable="sfdc-btn-success"
 						data-settings-option="group-radiobutton"
 						class="sfdc-btn sfdc-btn-success" >
-					<input type="radio"  value="0"> <i class="fa fa-asterisk"></i> <?php echo __('Before label','FRocket_admin'); ?>
+					<input type="radio"  value="0"> <i class="fa fa-asterisk"></i> <?php echo __( 'Before label', 'FRocket_admin' ); ?>
 					</label>
 					<label data-toggle-enable="sfdc-btn-success"
 						data-toggle-disable="sfdc-btn-success"
 						data-settings-option="group-radiobutton"
 						class="sfdc-btn sfdc-btn-success" >
-					<input type="radio"  value="0"><i class="fa fa-asterisk"></i> <?php echo __('After label','FRocket_admin'); ?>
+					<input type="radio"  value="0"><i class="fa fa-asterisk"></i> <?php echo __( 'After label', 'FRocket_admin' ); ?>
 					</label>
 				</div>
 					</div>

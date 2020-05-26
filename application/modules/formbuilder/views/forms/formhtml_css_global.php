@@ -24,7 +24,7 @@ if ( isset( $summbox['skin_text'] ) ) {
 	?>
 	#rockfm_form_<?php echo $idform; ?> .uiform-sticky-sidebar-box-content{
 		<?php
-		//summbox
+		// summbox
 		?>
 		<?php if ( ! empty( $summbox['skin_text']['color'] ) ) { ?>
 			color:<?php echo $summbox['skin_text']['color']; ?>;
@@ -37,15 +37,15 @@ if ( isset( $summbox['skin_text'] ) ) {
 			
 			font-family:"<?php echo $font_temp['family']; ?>";
 				<?php
-				//storing to global fonts
+				// storing to global fonts
 				Uiform_Form_Helper::form_store_fonts( $font_temp );
-				//end storing to global fonts
+				// end storing to global fonts
 				?>
 			<?php } ?>
 			
 		<?php } ?>
 				  
-	<?php //end selector ?>       
+	<?php // end selector ?>       
 	}
 	<?php
 }
@@ -57,11 +57,11 @@ if ( isset( $summbox['skin_text'] ) ) {
 		&& intval( $summbox['form_background']['show_st'] ) === 1 ) {
 			?>
 					  <?php
-						//el_background
+						// el_background
 
 						switch ( intval( $summbox['form_background']['type'] ) ) {
 							case 1:
-								 //solid
+								 // solid
 								if ( ! empty( $summbox['form_background']['solid_color'] ) ) {
 									?>
 								background:<?php echo $summbox['form_background']['solid_color']; ?>;
@@ -69,7 +69,7 @@ if ( isset( $summbox['skin_text'] ) ) {
 								}
 								break;
 							case 2:
-								 //gradient
+								 // gradient
 								if ( ! empty( $summbox['form_background']['start_color'] ) && ! empty( $summbox['form_background']['end_color'] ) ) {
 									?>
 								background: <?php echo $summbox['form_background']['start_color']; ?>;
@@ -90,7 +90,7 @@ if ( isset( $summbox['skin_text'] ) ) {
 		  <?php } else { ?>
 <?php } ?>   
  <?php
-		 //el_border_radius
+		 // el_border_radius
 	if ( isset( $summbox['form_border_radius']['show_st'] ) && intval( $summbox['form_border_radius']['show_st'] ) === 1 ) {
 		?>
 			 -webkit-border-radius: <?php echo $summbox['form_border_radius']['size']; ?>px;
@@ -100,7 +100,7 @@ if ( isset( $summbox['skin_text'] ) ) {
 	}
 	?>
 		<?php
-		 //el_border
+		 // el_border
 		if ( isset( $summbox['form_border']['show_st'] )
 				 && intval( $summbox['form_border']['show_st'] ) === 1
 				 && ! empty( $summbox['form_border']['color'] )
@@ -119,7 +119,7 @@ if ( isset( $summbox['skin_text'] ) ) {
 		}
 		?>
 	<?php
-		 //shadow
+		 // shadow
 	if ( isset( $summbox['form_shadow']['show_st'] )
 				 && intval( $summbox['form_shadow']['show_st'] ) === 1
 				 && ! empty( $summbox['form_shadow']['color'] )

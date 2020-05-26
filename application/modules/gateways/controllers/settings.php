@@ -48,12 +48,11 @@ class Settings extends BackendController {
 		$this->template->set( 'controller', $this );
 		$this->load->model( 'model_gateways' );
 
-		//global $wpdb;
-		//$this->wpdb = $wpdb;
+		// global $wpdb;
+		// $this->wpdb = $wpdb;
 		// $this->model_gateways = self::$_models['gateways']['gateways'];
 		// save settings options
-		//add_action('wp_ajax_rocket_fbuilder_setting_saveGateway', array(&$this, 'ajax_save_options'));
-
+		// add_action('wp_ajax_rocket_fbuilder_setting_saveGateway', array(&$this, 'ajax_save_options'));
 	}
 
 	public function ajax_save_options() {
@@ -70,11 +69,11 @@ class Settings extends BackendController {
 		$json = array();
 		switch ( $pg_id ) {
 			case 1:
-				//offline
+				// offline
 				$json['offline_return_url'] = ( $_POST['offline_return_url'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['offline_return_url'] ) : '';
 				break;
 			case 2:
-				//paypal
+				// paypal
 				$json['paypal_email']      = ( $_POST['paypal_email'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['paypal_email'] ) : '';
 				$json['paypal_currency']   = ( $_POST['paypal_currency'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['paypal_currency'] ) : '';
 				$json['paypal_return_url'] = ( $_POST['paypal_return_url'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['paypal_return_url'] ) : '';
@@ -105,7 +104,8 @@ class Settings extends BackendController {
 		}
 
 		$json2 = array();
-		/*if ($result > 0) {
+		/*
+		if ($result > 0) {
 			$json2['success'] = 1;
 		} else {
 			$json2['success'] = 0;
@@ -185,8 +185,8 @@ class Settings extends BackendController {
 	public function init() {
 
 		try {
-			//$instance_example = new WPPS_Instance_Class( 'Instance example', '42' );
-			//add_notice('ba');
+			// $instance_example = new WPPS_Instance_Class( 'Instance example', '42' );
+			// add_notice('ba');
 		} catch ( Exception $exception ) {
 			add_notice( __METHOD__ . ' error: ' . $exception->getMessage(), 'error' );
 		}

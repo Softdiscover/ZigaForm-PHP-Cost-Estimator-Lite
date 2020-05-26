@@ -11,7 +11,8 @@
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link      http://wordpress-cost-estimator.zigaform.com
  */
-if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+if ( ! defined( 'BASEPATH' ) ) {
+	exit( 'No direct script access allowed' );}
 ?>
 <div class="uiform-set-field-wrap" id="uiform-set-field-lbl-panel">
 		
@@ -19,7 +20,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
-					<label for="uifm_fld_lbl_txt"><?php echo __('Label text','FRocket_admin'); ?></label>
+					<label for="uifm_fld_lbl_txt"><?php echo __( 'Label text', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-input-group">
 						<div class="uifm-set-section-label-lbltxt">
 						<input type="text"
@@ -37,13 +38,13 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 									data-style="sfdc-btn-primary" 
 									class="uifm_field_font_selectpicker uifm-f-setoption-font">
 								<optgroup label="Font size" data-max-options="2">
-									<?php 
-								for ($i = 8; $i <= 48; $i++) {
-								?>
-								<option value="<?php echo $i;?>"><?php echo $i.' px';?></option>
-								<?php    
-								}
-								?>
+									<?php
+									for ( $i = 8; $i <= 48; $i++ ) {
+										?>
+								<option value="<?php echo $i; ?>"><?php echo $i . ' px'; ?></option>
+										<?php
+									}
+									?>
 								</optgroup>
 							</select>
 						</div>
@@ -74,7 +75,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		<div class="sfdc-row">
 			<div class="sfdc-col-md-4">
 			   <div class="sfdc-form-group">
-					<label ><?php echo __('Text Color','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text Color', 'FRocket_admin' ); ?></label>
 					<div data-field-store="label-color" class="sfdc-input-group uifm-custom-color">
 						<input 
 							type="text" 
@@ -88,21 +89,21 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			</div>
 		 <div class="sfdc-col-sm-8">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Text Font','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text Font', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-input-group uifm-custom-font">
 						<!--<input type="hidden"
 							   value=""
 							   id="uifm_fld_lbl_font"
 							   name="uifm_fld_lbl_font">-->
-						<?php 
-						$attributes = array(
-							'name' => 'uifm_fld_lbl_font',
-							'id' => 'uifm_fld_lbl_font',
-							'data-field-store'=>'label-font'
-							);
+						<?php
+						$attributes    = array(
+							'name'             => 'uifm_fld_lbl_font',
+							'id'               => 'uifm_fld_lbl_font',
+							'data-field-store' => 'label-font',
+						);
 						$default_value = '{"family":"Arial, Helvetica, sans-serif","name":"Arial","classname":"arial"}';
 						?>
-						<?php $obj_sfm->get_view_menu($attributes,$default_value); ?>
+						<?php $obj_sfm->get_view_menu( $attributes, $default_value ); ?>
 						<span class="sfdc-input-group-addon">
 						<input 
 							data-field-store="label-font_st"
@@ -120,7 +121,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
-					<label ><?php echo __('Text Shadow','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text Shadow', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-3">
 							<input class="switch-field"
@@ -132,13 +133,13 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="sfdc-col-md-9">
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('Color','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Color', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 										<div class="sfdc-form-group">
 											<div  data-field-store="label-shadow_color"  class="sfdc-input-group uifm-custom-color">
 												<span class="sfdc-input-group-addon"><i></i></span>
-												<input  placeholder="<?php echo __('Pick the color','FRocket_admin'); ?>"
+												<input  placeholder="<?php echo __( 'Pick the color', 'FRocket_admin' ); ?>"
 														type="text"
 														value=""
 														id="uifm_fld_lbl_sha_co"
@@ -152,7 +153,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="space20"></div>
 						   <div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('horizontal','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'horizontal', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input type="text"
@@ -168,7 +169,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						  <div class="space20"></div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('vertical','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'vertical', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input type="text"
@@ -185,7 +186,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="space20"></div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('blur','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'blur', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input type="text"
@@ -214,14 +215,14 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		<div class="sfdc-col-md-12">
 			<div class="divider2">
 			<div class="mask"></div>
-			<span><i><?php echo __('Sub label','FRocket_admin'); ?></i></span>
+			<span><i><?php echo __( 'Sub label', 'FRocket_admin' ); ?></i></span>
 			</div>
 		</div>
 	</div>
 	<div class="sfdc-row">
 			<div class="sfdc-col-sm-12">
 				<div class="sfdc-form-group">
-					<label for="uifm_fld_lbl_txt"><?php echo __('Sublabel text','FRocket_admin'); ?></label>
+					<label for="uifm_fld_lbl_txt"><?php echo __( 'Sublabel text', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-input-group">
 						<div class="uifm-set-section-label-sublbltxt">
 							 <input type="text"
@@ -240,13 +241,13 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 								data-style="sfdc-btn-primary"
 								class="uifm_field_font_selectpicker uifm-f-setoption-font">
 								<optgroup label="Font size" data-max-options="2">
-									<?php 
-								for ($i = 8; $i <= 48; $i++) {
-								?>
-								<option value="<?php echo $i;?>"><?php echo $i.' px';?></option>
-								<?php    
-								}
-								?>
+									<?php
+									for ( $i = 8; $i <= 48; $i++ ) {
+										?>
+								<option value="<?php echo $i; ?>"><?php echo $i . ' px'; ?></option>
+										<?php
+									}
+									?>
 								</optgroup>
 							</select>
 						</div>
@@ -285,7 +286,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		<div class="sfdc-row">
 			<div class="sfdc-col-md-4">
 			   <div class="sfdc-form-group">
-					<label ><?php echo __('Text Color','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text Color', 'FRocket_admin' ); ?></label>
 					<div data-field-store="sublabel-color" 
 						 class="sfdc-input-group uifm-custom-color">
 						<input type="text" 
@@ -299,17 +300,17 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 			</div>
 		 <div class="sfdc-col-sm-8">
 				<div class="sfdc-form-group">
-					<label ><?php echo __('Text font','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text font', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-input-group uifm-custom-font">
-						<?php 
-						$attributes = array(
-							'name' => 'uifm_fld_sublbl_font',
-							'id' => 'uifm_fld_sublbl_font',
-							'data-field-store'=>'sublabel-font'
-							);
+						<?php
+						$attributes    = array(
+							'name'             => 'uifm_fld_sublbl_font',
+							'id'               => 'uifm_fld_sublbl_font',
+							'data-field-store' => 'sublabel-font',
+						);
 						$default_value = '{"family":"Arial, Helvetica, sans-serif","name":"Arial","classname":"arial"}';
 						?>
-						<?php $obj_sfm->get_view_menu($attributes,$default_value); ?>
+						<?php $obj_sfm->get_view_menu( $attributes, $default_value ); ?>
 						<span class="sfdc-input-group-addon">
 						<input 
 							data-field-store="sublabel-font_st"
@@ -327,7 +328,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
    <div class="sfdc-row">
 		<div class="sfdc-col-md-12">
 			<div class="sfdc-form-group">
-					<label ><?php echo __('Text shadow','FRocket_admin'); ?></label>
+					<label ><?php echo __( 'Text shadow', 'FRocket_admin' ); ?></label>
 					<div class="">
 						<div class="sfdc-col-md-3">
 							<input class="switch-field"
@@ -339,13 +340,13 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						<div class="sfdc-col-md-9">
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('Color','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'Color', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 										<div class="sfdc-form-group">
 											<div  data-field-store="sublabel-shadow_color"  class="sfdc-input-group uifm-custom-color">
 												<span class="sfdc-input-group-addon"><i></i></span>
-												<input  placeholder="<?php echo __('Pick the color','FRocket_admin'); ?>"
+												<input  placeholder="<?php echo __( 'Pick the color', 'FRocket_admin' ); ?>"
 														type="text"
 														value=""
 														id="uifm_fld_sublbl_sha_co"
@@ -358,7 +359,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							
 						   <div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('x','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'x', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input type="text"
@@ -375,7 +376,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="space20"></div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('y','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'y', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input type="text"
@@ -392,7 +393,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 							<div class="space20"></div>
 							<div class="sfdc-row">
 								<div class="sfdc-col-md-3">
-								   <label ><?php echo __('blur','FRocket_admin'); ?></label>
+								   <label ><?php echo __( 'blur', 'FRocket_admin' ); ?></label>
 								</div>
 								<div class="sfdc-col-sm-9">
 									  <input type="text"
@@ -419,13 +420,13 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 		<div class="sfdc-col-md-12">
 			<div class="divider2">
 			<div class="mask"></div>
-			<span><i><?php echo __('Text Block','FRocket_admin'); ?></i></span>
+			<span><i><?php echo __( 'Text Block', 'FRocket_admin' ); ?></i></span>
 			</div>
 		</div>
 	</div>
 	<div class="sfdc-row" id="uifm_fld_lbl_blo_pos_opts">
 		<div class="sfdc-col-md-12">
-			<label ><?php echo __('Block position','FRocket_admin'); ?></label>
+			<label ><?php echo __( 'Block position', 'FRocket_admin' ); ?></label>
 			<div class="sfdc-controls sfdc-form-group">
 				<div class="sfdc-btn-group sfdc-btn-group-justified" data-toggle="buttons">
 					<label 
@@ -437,7 +438,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_blo_pos_1" 
 						   name="uifm_fld_lbl_blo_pos"   
-						   value="0"> <i class="fa fa-hand-o-left"></i><?php echo __('Left','FRocket_admin'); ?>
+						   value="0"> <i class="fa fa-hand-o-left"></i><?php echo __( 'Left', 'FRocket_admin' ); ?>
 					</label>
 					<label
 						data-field-store="txt_block-block_pos"
@@ -448,7 +449,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_blo_pos_2" 
 						   name="uifm_fld_lbl_blo_pos" 
-						   value="1"> <i class="fa fa-hand-o-up"></i><?php echo __('Top','FRocket_admin'); ?>
+						   value="1"> <i class="fa fa-hand-o-up"></i><?php echo __( 'Top', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-block_pos"
@@ -459,7 +460,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_blo_pos_3" 
 						   name="uifm_fld_lbl_blo_pos"  
-						   value="2"> <i class="fa fa-hand-o-right"></i><?php echo __('Right','FRocket_admin'); ?>
+						   value="2"> <i class="fa fa-hand-o-right"></i><?php echo __( 'Right', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-block_pos"
@@ -470,7 +471,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_blo_pos_4" 
 						   name="uifm_fld_lbl_blo_pos"  
-						   value="3"> <i class="fa fa-hand-o-down"></i><?php echo __('Bottom','FRocket_admin'); ?>
+						   value="3"> <i class="fa fa-hand-o-down"></i><?php echo __( 'Bottom', 'FRocket_admin' ); ?>
 					</label>
 				</div>
 			</div>
@@ -479,7 +480,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	</div>
 <div id="uifm_fld_lbl_glay_container" style="display:none"  class="sfdc-row">
 		<div class="sfdc-col-md-12">
-			<label ><?php echo __('Grid layout of label block when is on left or right position','FRocket_admin'); ?></label>
+			<label ><?php echo __( 'Grid layout of label block when is on left or right position', 'FRocket_admin' ); ?></label>
 			<div class="sfdc-controls sfdc-form-group">
 				<div class="sfdc-btn-group sfdc-btn-group-justified" data-toggle="buttons">
 					<label 
@@ -491,7 +492,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_1" 
 						   name="uifm_fld_lbl_glay_pos"   
-						   value="1"> <?php echo __('1|11','FRocket_admin'); ?>
+						   value="1"> <?php echo __( '1|11', 'FRocket_admin' ); ?>
 					</label>
 					<label
 						data-field-store="txt_block-grid_layout"
@@ -502,7 +503,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_2" 
 						   name="uifm_fld_lbl_glay_pos" 
-						   value="2">  <?php echo __('2|10','FRocket_admin'); ?>
+						   value="2">  <?php echo __( '2|10', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-grid_layout"
@@ -513,7 +514,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_3" 
 						   name="uifm_fld_lbl_glay_pos"  
-						   value="3">  <?php echo __('3|9','FRocket_admin'); ?>
+						   value="3">  <?php echo __( '3|9', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-grid_layout"
@@ -524,7 +525,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_4" 
 						   name="uifm_fld_lbl_glay_pos"  
-						   value="4">  <?php echo __('4|8','FRocket_admin'); ?>
+						   value="4">  <?php echo __( '4|8', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-grid_layout"
@@ -535,7 +536,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_5" 
 						   name="uifm_fld_lbl_glay_pos"  
-						   value="5">  <?php echo __('5|7','FRocket_admin'); ?>
+						   value="5">  <?php echo __( '5|7', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-grid_layout"
@@ -546,7 +547,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_6" 
 						   name="uifm_fld_lbl_glay_pos"  
-						   value="6">  <?php echo __('6|6','FRocket_admin'); ?>
+						   value="6">  <?php echo __( '6|6', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-grid_layout"
@@ -557,7 +558,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_7" 
 						   name="uifm_fld_lbl_glay_pos"  
-						   value="7">  <?php echo __('7|5','FRocket_admin'); ?>
+						   value="7">  <?php echo __( '7|5', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-grid_layout"
@@ -568,7 +569,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_8" 
 						   name="uifm_fld_lbl_glay_pos"  
-						   value="8">  <?php echo __('8|4','FRocket_admin'); ?>
+						   value="8">  <?php echo __( '8|4', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-grid_layout"
@@ -579,7 +580,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_9" 
 						   name="uifm_fld_lbl_glay_pos"  
-						   value="9">  <?php echo __('9|3','FRocket_admin'); ?>
+						   value="9">  <?php echo __( '9|3', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-grid_layout"
@@ -590,7 +591,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_10" 
 						   name="uifm_fld_lbl_glay_pos"  
-						   value="10">  <?php echo __('10|2','FRocket_admin'); ?>
+						   value="10">  <?php echo __( '10|2', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-grid_layout"
@@ -601,7 +602,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 					<input type="radio"  
 						   id="uifm_fld_lbl_glay_pos_11" 
 						   name="uifm_fld_lbl_glay_pos"  
-						   value="11">  <?php echo __('11|1','FRocket_admin'); ?>
+						   value="11">  <?php echo __( '11|1', 'FRocket_admin' ); ?>
 					</label>
 				</div>
 			</div>
@@ -610,7 +611,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	</div>
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
-			<label ><?php echo __('Show Block','FRocket_admin'); ?></label>
+			<label ><?php echo __( 'Show Block', 'FRocket_admin' ); ?></label>
 			<div class="sfdc-controls sfdc-form-group">
 				<input class="switch-field"
 					   data-field-store="txt_block-block_st"
@@ -623,7 +624,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 	</div>
 	<div class="sfdc-row">
 		<div class="sfdc-col-md-12">
-			<label ><?php echo __('Block alignment','FRocket_admin'); ?></label>
+			<label ><?php echo __( 'Block alignment', 'FRocket_admin' ); ?></label>
 			<div class="sfdc-controls sfdc-form-group">
 				<div class="sfdc-btn-group sfdc-btn-group-justified" data-toggle="buttons">
 					<label 
@@ -632,7 +633,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						data-toggle-disable="sfdc-btn-success"
 						data-settings-option="group-radiobutton"
 						class="sfdc-btn sfdc-btn-success uifm-f-setoption-btn" >
-					<input type="radio"  id="uifm_fld_lbl_blo_align_1" name="uifm_fld_lbl_blo_align" value="0"> <i class="fa fa-align-left"></i> <?php echo __('Left','FRocket_admin'); ?>
+					<input type="radio"  id="uifm_fld_lbl_blo_align_1" name="uifm_fld_lbl_blo_align" value="0"> <i class="fa fa-align-left"></i> <?php echo __( 'Left', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-block_align"
@@ -640,7 +641,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						data-toggle-disable="sfdc-btn-success"
 						data-settings-option="group-radiobutton"
 						class="sfdc-btn sfdc-btn-success uifm-f-setoption-btn" >
-					<input type="radio"  id="uifm_fld_lbl_blo_align_2" name="uifm_fld_lbl_blo_align" value="1"> <i class="fa fa-align-center"></i> <?php echo __('Center','FRocket_admin'); ?>
+					<input type="radio"  id="uifm_fld_lbl_blo_align_2" name="uifm_fld_lbl_blo_align" value="1"> <i class="fa fa-align-center"></i> <?php echo __( 'Center', 'FRocket_admin' ); ?>
 					</label>
 					<label 
 						data-field-store="txt_block-block_align"
@@ -648,7 +649,7 @@ if (!defined('BASEPATH')) {exit('No direct script access allowed');}
 						data-toggle-disable="sfdc-btn-success"
 						data-settings-option="group-radiobutton"
 						class="sfdc-btn sfdc-btn-success uifm-f-setoption-btn" >
-					<input type="radio"  id="uifm_fld_lbl_blo_align_3" name="uifm_fld_lbl_blo_align" value="2"> <i class="fa fa-align-right"></i> <?php echo __('Right','FRocket_admin'); ?>
+					<input type="radio"  id="uifm_fld_lbl_blo_align_3" name="uifm_fld_lbl_blo_align" value="2"> <i class="fa fa-align-right"></i> <?php echo __( 'Right', 'FRocket_admin' ); ?>
 					</label>
 				</div>
 			</div>
