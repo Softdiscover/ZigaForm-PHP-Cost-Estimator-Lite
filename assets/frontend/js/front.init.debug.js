@@ -6,7 +6,7 @@ var requirejs,require,define;!function(global,setTimeout){var req,s,head,baseEle
 
 var $uifm;
 
-var ZIGAFORM_C_LITE = 0;
+var ZIGAFORM_C_LITE = 1;
 var ZIGAFORM_DEBUG = 0;
 
 uifm_load_cssfiles();
@@ -338,7 +338,7 @@ function _zgfm_loader_form(script, blueimpgal, accounting) {
 	window.blueimpgal = blueimpgal;
 
     if( ZIGAFORM_DEBUG === 1 ){
-        script(UIFORM_SRC + 'assets/frontend/js/front.min.js', 'uifm_js');
+        script(UIFORM_SRC + 'assets/frontend/js/front.debug.js', 'uifm_js');
     }else{
         script(UIFORM_SRC + 'assets/frontend/js/front.min.js', 'uifm_js');
     }
@@ -389,7 +389,7 @@ function uifm_load_cssfiles() {
 	];
 
     if( ZIGAFORM_DEBUG === 1 ){
-        uifm_cssFiles.push({ id: 'uifm_css_global', href: UIFORM_SRC + 'assets/frontend/css/front.min.css'});
+        uifm_cssFiles.push({ id: 'uifm_css_global', href: UIFORM_SRC + 'assets/frontend/css/front.debug.css'});
     }else{
         uifm_cssFiles.push({ id: 'uifm_css_global', href: UIFORM_SRC + 'assets/frontend/css/front.min.css'});
     }
