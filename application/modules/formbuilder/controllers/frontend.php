@@ -35,7 +35,7 @@ class Frontend extends FrontendController {
 	private $flag_submitted    = 0;
 	private $form_response     = array();
 	private $current_cost      = array();
-	private $current_form_id   = array();
+	private $current_form_id   = '';
 	private $form_rec_msg_summ = '';
 	private $form_email_err    = array();
 	private $form_cur_data     = array();
@@ -2042,7 +2042,8 @@ class Frontend extends FrontendController {
 		 $is_html = isset( $_GET['is_html'] ) ? Uiform_Form_Helper::sanitizeInput( $_GET['is_html'] ) : 0;
 
 		 $form_data = $this->model_record->getFormDataById( $rec_id );
-
+		 $this->current_form_id=$form_data->form_fmb_id;	
+		 
 		if ( intval( $rec_id ) > 0 ) {
 			ob_start();
 			?>

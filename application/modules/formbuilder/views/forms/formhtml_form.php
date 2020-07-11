@@ -84,6 +84,7 @@ ob_start();
 		  data-sticky-pos="<?php echo $tmp_sticky_pos; ?>"
 		  data-sticky-resp-pos="1"
 		   class="uiform-sticky-sidebar-box"
+		   data-sticky-width="<?php echo $summbox['skin_box']['box_sd_width']; ?>"
 		   style="display:none;"><?php echo $form_sticky_content; ?></div>
 	<div class="uiform-sticky-topout-section"></div>
 		<input type="hidden" value="1" 

@@ -3101,7 +3101,7 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 
 			this.costest_sticky_init = function (obj_form) {
 				var sm_pos_lbl = obj_form.find('.uiform-sticky-sidebar-box').attr('data-sticky-pos'),
-					sm_box_sd_width = '200';
+					sm_box_sd_width = obj_form.find('.uiform-sticky-sidebar-box').attr('data-sticky-width')||400;
 
 				obj_form.find('.uiform-sticky-sidebar-box').uiform_stickybox({
 					enable: 1,
