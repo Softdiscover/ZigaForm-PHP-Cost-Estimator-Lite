@@ -16,7 +16,7 @@
 <?php
 error_reporting( E_ALL );
 require_once 'includes/functions.php';
-define( 'ZIGAFORM_C_LITE', 0 );
+define( 'ZIGAFORM_C_LITE', 1 );
 session_start();
 $step = 0;
 if ( $_POST ) {

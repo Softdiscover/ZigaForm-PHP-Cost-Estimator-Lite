@@ -1675,13 +1675,25 @@ class Frontend extends FrontendController {
 								$form_f_tmp[ $key ]['price_st']    = isset( $tmp_fdata['price']['enable_st'] ) ? $tmp_fdata['price']['enable_st'] : 0;
 								$form_f_tmp[ $key ]['lbl_show_st'] = isset( $tmp_fdata['price']['lbl_show_st'] ) ? $tmp_fdata['price']['lbl_show_st'] : 0;
 								// for records
-								$tmp_options_rec = array();
-							foreach ( $value as $value2 ) {
-								$tmp_options_rec[] = $value2;
-							}
-								$form_f_rec_tmp[ $key ] = implode( '^,^', $tmp_options_rec );
+								$tmp_summary=array();
+								 
+								foreach ( $value as $key2 => $value2 ) {
+									$tmp_summary_inner='';
+									 
+									if(isset($tmp_fdata['input17']['options'][ $key2 ]['label'])){
+										$tmp_summary_inner.=$tmp_fdata['input17']['options'][ $key2 ]['label'];
+									}
+									
+									if(intval($value2) > 1){
+										$tmp_summary_inner.= ' - qty: '.$value2;
+									}
+									$tmp_summary[] = $tmp_summary_inner;
+								}
+								 
+							 
+								$form_f_rec_tmp[ $key ] =implode('^,^', $tmp_summary);
 								// end for records
-
+								 
 							foreach ( $value as $key2 => $value2 ) {
 								$tmp_options_row          = array();
 								$tmp_options_row['label'] = $tmp_fdata['input17']['options'][ $key2 ]['label'];
