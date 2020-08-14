@@ -16,12 +16,13 @@ if ( ! defined( 'BASEPATH' ) ) {
 ?>
 <div id="uiform-container" class="uiform-wrap uiform-page_records">
 	<input type="hidden" id="rec_id" value="<?php echo $record_id; ?>">
-	<?php if ( isset( $fmb_rec_tpl_st ) && intval( $fmb_rec_tpl_st ) === 0 ) { ?>
+	
 	<div id="uiform-inforecord-container">
 		 <div class="space20"></div>
 	<div class="sfdc-row">
-		<div class="sfdc-col-md-6">
-			<div class="uifm-inforecord-box-info clearfix">
+		<div class="sfdc-col-md-8">
+		<?php if ( isset( $fmb_rec_tpl_st ) && intval( $fmb_rec_tpl_st ) === 0 ) { ?>
+				<div class="uifm-inforecord-box-info clearfix">
 				<h1><?php echo $form_name; ?></h1>
 				<h4 class="zgfm-no-margin zgfm-margin-bottom-20"><?php echo __( 'Submitted form data', 'FRocket_admin' ); ?></h4>
 				
@@ -41,8 +42,21 @@ if ( ! defined( 'BASEPATH' ) ) {
 					<span class="uiform-inforecord-total-amount"><b><?php echo __( 'Total', 'frocket_front' ); ?></b> : <?php echo Uiform_Form_Helper::cformat_numeric( $price_format, $form_total_amount ) . ' ' . $form_currency; ?></span>
 				 <?php } ?>
 			</div>
+	<?php
+	} else { ?>
+
+
+		<?php echo $custom_template; ?>
+
+
+
+<?php
+	}
+	?>
+		
+
 		</div>
-		<div class="sfdc-col-md-6">
+		<div class="sfdc-col-md-4">
 			<div class="uifm-inforecord-box-info2">
 				<h3><?php echo __( 'Additional info', 'FRocket_admin' ); ?></h3>
 				<ul >
@@ -72,13 +86,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 	</div>
 	</div>
 	
-		<?php
-	} else {
-
-		echo $custom_template;
-
-	}
-	?>
+	
 	<div class="space10"></div>
    <div class="sfdc-row">
 	   <div class="sfdc-col-md-12">
