@@ -19,7 +19,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 							<div class="sfdc-col-md-6">
 								<div class="sfdc-form-group">
 									<div class="sfdc-col-md-4">
-										<label for=""><?php echo __( 'ENABLE MATH CALCULATION', 'FRocket_admin' ); ?></label>
+										<label for=""><?php echo __( 'ENABLE CUSTOM MATH CALCULATION', 'FRocket_admin' ); ?></label>
 									</div>
 									<div class="sfdc-col-md-8">
 										<input class="switch-field"
