@@ -1,4 +1,0 @@
-[20-Jul-2020 23:48:17 UTC] PHP Fatal error:  Cannot declare class Error, because the name is already in use in C:\sfdc-projects\zigaform\php-cost-estimator\application\modules\default\controllers\error.php on line 0
-[20-Jul-2020 23:48:17 UTC] PHP Stack trace:
-[20-Jul-2020 23:48:17 UTC] PHP   1. {main}() C:\sfdc-projects\zigaform\php-cost-estimator\index.php:0
-[20-Jul-2020 23:48:17 UTC] PHP   2. require_once() C:\sfdc-projects\zigaform\php-cost-estimator\index.php:195
