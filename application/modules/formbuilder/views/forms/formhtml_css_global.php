@@ -17,7 +17,7 @@ ob_start();
 ?>
 
 <?php if ( isset( $addition_css ) && ! empty( $addition_css ) ) { ?>
-	<?php echo stripslashes( urldecode( $addition_css ) ); ?>
+	<?php echo  urldecode( $addition_css ) ; ?>
 <?php } ?>
 <?php
 if ( isset( $summbox['skin_text'] ) ) {

@@ -12,11 +12,14 @@
  * @version   CVS: $Id: frontend.php, v2.00 2013-11-30 02:52:40 Softdiscover $
  * @link      https://php-cost-estimator.zigaform.com/
  */
+ 
+
 
 if ( ! defined( 'BASEPATH' ) ) {
 	exit( 'No direct script access allowed' );
 }
-
+ 
+ 
 /**
  * Default frontend class
  *

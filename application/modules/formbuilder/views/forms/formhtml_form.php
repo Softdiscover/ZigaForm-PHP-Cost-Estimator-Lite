@@ -18,7 +18,7 @@ ob_start();
 <div class="rockfm-form-container uiform-wrap sfdc-wrap">
 <div class="rockfm-alert-container" style="display:none;"></div>
 <form class="rockfm-form" 
-	  action="" 
+	  action="javascript:void(0);" 
 	  name="" 
 	  method="post" 
 	  data-zgfm-type="2"
@@ -186,7 +186,7 @@ ob_start();
 
   <!-- Additional javascript -->
   <script type="text/javascript">
-		<?php echo stripslashes( urldecode( $main['add_js'] ) ); ?>
+		<?php echo  urldecode( $main['add_js'] ) ; ?>
   </script>    
 	<!-- adittional javascript -->
   
@@ -204,7 +204,7 @@ ob_start();
 	<?php foreach ( $calculation['variables'] as $key => $value ) { ?>
 var zgfm_<?php echo $form_id; ?>_calculation_cont<?php echo $calculation['variables'][ $key ]['id']; ?> = function(){
 		<?php
-		echo str_replace( '[%formid%]', $form_id, stripslashes( urldecode( $calculation['variables'][ $key ]['content_front'] ) ) );
+		echo str_replace( '[%formid%]', $form_id,  urldecode( $calculation['variables'][ $key ]['content_front'] )  );
 		?>
 	   
 };

@@ -38,7 +38,37 @@ class model_gateways_logs extends CI_Model {
 	function __construct() {
 
 		$this->table = $this->db->dbprefix . 'cest_uiform_pay_logs';
+		$this->tbpay_record  = $this->db->dbprefix . 'cest_uiform_pay_records';
+		$this->tbform_record = $this->db->dbprefix . 'cest_uiform_form_records';
+		$this->tbform        = $this->db->dbprefix . 'cest_uiform_form';
 	}
+
+	/**
+	 * delete payment records by form id
+	 *
+	 * @param [type] $form_id
+	 * @return void
+	 */
+	function deleteRecordbyFormId($form_id){
+	
+		$query = sprintf(
+			'
+            DELETE from %s where pgr_id IN (
+				select pgr_id from %s where pgr_id IN (
+				select fbh_id from %s where form_fmb_id=%s
+				)
+				);
+            ',
+			$this->table,
+			$this->tbpay_record,
+			$this->tbform_record,
+			$form_id
+		);
+		
+		$this->db->query( $query );
+		
+	}
+	
 }
 
 

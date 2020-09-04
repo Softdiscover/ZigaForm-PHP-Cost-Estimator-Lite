@@ -272,7 +272,7 @@ $default_template = ob_get_clean();
 				  <div class="sfdc-row">
 					<div class="sfdc-col-sm-12">
 						<div class="sfdc-form-group">
-								<label for="uifm_frm_email_usr_recipient"><?php echo __( 'Recipient mail', 'FRocket_admin' ); ?> <i>(<?php echo __( 'Choose field to receive notification (field needs to have email validation)', 'FRocket_admin' ); ?>)</i>
+								<label for="uifm_frm_email_usr_recipient"><?php echo __( 'Recipient mail', 'FRocket_admin' ); ?> <i>(<?php echo __( 'Choose field to receive notification, field needs to have email validation', 'FRocket_admin' ); ?>)</i>
 								<a href="javascript:void(0);"
 								data-toggle="tooltip" data-placement="right" data-original-title="<?php echo __( 'This is the recipient mail. if you leave it blank, admin mail will be taken', 'FRocket_admin' ); ?>"
 								><span class="fa fa-question-circle"></span></a>
