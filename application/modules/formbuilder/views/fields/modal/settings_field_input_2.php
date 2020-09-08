@@ -127,7 +127,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 			 <i class="fa fa-trash-o"></i> <?php echo __( 'Remove all options', 'FRocket_admin' ); ?></button>
 			 <button onclick="javascript:rocketform.input2settings_fillBlankValues();" 
 					class="sfdc-btn sfdc-btn-sm sfdc-btn-success">
-			 <i class="fa fa-trash-o"></i> <?php echo __( 'Fill Empty Spaces', 'FRocket_admin' ); ?></button>
+			 <i class="fa fa-trash-o"></i> <?php echo __( 'Copy Label to Value', 'FRocket_admin' ); ?></button>
 			 <button onclick="javascript:rocketform.input2settings_ImportBulkData();" 
 					class="sfdc-btn sfdc-btn-sm sfdc-btn-warning">
 			 <i class="fa fa-trash-o"></i> <?php echo __( 'Import bulk data', 'FRocket_admin' ); ?></button>
@@ -139,20 +139,23 @@ if ( ! defined( 'BASEPATH' ) ) {
 		   <div id="uifm-fld-inp2-options-header">
 			   <div class="sfdc-col-md-12">
 					<div class="sfdc-col-md-1">
-						<label ><?php echo __( 'Check', 'FRocket_admin' ); ?></label>   
+						
+					</div>
+					<div class="sfdc-col-md-1">
+						<label ><?php echo __( 'Check', 'FRocket_admin' ); ?></label>   	
 					</div>
 					<div class="sfdc-col-md-4">
 						<label ><?php echo __( 'Label', 'FRocket_admin' ); ?></label>   
 					</div>
-					<div class="sfdc-col-md-4">
+					<div class="sfdc-col-md-3">
 						<label ><?php echo __( 'Value', 'FRocket_admin' ); ?></label>   
 					</div>
 					<div class="sfdc-col-md-2">
 						 <label ><?php echo __( 'Price', 'FRocket_admin' ); ?></label>   
 					</div>
 					<div class="sfdc-col-md-1">
-
 					</div>
+					
 				</div>
 		   </div>
 		   <div id="uifm-fld-inp2-options-container">

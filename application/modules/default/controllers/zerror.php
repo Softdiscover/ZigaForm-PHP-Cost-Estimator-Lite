@@ -12,17 +12,11 @@
  * @version   CVS: $Id: frontend.php, v2.00 2013-11-30 02:52:40 Softdiscover $
  * @link      https://php-cost-estimator.zigaform.com/
  */
- 
 
-die('asdf');
 if ( ! defined( 'BASEPATH' ) ) {
 	exit( 'No direct script access allowed' );
 }
-
-
-if ( class_exists( 'Error' ) ) {
-	return;
-}
+ 
  
 /**
  * Default frontend class
@@ -35,7 +29,7 @@ if ( class_exists( 'Error' ) ) {
  * @version   Release: 1.00
  * @link      https://php-cost-estimator.zigaform.com/
  */
-class Error extends MX_Controller {
+class Zerror extends MX_Controller {
 
 
 	/**
@@ -58,7 +52,7 @@ class Error extends MX_Controller {
 		$data            = array();
 		$data['heading'] = '404 Page Not Found';
 		$data['message'] = '<p>The page you requested was not found.</p>';
-		$this->load->view( 'error/error', $data );
+		$this->load->view( 'zerror/error', $data );
 	}
 
 }
