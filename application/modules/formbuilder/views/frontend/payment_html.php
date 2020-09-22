@@ -26,7 +26,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 			<div class="sfdc-col-sm-7 col-md-8 uiform-pg-section-1">
 				<div class="uiform-pg-table-header-box">
 					<div class="sfdc-col-md-5 pull-left"><?php echo __( 'Payment Option', 'frocket_front' ); ?></div>
-					<div class="clearfix"></div>
+					<div class="sfdc-clearfix"></div>
 				</div>
 				<div class="uiform-pg-content">
 				   <!-- content here -->
@@ -41,7 +41,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 					?>
 				   <!--\ content here --> 
 
-					<div class="clearfix"></div>
+					<div class="sfdc-clearfix"></div>
 				</div>
 				
 			</div>

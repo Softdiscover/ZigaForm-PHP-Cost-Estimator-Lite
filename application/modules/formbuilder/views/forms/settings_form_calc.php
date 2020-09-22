@@ -65,7 +65,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 										  
 									</div>
 								</div>
-								<div class="clearfix"></div>
+								<div class="sfdc-clearfix"></div>
 							</div>
 						   
 						</div>

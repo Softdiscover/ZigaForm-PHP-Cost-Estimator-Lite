@@ -23,13 +23,13 @@ if ( ! defined( 'BASEPATH' ) ) {
 			  <i class="fa fa-list-alt"></i><h5><?php echo __( 'Payment gateway', 'FRocket_admin' ); ?></h5>
 			</div>
 			<div class="widget-body">
-			  <div class="widget-forms clearfix">
+			  <div class="widget-forms sfdc-clearfix">
 				  <form id="uiform-form-editgateway"
 						  name="uiform-form-editgateway"
 						  enctype="multipart/form-data"
 						  method="post"
 						  >
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Name', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <input name="pg_name" 
@@ -39,7 +39,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 					</div>
 				  </div>
 				   
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Return URL', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <input name="offline_return_url" id="offline_return_url" 
@@ -50,7 +50,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 					</div>
 				  </div>
 					   
-				 <div class="sfdc-form-group clearfix">
+				 <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Status', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <label class="sfdc-radio-inline">
@@ -64,7 +64,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 					</div>
 				  </div>
 					
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Description', 'FRocket_admin' ); ?></label>
 					  <div class="sfdc-col-md-10">
 						<textarea name="pg_description" 
@@ -74,7 +74,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 								  class="sfdc-form-control col-md-7"><?php echo $pg_description; ?></textarea>
 					  </div>
 				  </div>
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Payment order', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-4">
 						<input name="pg_order" id="pg_order" value="<?php echo ( isset( $pg_order ) ) ? $pg_order : ''; ?>">

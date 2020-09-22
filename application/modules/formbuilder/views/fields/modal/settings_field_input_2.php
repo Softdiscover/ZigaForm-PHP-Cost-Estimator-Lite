@@ -115,7 +115,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 			</div>
 		</div>
 	</div>
-   <div class="uifm-set-section-input2-optbox clearfix">
+   <div class="uifm-set-section-input2-optbox sfdc-clearfix">
 	   <div class="">
 		<div class="sfdc-col-md-12">
 			<a href="javascript:void(0);"

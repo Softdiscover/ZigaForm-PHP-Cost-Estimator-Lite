@@ -75,5 +75,5 @@ if ( intval( $mod_test ) == 1 ) {
 </form>
 <div class="space05"></div>
 	
-						<div class="clearfix"></div>
+						<div class="sfdc-clearfix"></div>
 					</div>

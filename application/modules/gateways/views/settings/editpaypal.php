@@ -23,13 +23,13 @@ if ( ! defined( 'BASEPATH' ) ) {
 			  <i class="fa fa-list-alt"></i><h5><?php echo __( 'Payment gateway', 'FRocket_admin' ); ?></h5>
 			</div>
 			<div class="widget-body">
-			  <div class="widget-forms clearfix">
+			  <div class="widget-forms sfdc-clearfix">
 				  <form id="uiform-form-editgateway"
 						  name="uiform-form-editgateway"
 						  enctype="multipart/form-data"
 						  method="post"
 						  >
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Name', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <input name="pg_name" 
@@ -38,7 +38,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 							 class="sfdc-form-control col-md-7" value="<?php echo ( isset( $pg_name ) ) ? $pg_name : ''; ?>">
 					</div>
 				  </div>
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Paypal mail', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <input name="paypal_email" 
@@ -48,7 +48,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 							 value="<?php echo ( ! empty( $paypal_email ) ) ? $paypal_email : ''; ?>">
 					</div>
 				  </div>
-				 <div class="sfdc-form-group clearfix">
+				 <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Currency', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 						  <select class="sfdc-form-control input-sm" 
@@ -69,7 +69,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 						</select>
 					</div>
 				  </div>
-					  <div class="sfdc-form-group clearfix">
+					  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Method', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <label class="sfdc-radio-inline">
@@ -82,7 +82,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 					  </label>
 					</div>
 				  </div>
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Return URL', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <input name="paypal_return_url" id="paypal_return_url" 
@@ -92,7 +92,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 							 value="<?php echo ( isset( $paypal_return_url ) ) ? $paypal_return_url : ''; ?>">
 					</div>
 				  </div>
-					   <div class="sfdc-form-group clearfix">
+					   <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Cancel URL', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <input name="paypal_cancel_url" id="paypal_cancel_url" 
@@ -102,7 +102,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 							 value="<?php echo ( isset( $paypal_cancel_url ) ) ? $paypal_cancel_url : ''; ?>">
 					</div>
 				  </div>
-				 <div class="sfdc-form-group clearfix">
+				 <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Status', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <label class="sfdc-radio-inline">
@@ -115,7 +115,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 					  </label>
 					</div>
 				  </div>
-				 <div class="sfdc-form-group clearfix">
+				 <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Test mode', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-10">
 					  <label class="sfdc-radio-inline">
@@ -129,7 +129,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 					</div>
 				  </div>
 					   
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Description', 'FRocket_admin' ); ?></label>
 					  <div class="sfdc-col-md-10">
 						<textarea name="pg_description" 
@@ -139,13 +139,13 @@ if ( ! defined( 'BASEPATH' ) ) {
 								  class="sfdc-form-control col-md-7"><?php echo $pg_description; ?></textarea>
 					  </div>
 				  </div>
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label"><?php echo __( 'Payment order', 'FRocket_admin' ); ?></label>
 					<div class="sfdc-col-md-4">
 						<input name="pg_order" id="pg_order" value="<?php echo ( isset( $pg_order ) ) ? $pg_order : ''; ?>">
 					</div>
 				  </div>
-				  <div class="sfdc-form-group clearfix">
+				  <div class="sfdc-form-group sfdc-clearfix">
 					<label class="sfdc-col-md-2 sfdc-control-label" style="padding-top:0px;">IPN URL</label>
 					<div class="sfdc-col-md-10">
 					  <label class="label label-default">

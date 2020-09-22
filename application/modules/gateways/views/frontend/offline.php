@@ -37,5 +37,5 @@ if ( ! defined( 'BASEPATH' ) ) {
 		 <input name="item_number" type="hidden" value="<?php echo $item_number; ?>" />
 	<input name="offline_return_url" type="hidden" value="<?php echo $offline_return_url; ?>" />
 </form>
-						<div class="clearfix"></div>
+						<div class="sfdc-clearfix"></div>
 					</div>
