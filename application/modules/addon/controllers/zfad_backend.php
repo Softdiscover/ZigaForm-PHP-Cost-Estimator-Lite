@@ -95,7 +95,7 @@ class zfad_backend extends BackendController {
 
 		$data          = array();
 		$data['query'] = $this->model_addon->getListAddons( 100, 0 );
-
+		$data['wp_version']=UIFORM_VERSION;
 		// $this->template->loadPartial('layout', 'addon/zfad_backend/list_extensions', $data);
 		$this->template->loadPartial( 'layout', 'backend/list_extensions', $data );
 	}
@@ -127,7 +127,7 @@ class zfad_backend extends BackendController {
 		foreach ( $tmp_addons as $key => $value ) {
 
 			// load addons
-			// require_once( UIFORM_FORMS_DIR . '/modules/addon_'.$value->add_name.'/controllers/backend.php');
+			// require_once( FCPATH . '/modules/addon_'.$value->add_name.'/controllers/backend.php');
 
 			$tmp_add_new_contr = array();
 

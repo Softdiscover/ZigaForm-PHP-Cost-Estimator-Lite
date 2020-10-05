@@ -1860,6 +1860,20 @@ class Frontend extends FrontendController {
 				self::$_form_data['form_id']   = $form_id;
 				self::$_form_data['record_id'] = $idActivate;
 
+					// insert to payment records
+					$data3                       = array();
+					$data3['fbh_id']             = $idActivate;
+					$data3['pgr_payment_amount'] = $form_cost_total;
+					$data3['pgr_currency']       = $this->current_cost['cur'];
+					$data3['flag_status']        = 1;
+					$data3['created_ip']         = $_SERVER['REMOTE_ADDR'];
+					$data3['created_by']         = 1;
+					$data3['created_date']       = date( 'Y-m-d h:i:s' );
+					$data3['type_pg_id']         = 1;
+
+					$this->db->set( $data3 );
+					$this->db->insert( $this->model_gateways_records->table );
+				
 				 // preparing mail
 
 				// is demo
@@ -1888,7 +1902,7 @@ class Frontend extends FrontendController {
 				$email_recipient = ( isset( $form_data_onsubm['onsubm']['mail_recipient'] ) ) ? $form_data_onsubm['onsubm']['mail_recipient'] : model_settings::$db_config['admin_mail'];
 				$email_cc        = ( isset( $form_data_onsubm['onsubm']['mail_cc'] ) ) ? $form_data_onsubm['onsubm']['mail_cc'] : '';
 				$email_bcc       = ( isset( $form_data_onsubm['onsubm']['mail_bcc'] ) ) ? $form_data_onsubm['onsubm']['mail_bcc'] : '';
-				$mail_subject    = ( isset( $form_data_onsubm['onsubm']['mail_subject'] ) ) ? do_shortcode( $form_data_onsubm['onsubm']['mail_subject'] ) : __( 'New form request', 'FRocket_front' );
+				$mail_subject    = ( isset( $form_data_onsubm['onsubm']['mail_subject'] ) ) ? do_shortcode( $form_data_onsubm['onsubm']['mail_subject'] ) : __( 'New form request', 'frocket_front' );
 
 				$mail_usr_recipient = ( isset( $form_data_onsubm['onsubm']['mail_usr_recipient'] ) ) ? $form_data_onsubm['onsubm']['mail_usr_recipient'] : '';
 				$mail_replyto       = ( isset( $form_data_onsubm['onsubm']['mail_replyto'] ) ) ? $form_data_onsubm['onsubm']['mail_replyto'] : '';
@@ -1933,7 +1947,7 @@ class Frontend extends FrontendController {
 					$mail_usr_cc      = ( isset( $form_data_onsubm['onsubm']['mail_usr_cc'] ) ) ? $form_data_onsubm['onsubm']['mail_usr_cc'] : '';
 					$mail_usr_bcc     = ( isset( $form_data_onsubm['onsubm']['mail_usr_bcc'] ) ) ? $form_data_onsubm['onsubm']['mail_usr_bcc'] : '';
 					$mail_usr_replyto = ( isset( $form_data_onsubm['onsubm']['mail_usr_replyto'] ) ) ? $form_data_onsubm['onsubm']['mail_usr_replyto'] : '';
-					$mail_usr_subject = ( isset( $form_data_onsubm['onsubm']['mail_usr_subject'] ) ) ? do_shortcode( $form_data_onsubm['onsubm']['mail_usr_subject'] ) : __( 'New form request', 'FRocket_front' );
+					$mail_usr_subject = ( isset( $form_data_onsubm['onsubm']['mail_usr_subject'] ) ) ? do_shortcode( $form_data_onsubm['onsubm']['mail_usr_subject'] ) : __( 'New form request', 'frocket_front' );
 
 					$mail_usr_pdf_st = ( isset( $form_data_onsubm['onsubm']['mail_usr_pdf_st'] ) ) ? $form_data_onsubm['onsubm']['mail_usr_pdf_st'] : '0';
 					if ( intval( $mail_usr_pdf_st ) === 1 ) {
@@ -2004,19 +2018,7 @@ class Frontend extends FrontendController {
 				$data['fbh_id']          = $idActivate;
 				$data['currency']        = $this->current_cost;
 
-					// insert to payment records
-					$data3                       = array();
-					$data3['fbh_id']             = $idActivate;
-					$data3['pgr_payment_amount'] = $form_cost_total;
-					$data3['pgr_currency']       = $this->current_cost['cur'];
-					$data3['flag_status']        = 1;
-					$data3['created_ip']         = $_SERVER['REMOTE_ADDR'];
-					$data3['created_by']         = 1;
-					$data3['created_date']       = date( 'Y-m-d h:i:s' );
-					$data3['type_pg_id']         = 1;
-
-					$this->db->set( $data3 );
-					$this->db->insert( $this->model_gateways_records->table );
+				
 
 				modules::run( 'addon/zfad_frontend/addons_doActions', 'onSubmitForm_pos' );
 

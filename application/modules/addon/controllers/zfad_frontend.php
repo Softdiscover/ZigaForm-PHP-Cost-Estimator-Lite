@@ -64,7 +64,7 @@ class zfad_frontend extends FrontendController {
 			// $tmp_addons_arr[$value->add_section][$value->add_name]=$tmp_addons[$key];
 
 			// load addons
-			// require_once( UIFORM_FORMS_DIR . '/modules/addon_'.$value->add_name.'/controllers/frontend.php');
+			// require_once( FCPATH . '/modules/addon_'.$value->add_name.'/controllers/frontend.php');
 
 			 // $tmp_modules_arr['addon_'.$value->add_name]=array( 'back' => call_user_func( array( 'zfaddn_back_'.$value->add_name, 'get_instance' ) ));
 

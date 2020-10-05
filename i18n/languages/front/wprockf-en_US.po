@@ -1,0 +1,150 @@
+# Copyright (C) 2020 Zigaform PHP Cost Estimation Form Builder 5.0.5
+# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.0.5 package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Zigaform WP Cost Estimation Form Builder 5.0.2\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_"
+"attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: application/views/frontend/header.php:32
+msgid "Form"
+msgstr "Form"
+
+#: application/modules/formbuilder/controllers/frontend.php:469, application/modules/formbuilder/views/frontend/form_invoice.php:23
+msgid "Invoice"
+msgstr "Invoice"
+
+#: application/modules/formbuilder/controllers/frontend.php:471, application/modules/formbuilder/controllers/frontend.php:499
+msgid "Export to PDF"
+msgstr "Export to PDF"
+
+#: application/modules/formbuilder/controllers/frontend.php:497
+msgid "Order summary"
+msgstr "Order summary"
+
+#: application/modules/formbuilder/controllers/frontend.php:779
+msgid "Total cost"
+msgstr "Total cost"
+
+#: application/modules/formbuilder/controllers/frontend.php:1201
+msgid "warning! Form was not submitted"
+msgstr "warning! Form was not submitted"
+
+#: application/modules/formbuilder/controllers/frontend.php:1551
+msgid "Error! The file exceeds the allowed size of"
+msgstr "Error! The file exceeds the allowed size of"
+
+#: application/modules/formbuilder/controllers/frontend.php:1558
+msgid "Error! Type of file is not allowed to upload"
+msgstr "Error! Type of file is not allowed to upload"
+
+#: application/modules/formbuilder/controllers/records.php:438
+msgid " , version : "
+msgstr " , version : "
+
+#: application/modules/formbuilder/controllers/records.php:438
+msgid " , platform : "
+msgstr " , platform : "
+
+#: application/modules/formbuilder/controllers/records.php:493, application/modules/formbuilder/controllers/records.php:533
+msgid "qty"
+msgstr "qty"
+
+#: application/modules/formbuilder/controllers/records.php:496, application/modules/formbuilder/controllers/records.php:536, application/modules/formbuilder/views/frontend/form_invoice.php:110, application/modules/formbuilder/views/frontend/form_invoice.php:103
+msgid "Amount"
+msgstr "Amount"
+
+#: application/modules/formbuilder/views/frontend/form_invoice.php:24
+msgid "Date"
+msgstr "Date"
+
+#: application/modules/formbuilder/views/frontend/form_invoice.php:30
+msgid "From"
+msgstr "From"
+
+#: application/modules/formbuilder/views/frontend/form_invoice.php:62
+msgid "To"
+msgstr "To"
+
+#: application/modules/formbuilder/views/frontend/form_invoice.php:107, application/modules/formbuilder/views/frontend/form_invoice.php:100
+msgid "Item ID"
+msgstr "Item ID"
+
+#: application/modules/formbuilder/views/frontend/form_invoice.php:108
+msgid "Quantity"
+msgstr "Quantity"
+
+#: application/modules/formbuilder/views/frontend/form_invoice.php:109, application/modules/formbuilder/views/frontend/form_invoice.php:102
+msgid "Description"
+msgstr "Description"
+
+#: application/modules/formbuilder/views/frontend/form_invoice.php:187, application/modules/formbuilder/views/frontend/form_summary.php:74, application/modules/formbuilder/views/frontend/mail_generate_fields.php:204, application/modules/formbuilder/views/records/info_record.php:32
+msgid "Sub total"
+msgstr "Sub total"
+
+#: application/modules/formbuilder/views/frontend/form_invoice.php:195, application/modules/formbuilder/views/frontend/form_summary.php:79, application/modules/formbuilder/views/frontend/mail_generate_fields.php:209, application/modules/formbuilder/views/records/info_record.php:37
+msgid "Tax"
+msgstr "Tax"
+
+#: application/modules/formbuilder/views/frontend/form_invoice.php:204
+msgid "Invoice Total"
+msgstr "Invoice Total"
+
+#: application/modules/formbuilder/views/frontend/form_summary.php:84, application/modules/formbuilder/views/frontend/mail_generate_fields.php:215, application/modules/formbuilder/views/frontend/payment_html.php:80, application/modules/formbuilder/views/records/info_record.php:42
+msgid "Total"
+msgstr "Total"
+
+#: application/modules/formbuilder/views/frontend/mail_generate_fields.php:97, application/modules/formbuilder/views/frontend/mail_generate_fields.php:128
+msgid "Units"
+msgstr "Units"
+
+#: application/modules/formbuilder/views/frontend/payment_html.php:22
+msgid "Choose Payment Method"
+msgstr "Choose Payment Method"
+
+#: application/modules/formbuilder/views/frontend/payment_html.php:28
+msgid "Payment Option"
+msgstr "Payment Option"
+
+#: application/modules/formbuilder/views/frontend/payment_html.php:52
+msgid "Order Summary"
+msgstr "Order Summary"
+
+#: application/modules/formbuilder/views/frontend/payment_html.php:61
+msgid "See summary"
+msgstr "See summary"
+
+#: application/modules/formbuilder/views/frontend/payment_html.php:71
+msgid "See invoice"
+msgstr "See invoice"
+
+#: application/modules/formbuilder/views/frontend/payment_html.php:86
+msgid "Agree To The"
+msgstr "Agree To The"
+
+#: application/modules/formbuilder/views/frontend/payment_html.php:86
+msgid "Terms &amp; Conditions"
+msgstr "Terms &amp; Conditions"
+
+#: application/modules/formbuilder/views/frontend/payment_html.php:97
+msgid "Complete Order"
+msgstr "Complete Order"
+
+#: application/modules/formbuilder/views/frontend/payment_html.php:103
+msgid "Select Payment"
+msgstr "Select Payment"

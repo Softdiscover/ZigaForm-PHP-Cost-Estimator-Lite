@@ -326,7 +326,7 @@ $config['csrf_protection']  = true;
 $config['csrf_token_name']  = 'csrf_field_name';
 $config['csrf_cookie_name'] = 'csrfcookiename';
 $config['csrf_expire']      = 7200;
-$config['csrf_ignore']      = array( 'uiformbuilder', 'gateways/paypal/ipn ' );
+$config['csrf_ignore']      = array( 'uiformbuilder', 'gateways/paypal/ipn ' , 'addon_mgtranslate' );
 /*
 |--------------------------------------------------------------------------
 | Output Compression

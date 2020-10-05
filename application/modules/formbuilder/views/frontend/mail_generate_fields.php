@@ -201,18 +201,18 @@ ob_start();
 <table cellspacing="0" cellpadding="0">
 	<?php if ( isset( $price_tax_st ) && intval( $price_tax_st ) === 1 ) { ?>
 	<tr> 
-		   <td align="center" valign="top"> <?php echo __( 'Sub total', 'FRocket_front' ); ?></td> 
+		   <td align="center" valign="top"> <?php echo __( 'Sub total', 'frocket_front' ); ?></td> 
 		   <td width="20" align="center" valign="top">:</td> 
 		   <td width="200" align="left" valign="top"><?php echo Uiform_Form_Helper::cformat_numeric( $format_price_conf, $form_cost_subtotal ); ?></td> 
 	</tr>
 	<tr> 
-		   <td align="center" valign="top"> <?php echo __( 'Tax', 'FRocket_front' ); ?></td> 
+		   <td align="center" valign="top"> <?php echo __( 'Tax', 'frocket_front' ); ?></td> 
 		   <td width="20" align="center" valign="top">:</td> 
 		   <td width="200" align="left" valign="top"><?php echo Uiform_Form_Helper::cformat_numeric( $format_price_conf, $form_cost_tax ); ?></td> 
 	</tr>
  <?php } ?>
 	<tr> 
-		   <td align="center" valign="top"> <?php echo __( 'Total', 'FRocket_front' ); ?></td> 
+		   <td align="center" valign="top"> <?php echo __( 'Total', 'frocket_front' ); ?></td> 
 		   <td width="20" align="center" valign="top">:</td> 
 		   <td width="200" align="left" valign="top"><?php echo Uiform_Form_Helper::cformat_numeric( $format_price_conf, $form_cost_total ) . ' ' . $current_cost_cur; ?></td> 
 	</tr>
