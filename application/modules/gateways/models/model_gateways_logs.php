@@ -49,8 +49,8 @@ class model_gateways_logs extends CI_Model {
 	 * @param [type] $form_id
 	 * @return void
 	 */
-	function deleteRecordbyFormId($form_id){
-	
+	function deleteRecordbyFormId( $form_id ) {
+
 		$query = sprintf(
 			'
             DELETE from %s where pgr_id IN (
@@ -64,11 +64,11 @@ class model_gateways_logs extends CI_Model {
 			$this->tbform_record,
 			$form_id
 		);
-		
+
 		$this->db->query( $query );
-		
+
 	}
-	
+
 }
 
 

@@ -42,17 +42,18 @@ if ( ! defined( 'BASEPATH' ) ) {
 					<span class="uiform-inforecord-total-amount"><b><?php echo __( 'Total', 'frocket_front' ); ?></b> : <?php echo Uiform_Form_Helper::cformat_numeric( $price_format, $form_total_amount ) . ' ' . $form_currency; ?></span>
 				 <?php } ?>
 			</div>
-	<?php
-	} else { ?>
+			<?php
+		} else {
+			?>
 
 
-		<?php echo $custom_template; ?>
+			<?php echo $custom_template; ?>
 
 
 
-<?php
-	}
-	?>
+			<?php
+		}
+		?>
 		
 
 		</div>

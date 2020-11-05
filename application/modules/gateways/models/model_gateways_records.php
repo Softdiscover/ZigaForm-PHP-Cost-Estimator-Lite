@@ -138,8 +138,7 @@ class model_gateways_records extends CI_Model {
 	 * @return void
 	 */
 	function getListAllInvoicesFiltered( $data ) {
-	 
-		
+
 		$per_page   = $data['per_page'];
 		$segment    = $data['segment'];
 		$orderby    = $data['orderby'];
@@ -155,7 +154,7 @@ class model_gateways_records extends CI_Model {
 			$this->tbform_record,
 			$this->tbform
 		);
- 
+
 		$orderby = ( $orderby === 'asc' ) ? 'asc' : 'desc';
 
 		$query .= sprintf( ' ORDER BY gr.created_date %s ', $orderby );
@@ -166,9 +165,9 @@ class model_gateways_records extends CI_Model {
 		}
 		$query2 = $this->db->query( $query );
 		return $query2->result();
-		 
+
 	}
-	
+
 	/**
 	 * Show trash records according to filter
 	 *
@@ -177,8 +176,7 @@ class model_gateways_records extends CI_Model {
 	 * @return void
 	 */
 	function getListTrashInvoicesFiltered( $data ) {
-	 
-		
+
 		$per_page   = $data['per_page'];
 		$segment    = $data['segment'];
 		$orderby    = $data['orderby'];
@@ -194,7 +192,7 @@ class model_gateways_records extends CI_Model {
 			$this->tbform_record,
 			$this->tbform
 		);
- 
+
 		$orderby = ( $orderby === 'asc' ) ? 'asc' : 'desc';
 
 		$query .= sprintf( ' ORDER BY gr.created_date %s ', $orderby );
@@ -205,17 +203,17 @@ class model_gateways_records extends CI_Model {
 		}
 		$query2 = $this->db->query( $query );
 		return $query2->result();
-		 
+
 	}
-	
+
 	/**
 	 * delete payment records by form id
 	 *
 	 * @param [type] $form_id
 	 * @return void
 	 */
-	function deleteRecordbyFormId($form_id){
-	
+	function deleteRecordbyFormId( $form_id ) {
+
 		$query = sprintf(
 			'
             DELETE from %s where pgr_id IN (
@@ -226,15 +224,15 @@ class model_gateways_records extends CI_Model {
 			$this->tbform_record,
 			$form_id
 		);
-		
+
 		$this->db->query( $query );
-		
+
 	}
 
 	/*
 	* list all and trash forms
 	*/
-	function ListTotals(){
+	function ListTotals() {
 		$query = sprintf(
 			'
 			SELECT 
@@ -243,12 +241,11 @@ class model_gateways_records extends CI_Model {
 			FROM %s
 			',
 			$this->table
-			
 		);
 
 		$query2 = $this->db->query( $query );
 		return $query2->row();
-	
+
 	}
 
 }

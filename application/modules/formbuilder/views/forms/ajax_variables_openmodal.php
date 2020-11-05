@@ -117,6 +117,7 @@ ob_start();
 									<tr>
 										<th width="150"><?php echo __( 'Calculation variables', 'FRocket_admin' ); ?></th>
 										<th><?php echo __( 'Code', 'FRocket_admin' ); ?></th>
+										<th><?php echo __( 'Wrapper', 'FRocket_admin' ); ?> <a data-original-title="<?php echo __( 'you can use this to show content depending if the calculation variable has a value. if it does not have a value, the content inside this shortcode will not appear. ', 'FRocket_admin' ); ?>" data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a></th>
 									</tr>
 
 								</thead>
@@ -128,6 +129,7 @@ ob_start();
 									<tr>
 										<td> <?php echo $value['tab_title']; ?></td>
 										<td><textarea onclick="this.select();" style="width: 284px;">[uifm_var opt="calc" atr1="<?php echo $value['id']; ?>"]</textarea></td>
+										<td><textarea onclick="this.select();" style="width: 284px;">[uifm_wrap opt="calc" atr1="<?php echo $value['id']; ?>"]here goes your content if calc variable have some value. if no value, this will not appear.[/uifm_wrap]</textarea></td>
 									</tr>
 											<?php
 										}

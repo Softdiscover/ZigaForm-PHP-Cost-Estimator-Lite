@@ -1,5 +1,5 @@
-# Copyright (C) 2020 Zigaform PHP Cost Estimation Form Builder 5.0.9
-# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.0.9 package.
+# Copyright (C) 2020 Zigaform PHP Cost Estimation Form Builder 5.1.4
+# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.1.4 package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rocket form\n"
@@ -18,47 +18,47 @@ msgstr ""
 msgid "Form"
 msgstr "Form"
 
-#: application/modules/formbuilder/controllers/frontend.php:469, application/modules/formbuilder/views/frontend/form_invoice.php:23
+#: application/modules/formbuilder/controllers/frontend.php:468, application/modules/formbuilder/views/frontend/form_invoice.php:23
 msgid "Invoice"
 msgstr "Rechnung"
 
-#: application/modules/formbuilder/controllers/frontend.php:471, application/modules/formbuilder/controllers/frontend.php:499
+#: application/modules/formbuilder/controllers/frontend.php:470, application/modules/formbuilder/controllers/frontend.php:498
 msgid "Export to PDF"
 msgstr "Export to PDF"
 
-#: application/modules/formbuilder/controllers/frontend.php:497
+#: application/modules/formbuilder/controllers/frontend.php:496
 msgid "Order summary"
 msgstr "Bestellungs-Zusammenfassung"
 
-#: application/modules/formbuilder/controllers/frontend.php:779
+#: application/modules/formbuilder/controllers/frontend.php:778
 msgid "Total cost"
 msgstr "Gesamtkosten"
 
-#: application/modules/formbuilder/controllers/frontend.php:1201
+#: application/modules/formbuilder/controllers/frontend.php:1262
 msgid "warning! Form was not submitted"
 msgstr "Warnung! Form wurde nicht gesendet,"
 
-#: application/modules/formbuilder/controllers/frontend.php:1551
+#: application/modules/formbuilder/controllers/frontend.php:1612
 msgid "Error! The file exceeds the allowed size of"
 msgstr "Fehler! Die Datei die zulässige Größe überschreitet,"
 
-#: application/modules/formbuilder/controllers/frontend.php:1558
+#: application/modules/formbuilder/controllers/frontend.php:1619
 msgid "Error! Type of file is not allowed to upload"
 msgstr "Fehler! Dateityp ist nicht erlaubt, hochzuladen"
 
-#: application/modules/formbuilder/controllers/records.php:438
+#: application/modules/formbuilder/controllers/records.php:434
 msgid " , version : "
 msgstr " , version : "
 
-#: application/modules/formbuilder/controllers/records.php:438
+#: application/modules/formbuilder/controllers/records.php:434
 msgid " , platform : "
 msgstr " , platform : "
 
-#: application/modules/formbuilder/controllers/records.php:493, application/modules/formbuilder/controllers/records.php:533
+#: application/modules/formbuilder/controllers/records.php:489, application/modules/formbuilder/controllers/records.php:529
 msgid "qty"
 msgstr "qty"
 
-#: application/modules/formbuilder/controllers/records.php:496, application/modules/formbuilder/controllers/records.php:536, application/modules/formbuilder/views/frontend/form_invoice.php:110, application/modules/formbuilder/views/frontend/form_invoice.php:103
+#: application/modules/formbuilder/controllers/records.php:492, application/modules/formbuilder/controllers/records.php:532, application/modules/formbuilder/views/frontend/form_invoice.php:110, application/modules/formbuilder/views/frontend/form_invoice.php:103
 msgid "Amount"
 msgstr "Betrag"
 

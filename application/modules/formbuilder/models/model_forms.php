@@ -106,7 +106,7 @@ class model_forms extends CI_Model {
 			where uf.flag_status=0 ',
 			$this->table
 		);
- 
+
 		$orderby = ( $orderby === 'asc' ) ? 'asc' : 'desc';
 
 		$query .= sprintf( ' ORDER BY uf.updated_date %s ', $orderby );
@@ -265,11 +265,11 @@ class model_forms extends CI_Model {
 		return $this->db->get()->result();
 	}
 
-	
+
 	/*
 	* list all and trash forms
 	*/
-	function ListTotals(){
+	function ListTotals() {
 		$query = sprintf(
 			'
 			SELECT 
@@ -278,14 +278,13 @@ class model_forms extends CI_Model {
 			FROM %s
 			',
 			$this->table
-			
 		);
 
 		$query2 = $this->db->query( $query );
 		return $query2->row();
-	
+
 	}
-	
+
 
 }
 

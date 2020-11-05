@@ -419,17 +419,17 @@ class Frontend extends FrontendController {
 		}
 
 		$rdata = $this->model_forms->getAvailableFormById( $form_id );
-		if(empty($rdata)){
-			$response['success']="0";
-			$response['html_content']= "";
-		}else{
+		if ( empty( $rdata ) ) {
+			$response['success'] = '0';
+			$response['html_content'] = '';
+		} else {
 
-		$form_data_onsubm = json_decode( $rdata->fmb_data2, true );
-		 $onload_scroll   = ( isset( $form_data_onsubm['main']['onload_scroll'] ) ) ? $form_data_onsubm['main']['onload_scroll'] : '1';
+			$form_data_onsubm = json_decode( $rdata->fmb_data2, true );
+			$onload_scroll   = ( isset( $form_data_onsubm['main']['onload_scroll'] ) ) ? $form_data_onsubm['main']['onload_scroll'] : '1';
 
 			$preload_noconflict = ( isset( $form_data_onsubm['main']['preload_noconflict'] ) ) ? $form_data_onsubm['main']['preload_noconflict'] : '1';
 
-		  // load form variables
+			// load form variables
 			$form_variables                        = array();
 			$form_variables['_uifmvar']['addon']   = self::$_addons_jsactions;
 			$form_variables['_uifmvar']['is_demo'] = 0;
@@ -444,11 +444,10 @@ class Frontend extends FrontendController {
 			$form_variables['imagesurl']           = base_url() . 'assets/frontend/images';
 			$response['rockfm_vars_arr']           = $form_variables;
 
-		if ( ! empty( $rdata ) ) {
-			$response['success']="1";
-			$response['html_content'] = Uiform_Form_Helper::encodeHex( do_shortcode( $rdata->fmb_html ) );
-		}
-
+			if ( ! empty( $rdata ) ) {
+				$response['success'] = '1';
+				$response['html_content'] = Uiform_Form_Helper::encodeHex( do_shortcode( $rdata->fmb_html ) );
+			}
 		}
 		$data         = array();
 		$data['json'] = $response;
@@ -808,15 +807,31 @@ class Frontend extends FrontendController {
 			array(
 				'id'   => '',
 				'atr1' => 'input',
+				'opt'  => '', // quick option
 			),
 			$atts
 		);
 
 		$result = '';
+		$output = '';
 
-		$f_data = $this->model_record->getFieldDataById( $this->flag_submitted, $vars['id'] );
+		switch ( strval( $vars['opt'] ) ) {
+			case 'calc':
+				$form_rec_data = $this->model_record->getVarOptRecord( 'calc_' . $vars['atr1'], $this->flag_submitted );
+				$resultCalc        = $form_rec_data;
 
-		$output = $this->model_record->getFieldOptRecord( $this->flag_submitted, $f_data->type, $vars['id'], $vars['atr1'] );
+				if ( $resultCalc != '' && intval( $resultCalc ) > 0 ) {
+					$output = '1';
+				}
+
+				break;
+
+			default:
+				$f_data = $this->model_record->getFieldDataById( $this->flag_submitted, $vars['id'] );
+				$output = $this->model_record->getFieldOptRecord( $this->flag_submitted, $f_data->type, $vars['id'], $vars['atr1'] );
+
+				break;
+		}
 
 		if ( $output != '' ) {
 			$result = do_shortcode( $content );
@@ -837,6 +852,7 @@ class Frontend extends FrontendController {
 					'atr1' => 'input',
 					'atr2' => '',
 					'atr3' => '',
+					'atr4' => '',
 				),
 				$atts
 			);
@@ -868,7 +884,52 @@ class Frontend extends FrontendController {
 					$output = Uiform_Form_Helper::cformat_numeric( $this->format_price_conf, $output );
 
 					break;
+				case 'format':
+					switch ( strval( $vars['atr4'] ) ) {
+						case 'list':
+							//format to field with multiple options
+							switch ( strval( $f_data->type ) ) {
+								case '9':
+								case '11':
+									$tmpArr = explode( '^,^', $output );
+									if ( is_array( $tmpArr ) ) {
+										$newString = '<ul>';
+										foreach ( $tmpArr as $key => $value ) {
+											$newString .= '<li>' . $value . '</li>';
+										}
+										$newString .= '</ul>';
+										$output = $newString;
+									}
 
+									break;
+
+								default:
+									# code...
+									break;
+							}
+							break;
+						case 'comma':
+								//format to field with multiple options
+							switch ( strval( $f_data->type ) ) {
+								case '9':
+								case '11':
+									$tmpArr = explode( '^,^', $output );
+									if ( is_array( $tmpArr ) ) {
+										$output = str_replace( '^,^', ', ', $output );
+									}
+
+									break;
+
+								default:
+									# code...
+									break;
+							}
+							break;
+						default:
+							break;
+					}
+
+					break;
 			}
 
 			if ( $output != '' ) {
@@ -1682,25 +1743,24 @@ class Frontend extends FrontendController {
 								$form_f_tmp[ $key ]['price_st']    = isset( $tmp_fdata['price']['enable_st'] ) ? $tmp_fdata['price']['enable_st'] : 0;
 								$form_f_tmp[ $key ]['lbl_show_st'] = isset( $tmp_fdata['price']['lbl_show_st'] ) ? $tmp_fdata['price']['lbl_show_st'] : 0;
 								// for records
-								$tmp_summary=array();
-								 
-								foreach ( $value as $key2 => $value2 ) {
-									$tmp_summary_inner='';
-									 
-									if(isset($tmp_fdata['input17']['options'][ $key2 ]['label'])){
-										$tmp_summary_inner.=$tmp_fdata['input17']['options'][ $key2 ]['label'];
-									}
-									
-									if(intval($value2) > 1){
-										$tmp_summary_inner.= ' - qty: '.$value2;
-									}
-									$tmp_summary[] = $tmp_summary_inner;
+								$tmp_summary = array();
+
+							foreach ( $value as $key2 => $value2 ) {
+								$tmp_summary_inner = '';
+
+								if ( isset( $tmp_fdata['input17']['options'][ $key2 ]['label'] ) ) {
+									$tmp_summary_inner .= $tmp_fdata['input17']['options'][ $key2 ]['label'];
 								}
-								 
-							 
-								$form_f_rec_tmp[ $key ] =implode('^,^', $tmp_summary);
+
+								if ( intval( $value2 ) > 1 ) {
+									$tmp_summary_inner .= ' - qty: ' . $value2;
+								}
+								$tmp_summary[] = $tmp_summary_inner;
+							}
+
+								$form_f_rec_tmp[ $key ] = implode( '^,^', $tmp_summary );
 								// end for records
-								 
+
 							foreach ( $value as $key2 => $value2 ) {
 								$tmp_options_row          = array();
 								$tmp_options_row['label'] = $tmp_fdata['input17']['options'][ $key2 ]['label'];
@@ -1873,7 +1933,7 @@ class Frontend extends FrontendController {
 
 					$this->db->set( $data3 );
 					$this->db->insert( $this->model_gateways_records->table );
-				
+
 				 // preparing mail
 
 				// is demo
@@ -2018,8 +2078,6 @@ class Frontend extends FrontendController {
 				$data['fbh_id']          = $idActivate;
 				$data['currency']        = $this->current_cost;
 
-				
-
 				modules::run( 'addon/zfad_frontend/addons_doActions', 'onSubmitForm_pos' );
 
 			if ( intval( $data['payment_st'] ) === 1 ) {
@@ -2063,8 +2121,8 @@ class Frontend extends FrontendController {
 		 $is_html = isset( $_GET['is_html'] ) ? Uiform_Form_Helper::sanitizeInput( $_GET['is_html'] ) : 0;
 
 		 $form_data = $this->model_record->getFormDataById( $rec_id );
-		 $this->current_form_id=$form_data->form_fmb_id;	
-		 
+		 $this->current_form_id = $form_data->form_fmb_id;
+
 		if ( intval( $rec_id ) > 0 ) {
 			ob_start();
 			?>

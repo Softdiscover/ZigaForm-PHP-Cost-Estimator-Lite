@@ -58,23 +58,23 @@ class Records extends BackendController {
 	}
 
 	public function ajax_list_invoice_updatest() {
-		 
+
 		$list_ids = ( isset( $_POST['id'] ) && $_POST['id'] ) ? array_map( array( 'Uiform_Form_Helper', 'sanitizeRecursive' ), $_POST['id'] ) : array();
 		$form_st  = ( isset( $_POST['form_st'] ) && $_POST['form_st'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['form_st'] ) : '';
 		$is_trash  = ( isset( $_POST['is_trash'] ) && $_POST['is_trash'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['is_trash'] ) : '';
 		if ( $list_ids ) {
-			
-			if(intval($is_trash)===0){
-				switch (intval($form_st)) {
+
+			if ( intval( $is_trash ) === 0 ) {
+				switch ( intval( $form_st ) ) {
 					case 1:
 					case 2:
 					case 0:
 						foreach ( $list_ids as $value ) {
-							 
+
 							$data  = array(
 								'flag_status' => intval( $form_st ),
 							);
-						 
+
 							$this->db->set( $data );
 							$this->db->where( 'pgr_id', $value );
 							$this->db->update( $this->model_gateways_records->table );
@@ -83,16 +83,16 @@ class Records extends BackendController {
 					default:
 						break;
 				}
-			}else{
-				switch (intval($form_st)) {
+			} else {
+				switch ( intval( $form_st ) ) {
 					case 1:
-					case 2:	
+					case 2:
 						foreach ( $list_ids as $value ) {
-							 
+
 							$data  = array(
 								'flag_status' => intval( $form_st ),
 							);
-						 
+
 							$this->db->set( $data );
 							$this->db->where( 'pgr_id', $value );
 							$this->db->update( $this->model_gateways_records->table );
@@ -100,65 +100,61 @@ class Records extends BackendController {
 						break;
 					case 0:
 						foreach ( $list_ids as $value ) {
-							
-							$this->delete_form_process($value);
-							 
+
+							$this->delete_form_process( $value );
+
 						}
-						
+
 						break;
 					default:
 						# code...
 						break;
 				}
-			
 			}
-			
-			
 		}
 	}
 
-	private function delete_form_process($value){
-	
-		//remove from records 
-		$this->db->where('pgr_id', $value);
-		$this->db->delete($this->model_gateways_logs->table);
-		 
+	private function delete_form_process( $value ) {
+
 		//remove from records
-		$this->db->where('pgr_id', $value);
-		$this->db->delete($this->model_gateways_records->table);
-		 
+		$this->db->where( 'pgr_id', $value );
+		$this->db->delete( $this->model_gateways_logs->table );
+
+		//remove from records
+		$this->db->where( 'pgr_id', $value );
+		$this->db->delete( $this->model_gateways_records->table );
+
 	}
 
 	public function ajax_delete_invoice() {
- 
+
 		$pgr_id = ( isset( $_POST['pgr_id'] ) && $_POST['pgr_id'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['pgr_id'] ) : 0;
 		$is_trash = ( isset( $_POST['is_trash'] ) && $_POST['is_trash'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['is_trash'] ) : 0;
-		 
-		if(intval($is_trash)===0){
-			 
+
+		if ( intval( $is_trash ) === 0 ) {
+
 			$data   = array(
 				'flag_status' => 0,
 			);
-			 
+
 			$this->db->set( $data );
 			$this->db->where( 'pgr_id', $pgr_id );
 			$this->db->update( $this->model_gateways_records->table );
-			
-		}else{
-			$this->delete_form_process($pgr_id);
-			 
-			 
+
+		} else {
+			$this->delete_form_process( $pgr_id );
+
 		}
-		
+
 	}
 
-    /**
+	/**
 	 * List trash forms
 	 *
 	 * @return void
 	 */
 	function ajax_invoicelist_sendfilter() {
-		 
+
 		$data_filter = ( isset( $_POST['data_filter'] ) && $_POST['data_filter'] ) ? $_POST['data_filter'] : '';
 
 		$opt_save   = ( isset( $_POST['opt_save'] ) && $_POST['opt_save'] ) ? Uiform_Form_Helper::sanitizeInput( $_POST['opt_save'] ) : 0;
@@ -175,15 +171,13 @@ class Records extends BackendController {
 		$data['orderby']    = $orderby;
 		$data['is_trash']    = $is_trash;
 
-		
 		update_option( 'zgfm_listinvoices_searchfilter', $data );
-		
 
 		$data['segment'] = 0;
 		$data['offset']  = $opt_offset;
-        
+
 		$result = $this->ajax_invoiceslist_refresh( $data );
-         
+
 		$json            = array();
 		$json['content'] = $result;
 
@@ -192,7 +186,7 @@ class Records extends BackendController {
 		die();
 	}
 
-    /**
+	/**
 	 * get forms in trash
 	 *
 	 * @param [type] $data
@@ -206,17 +200,16 @@ class Records extends BackendController {
 
 		// list all forms
 		$config                         = array();
-		
-		
+
 		$tmp = $this->model_gateways_records->ListTotals();
-		if(intval($data['is_trash'])===0){
+		if ( intval( $data['is_trash'] ) === 0 ) {
 			$config['base_url']             = site_url() . 'formbuilder/forms/list_records';
 			$config['total_rows']           = $tmp->r_all;
-		}else{
+		} else {
 			$config['base_url']             = site_url() . 'formbuilder/forms/list_trash_records';
 			$config['total_rows']           = $tmp->r_trash;
 		}
-		
+
 		$config['per_page']             = $data['per_page'];
 		$config['first_link']           = 'First';
 		$config['last_link']            = 'Last';
@@ -246,22 +239,22 @@ class Records extends BackendController {
 		$data2['segment']    = $offset;
 		$data2['orderby']    = $data['orderby'];
 		$data2['is_trash']  = $data['is_trash'];
-		
-        if(intval($data2['is_trash'])===0){
-            $data2['query'] = $this->model_gateways_records->getListAllInvoicesFiltered( $data2 );   
-        }else{
-			$data2['query'] = $this->model_gateways_records->getListTrashInvoicesFiltered( $data2 );   
-        }
-		
+
+		if ( intval( $data2['is_trash'] ) === 0 ) {
+			$data2['query'] = $this->model_gateways_records->getListAllInvoicesFiltered( $data2 );
+		} else {
+			$data2['query'] = $this->model_gateways_records->getListTrashInvoicesFiltered( $data2 );
+		}
+
 		$data2['pagination'] = $this->pagination->create_links();
 		$data2['obj_list_data'] = List_data::get();
-		
-		if(intval($data2['is_trash'])===0){
-			return List_data::get()->list_detail_invoices($data2);
-		}else{
-			return List_data::get()->list_detail_invoicestrash($data2);
+
+		if ( intval( $data2['is_trash'] ) === 0 ) {
+			return List_data::get()->list_detail_invoices( $data2 );
+		} else {
+			return List_data::get()->list_detail_invoicestrash( $data2 );
 		}
-        
+
 	}
 
 	public function info_record() {
@@ -293,20 +286,20 @@ class Records extends BackendController {
 
 		$offset          = ( isset( $_GET['offset'] ) ) ? Uiform_Form_Helper::sanitizeInput( $_GET['offset'] ) : 0;
 		$data2['offset'] = $offset;
-		
-		$form_data=$this->model_gateways_records->ListTotals();
-		$data2['title']=__( 'Invoices list', 'FRocket_admin' );
-		$data2['all']=$form_data->r_all;
-		$data2['trash']=$form_data->r_trash;
-		$data2['header_buttons']= List_data::get()->list_detail_invoice_headerbuttons();
-		$data2['script_trigger']= 'zgfm_back_general.invoiceslist_search_process();';
-		$data2['subcurrent']= 1;
-		$data2['subsubsub'] = List_data::get()->subsubsub_invoices($data2);
-        $data2['is_trash'] =0;
-    
-        $content=List_data::get()->show_list($data2);
-        //echo self::loadPartial2( 'layout.php', $content);
-        echo $this->template->loadPartial2( 'layout', $content );
+
+		$form_data = $this->model_gateways_records->ListTotals();
+		$data2['title'] = __( 'Invoices list', 'FRocket_admin' );
+		$data2['all'] = $form_data->r_all;
+		$data2['trash'] = $form_data->r_trash;
+		$data2['header_buttons'] = List_data::get()->list_detail_invoice_headerbuttons();
+		$data2['script_trigger'] = 'zgfm_back_general.invoiceslist_search_process();';
+		$data2['subcurrent'] = 1;
+		$data2['subsubsub'] = List_data::get()->subsubsub_invoices( $data2 );
+		$data2['is_trash'] = 0;
+
+		$content = List_data::get()->show_list( $data2 );
+		//echo self::loadPartial2( 'layout.php', $content);
+		echo $this->template->loadPartial2( 'layout', $content );
 	}
 
 	/**
@@ -327,20 +320,20 @@ class Records extends BackendController {
 
 		$offset          = ( isset( $_GET['offset'] ) ) ? Uiform_Form_Helper::sanitizeInput( $_GET['offset'] ) : 0;
 		$data2['offset'] = $offset;
-		
-		$form_data=$this->model_gateways_records->ListTotals();
-		$data2['title']=__( 'Invoices in trash', 'FRocket_admin' );
-		$data2['all']=$form_data->r_all;
-		$data2['trash']=$form_data->r_trash;
-		$data2['header_buttons']= List_data::get()->list_detail_invoicetrash_headerbuttons();
-		$data2['script_trigger']= 'zgfm_back_general.invoiceslist_search_process();';
-		$data2['subcurrent']= 2;
-		$data2['subsubsub'] = List_data::get()->subsubsub_invoices($data2);
-        $data2['is_trash'] =1;
-    
-        $content=List_data::get()->show_list($data2);
-        //echo self::loadPartial2( 'layout.php', $content);
-        echo $this->template->loadPartial2( 'layout', $content );
+
+		$form_data = $this->model_gateways_records->ListTotals();
+		$data2['title'] = __( 'Invoices in trash', 'FRocket_admin' );
+		$data2['all'] = $form_data->r_all;
+		$data2['trash'] = $form_data->r_trash;
+		$data2['header_buttons'] = List_data::get()->list_detail_invoicetrash_headerbuttons();
+		$data2['script_trigger'] = 'zgfm_back_general.invoiceslist_search_process();';
+		$data2['subcurrent'] = 2;
+		$data2['subsubsub'] = List_data::get()->subsubsub_invoices( $data2 );
+		$data2['is_trash'] = 1;
+
+		$content = List_data::get()->show_list( $data2 );
+		//echo self::loadPartial2( 'layout.php', $content);
+		echo $this->template->loadPartial2( 'layout', $content );
 	}
 
 
