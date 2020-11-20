@@ -2337,6 +2337,9 @@ class Frontend extends FrontendController {
 											$data3[ $key . '_' . $key2 . '_' . $key3 . '_' . $key4 ] = $value4;
 
 										}
+									} else {
+										 $data3[ $key . '_' . $key2 . '_' . $key3 ] = $value3;
+
 									}
 								}
 							}
