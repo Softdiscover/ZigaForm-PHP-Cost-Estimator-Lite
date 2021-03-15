@@ -1,5 +1,5 @@
-# Copyright (C) 2021 Zigaform PHP Cost Estimation Form Builder 5.2.6
-# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.2.6 package.
+# Copyright (C) 2021 Zigaform PHP Cost Estimation Form Builder 5.2.8
+# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.2.8 package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Zigaform WP Cost Estimation Form Builder 5.0.2\n"
