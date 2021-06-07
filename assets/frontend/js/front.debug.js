@@ -3256,12 +3256,6 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 			zgfm_variable.innerVars = {};
 			zgfm_variable.externalVars = {};
 
-			var accounting;
-
-			this.setAccounting = function(obj) {
-				accounting = obj;
-			};
-
 			this.initialize = function() {};
 
 			this.costest_sticky_init = function(obj_form) {
@@ -3666,7 +3660,7 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 										price_sum += parseFloat(uifm_fld_price);
 										tmp_uifm_summ_list_inner += '<li>' + $(this).attr('data-uifm-inp-label');
 										if (parseFloat(uifm_fld_price) > 0) {
-											tmp_uifm_summ_list_inner += ' : ' + uifm_price_symbol + zgfm_front_cost.format_money(obj_form, uifm_fld_price) + ' ' + uifm_price_code;
+											tmp_uifm_summ_list_inner += ' : <div class="uifm-sbox-summ-fld-symbol">' + uifm_price_symbol +'</div><div class="uifm-sbox-summ-fld-price">'+ zgfm_front_cost.format_money(obj_form, uifm_fld_price) + '</div><div class="uifm-sbox-summ-fld-pricecode"> ' + uifm_price_code+'</div>';
 										}
 										tmp_uifm_summ_list_inner += '</li>';
 									});
@@ -3712,7 +3706,7 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 										price_sum += parseFloat(uifm_fld_price);
 										tmp_uifm_summ_list_inner += '<li>' + $(this).attr('data-uifm-inp-label');
 										if (parseFloat(uifm_fld_price) > 0) {
-											tmp_uifm_summ_list_inner += ' : ' + uifm_price_symbol + zgfm_front_cost.format_money(obj_form, uifm_fld_price) + ' ' + uifm_price_code;
+											tmp_uifm_summ_list_inner += ' : <div class="uifm-sbox-summ-fld-symbol">' + uifm_price_symbol +'</div><div class="uifm-sbox-summ-fld-price">'+ zgfm_front_cost.format_money(obj_form, uifm_fld_price) + '</div><div class="uifm-sbox-summ-fld-pricecode"> ' + uifm_price_code+'</div>';
 										}
 										tmp_uifm_summ_list_inner += '</li>';
 									});
@@ -3763,7 +3757,7 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 										tmp_uifm_fld_price += parseFloat(uifm_fld_price);
 										tmp_uifm_summ_list_inner += '<li>' + $(this).text();
 										if (parseFloat(uifm_fld_price) > 0) {
-											tmp_uifm_summ_list_inner += ' : ' + uifm_price_symbol + zgfm_front_cost.format_money(obj_form, uifm_fld_price) + ' ' + uifm_price_code;
+											tmp_uifm_summ_list_inner += ' : <div class="uifm-sbox-summ-fld-symbol">' + uifm_price_symbol +'</div><div class="uifm-sbox-summ-fld-price">'+ zgfm_front_cost.format_money(obj_form, uifm_fld_price) + '</div><div class="uifm-sbox-summ-fld-pricecode"> ' + uifm_price_code+'</div>';
 										}
 										tmp_uifm_summ_list_inner += '</li>';
 									});
@@ -3829,7 +3823,7 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 										': </span>';
 								}
 
-								tmp_uifm_summ_list_inner += ' <span class="uiform-sbox-summ-fld-price"><ul><li>' + uifm_price_symbol + zgfm_front_cost.format_money(obj_form, uifm_fld_sub_total) + uifm_price_code + '</ul></li></span>';
+								tmp_uifm_summ_list_inner += ' <span class="uiform-sbox-summ-fld-price"><ul><li>' + '  <div class="uifm-sbox-summ-fld-symbol">' +  uifm_price_symbol +'</div><div class="uifm-sbox-summ-fld-price">'+ zgfm_front_cost.format_money(obj_form, uifm_fld_sub_total) + '</div><div class="uifm-sbox-summ-fld-pricecode"> ' + uifm_price_code+'</div>' + '</li></ul></span>';
 							}
 
 							tmp_uifm_summ_list += tmp_uifm_summ_list_inner;
@@ -3886,7 +3880,7 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 										': </span>';
 								}
 
-								tmp_uifm_summ_list_inner += ' <span class="uiform-sbox-summ-fld-price"><ul><li>' + uifm_price_symbol + zgfm_front_cost.format_money(obj_form, uifm_fld_sub_total) + uifm_price_code + '</li></ul></span>';
+								tmp_uifm_summ_list_inner += ' <span class="uiform-sbox-summ-fld-price"><ul><li>' + '  <div class="uifm-sbox-summ-fld-symbol">' +  uifm_price_symbol +'</div><div class="uifm-sbox-summ-fld-price">'+ zgfm_front_cost.format_money(obj_form, uifm_fld_sub_total) + '</div><div class="uifm-sbox-summ-fld-pricecode"> ' + uifm_price_code+'</div>' + '</li></ul></span>';
 							}
 
 
@@ -3947,7 +3941,7 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 							price_sum += parseFloat(uifm_fld_price);
 							tmp_uifm_fld_price += parseFloat(uifm_fld_price);
 							if (parseFloat(uifm_fld_price) > 0) {
-								tmp_uifm_summ_list_inner += ' <span class="uiform-sbox-summ-fld-price">' + uifm_price_symbol + zgfm_front_cost.format_money(obj_form, uifm_fld_price) + uifm_price_code + '</span>';
+								tmp_uifm_summ_list_inner += ' : <div class="uifm-sbox-summ-fld-symbol">' + uifm_price_symbol +'</div><div class="uifm-sbox-summ-fld-price">'+ zgfm_front_cost.format_money(obj_form, uifm_fld_price) + '</div><div class="uifm-sbox-summ-fld-pricecode"> ' + uifm_price_code+'</div>';								
 							}
 
 
@@ -4007,7 +4001,7 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 												.closest('.uifm-dcheckbox-item')
 												.uiformDCheckbox('get_labelOpt');
 										if (parseFloat(uifm_fld_price) > 0) {
-											tmp_uifm_summ_list_inner += ' : ' + uifm_price_symbol + zgfm_front_cost.format_money(obj_form, uifm_fld_price) + uifm_price_code;
+											tmp_uifm_summ_list_inner += ' : <div class="uifm-sbox-summ-fld-symbol">' + uifm_price_symbol +'</div><div class="uifm-sbox-summ-fld-price">'+ zgfm_front_cost.format_money(obj_form, uifm_fld_price) + '</div><div class="uifm-sbox-summ-fld-pricecode"> ' + uifm_price_code+'</div>';
 										}
 										tmp_uifm_summ_list_inner += '</li>';
 									});
@@ -4059,7 +4053,7 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 												.closest('.uifm-dradiobtn-item')
 												.uiformDCheckbox('get_labelOpt');
 										if (parseFloat(uifm_fld_price) > 0) {
-											tmp_uifm_summ_list_inner += ' : ' + uifm_price_symbol + zgfm_front_cost.format_money(obj_form, uifm_fld_price) + uifm_price_code;
+											tmp_uifm_summ_list_inner += ' : <div class="uifm-sbox-summ-fld-symbol">' + uifm_price_symbol +'</div><div class="uifm-sbox-summ-fld-price">'+ zgfm_front_cost.format_money(obj_form, uifm_fld_price) + '</div><div class="uifm-sbox-summ-fld-pricecode"> ' + uifm_price_code+'</div>';
 										}
 										tmp_uifm_summ_list_inner += '</li>';
 									});
@@ -4736,7 +4730,7 @@ if (!$uifm.isFunction(zgfm_front_helper)) {
 
 					checkSidebarOnDefaultPos();
 
-					if ($(window).width() <= 410) {
+					if ($(window).width() <= 700) {
 					} else {
 						if ($(data.stickyTop_sec).html().length != 0) {
 							data.sidebar_obj.insertBefore(data.formc_obj);
@@ -4755,7 +4749,7 @@ if (!$uifm.isFunction(zgfm_front_helper)) {
 
 					checkSidebarOnDefaultPos();
 
-					if ($(window).width() <= 410) {
+					if ($(window).width() <= 700) {
 					} else {
 						if ($(data.stickyTop_sec).html().length != 0) {
 							data.sidebar_obj.insertBefore(data.formc_obj);
@@ -5053,7 +5047,7 @@ if (!$uifm.isFunction(zgfm_front_helper)) {
 		var buildOrientation = function() {
 			switch (settings.orientation) {
 				case 'right':
-					if ($(window).width() <= 410) {
+					if ($(window).width() <= 700) {
 						if (parseInt(settings.resp_orientation) === 2) {
 							data.tmp_type = 3;
 						} else {
@@ -5065,7 +5059,7 @@ if (!$uifm.isFunction(zgfm_front_helper)) {
 
 					break;
 				case 'left':
-					if ($(window).width() <= 410) {
+					if ($(window).width() <= 700) {
 						if (parseInt(settings.resp_orientation) === 2) {
 							data.tmp_type = 3;
 						} else {

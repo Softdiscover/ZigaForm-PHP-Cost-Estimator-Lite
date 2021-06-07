@@ -817,23 +817,25 @@ class Frontend extends FrontendController {
 
 		switch ( strval( $vars['opt'] ) ) {
 			case 'calc':
-				$form_rec_data = $this->model_record->getVarOptRecord( 'calc_' . $vars['atr1'], $this->flag_submitted );
-				$resultCalc        = $form_rec_data;
-
-				if ( $resultCalc != '' && intval( $resultCalc ) > 0 ) {
-					$output = '1';
-				}
-
 				break;
-
 			default:
 				$f_data = $this->model_record->getFieldDataById( $this->flag_submitted, $vars['id'] );
-				$output = $this->model_record->getFieldOptRecord( $this->flag_submitted, $f_data->type, $vars['id'], $vars['atr1'] );
+				switch (intval($f_data->type)) {
+					case 16:case 17:case 18:
+						$output = $this->model_record->getFieldOptRecord( $this->flag_submitted, $f_data->type, $vars['id'], 'input','value' );
+						break;
+					
+					default:
+						$output = $this->model_record->getFieldOptRecord( $this->flag_submitted, $f_data->type, $vars['id'], $vars['atr1'] );
+						break;
+				}
+				
+				
 
-				break;
+				break;		
 		}
 
-		if ( $output != '' ) {
+		if ( $output != '' && $output!='0' ) {
 			$result = do_shortcode( $content );
 		} else {
 			$result = '';
@@ -1200,6 +1202,10 @@ class Frontend extends FrontendController {
 					}
 					$output = $temp_date;
 					break;
+				case 'user_ip':
+					$data   = $this->model_record->getFormDataById( $rec_id );
+					$output = $data->created_ip;
+					break;	
 				default:
 			}
 

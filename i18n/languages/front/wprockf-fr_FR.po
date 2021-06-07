@@ -1,5 +1,5 @@
-# Copyright (C) 2021 Zigaform PHP Cost Estimation Form Builder 5.2.8
-# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.2.8 package.
+# Copyright (C) 2021 Zigaform PHP Cost Estimation Form Builder 5.3.5
+# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.3.5 package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rocket form\n"
@@ -34,15 +34,15 @@ msgstr "Récapitulatif de la commande"
 msgid "Total cost"
 msgstr "Montant total/Total cost"
 
-#: application/modules/formbuilder/controllers/frontend.php:1262
+#: application/modules/formbuilder/controllers/frontend.php:1268
 msgid "warning! Form was not submitted"
 msgstr "Attention! Formulaire n&#39;a pas été soumis"
 
-#: application/modules/formbuilder/controllers/frontend.php:1612
+#: application/modules/formbuilder/controllers/frontend.php:1618
 msgid "Error! The file exceeds the allowed size of"
 msgstr "Erreur! Le fichier dépasse la taille autorisée de"
 
-#: application/modules/formbuilder/controllers/frontend.php:1619
+#: application/modules/formbuilder/controllers/frontend.php:1625
 msgid "Error! Type of file is not allowed to upload"
 msgstr "Erreur! Type de fichier est pas autorisé à télécharger"
 
@@ -54,7 +54,7 @@ msgstr " , version : "
 msgid " , platform : "
 msgstr " , platform : "
 
-#: application/modules/formbuilder/controllers/records.php:489, application/modules/formbuilder/controllers/records.php:529
+#: application/modules/formbuilder/controllers/records.php:489, application/modules/formbuilder/controllers/records.php:529, application/modules/formbuilder/views/frontend/mail_generate_fields.php:97, application/modules/formbuilder/views/frontend/mail_generate_fields.php:128
 msgid "qty"
 msgstr "qty"
 
@@ -86,11 +86,11 @@ msgstr "﻿Quantité"
 msgid "Description"
 msgstr "Description"
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:187, application/modules/formbuilder/views/frontend/form_summary.php:74, application/modules/formbuilder/views/frontend/mail_generate_fields.php:204, application/modules/formbuilder/views/records/info_record.php:32
+#: application/modules/formbuilder/views/frontend/form_invoice.php:187, application/modules/formbuilder/views/frontend/form_summary.php:74, application/modules/formbuilder/views/frontend/mail_generate_fields.php:205, application/modules/formbuilder/views/records/info_record.php:32
 msgid "Sub total"
 msgstr "Sub total"
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:195, application/modules/formbuilder/views/frontend/form_summary.php:79, application/modules/formbuilder/views/frontend/mail_generate_fields.php:209, application/modules/formbuilder/views/records/info_record.php:37
+#: application/modules/formbuilder/views/frontend/form_invoice.php:195, application/modules/formbuilder/views/frontend/form_summary.php:79, application/modules/formbuilder/views/frontend/mail_generate_fields.php:210, application/modules/formbuilder/views/records/info_record.php:37
 msgid "Tax"
 msgstr "Tax"
 
@@ -98,9 +98,13 @@ msgstr "Tax"
 msgid "Invoice Total"
 msgstr "Facture total"
 
-#: application/modules/formbuilder/views/frontend/form_summary.php:84, application/modules/formbuilder/views/frontend/mail_generate_fields.php:215, application/modules/formbuilder/views/frontend/payment_html.php:80, application/modules/formbuilder/views/records/info_record.php:42
+#: application/modules/formbuilder/views/frontend/form_summary.php:84, application/modules/formbuilder/views/frontend/mail_generate_fields.php:216, application/modules/formbuilder/views/frontend/payment_html.php:80, application/modules/formbuilder/views/records/info_record.php:42
 msgid "Total"
 msgstr "Total"
+
+#: application/modules/formbuilder/views/frontend/mail_generate_fields.php:60, application/modules/formbuilder/views/frontend/mail_generate_fields.php:58, application/modules/formbuilder/views/frontend/mail_generate_fields.php:84, application/modules/formbuilder/views/frontend/mail_generate_fields.php:82, application/modules/formbuilder/views/frontend/mail_generate_fields.php:112, application/modules/formbuilder/views/frontend/mail_generate_fields.php:110, application/modules/formbuilder/views/frontend/mail_generate_fields.php:142, application/modules/formbuilder/views/frontend/mail_generate_fields.php:140
+msgid "amount"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/mail_generate_fields.php:97, application/modules/formbuilder/views/frontend/mail_generate_fields.php:128
 msgid "Units"

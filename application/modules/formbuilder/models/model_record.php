@@ -410,7 +410,7 @@ class model_record extends CI_Model {
 	}
 	function getFormDataById( $id_rec ) {
 		$query = sprintf(
-			'select  f.fmb_name,frec.form_fmb_id,f.fmb_data,f.fmb_data2,frec.fbh_total_amount,f.fmb_rec_tpl_st,f.fmb_rec_tpl_html,frec.fbh_data,f.fmb_inv_tpl_html,f.fmb_inv_tpl_st
+			'select  f.created_ip, f.fmb_name,frec.form_fmb_id,f.fmb_data,f.fmb_data2,frec.fbh_total_amount,f.fmb_rec_tpl_st,f.fmb_rec_tpl_html,frec.fbh_data,f.fmb_inv_tpl_html,f.fmb_inv_tpl_st
         from %s frec
         join %s f on f.fmb_id=frec.form_fmb_id
         where frec.flag_status>=0
@@ -549,12 +549,12 @@ class model_record extends CI_Model {
 
 	function getFieldDataById( $id_rec, $ui_field ) {
 		$query = sprintf(
-			'select f.type_fby_id as type,f.fmf_data
+			"select f.type_fby_id as type,f.fmf_data
             from %s f
             join %s t on f.type_fby_id=t.fby_id 
             join %s frm on f.form_fmb_id=frm.fmb_id
 	    join %s frc on frc.form_fmb_id=frm.fmb_id
-            where frc.fbh_id = %s and f.fmf_uniqueid="%s"',
+            where frc.fbh_id = %s and f.fmf_uniqueid='%s'",
 			$this->tbformfields,
 			$this->tbformtype,
 			$this->tbform,

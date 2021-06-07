@@ -97,6 +97,13 @@
   display: inline-block;
 }
 
+/*summary*/
+.uiform-sbox-summ-fld-row .uifm-sbox-summ-fld-symbol,
+.uiform-sbox-summ-fld-row .uifm-sbox-summ-fld-price,
+.uiform-sbox-summ-fld-row .uifm-sbox-summ-fld-pricecode {
+  display: inline;
+}
+
 .rockfm-form-container .rockfm-val-error:focus {
   border-color: #e9322d !important;
   box-shadow: 0 0 6px #f8b9b7 !important;
@@ -898,7 +905,8 @@ select.uifm-input2-opt-main {
 
 /* summary */
 .uiform-sbox-summ-fld-row ul {
-  padding-left: 15px;
+  padding-left: 0px;
+  margin-left: 22px !important;
 }
 
 /* field 2 grid */
