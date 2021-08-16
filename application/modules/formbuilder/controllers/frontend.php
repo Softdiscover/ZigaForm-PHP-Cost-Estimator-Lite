@@ -1939,7 +1939,7 @@ class Frontend extends FrontendController {
 
 					$this->db->set( $data3 );
 					$this->db->insert( $this->model_gateways_records->table );
-
+					$id_payrec            = $this->db->insert_id();
 				 // preparing mail
 
 				// is demo
@@ -2087,7 +2087,7 @@ class Frontend extends FrontendController {
 				modules::run( 'addon/zfad_frontend/addons_doActions', 'onSubmitForm_pos' );
 
 			if ( intval( $data['payment_st'] ) === 1 ) {
-				$id_payrec            = $this->db->insert_id();
+				
 				$data['id_payrec']    = $id_payrec;
 				$this->form_response  = $data;
 				$data['payment_html'] = $this->get_payment_html();

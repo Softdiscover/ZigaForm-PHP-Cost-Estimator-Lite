@@ -931,15 +931,32 @@ if (!$uifm.isFunction(rocketfm)) {
 						obj_form.addClass('rockfm-form-mloaded');
 
 						if (obj_form.find('.rockfm-input4-slider').length) {
-							obj_form.find('.rockfm-input4-slider').bootstrapSlider();
-							obj_form.find('.rockfm-input4-slider').on('slide', function(slideEvt) {
+							var rockfm_slider_d = obj_form.find('.rockfm-input4-slider');
+							rockfm_slider_d.each(function(i) {
+								$(this).bootstrapSlider();
+								$(this).parent().parent().find('.slider-tick-label').hide();
 								$(this)
-									.parent()
-									.parent()
-									.find('.rockfm-input4-number')
-									.text(slideEvt.value);
-							});
+										.parent()
+										.parent()
+										.find('.rockfm-input4-number')
+										.text($(this).val());
+
+																obj_form.find('.rockfm-input4-slider').on('slide', function(slideEvt) {
+									$(this)
+										.parent()
+										.parent()
+										.find('.rockfm-input4-number')
+										.text(slideEvt.value);
+
+																				$(this)
+										.parent()
+										.parent().find('.slider-tick-label').show();	
+
+																	});
+
+															});
 						}
+
 						if (obj_form.find('.rockfm-input4-spinner').length) {
 							var spinners = obj_form.find('.rockfm-input4-spinner'),
 								s_min,
@@ -1154,7 +1171,6 @@ if (!$uifm.isFunction(rocketfm)) {
 								}
 							});
 
-							obj_form.find('.rockfm-input7-datetimepic').datetimepicker();
 						}
 
 						if (obj_form.find('.rockfm-input-ratingstar').length) {
@@ -3256,7 +3272,13 @@ if (!$uifm.isFunction(zgfm_front_cost)) {
 			zgfm_variable.innerVars = {};
 			zgfm_variable.externalVars = {};
 
-			this.initialize = function() {};
+						var accounting;
+
+			this.setAccounting = function(obj) {
+				accounting = obj;
+			};
+
+						this.initialize = function() {};
 
 			this.costest_sticky_init = function(obj_form) {
 				var sm_pos_lbl = obj_form.find('.uiform-sticky-sidebar-box').attr('data-sticky-pos'),
@@ -4394,7 +4416,7 @@ if (!$uifm.isFunction(zgfm_front_helper)) {
 
 								break;
 							case 16:
-								tmp_field_inp.on('slideStop', function(e) {
+								tmp_field_inp.on('slide slideStop', function(e) {
 									if (e) {
 										e.preventDefault();
 									}
@@ -4416,7 +4438,8 @@ if (!$uifm.isFunction(zgfm_front_helper)) {
 									}
 									runExtraTasks($(this));
 								});
-								break;
+
+																break;
 							case 18:
 								tmp_field_inp.on('change keyup', function(e) {
 									if (e) {

@@ -1,5 +1,5 @@
-# Copyright (C) 2021 Zigaform PHP Cost Estimation Form Builder 5.3.5
-# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.3.5 package.
+# Copyright (C) 2021 Zigaform PHP Cost Estimation Form Builder 5.3.9
+# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.3.9 package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rocket form\n"
@@ -38,6 +38,14 @@ msgstr "总成本"
 msgid "warning! Form was not submitted"
 msgstr "警告 ！不提交表单"
 
+#: application/modules/formbuilder/controllers/frontend.php:1264
+msgid "Success! your form was submitted"
+msgstr ""
+
+#: application/modules/formbuilder/controllers/frontend.php:1261
+msgid "Error! something went wrong."
+msgstr ""
+
 #: application/modules/formbuilder/controllers/frontend.php:1618
 msgid "Error! The file exceeds the allowed size of"
 msgstr "错误！该文件超出了允许的大小"
@@ -45,6 +53,10 @@ msgstr "错误！该文件超出了允许的大小"
 #: application/modules/formbuilder/controllers/frontend.php:1625
 msgid "Error! Type of file is not allowed to upload"
 msgstr "错误！文件的类型是不允许载"
+
+#: application/modules/formbuilder/controllers/frontend.php:1971, application/modules/formbuilder/controllers/frontend.php:2016
+msgid "New form request"
+msgstr ""
 
 #: application/modules/formbuilder/controllers/records.php:434
 msgid " , version : "

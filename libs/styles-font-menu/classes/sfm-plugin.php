@@ -225,12 +225,12 @@ class SFM_Plugin {
 				/*
 				   if ( $this->scripts_printed ) { return false; }
 
-				wp_register_script( 'styles-chosen', $this->get_plugin_url() . '/js/chosen/chosen.jquery.min.js', array( 'jquery' ), $this->version );
+				wp_register_script( 'styles-chosen', $this->get_plugin_url() . '/js/chosen/1.8.7/chosen.jquery.min.js', array( 'jquery' ), $this->version );
 				wp_register_script( 'styles-font-menu', $this->get_plugin_url() . '/js/styles-font-menu.js', array( 'jquery', 'styles-chosen' ), $this->version );
-				//wp_register_style( 'styles-chosen', $this->get_plugin_url() . '/js/chosen/chosen.css', array(), $this->version );
+				//wp_register_style( 'styles-chosen', $this->get_plugin_url() . '/js/chosen/1.8.7/chosen.css', array(), $this->version );
 				//wp_register_style( 'styles-chosen-style', $this->get_plugin_url() . '/js/chosen/style.css', array(), $this->version );
 				wp_register_style( 'styles-font-menu', $this->get_plugin_url() . '/css/styles-font-menu.css', array(), $this->version );
-				// wp_register_style( 'styles-chosen', $this->get_plugin_url() . '/js/chosen/chosen.min.css', array(), $this->version );
+				// wp_register_style( 'styles-chosen', $this->get_plugin_url() . '/js/chosen/1.8.7/chosen.min.css', array(), $this->version );
 
 				// Pass Google Font Families to javascript
 				// This saves on bandwidth by outputing them once,

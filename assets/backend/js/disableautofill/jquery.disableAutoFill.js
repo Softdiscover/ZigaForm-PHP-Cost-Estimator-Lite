@@ -1,5 +1,6 @@
 /**
- * Jquery - DisableAutoFill plugin
+ * custom plugin v1.0 - softdiscover
+ * original author: Jquery - DisableAutoFill plugin
  * The easiest solution for disabling Google Chrome auto-fill, auto-complete functions.
  *
  * @license MIT
@@ -81,6 +82,7 @@
                 // User highlighted and overwrote a portion of the password
                 else {
                     realPassword.splice(currKeyupPos - 1, diff + 1);
+                    
                     realPassword.splice(currKeyupPos - 1, 0, tmpPassword[currKeyupPos - 1]);
                     
                     //realPassword.zgfm_insert(currKeyupPos - 1, tmpPassword[currKeyupPos - 1]);
@@ -218,4 +220,4 @@
         },
     };
 
-})(jQuery);
+})($uifm);
