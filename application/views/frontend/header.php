@@ -16,21 +16,21 @@ if ( ! defined( 'BASEPATH' ) ) {
 	exit( 'No direct script access allowed' );
 }
 ?>
-<div class="navbar navbar-default" data-enhance="false">
+<div class="sfdc-navbar sfdc-navbar-default" data-enhance="false">
 	<div class="container">
-		<div class="navbar-header">
-			<button data-target=".sfdc-navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
+		<div class="sfdc-navbar-header">
+			<button data-target=".sfdc-navbar-collapse" data-toggle="sfdc-collapse" class="sfdc-navbar-toggle" type="button">
+				<span class="sfdc-icon-bar"></span>
+				<span class="sfdc-icon-bar"></span>
+				<span class="sfdc-icon-bar"></span>
 			</button>
-			<a data-ajax="false"  href="<?php echo site_url(); ?>" class="navbar-brand"><?php echo model_settings::$db_config['site_title']; ?></a>
+			<a data-ajax="false"  href="<?php echo site_url(); ?>" class="sfdc-navbar-brand"><?php echo model_settings::$db_config['site_title']; ?></a>
 		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li class="dropdown">
-					<a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo __( 'Form', 'frocket_front' ); ?> <b class="caret"></b></a>
-					<ul class="dropdown-menu">
+		<div class="sfdc-navbar-collapse sfdc-collapse">
+			<ul class="sfdc-nav sfdc-navbar-nav">
+				<li class="sfdc-dropdown">
+					<a data-toggle="sfdc-dropdown" class="sfdc-dropdown-toggle" href="#"><?php echo __( 'Form', 'frocket_front' ); ?> <b class="sfdc-caret"></b></a>
+					<ul class="sfdc-dropdown-menu">
 						<?php
 						if ( ! empty( $forms ) ) {
 							foreach ( $forms as $value ) {

@@ -87,6 +87,7 @@ class Paypal extends MX_Controller {
 			$this->use_sandbox = ( $paypal_data->pg_modtest == '1' ) ? true : false;
 			// Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
 			// Instead, read raw POST data from the input stream.
+			 
 			$raw_post_data  = file_get_contents( 'php://input' );
 			$raw_post_array = explode( '&', $raw_post_data );
 			$myPost         = array();
@@ -109,7 +110,7 @@ class Paypal extends MX_Controller {
 				}
 				$req .= "&$key=$value";
 			}
-
+		
 			// STEP 2: POST IPN data back to PayPal to validate
 
 			$ch = curl_init( 'https://' . $this->_getPaypalHost() . '/cgi-bin/webscr' );
@@ -136,7 +137,12 @@ class Paypal extends MX_Controller {
 			} else {
 				curl_close( $ch );
 			}
-
+			
+			//verify if variables exists
+			 if(!isset($_POST['payment_status'])){
+			    throw new \Exception( "no payment status" );
+			 }
+			
 			// STEP 3: Inspect IPN validation result and act accordingly
 
 			if ( strcmp( $res, 'VERIFIED' ) == 0 ) {
@@ -326,14 +332,15 @@ class Paypal extends MX_Controller {
 				$data3['vis_ip']         = $ip;
 			$data4                       = array();
 			$data4['type_pg_id']         = 2;
-			$data4['pgr_id']             = ! empty( $custom ) ? $custom : '';
+			$data4['pgr_id']             = ! empty( $custom ) ? $custom : '0';
 			$data4['pgl_data']           = json_encode( $_POST );
 			$data4['pgl_data2']          = json_encode( $data3 );
 			$data4['pgl_error']          = Uiform_Form_Helper::array2xml( $error );
 			$data4['pgl_message']        = 'Error - [' . date( 'd-m-Y H:i:s', time() ) . ']';
 			$this->db->set( $data4 );
 			$this->db->insert( $this->model_gateways_logs->table );
-
+			
+			echo json_encode($error);
 		}
 
 	}
