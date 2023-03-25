@@ -1,8 +1,8 @@
-# Copyright (C) 2022 Zigaform WP Cost Estimation Form Builder 5.5.7
-# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 5.5.7 package.
+# Copyright (C) 2023 Zigaform WP Cost Estimation Form Builder 5.6.1
+# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 5.6.1 package.
 msgid ""
 msgstr ""
-"Project-Id-Version: my translation\n"
+"Project-Id-Version: translate to spanish\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #: application/views/captions.php:6
 msgid "Removing"
-msgstr "Removiendo"
+msgstr "Quitar"
 
 #: application/views/captions.php:7
 msgid "Form saved"
@@ -23,7 +23,7 @@ msgstr "Nombre del formulario"
 
 #: application/views/captions.php:8
 msgid "Processing"
-msgstr "Tratamiento"
+msgstr "Processing"
 
 #: application/views/captions.php:9
 msgid "Loading"
@@ -31,7 +31,7 @@ msgstr "Cargando"
 
 #: application/views/captions.php:10
 msgid "Saving"
-msgstr "Ahorro"
+msgstr "Saving"
 
 #: application/views/footer-global.php:18, application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:92, application/modules/formbuilder/views/forms/create_form_modals.php:31, application/modules/formbuilder/views/forms/formhtml_form.php:228, application/modules/formbuilder/views/forms/modal1_footer.php:19, application/modules/formbuilder/views/forms/templates_fields.php:1907, application/modules/formbuilder/views/fields/render_front/block_label.php:88, application/modules/formbuilder/views/fields/templates/prevpanel_main.php:43, application/modules/formbuilder/views/fields/options/select/impbulkdata_footer.php:20
 msgid "Close"
@@ -47,23 +47,23 @@ msgstr "Info La guía turística"
 
 #: application/views/footer.php:44
 msgid "there is not tour guide for this page. press the accept button"
-msgstr "no hay guía de esta página. pulse el botón aceptar"
+msgstr "no hay guía para esta página. pulse el botón aceptar"
 
 #: application/views/footer.php:45
 msgid "Success! Updated successfully"
-msgstr "¡Éxito! Actualizado correctamente"
+msgstr "Éxito! Actualizado con éxito"
 
 #: application/views/footer.php:46
 msgid "Form was created"
-msgstr "Formulario fue creado"
+msgstr "Form was created"
 
 #: application/views/footer.php:47, application/modules/formbuilder/controllers/forms.php:658
 msgid ""
 "Success! The form was created. Now just copy and paste the shortcode to "
 "your content"
 msgstr ""
-"¡Éxito! Se creó el formulario. Ahora sólo tienes que copiar y pegar el "
-"código corto a su contenido"
+"Success! The form was created. Now just copy and paste the shortcode to "
+"your content"
 
 #: application/views/footer.php:48
 msgid ""
@@ -75,7 +75,7 @@ msgstr ""
 
 #: application/views/footer.php:52
 msgid "Regenerate Form"
-msgstr "Regenerate"
+msgstr "Regenerate Form"
 
 #: application/views/footer.php:54, application/modules/formbuilder/views/forms/templates_fields.php:1957
 msgid "Delete field selected"
@@ -83,7 +83,7 @@ msgstr "Eliminar campo seleccionado"
 
 #: application/views/footer.php:55, application/modules/formbuilder/views/forms/templates_fields.php:1958
 msgid "Are you sure?"
-msgstr "¿Estas seguro?"
+msgstr "Esta seguro?"
 
 #: application/views/footer.php:56, application/modules/default/views/intranet/settings.php:194, application/modules/formbuilder/views/forms/templates_fields.php:1959, application/modules/gateways/views/settings/editoffline.php:90, application/modules/gateways/views/settings/editpaypal.php:163, application/modules/user/views/intranet/createuser.php:87
 msgid "Cancel"
@@ -95,11 +95,11 @@ msgstr "Sí"
 
 #: application/views/footer.php:60, application/modules/formbuilder/views/forms/templates_fields.php:1963
 msgid "Are you sure about this?"
-msgstr "¿Estas seguro?"
+msgstr "Esta seguro?"
 
 #: application/views/header-uiform.php:10
 msgid "Toggle navigation"
-msgstr "Navegación de palanca"
+msgstr "Navegación Toggle"
 
 #: application/views/header-uiform.php:22, application/views/sidebar.php:27
 msgid "Forms"
@@ -127,7 +127,7 @@ msgstr "Registro de eventos en línea"
 
 #: application/views/header-uiform.php:44
 msgid "Reservation Request Form"
-msgstr "Formulario de Solicitud de Reserva"
+msgstr ""
 
 #: application/views/header-uiform.php:47
 msgid "Purchase Order - Point Of Sale"
@@ -143,7 +143,7 @@ msgstr "Formulario de pedido"
 
 #: application/views/header-uiform.php:56
 msgid "Wedding planner"
-msgstr "Planificador de la boda"
+msgstr ""
 
 #: application/views/header-uiform.php:64, application/modules/default/views/intranet/gopro.php:121
 msgid "Conditional Logic"
@@ -151,7 +151,7 @@ msgstr "Lógica Condicional"
 
 #: application/views/header-uiform.php:73, application/modules/formbuilder/views/forms/settings_form_wizard.php:25, application/modules/formbuilder/views/forms/settings_form_wizard.php:39
 msgid "Wizard form"
-msgstr "Forma Asistente"
+msgstr "forma asistente"
 
 #: application/views/header-uiform.php:79
 msgid "All fields"
@@ -159,19 +159,19 @@ msgstr "Todos los campos"
 
 #: application/views/header-uiform.php:82
 msgid "Loan payment calculator"
-msgstr "Loan payment calculator"
+msgstr ""
 
 #: application/views/header-uiform.php:85
 msgid "Multivariable calculator"
-msgstr "Multivariable calculator"
+msgstr ""
 
 #: application/views/header-uiform.php:93
 msgid "Preview"
-msgstr "Vista previa"
+msgstr "Vista Previa"
 
 #: application/views/header-uiform.php:97
 msgid "desktop"
-msgstr "de oficina"
+msgstr "computadora de escritorio"
 
 #: application/views/header-uiform.php:100, application/modules/formbuilder/views/forms/create_form_modals.php:39
 msgid "Tablet"
@@ -179,7 +179,7 @@ msgstr "Tableta"
 
 #: application/views/header-uiform.php:103
 msgid "smartphone"
-msgstr "teléfono inteligente"
+msgstr "telefono inteligente"
 
 #: application/views/header-uiform.php:110, application/modules/formbuilder/views/forms/create_form.php:91
 msgid "Records"
@@ -187,11 +187,11 @@ msgstr "Archivos"
 
 #: application/views/header-uiform.php:113
 msgid "List all Forms"
-msgstr "Enumerar todas las Formas"
+msgstr "Enumere todas las Formas"
 
 #: application/views/header-uiform.php:126
 msgid "List by Form"
-msgstr "Enumerar todas las Formas"
+msgstr "List by Form"
 
 #: application/views/header-uiform.php:121
 msgid "Filter records"
@@ -203,15 +203,15 @@ msgstr "Informe personalizado"
 
 #: application/views/header-uiform.php:159, application/views/header-uiform.php:152
 msgid "Invoices"
-msgstr "Facturas"
+msgstr ""
 
 #: application/views/header-uiform.php:170, application/modules/formbuilder/views/forms/create_form.php:86
 msgid "Import"
-msgstr "Importar"
+msgstr "Importación"
 
 #: application/views/header-uiform.php:173
 msgid "Export"
-msgstr "Exportar"
+msgstr "Exportación"
 
 #: application/views/header-uiform.php:176
 msgid "Charts"
@@ -223,11 +223,11 @@ msgstr "Ajustes"
 
 #: application/views/header-uiform.php:186, application/modules/default/views/intranet/gopro.php:86, application/modules/formbuilder/views/settings/backup_settings.php:29
 msgid "Backup"
-msgstr "Apoyo"
+msgstr "De Fondo"
 
 #: application/views/header-uiform.php:191
 msgid "Payment Gateways"
-msgstr "Pasarelas de pago"
+msgstr ""
 
 #: application/views/header-uiform.php:196
 msgid "Guided tour"
@@ -243,7 +243,7 @@ msgstr "Help"
 
 #: application/views/header-uiform.php:210
 msgid "Documentation"
-msgstr "estimación"
+msgstr "Documentation"
 
 #: application/views/header-uiform.php:214
 msgid "Forum"
@@ -255,11 +255,11 @@ msgstr "Zigaform Community"
 
 #: application/views/header-uiform.php:223, application/modules/addon/views/backend/list_extensions.php:27, application/modules/formbuilder/views/forms/create_form.php:54, application/modules/formbuilder/views/forms/create_form.php:55
 msgid "Extensions"
-msgstr "extensiones permitidas"
+msgstr "Extensions"
 
 #: application/views/header.php:45
 msgid "Log out"
-msgstr "Arriba a cabo"
+msgstr "Log out"
 
 #: application/views/sidebar.php:29, application/modules/user/views/intranet/index.php:36
 msgid "Users"
@@ -267,7 +267,7 @@ msgstr "Users"
 
 #: application/views/sidebar.php:30
 msgid "More Settings"
-msgstr "Ajustes"
+msgstr "More Settings"
 
 #: application/views/sidebar.php:33
 msgid "About"
@@ -275,11 +275,11 @@ msgstr "About"
 
 #: application/views/sidebar.php:34, application/modules/default/views/intranet/showfilemanager.php:21
 msgid "File manager"
-msgstr "Nombre del campo"
+msgstr "File manager"
 
 #: application/views/sidebar.php:35, application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:87, application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:154, application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:251, application/modules/addon_mgtranslate/views/backend/show_list.php:24
 msgid "Translation Manager"
-msgstr "Translation Manager"
+msgstr "Traducir mensaje de error"
 
 #: application/views/sidebar.php:37
 msgid "Go Pro"
@@ -511,7 +511,7 @@ msgstr ""
 
 #: application/modules/addon_func_anim/controllers/zfad_anim_back_lib.php:460
 msgid "Lightspeed"
-msgstr "Ligero"
+msgstr "Luz"
 
 #: application/modules/addon_func_anim/controllers/zfad_anim_back_lib.php:462
 msgid "lightSpeedIn"
@@ -655,7 +655,7 @@ msgstr ""
 
 #: application/modules/addon_func_anim/controllers/zfad_anim_back_lib.php:611
 msgid "Slide Exits"
-msgstr "Side Box Ancho"
+msgstr "Slide Exits"
 
 #: application/modules/addon_func_anim/controllers/zfad_anim_back_lib.php:613
 msgid "slideOutDown"
@@ -675,7 +675,7 @@ msgstr ""
 
 #: application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:115
 msgid "New translation created successfully"
-msgstr "New translation created successfully"
+msgstr "Éxito! Actualizado con éxito"
 
 #: application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:131
 msgid "Error! An error ocurred during the process"
@@ -683,11 +683,11 @@ msgstr "Error! An error ocurred during the process"
 
 #: application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:157
 msgid "Create New"
-msgstr "Create New"
+msgstr "Creado"
 
 #: application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:252
 msgid "Translation saved successfully"
-msgstr "Translation saved successfully"
+msgstr "Éxito! Actualizado con éxito"
 
 #: application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:308, application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:308, application/modules/addon_mgtranslate/views/backend/ajax_load_pofile.php:36
 msgid "Translation"
@@ -723,11 +723,11 @@ msgstr "Nombre del formulario"
 
 #: application/modules/formbuilder/controllers/forms.php:661
 msgid "Success"
-msgstr "Éxito Mensaje"
+msgstr "Mensaje de éxito"
 
 #: application/modules/formbuilder/controllers/forms.php:676, application/modules/formbuilder/controllers/forms.php:3112, application/modules/formbuilder/controllers/forms.php:3172
 msgid "Shortcodes"
-msgstr "Código corto"
+msgstr "Código Corto"
 
 #: application/modules/formbuilder/controllers/forms.php:746, application/modules/formbuilder/controllers/forms.php:775
 msgid "Error! User has no permission to edit this form"
@@ -735,15 +735,15 @@ msgstr "Error! User has no permission to edit this form"
 
 #: application/modules/formbuilder/controllers/forms.php:1015
 msgid "Error on saving form"
-msgstr "Error on saving form"
+msgstr ""
 
 #: application/modules/formbuilder/controllers/forms.php:2758
 msgid "Forms in trash"
-msgstr "Editor de formularios"
+msgstr "Nombre del formulario"
 
 #: application/modules/formbuilder/controllers/frontend.php:277
 msgid "paypal success message"
-msgstr "Éxito Mensaje"
+msgstr "paypal success message"
 
 #: application/modules/formbuilder/controllers/frontend.php:280
 msgid "error found while submitting"
@@ -755,7 +755,7 @@ msgstr "Offline success"
 
 #: application/modules/formbuilder/controllers/frontend.php:2138
 msgid "Order summary"
-msgstr "Resumen del pedido"
+msgstr "Formulario de pedido"
 
 #: application/modules/formbuilder/controllers/records.php:438
 msgid "Entry information"
@@ -763,15 +763,15 @@ msgstr "Información de entrada"
 
 #: application/modules/formbuilder/controllers/records.php:439, application/modules/formbuilder/views/records/info_record.php:27
 msgid "Submitted form data"
-msgstr "Datos del formulario Enviado"
+msgstr "Datos del formulario presentado"
 
 #: application/modules/formbuilder/controllers/records.php:440, application/modules/formbuilder/views/records/info_record.php:62
 msgid "Additional info"
-msgstr "información adicional"
+msgstr "Información adicional"
 
 #: application/modules/formbuilder/controllers/records.php:441, application/modules/formbuilder/views/forms/fields_available.php:787, application/modules/formbuilder/views/records/info_record.php:65, application/modules/formbuilder/views/records/list_records_getdatatable.php:24, application/modules/formbuilder/views/settings/backup_settings.php:67
 msgid "Date"
-msgstr "Fecha"
+msgstr "Fecha De"
 
 #: application/modules/formbuilder/controllers/records.php:442, application/modules/formbuilder/views/records/info_record.php:69
 msgid "IP"
@@ -795,7 +795,7 @@ msgstr "Units"
 
 #: application/modules/formbuilder/controllers/records.php:511, application/modules/gateways/views/records/list_records.php:38
 msgid "Amount"
-msgstr "Cantidad"
+msgstr ""
 
 #: application/modules/formbuilder/controllers/records.php:593
 msgid "Records list"
@@ -807,15 +807,15 @@ msgstr "Archivos"
 
 #: application/modules/gateways/controllers/records.php:291
 msgid "Invoices list"
-msgstr "Facturas"
+msgstr ""
 
 #: application/modules/gateways/controllers/records.php:325
 msgid "Invoices in trash"
-msgstr "Total de la factura"
+msgstr ""
 
 #: application/modules/addon/views/backend/list_extensions.php:65
 msgid "locked"
-msgstr "Bloquear"
+msgstr "Bloque"
 
 #: application/modules/addon/views/backend/list_extensions.php:59
 msgid ""
@@ -831,11 +831,11 @@ msgstr "Inhabilitar"
 
 #: application/modules/addon/views/backend/list_extensions.php:50, application/modules/formbuilder/views/forms/list_forms.php:57, application/modules/formbuilder/views/records/custom_report_getAllfields.php:24
 msgid "Enable"
-msgstr "Habilitar"
+msgstr "Permitir"
 
 #: application/modules/addon/views/backend/list_extensions.php:78
 msgid "Requirements"
-msgstr "Requirements"
+msgstr "Necesario"
 
 #: application/modules/addon/views/backend/list_extensions.php:80
 msgid "PHP"
@@ -843,15 +843,15 @@ msgstr "PHP"
 
 #: application/modules/addon_func_anim/views/backend/get_field_back_animation.php:24
 msgid "Animation"
-msgstr "estimación"
+msgstr "Información de entrada"
 
 #: application/modules/addon_func_anim/views/backend/get_field_back_animation.php:31
 msgid "Choose animation"
-msgstr "estimación"
+msgstr "Elija icono deseado"
 
 #: application/modules/addon_func_anim/views/backend/get_field_back_animation.php:53
 msgid "Show animation"
-msgstr "Mostrar datos"
+msgstr "Información Forma"
 
 #: application/modules/addon_func_anim/views/backend/get_field_back_animation.php:70
 msgid "Animation delay"
@@ -859,7 +859,7 @@ msgstr "Animation delay"
 
 #: application/modules/addon_mgtranslate/views/backend/ajax_load_pofile.php:25, application/modules/default/views/intranet/settings.php:64, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:156, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:157, application/modules/formbuilder/views/fields/modal/settings_field_input_7.php:23
 msgid "Language"
-msgstr "Idioma"
+msgstr "El Idioma"
 
 #: application/modules/addon_mgtranslate/views/backend/ajax_load_pofile.php:25
 msgid "Side"
@@ -883,11 +883,11 @@ msgstr ""
 
 #: application/modules/addon_mgtranslate/views/backend/show_list.php:31
 msgid "Select Language"
-msgstr "Select Language"
+msgstr "Seleccionar imagen"
 
 #: application/modules/addon_mgtranslate/views/backend/show_list.php:47
 msgid "Select side"
-msgstr "Select side"
+msgstr "Seleccione Archivo"
 
 #: application/modules/addon_mgtranslate/views/backend/show_list.php:49
 msgid "Admin-side"
@@ -933,7 +933,7 @@ msgstr "Guardar Cambios"
 
 #: application/modules/addon_webhook/views/backend/get_content.php:31
 msgid "Webhook settings"
-msgstr "ajustes principales"
+msgstr "Webhook settings"
 
 #: application/modules/addon_webhook/views/backend/get_content.php:38
 msgid "Send data collected through forms to other services"
@@ -945,11 +945,11 @@ msgstr "Estado"
 
 #: application/modules/addon_webhook/views/backend/get_content.php:50
 msgid "disabled"
-msgstr "Incapacitado"
+msgstr "Inhabilitar"
 
 #: application/modules/addon_webhook/views/backend/get_content.php:54
 msgid "enabled"
-msgstr "Activado"
+msgstr "Permitir"
 
 #: application/modules/addon_webhook/views/backend/get_content.php:59
 msgid "Webhook URL"
@@ -957,7 +957,7 @@ msgstr "Webhook URL"
 
 #: application/modules/addon_webhook/views/backend/get_content.php:65
 msgid "Content Type"
-msgstr "Contenido"
+msgstr "Content Type"
 
 #: application/modules/addon_webhook/views/backend/get_content.php:78
 msgid "Form Fields"
@@ -977,7 +977,7 @@ msgstr "Map URL parameters"
 
 #: application/modules/addon_webhook/views/backend/get_content.php:89
 msgid "To form values"
-msgstr "Nueva solicitud de forma"
+msgstr "Nueva solicitud forma"
 
 #: application/modules/addon_webhook/views/backend/get_content.php:93, application/modules/addon_webhook/views/backend/get_content.php:132, application/modules/formbuilder/views/forms/ajax_rollback_openmodal.php:34, application/modules/formbuilder/views/forms/create_form.php:231, application/modules/formbuilder/views/forms/list_forms_table.php:41, application/modules/formbuilder/views/records/list_records.php:38, application/modules/formbuilder/views/records/list_records_getdatatable.php:26, application/modules/formbuilder/views/settings/backup_settings.php:68, application/modules/gateways/views/records/list_records.php:41, application/modules/gateways/views/settings/view_settings.php:46, application/modules/user/views/intranet/index.php:48, application/modules/formbuilder/views/fields/modal/field_opt_column.php:44, application/modules/formbuilder/views/fields/modal/field_opt_text.php:44, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:114
 msgid "Options"
@@ -1025,13 +1025,6 @@ msgid ""
 "admins manage tons of form options. It’s really easy to customize and you "
 "don’t need programming skills."
 msgstr ""
-"Zigaform – PHP Calculator & Cost Estimation Form Builder is a flexible PHP "
-"software which allows you to build your estimation forms on few easy steps "
-"using a simple yet powerful drag-and-drop form creator. Also it provides "
-"amazing form elements and skin live customizer that makes you to build "
-"professional forms. Also it provides an administration section where site "
-"admins manage tons of form options. It's really easy to customize and you "
-"don't need programming skills."
 
 #: application/modules/default/views/intranet/about.php:36
 msgid "Rate Zigaform"
@@ -1046,7 +1039,7 @@ msgid ""
 "Please leave 5 stars if you like the software and I’ll keep rolling new "
 "updates and cool features."
 msgstr ""
-"Please leave 5 stars if you like the plugin and I'll keep rolling new "
+"Please leave 5 stars if you like the software and I'll keep rolling new "
 "updates and cool features."
 
 #: application/modules/default/views/intranet/about.php:83
@@ -1055,23 +1048,23 @@ msgstr "Spread the Word"
 
 #: application/modules/default/views/intranet/about.php:90
 msgid "Create amazing estimative forms with Zigaform"
-msgstr "Create amazing estimation forms with Zigaform"
+msgstr ""
 
 #: application/modules/default/views/intranet/about.php:91
 msgid "Ultimate PHP Cost Estimator by zigaform.com"
-msgstr "Cost estimation form builder by zigaform.com"
+msgstr ""
 
 #: application/modules/default/views/intranet/changepassword.php:33
 msgid "Change password"
-msgstr "Clave"
+msgstr "Change password"
 
 #: application/modules/default/views/intranet/changepassword.php:75
 msgid "Confirm Password"
-msgstr "Clave"
+msgstr "Confirm Password"
 
 #: application/modules/default/views/intranet/changepassword.php:79
 msgid "Update password"
-msgstr "Clave"
+msgstr "Update password"
 
 #: application/modules/default/views/intranet/gopro.php:22
 msgid "Upgrade from Lite to PRO"
@@ -1095,11 +1088,11 @@ msgstr "Drag and drop builder"
 
 #: application/modules/default/views/intranet/gopro.php:48
 msgid "Grid system"
-msgstr "Sistema de red"
+msgstr "Grid System"
 
 #: application/modules/default/views/intranet/gopro.php:53
 msgid "Sticky summary"
-msgstr "Ver resumen"
+msgstr ""
 
 #: application/modules/default/views/intranet/gopro.php:59
 msgid "Skin customizer"
@@ -1115,27 +1108,27 @@ msgstr "Información Forma"
 
 #: application/modules/default/views/intranet/gopro.php:76
 msgid "Duplicate fields"
-msgstr "Duplicado"
+msgstr "Duplicar"
 
 #: application/modules/default/views/intranet/gopro.php:81
 msgid "42 form elements"
-msgstr "Elementos Wizard"
+msgstr "42 form elements"
 
 #: application/modules/default/views/intranet/gopro.php:91, application/modules/formbuilder/views/forms/create_form.php:46
 msgid "Math Calculation"
-msgstr "Math Calculation"
+msgstr ""
 
 #: application/modules/default/views/intranet/gopro.php:96
 msgid "Paypal payment"
-msgstr "El pago de puerta de enlace"
+msgstr ""
 
 #: application/modules/default/views/intranet/gopro.php:101
 msgid "Invoice feature"
-msgstr "Total de la factura"
+msgstr ""
 
 #: application/modules/default/views/intranet/gopro.php:106
 msgid "Export & Import forms"
-msgstr "Formulario de Importación"
+msgstr "Formulario de importación"
 
 #: application/modules/default/views/intranet/gopro.php:111
 msgid "Export Form records"
@@ -1143,7 +1136,7 @@ msgstr "Exportar a csv"
 
 #: application/modules/default/views/intranet/gopro.php:116
 msgid "Wizard forms"
-msgstr "Forma Asistente"
+msgstr "forma asistente"
 
 #: application/modules/default/views/intranet/gopro.php:126
 msgid "Animated effects"
@@ -1155,7 +1148,7 @@ msgstr "Filter and search submitted data"
 
 #: application/modules/default/views/intranet/gopro.php:136
 msgid "Duplication form"
-msgstr "Duplicado"
+msgstr "Duplicar"
 
 #: application/modules/default/views/intranet/gopro.php:141
 msgid "PDF feature"
@@ -1190,10 +1183,10 @@ msgid ""
 "help with many common issues. Resources to additional support to fit your "
 "needs can be found below. "
 msgstr ""
-"Creating estimation forms is a complex process and the logic to make all "
-"the magic happen smoothly may not work quickly with every site. With over a "
-"lot of plugins and a very complex server eco-system some forms may run into "
-"issues. This is why zigaform includes a detailed knowledgebase that can "
+"Creating forms is a complex process and the logic to make all the magic "
+"happen smoothly may not work quickly with every site. With over a lot of "
+"softwares and a very complex server eco-system some forms may run into "
+"issues. This is why zigaform includes a detailed knowledge base that can "
 "help with many common issues. Resources to additional support to fit your "
 "needs can be found below. "
 
@@ -1227,7 +1220,7 @@ msgstr "Enter your username and password"
 
 #: application/modules/default/views/intranet/login.php:73
 msgid "Forgot Password"
-msgstr "Clave"
+msgstr "Forgot Password"
 
 #: application/modules/default/views/intranet/login.php:77
 msgid "Sign in"
@@ -1235,15 +1228,15 @@ msgstr "Sign in"
 
 #: application/modules/default/views/intranet/settings.php:50, application/modules/default/views/intranet/settings.php:52
 msgid "Site title"
-msgstr "Título Tab"
+msgstr "Site title"
 
 #: application/modules/default/views/intranet/settings.php:56, application/modules/default/views/intranet/settings.php:58
 msgid "Admin mail"
-msgstr "Admin email"
+msgstr "Admin mail"
 
 #: application/modules/default/views/intranet/settings.php:67
 msgid "Select here ..."
-msgstr "Select side"
+msgstr "Select here ..."
 
 #: application/modules/default/views/intranet/settings.php:86
 msgid "Mailer default"
@@ -1251,7 +1244,7 @@ msgstr "Mailer default"
 
 #: application/modules/default/views/intranet/settings.php:122, application/modules/default/views/intranet/settings.php:128, application/modules/default/views/intranet/settings.php:134, application/modules/default/views/intranet/settings.php:140, application/modules/default/views/intranet/settings.php:177, application/modules/formbuilder/views/forms/preview_clogic_graph.php:28, application/modules/formbuilder/views/forms/preview_clogic_graph.php:35, application/modules/formbuilder/views/forms/preview_fields.php:13, application/modules/formbuilder/views/forms/preview_fields.php:18, application/modules/formbuilder/views/forms/preview_fields.php:22, application/modules/formbuilder/views/forms/preview_fields.php:26, application/modules/formbuilder/views/forms/settings_form_skin.php:154, application/modules/formbuilder/views/forms/settings_form_submission.php:71, application/modules/formbuilder/views/forms/settings_form_summbox.php:273, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:460, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:278, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:257, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:271
 msgid "Type"
-msgstr "Escribe"
+msgstr "Tipo"
 
 #: application/modules/default/views/intranet/settings.php:175
 msgid "Sendmail path"
@@ -1283,7 +1276,7 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_rollback_openmodal.php:29
 msgid "No."
-msgstr "No"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_rollback_openmodal.php:30
 msgid "Name form"
@@ -1315,11 +1308,11 @@ msgstr "Entrada"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_emailpage.php:30, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:159, application/modules/formbuilder/views/forms/settings_form_email.php:532
 msgid "Cost"
-msgstr "Cost"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_emailpage.php:31, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:160, application/modules/formbuilder/views/forms/settings_form_email.php:533, application/modules/formbuilder/views/forms/settings_form_summbox.php:119
 msgid "quantity"
-msgstr "cantidad"
+msgstr "quantity"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_emailpage.php:32, application/modules/formbuilder/views/forms/settings_form_email.php:534
 msgid "wrapper"
@@ -1337,11 +1330,11 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:27
 msgid "Backend"
-msgstr "Fondo"
+msgstr "De Fondo"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:28
 msgid "Frontend"
-msgstr "Contenido"
+msgstr "Frontend"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:32, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:148
 msgid "Fields"
@@ -1349,7 +1342,7 @@ msgstr "Subir Campos"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:35, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:255, application/modules/formbuilder/views/forms/fields_available.php:716
 msgid "Others"
-msgstr "Otros"
+msgstr "Others"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:40, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:97, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:260, application/modules/formbuilder/views/forms/settings_form_email.php:550, application/modules/formbuilder/views/forms/settings_form_summbox.php:135
 msgid "variables"
@@ -1361,27 +1354,27 @@ msgstr "Code"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:47, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:267, application/modules/formbuilder/views/forms/settings_form_email.php:557, application/modules/formbuilder/views/forms/settings_form_summbox.php:142
 msgid "Currency symbol"
-msgstr "Símbolo de moneda"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:52, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:272, application/modules/formbuilder/views/forms/settings_form_email.php:562, application/modules/formbuilder/views/forms/settings_form_summbox.php:147
 msgid "Currency code"
-msgstr "Código de moneda"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:57, application/modules/formbuilder/views/forms/settings_form_email.php:567
 msgid "Sub total Amount price"
-msgstr "Sub total Amount price"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:61, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:281, application/modules/formbuilder/views/forms/settings_form_email.php:571, application/modules/formbuilder/views/forms/settings_form_summbox.php:156
 msgid "Tax"
-msgstr "Lengüeta"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:65, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:285, application/modules/formbuilder/views/forms/settings_form_email.php:575, application/modules/formbuilder/views/forms/settings_form_summbox.php:160
 msgid "Total Amount price"
-msgstr "Total Amount price"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:69, application/modules/formbuilder/views/forms/settings_form_email.php:579
 msgid "Summary of submitted data"
-msgstr "Datos del formulario Enviado"
+msgstr "Datos del formulario presentado"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:73, application/modules/formbuilder/views/forms/settings_form_email.php:583
 msgid "Form Url"
@@ -1389,7 +1382,7 @@ msgstr "URL Form"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:82, application/modules/formbuilder/views/forms/settings_form_email.php:592
 msgid "Form record id"
-msgstr "Editor de formularios"
+msgstr "Form record id"
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:86
 msgid "User IP"
@@ -1397,23 +1390,23 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:92, application/modules/formbuilder/views/forms/create_form.php:38, application/modules/formbuilder/views/forms/settings_form_invoice.php:385
 msgid "Invoice"
-msgstr "Factura"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:104
 msgid "Invoice Number"
-msgstr "Factura"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:109
 msgid "Invoice date"
-msgstr "Factura"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:117, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:299, application/modules/formbuilder/views/forms/create_form.php:47
 msgid "Calculation"
-msgstr "Calculation"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:122, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:304, application/modules/formbuilder/views/forms/settings_form_email.php:601
 msgid "Calculation variables"
-msgstr "Calculation variables"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:124
 msgid "Wrapper"
@@ -1428,29 +1421,29 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:277, application/modules/formbuilder/views/forms/settings_form_summbox.php:152
 msgid "Sub Total price"
-msgstr "Sub Total price"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:289, application/modules/formbuilder/views/forms/settings_form_summbox.php:164
 msgid "Summary content"
-msgstr "Resumen Box"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:293, application/modules/formbuilder/views/forms/settings_form_summbox.php:168
 msgid "Summary link"
-msgstr "Resumen"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/create_form.php:26
 msgid "Form editor"
-msgstr "Editor de formularios"
+msgstr "Nombre del formulario"
 
 #: application/modules/formbuilder/views/forms/create_form.php:29
 msgid "email section. you can set mail options. e.g. the recipient mail"
 msgstr ""
-"la sección de correo electrónico. puede configurar las opciones de correo. "
-"por ejemplo el destinatario de correo"
+"sección de correo electrónico. puede configurar las opciones de correo. por "
+"ejemplo el destinatario de correo"
 
 #: application/modules/formbuilder/views/forms/create_form.php:30
 msgid "Email Settings"
-msgstr "Ajustes del correo electrónico"
+msgstr "Configuración Global"
 
 #: application/modules/formbuilder/views/forms/create_form.php:33
 msgid "submission section. you can modify the success message and other messages"
@@ -1464,15 +1457,15 @@ msgstr "En Envío"
 
 #: application/modules/formbuilder/views/forms/create_form.php:37
 msgid "configure your invoice"
-msgstr "configurar su factura"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/create_form.php:41
 msgid "main settings"
-msgstr "ajustes principales"
+msgstr "Ajustes"
 
 #: application/modules/formbuilder/views/forms/create_form.php:42
 msgid "Global settings"
-msgstr "Ajustes globales"
+msgstr "Configuración Global"
 
 #: application/modules/formbuilder/views/forms/create_form.php:85, application/modules/formbuilder/views/forms/settings_form_calc.php:59
 msgid "Main"
@@ -1480,7 +1473,7 @@ msgstr "Main"
 
 #: application/modules/formbuilder/views/forms/create_form.php:87, application/modules/formbuilder/views/forms/templates_fields.php:2009, application/modules/formbuilder/views/fields/modal/settings_field_input.php:80, application/modules/formbuilder/views/fields/modal/settings_field_input.php:87, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:154
 msgid "Price"
-msgstr "Precio"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/create_form.php:88, application/modules/formbuilder/views/fields/modal/field_opt_column.php:906, application/modules/formbuilder/views/fields/modal/settings_form_more.php:193
 msgid "Additional"
@@ -1492,7 +1485,7 @@ msgstr "PDF"
 
 #: application/modules/formbuilder/views/forms/create_form.php:90, application/modules/user/views/intranet/createuser.php:45, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:102, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:323
 msgid "Email"
-msgstr "Email"
+msgstr "Direccion De Correo"
 
 #: application/modules/formbuilder/views/forms/create_form.php:211
 msgid "Dev Options"
@@ -1500,11 +1493,11 @@ msgstr "Opciones"
 
 #: application/modules/formbuilder/views/forms/create_form.php:216
 msgid "test"
-msgstr "prueba"
+msgstr "test"
 
 #: application/modules/formbuilder/views/forms/create_form.php:218
 msgid "Show data"
-msgstr "Mostrar datos"
+msgstr "Visualizar detalles"
 
 #: application/modules/formbuilder/views/forms/create_form.php:220
 msgid "Generate field static data"
@@ -1524,7 +1517,7 @@ msgstr "Refresh & Clean Form"
 
 #: application/modules/formbuilder/views/forms/create_form.php:254
 msgid "preview"
-msgstr "avance"
+msgstr "vista previa"
 
 #: application/modules/formbuilder/views/forms/create_form.php:263
 msgid "Save form"
@@ -1541,16 +1534,16 @@ msgid ""
 "preview section. you can view how the fields will look like and you can "
 "change the settings on live mode  "
 msgstr ""
-"sección de vista previa. usted puede ver cómo los campos se verá así y "
-"usted puede cambiar la configuración de modo directo"
+"sección de vista previa. se puede ver cómo los campos se verá como y usted "
+"puede cambiar la configuración de modo directo"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:60, application/modules/formbuilder/views/forms/previewpanel_form.php:35
 msgid "Tab title"
-msgstr "Título Tab"
+msgstr "Título de las pestañas"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:84, application/modules/formbuilder/views/forms/settings_form_email.php:37, application/modules/formbuilder/views/forms/settings_form_email.php:515, application/modules/formbuilder/views/forms/settings_form_main_record.php:37, application/modules/formbuilder/views/forms/settings_form_summbox.php:102
 msgid "Form"
-msgstr "Formar"
+msgstr "Forma"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:85
 msgid "Selected Field"
@@ -1565,12 +1558,12 @@ msgstr ""
 #: application/modules/formbuilder/views/forms/create_form_main.php:128
 msgid "setting section. you can change the submit mode between ajax and post"
 msgstr ""
-"la sección de configuración. usted puede cambiar el modo de presentar entre "
+"sección de configuración. usted puede cambiar el modo de presentar entre "
 "ajax y post"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:133
 msgid "skin section. you can change skin options of your form"
-msgstr "sección de la piel. puede cambiar las opciones de la piel de su formulario"
+msgstr "sección de piel. puede cambiar las opciones de la piel de su formulario"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:134, application/modules/formbuilder/views/fields/modal/field_opt_column.php:79, application/modules/formbuilder/views/fields/modal/settings_field_input_4.php:125
 msgid "Skin"
@@ -1579,8 +1572,8 @@ msgstr "Piel"
 #: application/modules/formbuilder/views/forms/create_form_main.php:138
 msgid "wizard section. you can enable the wizard form and add many forms"
 msgstr ""
-"sección asistente. puede habilitar el formulario asistente y agregar muchas "
-"formas"
+"sección asistente. se puede permitir que la forma asistente y agregar "
+"muchas formas"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:139
 msgid "Wizard"
@@ -1588,31 +1581,31 @@ msgstr "Mago"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:144
 msgid "Summary Box"
-msgstr "Resumen Box"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:149
 msgid "Unknown"
-msgstr "Desconocido"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:268
 msgid "You need to save the form before seeing the preview"
-msgstr "Usted necesita guardar el formulario antes de ver la vista previa"
+msgstr "Tendrá que guardar el formulario antes de ver la vista previa"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:269
 msgid "Preview for desktops"
-msgstr "Vista previa para equipos de sobremesa"
+msgstr "Prevista para equipos de sobremesa"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:270
 msgid "Preview for tablets"
-msgstr "Vista previa para las tabletas"
+msgstr "Prevista para las tabletas"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:271
 msgid "Preview for smartphone"
-msgstr "Vista preliminar para el smartphone"
+msgstr "Prevista para el smartphone"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:272, application/modules/formbuilder/views/forms/settings_form_main_imp.php:42, application/modules/formbuilder/views/forms/settings_form_main_imp.php:33
 msgid "Import form"
-msgstr "Formulario de Importación"
+msgstr "Formulario de importación"
 
 #: application/modules/formbuilder/views/forms/create_form_main.php:273
 msgid "The import has failed. press the accept button"
@@ -1620,11 +1613,11 @@ msgstr "La importación ha fallado. pulse el botón aceptar"
 
 #: application/modules/formbuilder/views/forms/create_form_modals.php:35
 msgid "Desktop"
-msgstr "De oficina"
+msgstr "Computadora De Escritorio"
 
 #: application/modules/formbuilder/views/forms/create_form_modals.php:43
 msgid "Smartphone"
-msgstr "Smartphone"
+msgstr "Telefono Inteligente"
 
 #: application/modules/formbuilder/views/forms/create_form_modals.php:69
 msgid "Load form"
@@ -1636,7 +1629,7 @@ msgstr "Aceptar"
 
 #: application/modules/formbuilder/views/forms/create_form_modals.php:108
 msgid "Set Form name"
-msgstr "Ajuste Nombre del formulario"
+msgstr "Establecer nombre Forma"
 
 #: application/modules/formbuilder/views/forms/create_form_modals.php:116
 msgid "e.g. My custom form"
@@ -1666,7 +1659,7 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/fields_available.php:19
 msgid "Main fields"
-msgstr "Campos principales"
+msgstr "Principales campos"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:20
 msgid "More fields"
@@ -1678,7 +1671,7 @@ msgstr "Los campos estándar"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:44
 msgid "Text Box"
-msgstr "Caja de texto"
+msgstr "Caja De Texto"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:58
 msgid "Text Area"
@@ -1686,11 +1679,11 @@ msgstr "Área de texto"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:70
 msgid "Radio Button"
-msgstr "Boton de radio"
+msgstr "Radio Button"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:83
 msgid "Check Box"
-msgstr "Caja"
+msgstr "Casilla de verificación"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:96
 msgid "Select List"
@@ -1698,11 +1691,11 @@ msgstr "Seleccione Lista"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:109
 msgid "Multiselect"
-msgstr "Múltiple seleccione"
+msgstr "Multiselect"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:121
 msgid "Submit Button"
-msgstr "Botón de enviar"
+msgstr "Enviar Button"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:133
 msgid "Spinner"
@@ -1718,7 +1711,7 @@ msgstr "Alcance"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:171
 msgid "Grid System"
-msgstr "Sistema de red"
+msgstr "Grid System"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:183
 msgid "1 Col"
@@ -1742,7 +1735,7 @@ msgstr "6 Cols"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:249
 msgid "Additional Fields"
-msgstr "Los campos adicionales"
+msgstr "Campos adicionales"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:261
 msgid "Star rating"
@@ -1762,7 +1755,7 @@ msgstr "Entrada oculta"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:315, application/modules/user/views/intranet/createuser.php:51
 msgid "Password"
-msgstr "Clave"
+msgstr "La Contraseña"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:329
 msgid "Captcha"
@@ -1770,7 +1763,7 @@ msgstr "Captcha"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:344
 msgid "Date Picker"
-msgstr "Selector de fechas"
+msgstr "Selector de fecha"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:357, application/modules/formbuilder/views/forms/fields_available.php:545, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:23
 msgid "Prepend"
@@ -1794,11 +1787,11 @@ msgstr "Subir Campos"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:432
 msgid "File Upload"
-msgstr "Subir archivo"
+msgstr "Subir Archivo"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:445
 msgid "Image Upload"
-msgstr "Imagen Subir"
+msgstr "Image Upload"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:465
 msgid "Picker Fields"
@@ -1806,11 +1799,11 @@ msgstr "Selector de campos"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:478
 msgid "Date "
-msgstr "Fecha"
+msgstr "Fecha De"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:491, application/modules/formbuilder/views/forms/settings_form_skin.php:187, application/modules/formbuilder/views/forms/settings_form_skin.php:341, application/modules/formbuilder/views/forms/settings_form_skin.php:432, application/modules/formbuilder/views/forms/settings_form_submission.php:102, application/modules/formbuilder/views/forms/settings_form_summbox.php:305, application/modules/formbuilder/views/forms/settings_form_summbox.php:454, application/modules/formbuilder/views/forms/settings_form_summbox.php:545, application/modules/formbuilder/views/fields/modal/field_opt_column.php:336, application/modules/formbuilder/views/fields/modal/field_opt_column.php:422, application/modules/formbuilder/views/fields/modal/field_opt_column.php:649, application/modules/formbuilder/views/fields/modal/field_opt_column.php:801, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:311, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:490, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:603, application/modules/formbuilder/views/fields/modal/settings_field_input_11.php:77, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:129, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:308, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:421, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:108, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:287, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:400, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:301, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:444, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:530, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:69, application/modules/formbuilder/views/fields/modal/settings_field_input_3.php:104, application/modules/formbuilder/views/fields/modal/settings_field_input_6.php:36, application/modules/formbuilder/views/fields/modal/settings_field_input_6.php:77, application/modules/formbuilder/views/fields/modal/settings_field_label.php:136, application/modules/formbuilder/views/fields/modal/settings_field_label.php:343
 msgid "Color"
-msgstr "Color"
+msgstr "De Color"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:505
 msgid "Time"
@@ -1818,7 +1811,7 @@ msgstr "Time"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:518
 msgid "Date and Time"
-msgstr "fecha y hora"
+msgstr "Fecha y hora"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:533
 msgid "Prepend/Append Fields - Text Box"
@@ -1826,7 +1819,7 @@ msgstr "Anteponer / Anexar campos - Cuadro de texto"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:561, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:126
 msgid "Append"
-msgstr "Añadir"
+msgstr "Anexar"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:575
 msgid "Prepend/App"
@@ -1858,23 +1851,23 @@ msgstr "La partida H6"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:684
 msgid "Wizard elements"
-msgstr "Elementos Wizard"
+msgstr "Diseño de Elementos"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:697
 msgid "Wizard buttons"
-msgstr "Botones Wizard"
+msgstr "Radio Button"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:728
 msgid "Switch"
-msgstr "Cambiar"
+msgstr "Switch"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:742
 msgid "Dyn Checkbox"
-msgstr "Dyn Checkbox"
+msgstr "Casilla de verificación"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:756
 msgid "Dyn RadioBtn"
-msgstr "Dyn RadioBtn"
+msgstr "Radio Button"
 
 #: application/modules/formbuilder/views/forms/fields_available.php:772
 msgid "Panel"
@@ -1882,7 +1875,7 @@ msgstr "Panel"
 
 #: application/modules/formbuilder/views/forms/formhtml_form.php:93, application/modules/formbuilder/views/forms/settings_form_main_record.php:23
 msgid "Summary"
-msgstr "Resumen"
+msgstr "Summary"
 
 #: application/modules/formbuilder/views/forms/formhtml_form.php:165, application/modules/formbuilder/views/forms/templates_fields.php:164
 msgid "Previous"
@@ -1890,15 +1883,15 @@ msgstr "Anterior"
 
 #: application/modules/formbuilder/views/forms/formhtml_form.php:168, application/modules/formbuilder/views/forms/templates_fields.php:167, application/modules/formbuilder/views/forms/templates_fields.php:1688, application/modules/formbuilder/views/fields/templates/prevpanel_wizardbtn.php:31
 msgid "Next"
-msgstr "Siguiente"
+msgstr "El Siguiente"
 
 #: application/modules/formbuilder/views/forms/form_show_shortcodes.php:39
 msgid "Copy and paste the shortcode to your WordPress site"
-msgstr "Copie y pegue el código corto a su página deseada"
+msgstr "Copia y pega el código corto a su página deseada"
 
 #: application/modules/formbuilder/views/forms/form_show_shortcodes.php:42, application/modules/formbuilder/views/forms/list_forms_table.php:38
 msgid "Shortcode"
-msgstr "Código corto"
+msgstr "Código Corto"
 
 #: application/modules/formbuilder/views/forms/form_show_shortcodes.php:49
 msgid "Use the shortcode alternative in case the first shortcode does not work"
@@ -1906,15 +1899,15 @@ msgstr "Use the shortcode alternative in case the first shortcode does not work"
 
 #: application/modules/formbuilder/views/forms/form_show_shortcodes.php:52
 msgid "Shortcode alternative"
-msgstr "Código corto"
+msgstr "Código Corto"
 
 #: application/modules/formbuilder/views/forms/form_success.php:23
 msgid ""
 "Success! The form was created. Go to url to see your changes or copy & "
 "paste widget code to your page"
 msgstr ""
-"¡Éxito! Se creó el formulario. Ahora sólo tienes que copiar y pegar el "
-"código corto a su contenido"
+"Success! The form was created. Go to url to see your changes or copy & "
+"paste widget code to your page"
 
 #: application/modules/formbuilder/views/forms/form_success.php:39, application/modules/formbuilder/views/forms/getcode.php:30
 msgid "Widget code"
@@ -1930,11 +1923,11 @@ msgstr "Url"
 
 #: application/modules/formbuilder/views/forms/getcode.php:24
 msgid "Your Form code"
-msgstr "Exportar a csv"
+msgstr "Your Form code"
 
 #: application/modules/formbuilder/views/forms/getcode.php:70
 msgid "Cached Content"
-msgstr "Contenido"
+msgstr "Cached Content"
 
 #: application/modules/formbuilder/views/forms/getcode.php:76, application/modules/formbuilder/views/settings/view_settings.php:92, application/modules/formbuilder/views/fields/options/select/impbulkdata.php:23
 msgid "Info"
@@ -1968,15 +1961,15 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/getcode.php:83
 msgid "scripts"
-msgstr "Descripción"
+msgstr "scripts"
 
 #: application/modules/formbuilder/views/forms/getcode.php:91
 msgid "HTML content"
-msgstr "El contenido del texto"
+msgstr "HTML content"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:25
 msgid "List forms."
-msgstr "Formularios de lista"
+msgstr "Formularios de lista."
 
 #: application/modules/formbuilder/views/forms/list_forms.php:39
 msgid "Add new form"
@@ -1988,7 +1981,7 @@ msgstr "Inhabilitar"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:53
 msgid "Enable Form"
-msgstr "Habilitar"
+msgstr "Permitir"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:62, application/modules/formbuilder/views/forms/list_forms.php:66, application/modules/formbuilder/views/forms/list_forms_table.php:90, application/modules/formbuilder/views/forms/list_forms_table.php:91
 msgid "Move to trash"
@@ -1996,11 +1989,11 @@ msgstr "Move to trash"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:86
 msgid "Duplicate Form"
-msgstr "Duplicado"
+msgstr "Duplicar"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:90, application/modules/formbuilder/views/forms/list_forms.php:79, application/modules/formbuilder/views/forms/settings_form_wizard.php:432
 msgid "Duplicate"
-msgstr "Duplicado"
+msgstr "Duplicar"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:101
 msgid "Advanced Search"
@@ -2012,7 +2005,7 @@ msgstr "Rows per page"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:134, application/modules/formbuilder/views/fields/modal/settings_form_clogic.php:89
 msgid "All"
-msgstr "Todas"
+msgstr "Con Toda"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:138
 msgid "Search"
@@ -2020,7 +2013,7 @@ msgstr "Search"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:147
 msgid "Order by"
-msgstr "Resumen del pedido"
+msgstr "Formulario de pedido"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:149
 msgid "Descendent"
@@ -2040,11 +2033,11 @@ msgstr "Ajustes"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:178
 msgid "List form information"
-msgstr "Información de formulario Lista"
+msgstr "Información formulario Lista"
 
 #: application/modules/formbuilder/views/forms/list_forms.php:180
 msgid "there is no forms selected. select one at least"
-msgstr "no hay formas seleccionadas. seleccionar uno, al menos,"
+msgstr "no hay formas seleccionadas. seleccionar uno al menos"
 
 #: application/modules/formbuilder/views/forms/list_forms_table.php:34, application/modules/formbuilder/views/records/list_records.php:35, application/modules/gateways/views/records/list_records.php:35
 msgid "Name Form"
@@ -2052,7 +2045,7 @@ msgstr "Nombre del formulario"
 
 #: application/modules/formbuilder/views/forms/list_forms_table.php:37
 msgid "Copy and paste the shortcode to your desired page"
-msgstr "Copie y pegue el código corto a su página deseada"
+msgstr "Copia y pega el código corto a su página deseada"
 
 #: application/modules/formbuilder/views/forms/list_forms_table.php:40, application/modules/formbuilder/views/records/list_records.php:37, application/modules/formbuilder/views/settings/system_check.php:53, application/modules/gateways/views/records/list_records.php:40, application/modules/gateways/views/settings/editoffline.php:54, application/modules/gateways/views/settings/editpaypal.php:106, application/modules/gateways/views/settings/view_settings.php:45, application/modules/user/views/intranet/createuser.php:63, application/modules/user/views/intranet/index.php:47
 msgid "Status"
@@ -2064,7 +2057,7 @@ msgstr "no hay formas. Añadir nuevo"
 
 #: application/modules/formbuilder/views/forms/list_forms_table.php:58
 msgid "Get shortcode"
-msgstr "Código corto"
+msgstr "Código Corto"
 
 #: application/modules/formbuilder/views/forms/list_forms_table.php:74, application/modules/formbuilder/views/records/list_records.php:59, application/modules/gateways/views/records/list_records.php:65, application/modules/gateways/views/settings/view_settings.php:69, application/modules/user/views/intranet/index.php:69
 msgid "Inactive"
@@ -2096,79 +2089,79 @@ msgstr "Nombre del campo"
 
 #: application/modules/formbuilder/views/forms/preview_clogic_graph.php:29, application/modules/formbuilder/views/forms/preview_clogic_graph.php:36, application/modules/formbuilder/views/fields/modal/settings_field_input_4.php:62
 msgid "Step"
-msgstr "Paso"
+msgstr "El Paso"
 
 #: application/modules/formbuilder/views/forms/preview_fields.php:8
 msgid "Conditional Logic Graph"
-msgstr "Lógica Condicional"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:22
 msgid "ENABLE CUSTOM MATH CALCULATION"
-msgstr "ENABLE CUSTOM MATH CALCULATION"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:31
 msgid "this will enable math calculation."
-msgstr "this will enable math calculation."
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:46
 msgid "Add New Optional Variable"
-msgstr "Añadir nueva opción"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:49
 msgid "Regenerate all variables"
-msgstr "Regenerate all variables"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:85
 msgid "CHOOSE FIELD"
-msgstr "CHOOSE FIELD"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:103
 msgid "CHOOSE ACTION"
-msgstr "CHOOSE ACTION"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:120
 msgid "CHOOSE OPTION"
-msgstr "CHOOSE OPTION"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:137
 msgid "DATA TYPE"
-msgstr "DATA TYPE"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:143
 msgid "Select an option"
-msgstr "Seleccione Posición"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:144
 msgid "Numeric"
-msgstr "Numeric"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:145
 msgid "Character"
-msgstr "Gráficas"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:158, application/modules/formbuilder/views/forms/settings_form_calc.php:222
 msgid "COPY AND PASTE VARIABLE"
-msgstr "COPY AND PASTE VARIABLE"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:171, application/modules/formbuilder/views/forms/settings_form_calc.php:235
 msgid "Place the cursor on the source code and press button"
-msgstr "Place the cursor on the source code and press button"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:177, application/modules/formbuilder/views/forms/settings_form_calc.php:241
 msgid "ADD VARIABLE"
-msgstr "ADD VARIABLE"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:198
 msgid "Optional Variables"
-msgstr "Optional Variables"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:203
 msgid "CHOOSE OPTIONAL VARIABLE"
-msgstr "CHOOSE OPTIONAL VARIABLE"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:269
 msgid "Temporal variable title"
-msgstr "Temporal variable title"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:284, application/modules/formbuilder/views/forms/settings_form_wizard.php:98, application/modules/formbuilder/views/forms/settings_form_wizard.php:429, application/modules/formbuilder/views/records/list_records.php:74, application/modules/formbuilder/views/records/list_records.php:77, application/modules/formbuilder/views/settings/backup_settings.php:95, application/modules/gateways/views/records/list_records.php:80, application/modules/gateways/views/records/list_records.php:83, application/modules/user/views/intranet/index.php:90, application/modules/user/views/intranet/index.php:86
 msgid "Delete"
@@ -2176,11 +2169,11 @@ msgstr "Borrar"
 
 #: application/modules/formbuilder/views/forms/settings_form_calc.php:302
 msgid "Form Variables"
-msgstr "Nombre del formulario"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:23
 msgid "New form request"
-msgstr "Nueva solicitud de forma"
+msgstr "Nueva solicitud forma"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:27
 msgid "You are receiving a new form request"
@@ -2200,7 +2193,7 @@ msgstr "Attributes"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:59
 msgid "From Mail"
-msgstr "De"
+msgstr "From Mail"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:61
 msgid "it email goes to from mail in the message"
@@ -2212,7 +2205,7 @@ msgstr "Mail Tipo CC"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:75
 msgid "From Name"
-msgstr "De"
+msgstr "From Name"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:77
 msgid "this goes to From Name in the message attributes"
@@ -2220,7 +2213,7 @@ msgstr "this goes to From Name in the message attributes"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:82
 msgid "Here goes your From Name"
-msgstr "Aquí va el texto"
+msgstr "Aquí va el asunto del correo"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:84
 msgid "Type From Name"
@@ -2249,7 +2242,7 @@ msgstr "Destinatario de correo"
 #: application/modules/formbuilder/views/forms/settings_form_email.php:143, application/modules/formbuilder/views/forms/settings_form_email.php:277
 msgid "This is the recipient mail. if you leave it blank, admin mail will be taken"
 msgstr ""
-"Este es el destinatario de correo. Si lo deja en blanco, se tomará "
+"Este es el destinatario de correo. si lo deja en blanco, se tomarán "
 "electrónico de administración"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:150
@@ -2262,7 +2255,7 @@ msgstr "Asunto electrónico"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:159, application/modules/formbuilder/views/forms/settings_form_email.php:297
 msgid "it is the title of the message. do not leave blank"
-msgstr "es el título del mensaje. no dejar en blanco"
+msgstr "es el título del mensaje. no lo deje en blanco"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:164, application/modules/formbuilder/views/forms/settings_form_email.php:302
 msgid "Here goes your subject mail"
@@ -2314,11 +2307,11 @@ msgstr "Plantilla de correo electrónico"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:249
 msgid "Send email preview of template "
-msgstr "Send email sample of template "
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:252
 msgid "Send Preview"
-msgstr "Vista previa"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:267
 msgid ""
@@ -2334,15 +2327,15 @@ msgstr "Custom Html"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:275
 msgid "Choose field to receive notification, field needs to have email validation"
-msgstr "Choose field to receive notification, field needs to have email validation"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:383
 msgid "Send email  of template "
-msgstr "Send email sample of template "
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:386
 msgid "Send Preview email"
-msgstr "Send Preview email"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:399
 msgid "Attach pdf"
@@ -2366,11 +2359,11 @@ msgstr "Show PDF sample "
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:475
 msgid "Preview sample"
-msgstr "Vista previa para las tabletas"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:510
 msgid "To be used in Email Template"
-msgstr "To be used in Email Template or Submission message"
+msgstr "Plantilla de correo electrónico"
 
 #: application/modules/formbuilder/views/forms/settings_form_email.php:516, application/modules/formbuilder/views/forms/settings_form_summbox.php:103
 msgid "General"
@@ -2378,71 +2371,69 @@ msgstr "General"
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:136
 msgid "From - text 1"
-msgstr "De - Texto 1"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:138, application/modules/formbuilder/views/forms/settings_form_invoice.php:172, application/modules/formbuilder/views/forms/settings_form_invoice.php:206, application/modules/formbuilder/views/forms/settings_form_invoice.php:240, application/modules/formbuilder/views/forms/settings_form_invoice.php:274
 msgid "this field will be located in the FROM zone"
-msgstr "este campo se encuentra en la zona de DE"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:145, application/modules/formbuilder/views/forms/settings_form_invoice.php:179, application/modules/formbuilder/views/forms/settings_form_invoice.php:213, application/modules/formbuilder/views/forms/settings_form_invoice.php:248, application/modules/formbuilder/views/forms/settings_form_invoice.php:281, application/modules/formbuilder/views/forms/settings_form_invoice.php:295
 msgid "Here goes your text"
-msgstr "Aquí va el texto"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:150
 msgid "To - text 1"
-msgstr "Para - Texto 1"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:152, application/modules/formbuilder/views/forms/settings_form_invoice.php:186, application/modules/formbuilder/views/forms/settings_form_invoice.php:220, application/modules/formbuilder/views/forms/settings_form_invoice.php:255, application/modules/formbuilder/views/forms/settings_form_invoice.php:288
 msgid "this field will be located in the TO zone"
-msgstr "este campo se encuentra en el a la zona"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:170
 msgid "From - text 2"
-msgstr "De - Texto 2"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:184
 msgid "To - text 2"
-msgstr "Para - Texto 2"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:204
 msgid "From - text 3"
-msgstr "De - Texto 3"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:218
 msgid "To - text 3"
-msgstr "Para - Texto 3"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:238
 msgid "From - text 4"
-msgstr "De - Texto 4"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:253
 msgid "To - text 4"
-msgstr "Para - Texto 4"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:272
 msgid "From - text 5"
-msgstr "De - Texto 5"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:286
 msgid "To - text 5"
-msgstr "Para - Texto 5"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:306
 msgid "Custom Template for PDF "
-msgstr "Custom Template for PDF "
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:313
 msgid "Enable custom template for Invoice"
-msgstr "Enable custom template for Invoice"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:333
 msgid ""
 "Options above will not be used. so you have to add your shortcodes of your "
 "fields in the content of the invoice"
 msgstr ""
-"Options above will not be used. so you have to add your shortcodes of your "
-"fields in the content of the invoice"
 
 #: application/modules/formbuilder/views/forms/settings_form_invoice.php:342, application/modules/formbuilder/views/forms/settings_form_main_record.php:83
 msgid "Sample "
@@ -2458,21 +2449,19 @@ msgstr "Custom Html"
 
 #: application/modules/formbuilder/views/forms/settings_form_main.php:23
 msgid "ENABLE COST ESTIMATION"
-msgstr "ENABLE COST ESTIMATION"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main.php:32
 msgid "this will enable cost estimation for the whole form."
-msgstr "esto permitirá la estimación de costos para todo el formulario."
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main.php:45
 msgid "ENABLE PAYMENT"
-msgstr "ENABLE PAYMENT"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main.php:54
 msgid "it will allow to show a payment page after submitting form"
 msgstr ""
-"que permitirá mostrar una página de pago después de la presentación de la "
-"forma"
 
 #: application/modules/formbuilder/views/forms/settings_form_main.php:64
 msgid "REFRESH AND CLEAN FORM"
@@ -2480,15 +2469,15 @@ msgstr "REFRESH AND CLEAN FORM"
 
 #: application/modules/formbuilder/views/forms/settings_form_main.php:70
 msgid "Refresh"
-msgstr "Refrescar"
+msgstr "Refresh"
 
 #: application/modules/formbuilder/views/forms/settings_form_main.php:73, application/modules/formbuilder/views/forms/settings_form_main.php:89
 msgid ""
 "this is used in order to fix if something is not showing fine on the "
 "preview editor panel"
 msgstr ""
-"esto se utiliza para fijar si algo no aparece bien en el panel de vista "
-"previa editor"
+"this is used in order to fix if something is not showing fine on the "
+"preview editor panel"
 
 #: application/modules/formbuilder/views/forms/settings_form_main.php:80
 msgid "REFRESH FORM FROM DATA"
@@ -2532,9 +2521,7 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_add.php:37
 msgid "Just put the selectors. e.g. #id_form .control-label {color:red} "
-msgstr ""
-"Sólo hay que poner los selectores. por ejemplo #id_form .El control-label "
-"{color: red}"
+msgstr "Just put the selectors. e.g. #id_form .control-label {color:red} "
 
 #: application/modules/formbuilder/views/forms/settings_form_main_add.php:51
 msgid "ADDITIONAL JAVASCRIPT"
@@ -2545,8 +2532,8 @@ msgid ""
 "This is not required. You can add extra javascript code or some script to "
 "your form."
 msgstr ""
-"Esto no es necesario. Puede añadir código JavaScript adicional o una "
-"secuencia de comandos a su formulario."
+"Esto no es necesario. Se puede añadir código JavaScript adicional o algún "
+"script a su forma."
 
 #: application/modules/formbuilder/views/forms/settings_form_main_add.php:64
 msgid ""
@@ -2554,71 +2541,71 @@ msgid ""
 "work properly e.g. "
 msgstr ""
 "proceda con precaución. si pones un mal código javascript, la forma no "
-"funcionará correctamente por ejemplo,"
+"funcionará correctamente por ejemplo"
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:23
 msgid "CURRENCY CODE"
-msgstr "CURRENCY CODE"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:33
 msgid "it allow you choose currency code"
-msgstr "que permite que usted elija código de moneda"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:42
 msgid "CURRENCY SYMBOL"
-msgstr "CURRENCY SYMBOL"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:52
 msgid "it allow you choose currency symbol"
-msgstr "que le permite elegir el símbolo de moneda"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:67
 msgid "PRICE FORMAT"
-msgstr "PRICE FORMAT"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:75
 msgid "it allows to put decimal and thousand options"
-msgstr "it allows to put decimal and thousand options"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:84
 msgid "PRICE DECIMAL SEPARATOR"
-msgstr "PRICE DECIMAL SEPARATOR"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:94
 msgid "it allow you choose decimal separator"
-msgstr "que le permite elegir el símbolo de moneda"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:103
 msgid "PRICE THOUSAND SEPARATOR"
-msgstr "PRICE THOUSAND SEPARATOR"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:113
 msgid "it allow you choose decimal thousand"
-msgstr "que permite que usted elija código de moneda"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:122
 msgid "PRICE PRECISION FOR DECIMAL PLACES"
-msgstr "PRICE PRECISION FOR DECIMAL PLACES"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:124
 msgid "it allow you choose currency precision for decimal places"
-msgstr "que permite que usted elija código de moneda"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:143
 msgid "ENABLE TAX"
-msgstr "ENABLE TAX"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:151
 msgid "Enable tax option"
-msgstr "Habilitar la estimación de costos"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:161
 msgid "TAX %(percentage)"
-msgstr "TAX %(percentage)"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_cur.php:163
 msgid "Applied to the total cost"
-msgstr "Applied to the total cost"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_email.php:24
 msgid "CONTROL WHOLE HTML CONTENT OF MAIL NOTIFICATION"
@@ -2658,11 +2645,11 @@ msgstr "Importe el formulario backuped"
 
 #: application/modules/formbuilder/views/forms/settings_form_main_pdf.php:23
 msgid "SHOW PDF ON FRONTEND"
-msgstr "SHOW PDF ON FRONTEND"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_pdf.php:33
 msgid "this will be shown in the payment page"
-msgstr "este campo se encuentra en el a la zona"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_pdf.php:44
 msgid "Dimensions of paper sizes in points"
@@ -2678,7 +2665,7 @@ msgstr "landscape"
 
 #: application/modules/formbuilder/views/forms/settings_form_main_pdf.php:68
 msgid "letter"
-msgstr "Letras"
+msgstr "Las Cartas"
 
 #: application/modules/formbuilder/views/forms/settings_form_main_pdf.php:69
 msgid "portrait"
@@ -2716,7 +2703,7 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_pdf.php:166
 msgid "PDF EXPORT"
-msgstr "PDF EXPORT"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_record.php:27
 msgid "you information is shown on next:"
@@ -2724,7 +2711,7 @@ msgstr "you information is shown on next:"
 
 #: application/modules/formbuilder/views/forms/settings_form_main_record.php:51
 msgid "Custom Template "
-msgstr "Informe personalizado"
+msgstr "Custom Template "
 
 #: application/modules/formbuilder/views/forms/settings_form_main_record.php:58
 msgid "Enable custom template for Summary Records and PDF"
@@ -2744,15 +2731,15 @@ msgstr "Anchura personalizada"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:35, application/modules/formbuilder/views/fields/modal/settings_field_input_4.php:145
 msgid "Max width"
-msgstr "anchura máxima"
+msgstr "Anchura máxima"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:57, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:115
 msgid "Custom padding"
-msgstr "Padding personalizada"
+msgstr "Relleno personalizada"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:71, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:128
 msgid "Padding top"
-msgstr "Acolchado superior"
+msgstr "Parte superior del acolchado"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:85, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:140
 msgid "Padding right"
@@ -2760,7 +2747,7 @@ msgstr "Relleno derecho"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:98, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:152
 msgid "Padding bottom"
-msgstr "Fondo acolchado"
+msgstr "Parte inferior del acolchado"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:111, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:164
 msgid "Padding left"
@@ -2768,7 +2755,7 @@ msgstr "Relleno izquierdo"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:135, application/modules/formbuilder/views/forms/settings_form_submission.php:53, application/modules/formbuilder/views/forms/settings_form_summbox.php:254, application/modules/formbuilder/views/fields/modal/field_opt_column.php:360, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:441, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:259, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:238, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:253
 msgid "Background"
-msgstr "Fondo"
+msgstr "De Fondo"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:142, application/modules/formbuilder/views/forms/settings_form_submission.php:60, application/modules/formbuilder/views/forms/settings_form_summbox.php:261, application/modules/formbuilder/views/forms/settings_form_wizard.php:140, application/modules/formbuilder/views/forms/settings_form_wizard.php:208, application/modules/formbuilder/views/forms/settings_form_wizard.php:298, application/modules/formbuilder/views/forms/settings_form_wizard.php:365, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:448, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:266, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:245, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:260
 msgid "Background color"
@@ -2792,7 +2779,7 @@ msgstr "Comience el color"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:228, application/modules/formbuilder/views/forms/settings_form_submission.php:138, application/modules/formbuilder/views/forms/settings_form_summbox.php:344, application/modules/formbuilder/views/fields/modal/field_opt_column.php:472, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:527, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:345, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:324, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:338
 msgid "End color"
-msgstr "Fin de color"
+msgstr "Color final"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:249, application/modules/formbuilder/views/forms/settings_form_summbox.php:363, application/modules/formbuilder/views/fields/modal/field_opt_column.php:496, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:356
 msgid "Background image"
@@ -2800,7 +2787,7 @@ msgstr "Imagen de fondo"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:289, application/modules/formbuilder/views/forms/settings_form_skin.php:327, application/modules/formbuilder/views/forms/settings_form_summbox.php:402, application/modules/formbuilder/views/forms/settings_form_summbox.php:440, application/modules/formbuilder/views/fields/modal/field_opt_column.php:625, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:554, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:590, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:372, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:408, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:351, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:387, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:396, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:431
 msgid "Border"
-msgstr "Frontera"
+msgstr "La Frontera"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:296, application/modules/formbuilder/views/forms/settings_form_summbox.php:409, application/modules/formbuilder/views/fields/modal/field_opt_column.php:730, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:561, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:379, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:358, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:403
 msgid "Border radius"
@@ -2832,15 +2819,15 @@ msgstr "vertical"
 
 #: application/modules/formbuilder/views/forms/settings_form_skin.php:489, application/modules/formbuilder/views/forms/settings_form_summbox.php:602, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:584, application/modules/formbuilder/views/fields/modal/settings_field_label.php:189, application/modules/formbuilder/views/fields/modal/settings_field_label.php:396
 msgid "blur"
-msgstr "Mancha"
+msgstr "mancha"
 
 #: application/modules/formbuilder/views/forms/settings_form_submission.php:21
 msgid "Success! Form was sent successfully."
-msgstr "¡Éxito! Formulario se ha enviado correctamente."
+msgstr "Éxito! Formulario se ha enviado correctamente."
 
 #: application/modules/formbuilder/views/forms/settings_form_submission.php:30
 msgid "Success Message"
-msgstr "Éxito Mensaje"
+msgstr "Mensaje de éxito"
 
 #: application/modules/formbuilder/views/forms/settings_form_submission.php:165
 msgid "Url Redirection"
@@ -2848,11 +2835,11 @@ msgstr "Url Redirection"
 
 #: application/modules/formbuilder/views/forms/settings_form_submission.php:172
 msgid "Enable Page redirection"
-msgstr "Habilitar la estimación de costos"
+msgstr "Enable Page redirection"
 
 #: application/modules/formbuilder/views/forms/settings_form_submission.php:180
 msgid "Url after submitting form "
-msgstr "Modo Ajax cuando presente formulario"
+msgstr "Modo Ajax al presentar formulario"
 
 #: application/modules/formbuilder/views/forms/settings_form_submission.php:187
 msgid ""
@@ -2864,23 +2851,23 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:23
 msgid "Enable summary box"
-msgstr "Habilitar cuadro de resumen"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:37
 msgid "Layout"
-msgstr "Diseño"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:43
 msgid "Select Position"
-msgstr "Seleccione Posición"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:53, application/modules/formbuilder/views/fields/modal/field_opt_column.php:163, application/modules/formbuilder/views/fields/modal/field_opt_column.php:249, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:73, application/modules/formbuilder/views/fields/modal/settings_field_label.php:452, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:374, application/modules/formbuilder/views/fields/modal/settings_form_more.php:27, application/modules/formbuilder/views/fields/modal/settings_form_more.php:112
 msgid "Top"
-msgstr "Cima"
+msgstr "Superior"
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:54, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:386, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:427, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:204, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:245, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:183, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:224, application/modules/formbuilder/views/fields/modal/settings_field_input_14.php:61, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:84, application/modules/formbuilder/views/fields/modal/settings_field_input_3.php:177, application/modules/formbuilder/views/fields/modal/settings_field_label.php:463, application/modules/formbuilder/views/fields/modal/settings_field_label.php:652, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:385
 msgid "Right"
-msgstr "Correcto"
+msgstr "Derecho"
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:55, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:366, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:407, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:184, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:225, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:163, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:204, application/modules/formbuilder/views/fields/modal/settings_field_input_14.php:41, application/modules/formbuilder/views/fields/modal/settings_field_input_3.php:157, application/modules/formbuilder/views/fields/modal/settings_field_label.php:441, application/modules/formbuilder/views/fields/modal/settings_field_label.php:636, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:407
 msgid "Left"
@@ -2892,35 +2879,35 @@ msgstr "Fondo"
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:57
 msgid "Top out"
-msgstr "Arriba a cabo"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:58
 msgid "Bottom out"
-msgstr "Tocar fondo"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:69
 msgid "Side Box Width"
-msgstr "Side Box Ancho"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:89
 msgid "Content"
-msgstr "Contenido"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:97
 msgid "To be used in text content"
-msgstr "El contenido del texto"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:179
 msgid "Text content"
-msgstr "El contenido del texto"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:205, application/modules/formbuilder/views/fields/modal/settings_field_input.php:179, application/modules/formbuilder/views/fields/modal/settings_field_label.php:78, application/modules/formbuilder/views/fields/modal/settings_field_label.php:289, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:416
 msgid "Text Color"
-msgstr "Color de texto"
+msgstr "Color del texto"
 
 #: application/modules/formbuilder/views/forms/settings_form_summbox.php:221, application/modules/formbuilder/views/fields/modal/settings_field_helpblock.php:66, application/modules/formbuilder/views/fields/modal/settings_field_input.php:194, application/modules/formbuilder/views/fields/modal/settings_field_label.php:92, application/modules/formbuilder/views/fields/modal/settings_field_misc.php:64
 msgid "Text Font"
-msgstr "Fuentes de texto"
+msgstr "Fuente del texto"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:43, application/modules/formbuilder/views/forms/settings_form_wizard.php:27
 msgid "Enable wizard forms"
@@ -2932,11 +2919,11 @@ msgstr "feature locked"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:62
 msgid "Tabs management"
-msgstr "Gestión más aquí"
+msgstr "Gestión Tabs"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:69
 msgid "Clean Tabs"
-msgstr "Aquí limpias"
+msgstr "Limpio"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:73, application/modules/formbuilder/views/forms/templates_fields.php:2120
 msgid "Add new"
@@ -2944,7 +2931,7 @@ msgstr "Añadir nuevo"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:86, application/modules/formbuilder/views/forms/settings_form_wizard.php:417
 msgid "Tab"
-msgstr "Lengüeta"
+msgstr "Tableta"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:91, application/modules/formbuilder/views/forms/settings_form_wizard.php:422
 msgid "Type tab title"
@@ -2956,11 +2943,11 @@ msgstr "Pestaña piel"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:123, application/modules/formbuilder/views/fields/modal/field_opt_checkbox_extra.php:22, application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:22, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:216
 msgid "Theme 1"
-msgstr "Tema 1"
+msgstr "Tema"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:124
 msgid "Theme 2"
-msgstr "Tema 2"
+msgstr "Tema"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:132
 msgid "Inactive mode"
@@ -2968,7 +2955,7 @@ msgstr "El modo Inactivo"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:157, application/modules/formbuilder/views/forms/settings_form_wizard.php:384
 msgid "Text color"
-msgstr "Color de texto"
+msgstr "Color del texto"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:176, application/modules/formbuilder/views/forms/settings_form_wizard.php:243, application/modules/formbuilder/views/forms/settings_form_wizard.php:333
 msgid "Number text color"
@@ -2984,15 +2971,15 @@ msgstr "Título del color"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:261
 msgid "Background for number container"
-msgstr "Antecedentes para el número de contenedor"
+msgstr "Background for number container"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:285
 msgid "Done mode"
-msgstr "Modo de Hecho"
+msgstr "El modo Inactivo"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:288
 msgid "this when the tab is completed. this will be shown on frontend"
-msgstr "esto cuando se complete la ficha. este se mostrará en frontend"
+msgstr "this when the tab is completed. this will be shown on frontend"
 
 #: application/modules/formbuilder/views/forms/settings_form_wizard.php:357
 msgid "Tab container "
@@ -3032,11 +3019,11 @@ msgstr "Seleccione Archivo"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:714, application/modules/formbuilder/views/forms/templates_fields.php:760, application/modules/formbuilder/views/settings/backup_settings.php:125, application/modules/formbuilder/views/fields/modal/settings_field_input_16.php:104, application/modules/formbuilder/views/fields/render_front/type_fileupload.php:25, application/modules/formbuilder/views/fields/render_front/type_imageupload.php:25, application/modules/formbuilder/views/fields/templates/prevpanel_fileupload.php:51, application/modules/formbuilder/views/fields/templates/prevpanel_imageupload.php:52
 msgid "Change"
-msgstr "Cambiar"
+msgstr "Cambio"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:717, application/modules/formbuilder/views/forms/templates_fields.php:763, application/modules/formbuilder/views/settings/backup_settings.php:128, application/modules/formbuilder/views/fields/modal/field_opt_column.php:49, application/modules/formbuilder/views/fields/modal/field_opt_text.php:49, application/modules/formbuilder/views/fields/modal/settings_field_input_16.php:118, application/modules/formbuilder/views/fields/render_front/type_fileupload.php:28, application/modules/formbuilder/views/fields/render_front/type_imageupload.php:27, application/modules/formbuilder/views/fields/templates/prevpanel_fileupload.php:53, application/modules/formbuilder/views/fields/templates/prevpanel_imageupload.php:55
 msgid "Remove"
-msgstr "Eliminar"
+msgstr "Quitar"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:759, application/modules/formbuilder/views/fields/modal/settings_field_input_16.php:90, application/modules/formbuilder/views/fields/templates/prevpanel_imageupload.php:51
 msgid "Select image"
@@ -3048,15 +3035,15 @@ msgstr "Código CAPTCHA"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:1495, application/modules/formbuilder/views/fields/templates/prevpanel_heading1.php:44
 msgid "Type your heading H1 here"
-msgstr "Llene H1 encabezado aquí"
+msgstr "Escriba su H1 encabezado aquí"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:1530, application/modules/formbuilder/views/fields/templates/prevpanel_heading2.php:44
 msgid "Type your heading H2 here"
-msgstr "Llene H2 título aquí"
+msgstr "Escriba su H2 título aquí"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:1564, application/modules/formbuilder/views/fields/templates/prevpanel_heading3.php:44
 msgid "Type your heading H3 here"
-msgstr "Llene H3 título aquí"
+msgstr "Escriba su H3 título aquí"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:1598, application/modules/formbuilder/views/fields/templates/prevpanel_heading4.php:44
 msgid "Type your heading H4 here"
@@ -3072,7 +3059,7 @@ msgstr "Escriba su H6 título aquí"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:1685, application/modules/formbuilder/views/fields/templates/prevpanel_wizardbtn.php:28
 msgid "Prev"
-msgstr "Anterior"
+msgstr "Vista Previa"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:1988
 msgid "Type label"
@@ -3084,15 +3071,15 @@ msgstr "Placa de tipos"
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:2080
 msgid "Price per unit"
-msgstr "Precio por unidad"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:2096
 msgid "Enable quantity"
-msgstr "Habilitar cantidad"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:2105
 msgid "Maximum quantity"
-msgstr "Cantidad máxima"
+msgstr ""
 
 #: application/modules/formbuilder/views/forms/templates_fields.php:2117, application/modules/formbuilder/views/forms/templates_fields.php:2131
 msgid "Images"
@@ -3114,11 +3101,11 @@ msgstr "Nombre del campo"
 
 #: application/modules/formbuilder/views/records/custom_report_getAllfields.php:26
 msgid "Order"
-msgstr "Frontera"
+msgstr "La Frontera"
 
 #: application/modules/formbuilder/views/records/info_record.php:77
 msgid "URL page"
-msgstr "URL de la página"
+msgstr "URL page"
 
 #: application/modules/formbuilder/views/records/info_record.php:106, application/modules/formbuilder/views/records/info_record.php:99, application/modules/gateways/views/records/info_record.php:32
 msgid "Export to PDF"
@@ -3130,7 +3117,7 @@ msgstr "Lista de Registros."
 
 #: application/modules/formbuilder/views/records/list_records.php:71, application/modules/gateways/views/records/list_records.php:77, application/modules/formbuilder/views/fields/modal/settings_form_clogic.php:81
 msgid "Show"
-msgstr "mostrar"
+msgstr "Show"
 
 #: application/modules/formbuilder/views/records/list_records_byforms.php:32
 msgid "Export to csv"
@@ -3138,7 +3125,7 @@ msgstr "Exportar a csv"
 
 #: application/modules/formbuilder/views/records/list_records_getdatatable.php:44
 msgid "Show detail"
-msgstr "Mostrar detalle"
+msgstr "Visualizar detalles"
 
 #: application/modules/formbuilder/views/records/view_charts.php:33
 msgid "View chart"
@@ -3146,23 +3133,23 @@ msgstr "Ver tabla"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:37
 msgid "Name backup"
-msgstr "Nombre de copia de seguridad"
+msgstr "Name backup"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:42
 msgid ""
 "Enter a backup name or leave blank, current date will be assigned to backup "
 "name"
 msgstr ""
-"Introduzca un nombre de copia de seguridad o deje en blanco, la fecha "
-"actual se asigna al nombre de copia de seguridad"
+"Enter a backup name or leave blank, current date will be assigned to backup "
+"name"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:52, application/modules/formbuilder/views/settings/backup_settings.php:48
 msgid "Create backup"
-msgstr "Crear copia de seguridad"
+msgstr "Creado"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:65, application/modules/gateways/views/settings/editoffline.php:33, application/modules/gateways/views/settings/editpaypal.php:33
 msgid "Name"
-msgstr "Nombre"
+msgstr "Nombre del formulario"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:66, application/modules/formbuilder/views/fields/modal/field_opt_column.php:531, application/modules/formbuilder/views/fields/modal/field_opt_column.php:754
 msgid "Size"
@@ -3170,27 +3157,27 @@ msgstr "Size"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:106
 msgid "there is not backup stored. Create new one"
-msgstr "no hay copia de seguridad almacenada. Crear nuevo"
+msgstr "no hay formas. Añadir nuevo"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:85
 msgid "Download"
-msgstr "Descargar"
+msgstr "Download"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:90, application/modules/formbuilder/views/settings/backup_settings.php:166
 msgid "Restore Backup"
-msgstr "Restaurar copia de seguridad"
+msgstr "Restore Backup"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:136
 msgid "Upload Backup"
-msgstr "Cargar copia de seguridad"
+msgstr "Upload Backup"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:164
 msgid "Database backup success"
-msgstr "Éxito copia de seguridad"
+msgstr "Database backup success"
 
 #: application/modules/formbuilder/views/settings/backup_settings.php:165
 msgid "Delete File selected"
-msgstr "Eliminar archivo seleccionado"
+msgstr "Eliminar campo seleccionado"
 
 #: application/modules/formbuilder/views/settings/blocked_getmessage.php:21
 msgid "is a PRO Feature"
@@ -3231,9 +3218,8 @@ msgid ""
 "if you see a red status for any table, it means the software installation "
 "have failed. try making a fresh install or contact developer for support"
 msgstr ""
-"if you see a red status for any table, it means the plugin installation "
-"have failed. try enabling and disabling the plugin or make a fresh install "
-"or contact developer for support"
+"if you see a red status for any table, it means the software installation "
+"have failed. try making a fresh install or contact developer for support"
 
 #: application/modules/formbuilder/views/settings/system_check.php:117
 msgid "Directives"
@@ -3249,7 +3235,7 @@ msgstr "allow_url_fopen php directive is disabled and Recaptcha will not work"
 
 #: application/modules/formbuilder/views/settings/system_check.php:142
 msgid "PHP Extensions"
-msgstr "extensiones permitidas"
+msgstr "PHP Extensions"
 
 #: application/modules/formbuilder/views/settings/system_check.php:145
 msgid "Simple XML"
@@ -3265,7 +3251,7 @@ msgstr ""
 
 #: application/modules/formbuilder/views/settings/view_settings.php:29
 msgid "Global Settings"
-msgstr "Ajustes globales"
+msgstr "Configuración Global"
 
 #: application/modules/formbuilder/views/settings/view_settings.php:45
 msgid "LANGUAGE"
@@ -3299,103 +3285,103 @@ msgstr "Guardar Cambios"
 
 #: application/modules/gateways/views/records/list_records.php:26
 msgid "List Invoices."
-msgstr "Lista de las facturas."
+msgstr ""
 
 #: application/modules/gateways/views/records/list_records.php:37
 msgid "Payment Status"
-msgstr "Estado de pago"
+msgstr ""
 
 #: application/modules/gateways/views/records/list_records.php:39, application/modules/gateways/views/settings/editpaypal.php:52
 msgid "Currency"
-msgstr "Moneda"
+msgstr ""
 
 #: application/modules/gateways/views/records/list_records.php:94
 msgid "there are not invoices."
-msgstr "no hay facturas."
+msgstr ""
 
 #: application/modules/gateways/views/settings/editoffline.php:23, application/modules/gateways/views/settings/editpaypal.php:23
 msgid "Payment gateway"
-msgstr "Pasarela de pago"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editoffline.php:37, application/modules/gateways/views/settings/editpaypal.php:37
 msgid "Type name payment gateway"
-msgstr "Tipo de pago el nombre de puerta de enlace"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editoffline.php:43, application/modules/gateways/views/settings/editpaypal.php:86
 msgid "Return URL"
-msgstr "URL Volver"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editoffline.php:47, application/modules/gateways/views/settings/editpaypal.php:90
 msgid "Type return URL"
-msgstr "Tipo URL de retorno"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editoffline.php:58, application/modules/gateways/views/settings/editpaypal.php:110, application/modules/user/views/intranet/createuser.php:67
 msgid "Enabled"
-msgstr "Activado"
+msgstr "Enabled"
 
 #: application/modules/gateways/views/settings/editoffline.php:62, application/modules/gateways/views/settings/editpaypal.php:114, application/modules/user/views/intranet/createuser.php:71
 msgid "Disabled"
-msgstr "Incapacitado"
+msgstr "Disabled"
 
 #: application/modules/gateways/views/settings/editoffline.php:68, application/modules/gateways/views/settings/editpaypal.php:133
 msgid "Description"
-msgstr "Descripción"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editoffline.php:78, application/modules/gateways/views/settings/editpaypal.php:143
 msgid "Payment order"
-msgstr "Orden de pago"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editpaypal.php:42
 msgid "Paypal mail"
-msgstr "Electrónico de Paypal"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editpaypal.php:46
 msgid "Type Paypal mail"
-msgstr "Escriba electrónico PayPal"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editpaypal.php:73
 msgid "Method"
-msgstr "Method"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editpaypal.php:77
 msgid "Total amount"
-msgstr "Coste total"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editpaypal.php:81
 msgid "Individuals items"
-msgstr "Individuals items"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editpaypal.php:96
 msgid "Cancel URL"
-msgstr "Cancelar URL"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editpaypal.php:100
 msgid "Type cancel URL"
-msgstr "Escriba cancelar URL"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editpaypal.php:119
 msgid "Test mode"
-msgstr "Modo de prueba"
+msgstr ""
 
 #: application/modules/gateways/views/settings/editpaypal.php:127
 msgid "No"
-msgstr "No"
+msgstr ""
 
 #: application/modules/gateways/views/settings/view_settings.php:25
 msgid "List payments gateways."
-msgstr "Pasarelas de pagos lista."
+msgstr ""
 
 #: application/modules/gateways/views/settings/view_settings.php:44
 msgid "Gateway payment"
-msgstr "El pago de puerta de enlace"
+msgstr ""
 
 #: application/modules/gateways/views/settings/view_settings.php:124
 msgid "there is not payment gateways."
-msgstr "no hay pasarelas de pago."
+msgstr ""
 
 #: application/modules/user/views/intranet/createuser.php:24
 msgid "User Information"
-msgstr "Información Forma"
+msgstr "User Information"
 
 #: application/modules/user/views/intranet/createuser.php:39
 msgid "Username"
@@ -3403,15 +3389,15 @@ msgstr "Username"
 
 #: application/modules/user/views/intranet/createuser.php:41
 msgid "Type username"
-msgstr "Tipo de nombre de campo"
+msgstr "Type username"
 
 #: application/modules/user/views/intranet/createuser.php:47
 msgid "Type email"
-msgstr "Mail Tipo CC"
+msgstr "Type email"
 
 #: application/modules/user/views/intranet/createuser.php:53
 msgid "Type password"
-msgstr "Clave"
+msgstr "Type password"
 
 #: application/modules/user/views/intranet/createuser.php:57, application/modules/user/views/intranet/createuser.php:59
 msgid "Confirm password"
@@ -3423,15 +3409,15 @@ msgstr "User"
 
 #: application/modules/user/views/intranet/index.php:62
 msgid "active"
-msgstr "Inactivo"
+msgstr "active"
 
 #: application/modules/user/views/intranet/index.php:78
 msgid "Action"
-msgstr "estimación"
+msgstr "Action"
 
 #: application/modules/user/views/intranet/index.php:89, application/modules/user/views/intranet/index.php:84
 msgid "Edit User"
-msgstr "Editar"
+msgstr "Edit User"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_checkbox_extra.php:31
 msgid "Icon"
@@ -3439,15 +3425,15 @@ msgstr "Icon"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_checkbox_extra.php:49, application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:46
 msgid "Border Color"
-msgstr "Frontera"
+msgstr "La Frontera"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_checkbox_extra.php:67, application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:63, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:431
 msgid "Background Color"
-msgstr "Color de fondo"
+msgstr "Color De Fondo"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_checkbox_extra.php:85, application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:142
 msgid "Icon Color"
-msgstr "Color de fondo"
+msgstr "Color De Fondo"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_checkbox_extra.php:104
 msgid "Icon Size"
@@ -3465,23 +3451,23 @@ msgstr "Tipo de nombre de campo"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:80
 msgid "More Options"
-msgstr "Mas opciones"
+msgstr "Opciones"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:94, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:376, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:417, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:194, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:235, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:173, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:214, application/modules/formbuilder/views/fields/modal/settings_field_input_14.php:51, application/modules/formbuilder/views/fields/modal/settings_field_input_3.php:167, application/modules/formbuilder/views/fields/modal/settings_field_label.php:644
 msgid "Center"
-msgstr "Centrar"
+msgstr "Centro"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:101
 msgid "Enable Center position"
-msgstr "Habilitar la estimación de costos"
+msgstr "Posición de Alerta"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:102
 msgid "Enable center position"
-msgstr "Habilitar la estimación de costos"
+msgstr "Posición de Alerta"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:125, application/modules/formbuilder/views/fields/modal/field_opt_column.php:126
 msgid "Enable Width"
-msgstr "Activado"
+msgstr "Permitir"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:157, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:21, application/modules/formbuilder/views/fields/modal/settings_form_more.php:21
 msgid "Margin"
@@ -3505,7 +3491,7 @@ msgstr "Left margin (px)"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:223, application/modules/formbuilder/views/fields/modal/field_opt_column.php:309, application/modules/formbuilder/views/fields/modal/settings_form_more.php:86, application/modules/formbuilder/views/fields/modal/settings_form_more.php:172
 msgid "right"
-msgstr "Correcto"
+msgstr "Derecho"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:224, application/modules/formbuilder/views/fields/modal/field_opt_column.php:310, application/modules/formbuilder/views/fields/modal/settings_form_more.php:87, application/modules/formbuilder/views/fields/modal/settings_form_more.php:173
 msgid "Right margin (px)"
@@ -3513,7 +3499,7 @@ msgstr "Right margin (px)"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:243, application/modules/formbuilder/views/fields/modal/settings_form_more.php:106
 msgid "Padding"
-msgstr "Acolchado superior"
+msgstr "Parte superior del acolchado"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:330, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:236, application/modules/formbuilder/views/fields/modal/settings_field_input_11.php:23, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:33, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:35, application/modules/formbuilder/views/fields/modal/settings_field_input_3.php:47, application/modules/formbuilder/views/fields/modal/settings_field_input_8.php:23
 msgid "Text"
@@ -3525,11 +3511,11 @@ msgstr "Color for texts inner field"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:366, application/modules/formbuilder/views/fields/modal/field_opt_column.php:367
 msgid "Enable background"
-msgstr "Fondo"
+msgstr "De Fondo"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:383
 msgid "Background type"
-msgstr "Fondo"
+msgstr "De Fondo"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:384
 msgid "Choose background type"
@@ -3553,7 +3539,7 @@ msgstr "Imágenes"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:511
 msgid "Update Image"
-msgstr "Actualizar imagen"
+msgstr "Actualización de imagen"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:532
 msgid "Background size"
@@ -3565,7 +3551,7 @@ msgstr "Repeat"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:573
 msgid "Background repeat"
-msgstr "Fondo"
+msgstr "De Fondo"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:602
 msgid "Position"
@@ -3577,11 +3563,11 @@ msgstr "Color de fondo"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:631
 msgid "Enable Border"
-msgstr "Activado"
+msgstr "Permitir"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:632
 msgid "Enable border"
-msgstr "Activado"
+msgstr "Permitir"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:650
 msgid "Color for border"
@@ -3613,7 +3599,7 @@ msgstr "Shadow Box"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:783, application/modules/formbuilder/views/fields/modal/field_opt_column.php:784
 msgid "Enable shadow"
-msgstr "Activado"
+msgstr "Sombra texto"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_column.php:802
 msgid "Shadow color"
@@ -3673,7 +3659,7 @@ msgstr "Comience el color"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:84, application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:123
 msgid "End Color"
-msgstr "Fin de color"
+msgstr "Color final"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:102
 msgid "Background color on hover"
@@ -3681,23 +3667,23 @@ msgstr "Color de fondo"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:160
 msgid "Enable search option"
-msgstr "Habilitar la estimación de costos"
+msgstr "Enable search option"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:172, application/modules/formbuilder/views/fields/modal/settings_field_input_16.php:87
 msgid "Custom Translations"
-msgstr "Frente personalizada"
+msgstr "Líneas del frente personalizada"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:175
 msgid "None selected text"
-msgstr "El texto se ha clasificado"
+msgstr "Texto se ha clasificado"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:189
 msgid "none result text"
-msgstr "El texto se ha clasificado"
+msgstr "Texto se ha clasificado"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_select_extra.php:203
 msgid "Count selected text"
-msgstr "El texto se ha clasificado"
+msgstr "Texto se ha clasificado"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_text.php:68, application/modules/formbuilder/views/fields/modal/settings_field_input_17.php:83, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:148
 msgid "Label"
@@ -3713,7 +3699,7 @@ msgstr "Ayuda Bloquear"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_text.php:80, application/modules/formbuilder/views/fields/modal/settings_field_misc.php:142
 msgid "Validators"
-msgstr "Validadores"
+msgstr "Los validadores"
 
 #: application/modules/formbuilder/views/fields/modal/field_opt_text.php:85
 msgid "C.Logic"
@@ -3749,23 +3735,23 @@ msgstr "Surgir"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input.php:108
 msgid "Price Format"
-msgstr "Formato del precio"
+msgstr ""
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input.php:115
 msgid "Enable Cost estimation"
-msgstr "Habilitar la estimación de costos"
+msgstr ""
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input.php:131
 msgid "show price label"
-msgstr "etiqueta demostración del precio"
+msgstr ""
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input.php:140
 msgid "it will allow to show price label of the field"
-msgstr "que permitirá mostrar la etiqueta de precio del campo"
+msgstr ""
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input.php:155
 msgid "Price label format"
-msgstr "Precio formato de etiqueta"
+msgstr ""
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:45, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:71, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:95, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:148, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:174, application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:198
 msgid "Add"
@@ -3789,7 +3775,7 @@ msgstr "Alineación Valor de entrada"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:396, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:214, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:193
 msgid "Button alignment"
-msgstr "Alineación Botón"
+msgstr "Alineación Button"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_1.php:622, application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:440, application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:419
 msgid "Color (focus)"
@@ -3801,55 +3787,55 @@ msgstr "Barra divisora ​​en color"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:20
 msgid "Next Button"
-msgstr "Siguiente Botón"
+msgstr "Enviar Button"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:88
 msgid "Text for last button"
-msgstr "Texto para último botón"
+msgstr "Text for last button"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_12.php:91
 msgid "you can check this on frontend page or preview"
-msgstr "usted puede comprobar esto en la página frontend o vista previa"
+msgstr "you can check this on frontend page or preview"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_13.php:21
 msgid "Prev Button"
-msgstr "Botón Anterior"
+msgstr "Radio Button"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_14.php:30
 msgid "Buttons alignment"
-msgstr "Botones de alineación"
+msgstr "Alineación Button"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_15.php:31
 msgid "label Yes"
-msgstr "etiqueta Sí"
+msgstr "Texto subsello"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_15.php:43
 msgid "label no"
-msgstr "sin etiquetar"
+msgstr "Etiqueta"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_16.php:24
 msgid "allowed extensions"
-msgstr "extensiones permitidas"
+msgstr "allowed extensions"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_16.php:34
 msgid "Put the extensions between commas"
-msgstr "Ponga las extensiones entre comas"
+msgstr "Put the extensions between commas"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_16.php:45
 msgid "Maximum size"
-msgstr "Tamaño máximo"
+msgstr "Máximo"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_16.php:70
 msgid "Attach files to mail notification"
-msgstr "Adjuntar archivos a los mensajes de notificación"
+msgstr "Attach files to mail notification"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_16.php:83
 msgid ""
 "if you enable attachment option, make sure your web server (hosting) and "
 "mail server support your maximum size file"
 msgstr ""
-"si habilita la opción de archivo adjunto, asegúrese de que su servidor web "
-"(hosting) y servidor de correo compatible con el archivo de tamaño máximo"
+"if you enable attachment option, make sure your web server (hosting) and "
+"mail server support your maximum size file"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_17.php:23
 msgid "Image Height"
@@ -3857,15 +3843,15 @@ msgstr "Image Height"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_17.php:32
 msgid "Image width"
-msgstr "anchura máxima"
+msgstr "Anchura máxima"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_17.php:44
 msgid "Layout mode"
-msgstr "Diseño"
+msgstr "Diseño de Elementos"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_17.php:52
 msgid "one"
-msgstr "Contenido"
+msgstr "one"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_17.php:53
 msgid "two"
@@ -3897,7 +3883,7 @@ msgstr "put above image"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_17.php:98
 msgid "Show Check Box"
-msgstr "Caja"
+msgstr "Casilla de verificación"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_17.php:114, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:124
 msgid "Add new option"
@@ -3913,7 +3899,7 @@ msgstr "Color del texto de encargo"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:47
 msgid "Show text"
-msgstr "Mostrar detalle"
+msgstr "Visualizar detalles"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:95
 msgid "bottom"
@@ -3921,11 +3907,11 @@ msgstr "Fondo"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:183
 msgid "Custom margin"
-msgstr "Padding personalizada"
+msgstr "Piel personalizada"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:196
 msgid "Margin top"
-msgstr "Acolchado superior"
+msgstr "Parte superior del acolchado"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:208
 msgid "Margin right"
@@ -3933,7 +3919,7 @@ msgstr "Relleno derecho"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:220
 msgid "Margin bottom"
-msgstr "Fondo acolchado"
+msgstr "Parte inferior del acolchado"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:232
 msgid "Margin left"
@@ -3941,7 +3927,7 @@ msgstr "Relleno izquierdo"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:27, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:28
 msgid "Enable time"
-msgstr "Habilitar Pago"
+msgstr "Permitir"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:45, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:46, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:64
 msgid "No calendar"
@@ -3965,7 +3951,7 @@ msgstr "Alternative format input"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:118, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:119
 msgid "Inline display"
-msgstr "En línea"
+msgstr "En Línea"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:136, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:137
 msgid "Date format"
@@ -3981,27 +3967,27 @@ msgstr "Español"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:167, application/modules/formbuilder/views/fields/modal/settings_field_input_7.php:29
 msgid "French"
-msgstr "francés"
+msgstr "Francés"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:168, application/modules/formbuilder/views/fields/modal/settings_field_input_7.php:30
 msgid "Italian"
-msgstr "italiano"
+msgstr "Italiano"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:169, application/modules/formbuilder/views/fields/modal/settings_field_input_7.php:31
 msgid "Japanese"
-msgstr "japonés"
+msgstr "Japonés"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:170, application/modules/formbuilder/views/fields/modal/settings_field_input_7.php:32
 msgid "Portuguese"
-msgstr "portugués"
+msgstr "Portugués"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:171, application/modules/formbuilder/views/fields/modal/settings_field_input_7.php:33
 msgid "Russian"
-msgstr "ruso"
+msgstr "Ruso"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:172, application/modules/formbuilder/views/fields/modal/settings_field_input_7.php:34
 msgid "Chinese"
-msgstr "chino"
+msgstr "Chino"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:186, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:187
 msgid "Minimum date"
@@ -4009,7 +3995,7 @@ msgstr "Mínimo"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:206, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:207
 msgid "Maximum date"
-msgstr "Tamaño máximo"
+msgstr "Máximo"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:226, application/modules/formbuilder/views/fields/modal/settings_field_input_19.php:227
 msgid "Default date"
@@ -4029,7 +4015,7 @@ msgstr "Import bulk data"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:145
 msgid "Check"
-msgstr "Caja"
+msgstr "Casilla de verificación"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:151
 msgid "Value"
@@ -4041,11 +4027,11 @@ msgstr "Bloque de alineación"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:181
 msgid "Block"
-msgstr "Bloquear"
+msgstr "Bloque"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:191
 msgid "Inline"
-msgstr "En línea"
+msgstr "En Línea"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:204, application/modules/formbuilder/views/fields/modal/settings_field_input_5.php:47
 msgid "Theme"
@@ -4061,7 +4047,7 @@ msgstr "Defecto"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_3.php:23
 msgid "Custom html content"
-msgstr "Contenido HTML personalizada"
+msgstr "Contenido html personalizado"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_4.php:24
 msgid "Minimum"
@@ -4089,15 +4075,15 @@ msgstr "Rango 2"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_5.php:24
 msgid "Public key"
-msgstr "Llave pública"
+msgstr "Clave pública"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_5.php:33
 msgid "Secret key"
-msgstr "Llave secreta"
+msgstr "Clave secreta"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_5.php:57
 msgid "Light"
-msgstr "Ligero"
+msgstr "Luz"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_5.php:66
 msgid "Dark"
@@ -4133,7 +4119,7 @@ msgstr "Líneas"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_6.php:140
 msgid "Custom front lines"
-msgstr "Frente personalizada"
+msgstr "Líneas del frente personalizada"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_6.php:173
 msgid "Distortion"
@@ -4145,7 +4131,7 @@ msgstr "Formato"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_9.php:23
 msgid "Text star 1"
-msgstr "Texto estrellas 1"
+msgstr "Texto 1 estrella"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_9.php:34
 msgid "Text star 2"
@@ -4165,7 +4151,7 @@ msgstr "Texto 5 estrellas"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_input_9.php:82
 msgid "Not rated text"
-msgstr "El texto se ha clasificado"
+msgstr "Texto se ha clasificado"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:23
 msgid "Label text"
@@ -4173,11 +4159,11 @@ msgstr "Texto Etiqueta"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:124
 msgid "Text Shadow"
-msgstr "Sombra de texto"
+msgstr "Sombra Texto"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:218
 msgid "Sub label"
-msgstr "Sello Sub"
+msgstr "Etiqueta Sub"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:225
 msgid "Sublabel text"
@@ -4189,11 +4175,11 @@ msgstr "Fuente del texto"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:331
 msgid "Text shadow"
-msgstr "Sombra de texto"
+msgstr "Sombra texto"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:362
 msgid "x"
-msgstr "X"
+msgstr "x"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:379
 msgid "y"
@@ -4201,11 +4187,11 @@ msgstr "y"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:423
 msgid "Text Block"
-msgstr "Bloque de texto"
+msgstr "Bloque de Texto"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:429
 msgid "Block position"
-msgstr "Posición Bloquear"
+msgstr "Posición del bloque"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:483
 msgid "Grid layout of label block when is on left or right position"
@@ -4273,7 +4259,7 @@ msgstr "Necesario"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_misc.php:157
 msgid "Allow whitespace"
-msgstr "Permitir espacios en blanco"
+msgstr "Deje el espacio en blanco"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_misc.php:166, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:23
 msgid "Add validator"
@@ -4281,11 +4267,11 @@ msgstr "Añadir validador"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_misc.php:230, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:147, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:206, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:245, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:284, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:323
 msgid "Validator configuration: "
-msgstr "Validador de configuración:"
+msgstr "Configuración Validador:"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_misc.php:230, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:124
 msgid "Less than"
-msgstr "Menos que"
+msgstr "Menos de"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_misc.php:234, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:159, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:218, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:257, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:296, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:335
 msgid "Default Message"
@@ -4305,7 +4291,7 @@ msgstr "Establecer icono deseado"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_misc.php:295, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:469
 msgid "Choose required icon"
-msgstr "Elija el icono requerido"
+msgstr "Elija icono deseado"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_misc.php:305, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:485
 msgid "Required icon position"
@@ -4325,7 +4311,7 @@ msgstr "Css personalizado"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_validate.php:66, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:206
 msgid "Letters"
-msgstr "Letras"
+msgstr "Las Cartas"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_validate.php:78
 msgid "Letter & Numbers"
@@ -4337,7 +4323,7 @@ msgstr "Sólo los números"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_validate.php:112
 msgid "Greater than"
-msgstr "Mas grande que"
+msgstr "Mayor que"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_validate.php:118
 msgid "Identical"
@@ -4345,7 +4331,7 @@ msgstr "Idéntico"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_validate.php:130
 msgid "Length"
-msgstr "Largo"
+msgstr "Longitud"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_validate.php:139
 msgid "Validator: "
@@ -4361,7 +4347,7 @@ msgstr "esto es necesario"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_validate.php:184
 msgid "Custom validation"
-msgstr "Padding personalizada"
+msgstr "Relleno personalizada"
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_validate.php:186
 msgid "Validation using a character pattern or regular expression"
@@ -4401,7 +4387,7 @@ msgstr "Lógica Condicional"
 
 #: application/modules/formbuilder/views/fields/modal/settings_form_clogic.php:82
 msgid "Hide"
-msgstr "Esconder"
+msgstr "Ocultar"
 
 #: application/modules/formbuilder/views/fields/modal/settings_form_clogic.php:84
 msgid "this field if"
@@ -4409,11 +4395,11 @@ msgstr "este campo si"
 
 #: application/modules/formbuilder/views/fields/modal/settings_form_clogic.php:90
 msgid "Any"
-msgstr "Alguna"
+msgstr "De Cualquier"
 
 #: application/modules/formbuilder/views/fields/modal/settings_form_clogic.php:92
 msgid "of the following rule match"
-msgstr "del siguiente partido de gobierno"
+msgstr "de la siguiente coincidencia de regla"
 
 #: application/modules/formbuilder/views/fields/modal/settings_form_clogic.php:102
 msgid "Add new conditional Logic"
@@ -4433,15 +4419,15 @@ msgstr "no es"
 
 #: application/modules/formbuilder/views/fields/modal/settings_form_clogic.php:144
 msgid "greater than"
-msgstr "mas grande que"
+msgstr "mayor que"
 
 #: application/modules/formbuilder/views/fields/modal/settings_form_clogic.php:145
 msgid "less than"
-msgstr "menos que"
+msgstr "menos de"
 
 #: application/modules/formbuilder/views/fields/render_front/type_subbtn.php:22, application/modules/formbuilder/views/fields/render_front/type_wizardbtn.php:40
 msgid "Sending"
-msgstr "Enviando"
+msgstr "Envío"
 
 #: application/modules/formbuilder/views/fields/options/select/impbulkdata.php:23
 msgid ""
@@ -4454,7 +4440,7 @@ msgstr ""
 
 #: application/modules/formbuilder/views/fields/options/select/impbulkdata.php:23
 msgid "Download here"
-msgstr "Descargar"
+msgstr "Download here"
 
 #: application/modules/formbuilder/views/fields/options/select/impbulkdata.php:27
 msgid "The current options of the field will be removed after importing "
@@ -4462,4 +4448,4 @@ msgstr "The current options of the field will be removed after importing "
 
 #: application/modules/formbuilder/views/fields/options/select/impbulkdata_footer.php:21
 msgid "Import Data"
-msgstr "Importar"
+msgstr "Importación"

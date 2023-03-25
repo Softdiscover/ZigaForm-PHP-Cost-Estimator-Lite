@@ -69,7 +69,7 @@ foreach ( $input2['options'] as $key => $value ) {
 			?>
 			</span>
 			<?php
-			if ( isset( $price['lbl_show_st'] ) && intval( $price['lbl_show_st'] ) === 1 ) {
+			if ( isset( $price['lbl_show_st'] ) && intval( $price['lbl_show_st'] ) === 1 && isset($value['price']) ) {
 				$tmp_price_label = urldecode( $price['lbl_show_format'] );
 				$tmp_price_label = str_replace( '[uifm_price]', '<span class="uiform-stickybox-inp-price">' . $value['price'] . '</span>', $tmp_price_label );
 				if ( ! empty( $tmp_price_label ) ) {

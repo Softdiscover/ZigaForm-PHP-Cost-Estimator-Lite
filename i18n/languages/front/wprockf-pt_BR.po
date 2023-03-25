@@ -1,5 +1,5 @@
-# Copyright (C) 2022 Zigaform PHP Cost Estimation Form Builder 5.5.7
-# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.5.7 package.
+# Copyright (C) 2023 Zigaform PHP Cost Estimation Form Builder 5.6.1
+# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 5.6.1 package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rocket form\n"
@@ -7,7 +7,7 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: softdiscover <info@softdiscover.com>\n"
-"Language: pt_BR\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,19 +20,19 @@ msgstr "Form"
 
 #: application/modules/formbuilder/controllers/frontend.php:468, application/modules/formbuilder/views/frontend/form_invoice.php:23
 msgid "Invoice"
-msgstr "Factura"
+msgstr ""
 
 #: application/modules/formbuilder/controllers/frontend.php:470, application/modules/formbuilder/controllers/frontend.php:498
 msgid "Export to PDF"
-msgstr "Export to PDF"
+msgstr ""
 
 #: application/modules/formbuilder/controllers/frontend.php:496
 msgid "Order summary"
-msgstr "Resumo do pedido"
+msgstr ""
 
 #: application/modules/formbuilder/controllers/frontend.php:778
 msgid "Total cost"
-msgstr "Custo total"
+msgstr ""
 
 #: application/modules/formbuilder/controllers/frontend.php:1268
 msgid "warning! Form was not submitted"
@@ -40,7 +40,7 @@ msgstr "AVVERTENZA! Non è stata presentata la forma"
 
 #: application/modules/formbuilder/controllers/frontend.php:1264
 msgid "Success! your form was submitted"
-msgstr ""
+msgstr "Successo! il form è stato presentato"
 
 #: application/modules/formbuilder/controllers/frontend.php:1261
 msgid "Error! something went wrong."
@@ -48,15 +48,15 @@ msgstr ""
 
 #: application/modules/formbuilder/controllers/frontend.php:1618
 msgid "Error! The file exceeds the allowed size of"
-msgstr "Erro! O arquivo excede o tamanho permitido de"
+msgstr "Error! The file exceeds the allowed size of"
 
 #: application/modules/formbuilder/controllers/frontend.php:1625
 msgid "Error! Type of file is not allowed to upload"
-msgstr "Erro! Tipo de arquivo não é permitido fazer upload"
+msgstr "Error! Type of file is not allowed to upload"
 
 #: application/modules/formbuilder/controllers/frontend.php:1971, application/modules/formbuilder/controllers/frontend.php:2016
 msgid "New form request"
-msgstr ""
+msgstr "Nuova richiesta di forma"
 
 #: application/modules/formbuilder/controllers/records.php:434
 msgid " , version : "
@@ -68,51 +68,51 @@ msgstr " , platform : "
 
 #: application/modules/formbuilder/controllers/records.php:489, application/modules/formbuilder/controllers/records.php:529, application/modules/formbuilder/views/frontend/mail_generate_fields.php:97, application/modules/formbuilder/views/frontend/mail_generate_fields.php:128
 msgid "qty"
-msgstr "qty"
+msgstr ""
 
 #: application/modules/formbuilder/controllers/records.php:492, application/modules/formbuilder/controllers/records.php:532, application/modules/formbuilder/views/frontend/form_invoice.php:110, application/modules/formbuilder/views/frontend/form_invoice.php:103
 msgid "Amount"
-msgstr "Quantia"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_invoice.php:24
 msgid "Date"
-msgstr "Fecha"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_invoice.php:30
 msgid "From"
-msgstr "De"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_invoice.php:62
 msgid "To"
-msgstr "Para"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_invoice.php:107, application/modules/formbuilder/views/frontend/form_invoice.php:100
 msgid "Item ID"
-msgstr "Item ID"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_invoice.php:108
 msgid "Quantity"
-msgstr "Quantidade"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_invoice.php:109, application/modules/formbuilder/views/frontend/form_invoice.php:102
 msgid "Description"
-msgstr "Descrição"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_invoice.php:187, application/modules/formbuilder/views/frontend/form_summary.php:74, application/modules/formbuilder/views/frontend/mail_generate_fields.php:205, application/modules/formbuilder/views/records/info_record.php:32
 msgid "Sub total"
-msgstr "Sub total"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_invoice.php:195, application/modules/formbuilder/views/frontend/form_summary.php:79, application/modules/formbuilder/views/frontend/mail_generate_fields.php:210, application/modules/formbuilder/views/records/info_record.php:37
 msgid "Tax"
-msgstr "Tax"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_invoice.php:204
 msgid "Invoice Total"
-msgstr "Total da Fatura"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/form_summary.php:84, application/modules/formbuilder/views/frontend/mail_generate_fields.php:216, application/modules/formbuilder/views/frontend/payment_html.php:80, application/modules/formbuilder/views/records/info_record.php:42
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/mail_generate_fields.php:60, application/modules/formbuilder/views/frontend/mail_generate_fields.php:58, application/modules/formbuilder/views/frontend/mail_generate_fields.php:84, application/modules/formbuilder/views/frontend/mail_generate_fields.php:82, application/modules/formbuilder/views/frontend/mail_generate_fields.php:112, application/modules/formbuilder/views/frontend/mail_generate_fields.php:110, application/modules/formbuilder/views/frontend/mail_generate_fields.php:142, application/modules/formbuilder/views/frontend/mail_generate_fields.php:140
 msgid "amount"
@@ -124,36 +124,36 @@ msgstr "Units"
 
 #: application/modules/formbuilder/views/frontend/payment_html.php:22
 msgid "Choose Payment Method"
-msgstr "Escolher método de Pagamento"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/payment_html.php:28
 msgid "Payment Option"
-msgstr "Opção de Pagamento"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/payment_html.php:52
 msgid "Order Summary"
-msgstr "Resumo do pedido"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/payment_html.php:61
 msgid "See summary"
-msgstr "Veja resumo"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/payment_html.php:71
 msgid "See invoice"
-msgstr "Veja factura"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/payment_html.php:86
 msgid "Agree To The"
-msgstr "Concordo com os"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/payment_html.php:86
 msgid "Terms &amp; Conditions"
-msgstr "Terms & Conditions"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/payment_html.php:97
 msgid "Complete Order"
-msgstr "Pedidos Completos"
+msgstr ""
 
 #: application/modules/formbuilder/views/frontend/payment_html.php:103
 msgid "Select Payment"
-msgstr "Selecionar Pagamento"
+msgstr ""
