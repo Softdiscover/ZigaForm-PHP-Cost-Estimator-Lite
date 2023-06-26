@@ -31,6 +31,12 @@ if ( ! defined( 'BASEPATH' ) ) {
 				
 			</div>  
 			<div class="widget-body">
+			
+			<?php if (
+					function_exists( 'mysqli_get_server_info' ) &&
+					function_exists( 'mysqli_get_server_version' )
+				) { ?>
+
 			   <div class="widget-forms sfdc-clearfix">
 				   <form 
 					   id="uifrm-setting-form"
@@ -114,6 +120,8 @@ if ( ! defined( 'BASEPATH' ) ) {
 				   </form>
 			   </div>
 				<div class="space20"></div>
+				<?php } ?>
+				
 				<h3><?php echo __( 'Directives', 'FRocket_admin' ); ?></h3>
 				<div class="uiform-systemcheck-directive-container">
 					<div class="sfdc-form-group">

@@ -138,8 +138,8 @@ if ( ! defined( 'BASEPATH' ) ) {
 	<!-- bootstrap touchspin -->
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/btouchspin/jquery.bootstrap-touchspin.js"></script>
 	<!-- date time -->
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/bdatetime/moment-with-locales.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/bdatetime/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/bdatetime/4.17.45/moment-with-locales.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/bdatetime/4.17.45/bootstrap-datetimepicker.js"></script>
 	<!-- auto grow -->
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/backend/js/jquery.autogrow-textarea.js"></script>
 	<!-- bootstrap iconpicker -->

@@ -62,7 +62,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 	<!-- bootstrap icon picker -->
 	<link href="<?php echo base_url(); ?>assets/backend/js/biconpicker/1.9.0/css/bootstrap-iconpicker.css" rel="stylesheet">
 	<!-- bootstrap date time picker -->
-	<link href="<?php echo base_url(); ?>assets/backend/js/bdatetime/bootstrap-datetimepicker.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/backend/js/bdatetime/4.17.45/bootstrap-datetimepicker.css" rel="stylesheet">
 	<!-- star rating -->
 	<link href="<?php echo base_url(); ?>assets/backend/js/bratestar/star-rating.css" rel="stylesheet">
 	<!-- data tables -->
