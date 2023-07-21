@@ -42,7 +42,7 @@ class MX_Controller {
 	public $autoload        = array();
 	public static $_modules = array();
 	public static $_models  = array();
-
+	var $load ;
 	public function __construct() {
 		 $class = str_replace( CI::$APP->config->item( 'controller_suffix' ), '', get_class( $this ) );
 		log_message( 'debug', $class . ' MX_Controller Initialized' );

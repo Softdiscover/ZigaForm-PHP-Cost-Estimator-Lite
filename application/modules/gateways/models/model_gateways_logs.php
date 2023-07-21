@@ -34,6 +34,9 @@ class model_gateways_logs extends CI_Model {
 
 
 	public $table = '';
+	public $tbpay_record = '';
+	public $tbform_record = '';
+	public $tbform = '';
 
 	function __construct() {
 

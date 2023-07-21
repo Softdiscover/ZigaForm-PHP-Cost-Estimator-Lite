@@ -27,7 +27,7 @@
  * @link		http://codeigniter.com/user_guide/libraries/loader.html
  */
 class CI_Loader {
-
+	
 	// All these are set automatically. Don't mess with them.
 	/**
 	 * Nesting level of the output buffering mechanism

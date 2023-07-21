@@ -29,7 +29,7 @@
  * @link		http://codeigniter.com/user_guide/database/
  */
 class CI_DB_driver {
-
+	var $stricton;
 	var $username;
 	var $password;
 	var $hostname;
