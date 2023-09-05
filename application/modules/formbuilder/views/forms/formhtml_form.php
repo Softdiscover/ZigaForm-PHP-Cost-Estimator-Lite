@@ -25,6 +25,9 @@ ob_start();
 	  data-zgfm-version="<?php echo UIFORM_VERSION; ?>"
 	  data-zgfm-price-tax-st="<?php echo isset( $main['price_tax_st'] ) ? $main['price_tax_st'] : '0'; ?>"
 	  data-zgfm-price-tax-val="<?php echo isset( $main['price_tax_val'] ) ? $main['price_tax_val'] : '0'; ?>"
+	  data-zgfm-recaptchav3-active="<?php echo $main['recaptchav3_enable'] ?? 0; ?>"
+	  data-zgfm-recaptchav3-sitekey="<?php echo $main['recaptchav3_sitekey'] ?? ''; ?>"
+	  data-zgfm-recaptchav3-errmsg="<?php echo __('Recaptcha failed, refresh page and try again', 'FRocket_admin'); ?>"
 	  enctype="multipart/form-data" 
 	  id="rockfm_form_<?php echo $form_id; ?>">
 	 

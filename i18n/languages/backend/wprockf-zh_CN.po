@@ -1,5 +1,5 @@
-# Copyright (C) 2023 Zigaform WP Cost Estimation Form Builder 5.7.2
-# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 5.7.2 package.
+# Copyright (C) 2023 Zigaform WP Cost Estimation Form Builder 5.7.6
+# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 5.7.6 package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rocket form\n"
@@ -34,7 +34,7 @@ msgstr "加载中"
 msgid "Saving"
 msgstr "Saving"
 
-#: application/views/footer-global.php:18, application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:92, application/modules/formbuilder/views/forms/create_form_modals.php:31, application/modules/formbuilder/views/forms/formhtml_form.php:228, application/modules/formbuilder/views/forms/modal1_footer.php:19, application/modules/formbuilder/views/forms/templates_fields.php:1907, application/modules/formbuilder/views/fields/render_front/block_label.php:88, application/modules/formbuilder/views/fields/templates/prevpanel_main.php:43, application/modules/formbuilder/views/fields/options/select/impbulkdata_footer.php:20
+#: application/views/footer-global.php:18, application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:92, application/modules/formbuilder/views/forms/create_form_modals.php:31, application/modules/formbuilder/views/forms/formhtml_form.php:231, application/modules/formbuilder/views/forms/modal1_footer.php:19, application/modules/formbuilder/views/forms/templates_fields.php:1907, application/modules/formbuilder/views/fields/render_front/block_label.php:88, application/modules/formbuilder/views/fields/templates/prevpanel_main.php:43, application/modules/formbuilder/views/fields/options/select/impbulkdata_footer.php:20
 msgid "Close"
 msgstr "关闭"
 
@@ -182,7 +182,7 @@ msgstr "平板"
 msgid "smartphone"
 msgstr "智能手机"
 
-#: application/views/header-uiform.php:110, application/modules/formbuilder/views/forms/create_form.php:91
+#: application/views/header-uiform.php:110, application/modules/formbuilder/views/forms/create_form.php:92
 msgid "Records"
 msgstr "记录"
 
@@ -206,7 +206,7 @@ msgstr "自定义报告"
 msgid "Invoices"
 msgstr ""
 
-#: application/views/header-uiform.php:170, application/modules/formbuilder/views/forms/create_form.php:86
+#: application/views/header-uiform.php:170, application/modules/formbuilder/views/forms/create_form.php:87
 msgid "Import"
 msgstr "导入"
 
@@ -754,7 +754,7 @@ msgstr "error found while submitting"
 msgid "Offline success"
 msgstr "Offline success"
 
-#: application/modules/formbuilder/controllers/frontend.php:2138
+#: application/modules/formbuilder/controllers/frontend.php:2143
 msgid "Order summary"
 msgstr "Order summary"
 
@@ -980,7 +980,7 @@ msgstr "Map URL parameters"
 msgid "To form values"
 msgstr "新的形式要求"
 
-#: application/modules/addon_webhook/views/backend/get_content.php:93, application/modules/addon_webhook/views/backend/get_content.php:132, application/modules/formbuilder/views/forms/ajax_rollback_openmodal.php:34, application/modules/formbuilder/views/forms/create_form.php:231, application/modules/formbuilder/views/forms/list_forms_table.php:41, application/modules/formbuilder/views/records/list_records.php:38, application/modules/formbuilder/views/records/list_records_getdatatable.php:26, application/modules/formbuilder/views/settings/backup_settings.php:68, application/modules/gateways/views/records/list_records.php:41, application/modules/gateways/views/settings/view_settings.php:46, application/modules/user/views/intranet/index.php:48, application/modules/formbuilder/views/fields/modal/field_opt_column.php:44, application/modules/formbuilder/views/fields/modal/field_opt_text.php:44, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:114
+#: application/modules/addon_webhook/views/backend/get_content.php:93, application/modules/addon_webhook/views/backend/get_content.php:132, application/modules/formbuilder/views/forms/ajax_rollback_openmodal.php:34, application/modules/formbuilder/views/forms/create_form.php:237, application/modules/formbuilder/views/forms/list_forms_table.php:41, application/modules/formbuilder/views/records/list_records.php:38, application/modules/formbuilder/views/records/list_records_getdatatable.php:26, application/modules/formbuilder/views/settings/backup_settings.php:68, application/modules/gateways/views/records/list_records.php:41, application/modules/gateways/views/settings/view_settings.php:46, application/modules/user/views/intranet/index.php:48, application/modules/formbuilder/views/fields/modal/field_opt_column.php:44, application/modules/formbuilder/views/fields/modal/field_opt_text.php:44, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:114
 msgid "Options"
 msgstr "选项"
 
@@ -1287,7 +1287,7 @@ msgstr "名称窗体"
 msgid "Created"
 msgstr "创建"
 
-#: application/modules/formbuilder/views/forms/ajax_rollback_openmodal.php:51, application/modules/formbuilder/views/forms/create_form.php:236
+#: application/modules/formbuilder/views/forms/ajax_rollback_openmodal.php:51, application/modules/formbuilder/views/forms/create_form.php:242
 msgid "Rollback"
 msgstr "Rollback"
 
@@ -1468,55 +1468,59 @@ msgstr "全局设置"
 msgid "Main"
 msgstr "Main"
 
-#: application/modules/formbuilder/views/forms/create_form.php:87, application/modules/formbuilder/views/forms/templates_fields.php:2009, application/modules/formbuilder/views/fields/modal/settings_field_input.php:80, application/modules/formbuilder/views/fields/modal/settings_field_input.php:87, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:154
+#: application/modules/formbuilder/views/forms/create_form.php:86
+msgid "Recaptcha v3"
+msgstr ""
+
+#: application/modules/formbuilder/views/forms/create_form.php:88, application/modules/formbuilder/views/forms/templates_fields.php:2009, application/modules/formbuilder/views/fields/modal/settings_field_input.php:80, application/modules/formbuilder/views/fields/modal/settings_field_input.php:87, application/modules/formbuilder/views/fields/modal/settings_field_input_2.php:154
 msgid "Price"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/create_form.php:88, application/modules/formbuilder/views/fields/modal/field_opt_column.php:906, application/modules/formbuilder/views/fields/modal/settings_form_more.php:193
+#: application/modules/formbuilder/views/forms/create_form.php:89, application/modules/formbuilder/views/fields/modal/field_opt_column.php:906, application/modules/formbuilder/views/fields/modal/settings_form_more.php:193
 msgid "Additional"
 msgstr "Additional CSS"
 
-#: application/modules/formbuilder/views/forms/create_form.php:89
+#: application/modules/formbuilder/views/forms/create_form.php:90
 msgid "PDF"
 msgstr "PDF"
 
-#: application/modules/formbuilder/views/forms/create_form.php:90, application/modules/user/views/intranet/createuser.php:45, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:102, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:323
+#: application/modules/formbuilder/views/forms/create_form.php:91, application/modules/user/views/intranet/createuser.php:45, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:102, application/modules/formbuilder/views/fields/modal/settings_field_validate.php:323
 msgid "Email"
 msgstr "电子邮件"
 
-#: application/modules/formbuilder/views/forms/create_form.php:211
+#: application/modules/formbuilder/views/forms/create_form.php:217
 msgid "Dev Options"
 msgstr "选项"
 
-#: application/modules/formbuilder/views/forms/create_form.php:216
+#: application/modules/formbuilder/views/forms/create_form.php:222
 msgid "test"
 msgstr "test"
 
-#: application/modules/formbuilder/views/forms/create_form.php:218
+#: application/modules/formbuilder/views/forms/create_form.php:224
 msgid "Show data"
 msgstr "显示明细数据"
 
-#: application/modules/formbuilder/views/forms/create_form.php:220
+#: application/modules/formbuilder/views/forms/create_form.php:226
 msgid "Generate field static data"
 msgstr "Generate field static data"
 
-#: application/modules/formbuilder/views/forms/create_form.php:238, application/modules/formbuilder/views/forms/settings_form_calc.php:80, application/modules/formbuilder/views/forms/settings_form_email.php:503, application/modules/formbuilder/views/forms/settings_form_email.php:510, application/modules/formbuilder/views/forms/settings_form_summbox.php:97
+#: application/modules/formbuilder/views/forms/create_form.php:244, application/modules/formbuilder/views/forms/settings_form_calc.php:80, application/modules/formbuilder/views/forms/settings_form_email.php:503, application/modules/formbuilder/views/forms/settings_form_email.php:510, application/modules/formbuilder/views/forms/settings_form_summbox.php:97
 msgid "Variables"
 msgstr "禁用"
 
-#: application/modules/formbuilder/views/forms/create_form.php:241
+#: application/modules/formbuilder/views/forms/create_form.php:247
 msgid "C.Logic Graph"
 msgstr "C.Logic"
 
-#: application/modules/formbuilder/views/forms/create_form.php:244
+#: application/modules/formbuilder/views/forms/create_form.php:250
 msgid "Refresh & Clean Form"
 msgstr "Refresh & Clean Form"
 
-#: application/modules/formbuilder/views/forms/create_form.php:254
+#: application/modules/formbuilder/views/forms/create_form.php:260
 msgid "preview"
 msgstr "预览...."
 
-#: application/modules/formbuilder/views/forms/create_form.php:263
+#: application/modules/formbuilder/views/forms/create_form.php:269
 msgid "Save form"
 msgstr "保存窗体"
 
@@ -1858,15 +1862,19 @@ msgstr "单选按钮"
 msgid "Panel"
 msgstr "Panel"
 
-#: application/modules/formbuilder/views/forms/formhtml_form.php:93, application/modules/formbuilder/views/forms/settings_form_main_record.php:23
+#: application/modules/formbuilder/views/forms/formhtml_form.php:30
+msgid "Recaptcha failed, refresh page and try again"
+msgstr ""
+
+#: application/modules/formbuilder/views/forms/formhtml_form.php:96, application/modules/formbuilder/views/forms/settings_form_main_record.php:23
 msgid "Summary"
 msgstr "Summary"
 
-#: application/modules/formbuilder/views/forms/formhtml_form.php:165, application/modules/formbuilder/views/forms/templates_fields.php:164
+#: application/modules/formbuilder/views/forms/formhtml_form.php:168, application/modules/formbuilder/views/forms/templates_fields.php:164
 msgid "Previous"
 msgstr "上一页"
 
-#: application/modules/formbuilder/views/forms/formhtml_form.php:168, application/modules/formbuilder/views/forms/templates_fields.php:167, application/modules/formbuilder/views/forms/templates_fields.php:1688, application/modules/formbuilder/views/fields/templates/prevpanel_wizardbtn.php:31
+#: application/modules/formbuilder/views/forms/formhtml_form.php:171, application/modules/formbuilder/views/forms/templates_fields.php:167, application/modules/formbuilder/views/forms/templates_fields.php:1688, application/modules/formbuilder/views/fields/templates/prevpanel_wizardbtn.php:31
 msgid "Next"
 msgstr "下一页"
 
@@ -2680,6 +2688,34 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_pdf.php:166
 msgid "PDF EXPORT"
+msgstr ""
+
+#: application/modules/formbuilder/views/forms/settings_form_main_recaptcha.php:25
+msgid "Get keys from Recaptcha page :  "
+msgstr ""
+
+#: application/modules/formbuilder/views/forms/settings_form_main_recaptcha.php:33
+msgid "Enable Recaptcha Version 3"
+msgstr ""
+
+#: application/modules/formbuilder/views/forms/settings_form_main_recaptcha.php:42
+msgid "Enable Recaptcha v3"
+msgstr ""
+
+#: application/modules/formbuilder/views/forms/settings_form_main_recaptcha.php:52
+msgid "Site Key"
+msgstr ""
+
+#: application/modules/formbuilder/views/forms/settings_form_main_recaptcha.php:54
+msgid "This is required. Get Site key from recaptcha site. "
+msgstr ""
+
+#: application/modules/formbuilder/views/forms/settings_form_main_recaptcha.php:72
+msgid "Secret Key"
+msgstr ""
+
+#: application/modules/formbuilder/views/forms/settings_form_main_recaptcha.php:74
+msgid "This is required. Get Secret key from recaptcha site. "
 msgstr ""
 
 #: application/modules/formbuilder/views/forms/settings_form_main_record.php:27
