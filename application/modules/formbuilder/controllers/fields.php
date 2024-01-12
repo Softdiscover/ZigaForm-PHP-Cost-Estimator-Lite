@@ -65,153 +65,125 @@ class Fields extends BackendController {
 		  *
 		  * @return
 		  */
-	public function ajax_dev_genfieldopts() {
+		public function ajax_dev_genfieldopts() {
 
-		$data_render = array();
-
-		$array = array( 1, 2, 3, 4, 5, 6, 8, 9, 10, 11 );
-		foreach ( $array as $type ) {
-			switch ( intval( $type ) ) {
-				case 1:
-					// 1 col
-					$field_block          = 0;
-					$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
-					break;
-				case 2:
-					// 2 cols
-					$field_block          = 0;
-					$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
-					break;
-				case 3:
-					// 3 cols
-					$field_block          = 0;
-					$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
-					break;
-				case 4:
-					// 4 cols
-					$field_block          = 0;
-					$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
-					break;
-				case 5:
-					// 6 cols
-					$field_block          = 0;
-					$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
-					break;
-				case 6:
-					// textbox
-					$data_render[ $type ] = $this->load_field_options( $type, '', null );
-					break;
-
-				case 8:
-					// radio button
-					$data_render[ $type ] = $this->load_field_options( $type, '', null );
-					break;
-				case 9:
-					// checkbox
-					$data_render[ $type ] = $this->load_field_options( $type, '', null );
-					break;
-				case 10:
-					// select
-					$data_render[ $type ] = $this->load_field_options( $type, '', null );
-					break;
-				case 11:
-					// multiple select
-					$data_render[ $type ] = $this->load_field_options( $type, '', null );
-					break;
+			$data_render = array();
+	
+			$array = array( 1, 2, 3, 4, 5, 6, 8, 9, 10, 11 );
+			foreach ( $array as $type ) {
+				switch ( intval( $type ) ) {
+					case 1:
+						// 1 col
+						$field_block          = 0;
+						$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
+						break;
+					case 2:
+						// 2 cols
+						$field_block          = 0;
+						$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
+						break;
+					case 3:
+						// 3 cols
+						$field_block          = 0;
+						$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
+						break;
+					case 4:
+						// 4 cols
+						$field_block          = 0;
+						$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
+						break;
+					case 5:
+						// 6 cols
+						$field_block          = 0;
+						$data_render[ $type ] = $this->load_field_options( $type, '', $field_block );
+						break;
+					case 6:
+						// textbox
+						$data_render[ $type ] = $this->load_field_options( $type, '', null );
+						break;
+	
+					case 8:
+						// radio button
+						$data_render[ $type ] = $this->load_field_options( $type, '', null );
+						break;
+					case 9:
+						// checkbox
+						$data_render[ $type ] = $this->load_field_options( $type, '', null );
+						break;
+					case 10:
+						// select
+						$data_render[ $type ] = $this->load_field_options( $type, '', null );
+						break;
+					case 11:
+						// multiple select
+						$data_render[ $type ] = $this->load_field_options( $type, '', null );
+						break;
+				}
 			}
-		}
-
-		$html_output = '';
-		ob_start();
-		?>&lt;?php
-		/**
-		 * Intranet
-		 *
-		 * PHP version 5
-		 *
-		 * @category  PHP
-		 * @package   Rocket_form
-		 * @author    Softdiscover &lt;info@softdiscover.com&gt;
-		 * @copyright 2015 Softdiscover
-		 * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
-		 * @link      http://wordpress-form-builder.uiform.com/
-		 */
-		if (!defined('BASEPATH')) {exit('No direct script access allowed');}
-		?&gt;
-		&lt;!-- options --&gt;
-		<?php
-		$html_output_head = ob_get_contents();
-		ob_end_clean();
-
-		$html_output .= html_entity_decode( $html_output_head );
-
-		$search2  = base_url();
-		$replace2 = '{{{data.site_url}}}';
-
-		$js_store = '';
-
-		foreach ( $data_render as $key => $value ) {
-			$html_output .= '<script type="text/html" id="tmpl-zgfm-field-opt-type-' . $key . '">';
-
-			preg_match_all( '#<script(.*?)</script>#is', $value, $matches );
-			foreach ( $matches[0] as $value2 ) {
-				$js_store .= $value2;
+	
+			 
+	
+			$search2  = base_url();
+			$replace2 = '{{{data.site_url}}}';
+	
+			$js_store = '';
+	
+			foreach ( $data_render as $key => $value ) {
+			
+				$html_output = '';
+				ob_start();
+				?>&lt;?php
+				/**
+				 * Intranet
+				 *
+				 * PHP version 5
+				 *
+				 * @category  PHP
+				 * @package   Rocket_form
+				 * @author    Softdiscover &lt;info@softdiscover.com&gt;
+				 * @copyright 2015 Softdiscover
+				 * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
+				 * @link      http://wordpress-form-builder.uiform.com/
+				 */
+				if (!defined('BASEPATH')) {exit('No direct script access allowed');}
+				?&gt;
+				&lt;!-- options --&gt;
+				<?php
+				$html_output_head = ob_get_contents();
+				ob_end_clean();
+		
+				$html_output .= html_entity_decode( $html_output_head );
+			
+			
+				$html_output .= '<script type="text/html" id="tmpl-zgfm-field-opt-type-' . $key . '">';
+	
+				preg_match_all( '#<script(.*?)</script>#is', $value, $matches );
+				foreach ( $matches[0] as $value2 ) {
+					$js_store .= $value2;
+				}
+	
+				$value = str_replace( $search1, $replace1, $value );
+				$value = str_replace( $search2, $replace2, $value );
+				
+				$html_output .= htmlentities( $value );
+				
+				$html_output .= '</script>';
+				$html_output .= '';
+				
+				
+				$fname = APPPATH . '/modules/formbuilder/views/fields/render_back/fieldoptions_data_'.$key.'.php';
+	
+				$fhandle = fopen( $fname, 'w' );
+				fwrite( $fhandle, $html_output );
+				fclose( $fhandle );
+		 
 			}
-
-			// $value = preg_replace('#<script(.*?)</script>#is', '', $value);
-
-			$value = str_replace( $search2, $replace2, $value );
-			// $value = htmlentities($value);
-			// $value= str_replace("%7B%7B%7Bdata.plugin_url%7D%7D%7D", "{{{data.plugin_url}}}", $value);
-
-			// $html_output.= $value;
-			$html_output .= htmlentities( $value );
-			$html_output .= '</script>';
-			$html_output .= '';
+	
+			 
+	
+			 // echo json_encode($data_render);
+			 die();
 		}
-
-		$fname = APPPATH . '/modules/formbuilder/views/forms/fieldoptions_data.php';
-
-		$fhandle = fopen( $fname, 'w' );
-		fwrite( $fhandle, $html_output );
-		fclose( $fhandle );
-
-		$html_output = '';
-		ob_start();
-		?>
-		&lt;?php
-		/**
-		 * Intranet
-		 *
-		 * PHP version 5
-		 *
-		 * @category  PHP
-		 * @package   Rocket_form
-		 * @author    Softdiscover &lt;info@softdiscover.com&gt;
-		 * @copyright 2015 Softdiscover
-		 * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
-		 * @link      http://wordpress-form-builder.uiform.com/
-		 */
-		if (!defined('BASEPATH')) {exit('No direct script access allowed');}
-		?&gt;
-		&lt;!-- options --&gt;
-		<?php
-		$html_output_head = ob_get_contents();
-		ob_end_clean();
-
-		$html_output .= html_entity_decode( $html_output_head );
-
-		 // scripts
-		$fscripts = APPPATH . '/modules/formbuilder/views/forms/fieldoptions_data_scripts.php';
-		// $html_output.=$js_store;
-		$html_output .= htmlentities( $js_store );
-		$fhandle      = fopen( $fscripts, 'w' );
-		fwrite( $fhandle, $html_output );
-		fclose( $fhandle );
-
-		 // echo json_encode($data_render);
-		 die();
-	}
 
 	/**
 	 * Forms::ajax_delete_form_byid()
