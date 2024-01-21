@@ -253,15 +253,15 @@ CREATE TABLE `cepf_cest_uiform_settings` (
   `id` int(1) NOT NULL AUTO_INCREMENT,
   `site_title` varchar(250) DEFAULT NULL,
   `admin_mail` varchar(250) DEFAULT NULL,
-  `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_date` timestamp NULL DEFAULT '1980-01-01 00:00:01',
+  `created_date` timestamp NULL,
+  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cepf_cest_uiform_settings
 -- ----------------------------
-INSERT INTO `cepf_cest_uiform_settings` VALUES ('5.8.9', '1', '', '0', '', '','', '/usr/sbin/sendmail', 'en', '1', 'Zigaform - Cost Estimation - Contact & Survey', 'test@example.com', '2016-02-17 13:05:33', '1980-01-01 00:00:01');
+INSERT INTO `cepf_cest_uiform_settings` VALUES ('5.9.2', '1', '', '0', '', '','', '/usr/sbin/sendmail', 'en', '1', 'Zigaform - Cost Estimation - Contact & Survey', 'test@example.com', '2016-02-17 13:05:33', '1980-01-01 00:00:01');
 
 -- ----------------------------
 -- Table structure for `cepf_cest_uiform_user`
