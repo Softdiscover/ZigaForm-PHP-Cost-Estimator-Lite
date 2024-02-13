@@ -222,18 +222,18 @@ ob_start();
         <tr>
             <td align="center" valign="top"> <?php echo __('Sub total', 'frocket_front'); ?></td>
             <td width="20" align="center" valign="top">:</td>
-            <td width="200" align="left" valign="top"><?php echo Uiform_Form_Helper::cformat_numeric($format_price_conf, $form_cost_subtotal); ?></td>
+            <td width="200" align="left" valign="top"><?php echo ($show_only_value == 'yes')?$form_cost_subtotal:Uiform_Form_Helper::cformat_numeric($format_price_conf, $form_cost_subtotal); ?></td>
         </tr>
         <tr>
             <td align="center" valign="top"> <?php echo __('Tax', 'frocket_front'); ?></td>
             <td width="20" align="center" valign="top">:</td>
-            <td width="200" align="left" valign="top"><?php echo Uiform_Form_Helper::cformat_numeric($format_price_conf, $form_cost_tax); ?></td>
+            <td width="200" align="left" valign="top"><?php echo ($show_only_value == 'yes')?$form_cost_tax:Uiform_Form_Helper::cformat_numeric($format_price_conf, $form_cost_tax); ?></td>
         </tr>
     <?php } ?>
     <tr>
         <td align="center" valign="top"> <?php echo __('Total', 'frocket_front'); ?></td>
         <td width="20" align="center" valign="top">:</td>
-        <td width="200" align="left" valign="top"><?php echo Uiform_Form_Helper::cformat_numeric($format_price_conf, $form_cost_total) . ' ' . $current_cost_cur; ?></td>
+        <td width="200" align="left" valign="top"><?php echo ($show_only_value == 'yes')?$form_cost_total:Uiform_Form_Helper::cformat_numeric($format_price_conf, $form_cost_total) . ' ' . $current_cost_cur; ?></td>
     </tr>
 </table>
 <?php

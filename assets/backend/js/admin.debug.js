@@ -205,8 +205,8 @@ if (!$uifm.isFunction(rocketform)) {
 				steps: {
 					tab_title: [
 						{
-						'title': 'Tab title 1'
-						}
+							title: 'Tab title 1',
+						},
 					],
 					tab_cont: [],
 				},
@@ -3328,7 +3328,7 @@ if (!$uifm.isFunction(rocketform)) {
 								break;
 							case 'recaptchav3_secretkey':
 								$('#uifm_frm_main_recaptchav3_secretkey').val(value);
-								break;	
+								break;
 						}
 						break;
 					case 'wizard':
@@ -4301,9 +4301,11 @@ if (!$uifm.isFunction(rocketform)) {
 
 									switch (parseInt(value)) {
 										case 1:
+											$('#uifm-section-input2-custom-opts-theme1').show();
 											tab.find('.uifm-set-section-input2-stl1').show();
 											break;
 										default:
+											$('#uifm-section-input2-custom-opts-theme1').hide();
 											tab.find('.uifm-set-section-input2-stl1').hide();
 									}
 
@@ -8044,7 +8046,7 @@ if (!$uifm.isFunction(rocketform)) {
 				this.setUiData2('main', 'recaptchav3_sitekey', $('#uifm_frm_main_recaptchav3_sitekey').val());
 				this.setUiData2('main', 'recaptchav3_secretkey', $('#uifm_frm_main_recaptchav3_secretkey').val());
 
-								var main_pdf_onpage = $('#uifm_frm_main_pdf_show_onpage').bootstrapSwitchZgpb('state') ? 1 : 0;
+				var main_pdf_onpage = $('#uifm_frm_main_pdf_show_onpage').bootstrapSwitchZgpb('state') ? 1 : 0;
 				this.setUiData2('main', 'pdf_show_onpage', main_pdf_onpage);
 				this.setUiData2('main', 'pdf_paper_size', $('#uifm_frm_main_pdf_papersize').val());
 
@@ -8685,7 +8687,6 @@ if (!$uifm.isFunction(rocketform)) {
 						$('.uiform-settings-default').trigger('click');
 
 						$(document).trigger('zgfm.form.back_afterSaveForm', { form_id: msg.id });
-
 					},
 				});
 			};
@@ -9077,8 +9078,7 @@ if (!$uifm.isFunction(rocketform)) {
 						.find('label span')
 						.html(numvar + 1);
 
-
-					 										$('#uifm_frm_skin_tabs_box').append(tmpTpl2.find('.uifm_frm_skin_tab_content'));
+					$('#uifm_frm_skin_tabs_box').append(tmpTpl2.find('.uifm_frm_skin_tab_content'));
 
 					this.wizardtab_makeSortable();
 				} catch (ex) {
@@ -9086,7 +9086,7 @@ if (!$uifm.isFunction(rocketform)) {
 				}
 			};
 
-						arguments.callee.wizardtab_makeSortable = function() {
+			arguments.callee.wizardtab_makeSortable = function() {
 				$('#uifm_frm_skin_tabs_box').sortable({
 					items: '.uifm_frm_skin_tab_content',
 					handle: '.uifm-wz-opt-sort',
@@ -9099,71 +9099,82 @@ if (!$uifm.isFunction(rocketform)) {
 
 						rocketform.wizardtab_SortOrder();
 
-				 						rocketform.refreshPreviewSection();
+						rocketform.refreshPreviewSection();
 
-                                                $(document).bind("zgfm.form.back_afterSaveForm", function(e,data) {
-						 });
-
-                        					},
+						$(document).bind('zgfm.form.back_afterSaveForm', function(e, data) {
+						});
+					},
 				});
 			};
 
-						arguments.callee.wizardtab_SortOrder = function() {
+			arguments.callee.wizardtab_SortOrder = function() {
 				var tmpForms = rocketform.getUiData('steps_src');
-				var tmpStepsTab = rocketform.getUiData2('steps','tab_title');
+				var tmpStepsTab = rocketform.getUiData2('steps', 'tab_title');
 				var tmp_ul = $('#uifm_frm_skin_tabs_box > div.uifm_frm_skin_tab_content');
 
 				var tmp_id, tmp_order, tmp_key;
-				var tmpNewSteps=[];
+				var tmpNewSteps = [];
 				$.each(tmp_ul, function(index, value) {
 					tmp_key = $(this).data('tab-nro');
 
 					$(this).attr('data-tab-index-new', index);
 					$(this).attr('data-tab-index-old', tmp_key);
 					$(this).attr('data-tab-nro', index);
-					$(this).find('input').attr('id','uifm_frm_skin_tab'+index+'_title');
-					let tmpID=$(this).attr('data-uid');
+					$(this)
+						.find('input')
+						.attr('id', 'uifm_frm_skin_tab' + index + '_title');
+					let tmpID = $(this).attr('data-uid');
 
-					 					tmpNewSteps.push(tmp_key);
+					tmpNewSteps.push(tmp_key);
 
-									    $('ul.uiform-steps li[data-uid="'+tmpID+'"]').attr('data-order',index);
-				    $('ul.uiform-steps li[data-uid="'+tmpID+'"]').find('a').attr('data-tab-nro',index);
-				    $('ul.uiform-steps li[data-uid="'+tmpID+'"]').find('a').attr('href','#uifm-step-tab-'+index);
-				    $('.uiform-step-content [data-uid="'+tmpID+'"]').attr('data-uifm-step',index).attr('id','uifm-step-tab-'+index);
+					$('ul.uiform-steps li[data-uid="' + tmpID + '"]').attr('data-order', index);
+					$('ul.uiform-steps li[data-uid="' + tmpID + '"]')
+						.find('a')
+						.attr('data-tab-nro', index);
+					$('ul.uiform-steps li[data-uid="' + tmpID + '"]')
+						.find('a')
+						.attr('href', '#uifm-step-tab-' + index);
+					$('.uiform-step-content [data-uid="' + tmpID + '"]')
+						.attr('data-uifm-step', index)
+						.attr('id', 'uifm-step-tab-' + index);
+				});
 
-					 				});
+				var newArr = [];
+				var newStepsTab = [];
+				for (var i = 0; i < tmp_ul.length; i++) {
+					newArr[i] = rocketform.getUiData2('steps_src', parseInt(tmpNewSteps[i]));
+					newStepsTab[i] = rocketform.getUiData3('steps', 'tab_title', parseInt(tmpNewSteps[i]));
+				}
 
-				 				var newArr=[];
-				var newStepsTab=[];
-				for(var i=0;i<tmp_ul.length ;i++){
-					newArr[i]=rocketform.getUiData2('steps_src',parseInt(tmpNewSteps[i]));
-					newStepsTab[i]=rocketform.getUiData3('steps','tab_title',parseInt(tmpNewSteps[i]));
-				  }
+				rocketform.setUiData('steps_src', newArr);
+				rocketform.setUiData2('steps', 'tab_title', newStepsTab);
 
+				$('#uifm_frm_skin_tabs_box > div')
+					.sort(function(a, b) {
+						return parseInt($(a).attr('data-tab-nro')) - parseInt($(b).attr('data-tab-nro'));
+					})
+					.each(function() {
+						var elem = $(this);
+						elem.remove();
+						$(elem).appendTo('#uifm_frm_skin_tabs_box');
+					});
 
-				rocketform.setUiData('steps_src',newArr);
-				rocketform.setUiData2('steps','tab_title',newStepsTab);
+				$('ul.uiform-steps li')
+					.sort(function(a, b) {
+						return parseInt($(a).attr('data-order')) - parseInt($(b).attr('data-order'));
+					})
+					.each(function() {
+						var elem = $(this);
+						elem.remove();
+						$(elem).appendTo('ul.uiform-steps');
+					});
 
+				rocketform.wizardtab_tabManageEvt();
 
-				$("#uifm_frm_skin_tabs_box > div").sort(function(a, b) {
-					return parseInt($(a).attr('data-tab-nro')) - parseInt($(b).attr('data-tab-nro'));
-				  }).each(function() {
-					var elem = $(this);
-					elem.remove();
-					$(elem).appendTo("#uifm_frm_skin_tabs_box");
-				  });
-
-				  				$("ul.uiform-steps li").sort(function(a, b) {
-					return parseInt($(a).attr('data-order')) - parseInt($(b).attr('data-order'));
-				  }).each(function() {
-					var elem = $(this);
-					elem.remove();
-					$(elem).appendTo("ul.uiform-steps");
-				  });
-
-				 rocketform.wizardtab_tabManageEvt();
-
-								$('#uifm_frm_skin_tabs_box .uifm_frm_skin_tab_content').first().find('input').focus();
+				$('#uifm_frm_skin_tabs_box .uifm_frm_skin_tab_content')
+					.first()
+					.find('input')
+					.focus();
 
 				$('.uifm_frm_skin_tab_title_evt').off('change keyup focus keypress'); 
 				$('.uifm_frm_skin_tab_title_evt').on('change keyup focus keypress', function(e) {
@@ -9174,8 +9185,7 @@ if (!$uifm.isFunction(rocketform)) {
 				});
 			};
 
-
-					 			arguments.callee.wizardtab_gotoFirstPosition = function() {
+			arguments.callee.wizardtab_gotoFirstPosition = function() {
 				$('.uiform-steps')
 					.find('.uifm-current')
 					.removeClass('uifm-current')
@@ -9219,53 +9229,52 @@ if (!$uifm.isFunction(rocketform)) {
 				var el = $(element);
 				var el_num = el.closest('.uifm_frm_skin_tab_content').data('tab-nro');
 
-				 				if (parseInt(el_num) >= 0) {
+				if (parseInt(el_num) >= 0) {
 					var tabobj = $(".uiform-step-list li > a[data-tab-nro='" + el_num + "']");
-					let txtTab=tabobj.find('.uifm-title').html();
+					let txtTab = tabobj.find('.uifm-title').html();
 
-					  					rocketform.wizardtab_addNewTab();
+					rocketform.wizardtab_addNewTab();
 
-										var tmp_num_tabs = $('.uiform-step-list li > a').length;
-					tmp_num_tabs=parseInt(tmp_num_tabs)-1;
+					var tmp_num_tabs = $('.uiform-step-list li > a').length;
+					tmp_num_tabs = parseInt(tmp_num_tabs) - 1;
 
-					 					let tmpNewTab=$('#uifm_frm_skin_tabs_box > [data-tab-nro="'+tmp_num_tabs+'"]');
+					let tmpNewTab = $('#uifm_frm_skin_tabs_box > [data-tab-nro="' + tmp_num_tabs + '"]');
 					let uniqueID = zgfm_back_helper.uniqueID();
-					tmpNewTab.attr('data-uid',uniqueID);
+					tmpNewTab.attr('data-uid', uniqueID);
 					tmpNewTab.find('input').val(txtTab);
 
-
-															let newTabObj = $(".uiform-step-list li > a[data-tab-nro='" + tmp_num_tabs + "']").parent();
-					newTabObj.attr('data-uid',uniqueID);
-					newTabObj.attr('data-order',tmp_num_tabs);
+					let newTabObj = $(".uiform-step-list li > a[data-tab-nro='" + tmp_num_tabs + "']").parent();
+					newTabObj.attr('data-uid', uniqueID);
+					newTabObj.attr('data-order', tmp_num_tabs);
 					newTabObj.find('.uifm-title').html(txtTab);
 
 					let stepData = this.getUiData2('steps_src', el_num);
-					let stepsSrc= this.getUiData('steps_src');
+					let stepsSrc = this.getUiData('steps_src');
 
-					var newStepData = $.extend(true,{}, stepData);
+					var newStepData = $.extend(true, {}, stepData);
 
 					var tabContentobj = $(".uiform-step-content > .uiform-step-pane[data-uifm-step='" + el_num + "']");
 					let tmpTabContent = tabContentobj.find('.uiform-tab-container').clone();
 					var tabNewCreated = $(".uiform-step-content > .uiform-step-pane[data-uifm-step='" + tmp_num_tabs + "']");
 					tabNewCreated.find('.uiform-tab-container').append(tmpTabContent);
 
-										var objNewFormData={};
+					var objNewFormData = {};
 					for (const property in newStepData) {
 						let uniqueIDField = 'ui' + rocketform.generateUniqueID();
-						newStepData[property]['id']=uniqueIDField;
-						objNewFormData[uniqueIDField]=newStepData[property];
+						newStepData[property]['id'] = uniqueIDField;
+						objNewFormData[uniqueIDField] = newStepData[property];
 
-						tabNewCreated.find('#'+property).attr('id',uniqueIDField);
+						tabNewCreated.find('#' + property).attr('id', uniqueIDField);
 					}
 
-					  					stepsSrc[tmp_num_tabs]=objNewFormData;
-					this.setUiData('steps_src',stepsSrc);
+					stepsSrc[tmp_num_tabs] = objNewFormData;
+					this.setUiData('steps_src', stepsSrc);
 
-										rocketform.refreshPreviewSectionFromData();
+					rocketform.refreshPreviewSectionFromData();
 				}
 			};
 
-						arguments.callee.wizardtab_changeTheme = function(type) {
+			arguments.callee.wizardtab_changeTheme = function(type) {
 				this.setUiData2('wizard', 'theme_type', type);
 				this.wizardtab_showOptions();
 				rocketform.wizardtab_setDataToTabSettings();
@@ -9274,7 +9283,7 @@ if (!$uifm.isFunction(rocketform)) {
 			arguments.callee.wizardtab_changeThemeOnPreview = function() {
 				var wiz_theme_typ = parseInt(this.getUiData2('wizard', 'theme_type'));
 
-								this.wizardtab_gotoFirstPosition();
+				this.wizardtab_gotoFirstPosition();
 				$('ul.uiform-steps li').off('click');
 				$('.uiform-step-list').html('');
 				$('.uiform-step-list').attr('class', 'uiform-step-list');
@@ -9290,9 +9299,9 @@ if (!$uifm.isFunction(rocketform)) {
 						$.each(elm_li, function(index, value) {
 							let uniqueID = zgfm_back_helper.uniqueID();
 							if (count === 0) {
-								string_html += '<li data-order="' + index + '" data-uid="'+uniqueID+'" class="uifm-current">';
+								string_html += '<li data-order="' + index + '" data-uid="' + uniqueID + '" class="uifm-current">';
 							} else {
-								string_html += '<li data-order="' + index + '" data-uid="'+uniqueID+'" class="uifm-disabled">';
+								string_html += '<li data-order="' + index + '" data-uid="' + uniqueID + '" class="uifm-disabled">';
 							}
 							string_html += '<a href="#uifm-step-tab-' + index + '" data-tab-nro="' + index + '">';
 							string_html += '<span class="uifm-number">' + (parseInt(index) + 1) + '</span>';
@@ -9312,9 +9321,9 @@ if (!$uifm.isFunction(rocketform)) {
 						$.each(elm_li, function(index, value) {
 							let uniqueID = zgfm_back_helper.uniqueID();
 							if (count === 0) {
-								string_html += '<li data-order="' + index + '" data-uid="'+uniqueID+'" class="uifm-current">';
+								string_html += '<li data-order="' + index + '" data-uid="' + uniqueID + '" class="uifm-current">';
 							} else {
-								string_html += '<li data-order="' + index + '" data-uid="'+uniqueID+'" class="uifm-disabled">';
+								string_html += '<li data-order="' + index + '" data-uid="' + uniqueID + '" class="uifm-disabled">';
 							}
 							string_html += '<a href="#uifm-step-tab-' + index + '" data-tab-nro="' + index + '">';
 							string_html += '<span class="uifm-number">' + (parseInt(index) + 1) + '</span>';
@@ -9328,12 +9337,11 @@ if (!$uifm.isFunction(rocketform)) {
 						break;
 				}
 
-				$( "ul.uiform-steps li" ).each(function( index ) {
-					$('.uiform-step-content [data-uifm-step="'+ index +'"]').attr('data-uid',$(this).attr('data-uid'));
+				$('ul.uiform-steps li').each(function(index) {
+					$('.uiform-step-content [data-uifm-step="' + index + '"]').attr('data-uid', $(this).attr('data-uid'));
 
-					$('#uifm_frm_skin_tabs_box [data-tab-nro="'+ index +'"]').attr('data-uid',$(this).attr('data-uid'));
+					$('#uifm_frm_skin_tabs_box [data-tab-nro="' + index + '"]').attr('data-uid', $(this).attr('data-uid'));
 				});
-
 
 				this.wizardtab_tabManageEvt();
 			};
@@ -15406,9 +15414,11 @@ if (!$uifm.isFunction(rocketform)) {
 						var f_val = $(e.target).val();
 						switch (parseInt(f_val)) {
 							case 1:
+								$('#uifm-section-input2-custom-opts-theme1').show();
 								$('.uifm-set-section-input2-stl1').show();
 								break;
 							default:
+								$('#uifm-section-input2-custom-opts-theme1').hide();
 								$('.uifm-set-section-input2-stl1').hide();
 						}
 					});
@@ -23741,7 +23751,7 @@ var uifmsetting;
 					color: '#000',
 					font: '',
 					font_st: 1,
-					style_type: 1,
+					style_type: 2,
 					options: {},
 					stl1: {
 						border_color: '#ccc',
@@ -24064,67 +24074,6 @@ var uifmsetting;
 				obj.find('.uifm-input2-wrap').html('');
 
 				switch (parseInt(f_type)) {
-					case 8:
-
-						$.each(values, function(index, value) {
-							newoptprev = $('#uifm_frm_inp2_templates')
-								.find('.sfdc-radio')
-								.clone();
-							newoptprev.attr('data-inp2-opt-index', index);
-							newoptprev.find('.uifm-inp2-rdo').prop('checked', parseInt(value['checked']));
-							newoptprev.find('.uifm-inp2-rdo').attr('name', 'uifm_' + f_id + '_opt');
-							newoptprev.find('.uifm-inp2-label').html(value['label']);
-
-							obj.find('.uifm-input2-wrap').append(newoptprev.prop('outerHTML'));
-						});
-
-						if (parseInt(f_block_align) === 1) {
-							obj.find('.uifm-input2-wrap .sfdc-radio').attr('class', 'sfdc-radio-inline');
-						} else {
-							obj.find('.uifm-input2-wrap .sfdc-radio-inline').attr('class', 'sfdc-radio');
-						}
-						break;
-					case 9:
-						$.each(values, function(index, value) {
-							newoptprev = $('#uifm_frm_inp2_templates')
-								.find('.sfdc-checkbox')
-								.clone();
-							newoptprev.attr('data-inp2-opt-index', index);
-							newoptprev.find('.uifm-inp2-chk').prop('checked', parseInt(value['checked']));
-							newoptprev.find('.uifm-inp2-chk').attr('name', 'uifm_' + f_id + '_opt');
-							newoptprev.find('.uifm-inp2-label').html(value['label']);
-							obj.find('.uifm-input2-wrap').append(newoptprev);
-						});
-
-						if (parseInt(f_block_align) === 1) {
-							obj.find('.uifm-input2-wrap .sfdc-checkbox').attr('class', 'sfdc-checkbox-inline');
-						} else {
-							obj.find('.uifm-input2-wrap .sfdc-checkbox-inline').attr('class', 'sfdc-checkbox');
-						}
-
-						$('#' + f_id).attr('data-zgfm-stl1-hash', '');
-						if (parseInt(stl1_st) === 1) {
-							this.previewfield_input2_stl1();
-						}
-
-						break;
-					case 10:
-						obj.find('.uifm-input2-wrap').append('<select class="sfdc-form-control uifm-input2-opt-main" ></select>');
-						$.each(values, function(index, value) {
-							newoptprev = '<option data-inp2-opt-index="' + index + '" ';
-
-							if (parseInt(value['checked']) === 1) {
-								newoptprev += ' selected ';
-							}
-							newoptprev += ' > ' + value['label'] + ' </option>';
-							obj.find('.uifm-input2-wrap select').append(newoptprev);
-						});
-						obj.find('.uifm-input2-wrap').append('<span class="uifm_frm_price_lbl_cont"></span>');
-						$('#' + f_id).attr('data-zgfm-stl1-hash', '');
-						if (parseInt(stl1_st) === 1) {
-							this.previewfield_input2_stl1();
-						}
-						break;
 					case 11:
 						obj.find('.uifm-input2-wrap').append('<select class="sfdc-form-control uifm-input2-opt-main" multiple ></select>');
 						$.each(values, function(index, value) {
@@ -24144,8 +24093,13 @@ var uifmsetting;
 							.html(rocketform.pricesettings_labelformat($('#' + f_id)));
 
 						$('#' + f_id).attr('data-zgfm-stl1-hash', '');
-						if (parseInt(stl1_st) === 1) {
-							this.previewfield_input2_stl1();
+						switch (parseInt(stl1_st)) {
+							case 1:
+							case 2:
+								this.previewfield_input2_stl1();
+								break;
+							default:
+								break;
 						}
 						break;
 				}
@@ -24186,6 +24140,8 @@ var uifmsetting;
 
 					rocketform.previewfield_fontfamily(obj, 'input2', '.uifm-input2-opt-main');
 				}
+
+				rocketform.previewfield_priceslabel(obj);
 			}
 		};
 
@@ -24204,15 +24160,8 @@ var uifmsetting;
 			var options = rocketform.getUiData5('steps_src', parseInt(f_step), f_id, 'input2', 'options');
 
 			switch (parseInt(f_type)) {
-				case 8:
-				case 10:
-					if (options) {
-						$.each(options, function(index2, value2) {
-							rocketform.setUiData7('steps_src', parseInt(f_step), f_id, 'input2', 'options', index2, 'checked', 0);
-						});
-					}
-					break;
-				case 9:
+
+				 				case 9:
 				case 11:
 					var el_checked = el.is(':checked') ? 1 : 0;
 					var el_box_index = el.closest('.uifm-fld-inp2-options-row');
@@ -24242,29 +24191,8 @@ var uifmsetting;
 				.find("[data-inp2-opt-index='" + opt_index + "']");
 
 			switch (parseInt(f_type)) {
-				case 8:
-				case 9:
-					prev_el_sel.find('input').prop('checked', opt_value);
 
-					if (parseInt(stl1_st) === 1) {
-						if (opt_value === 1) {
-							prev_el_sel
-								.find('input')
-								.data('checkradios')
-								.form.checkboxEnable(prev_el_sel.find('input'));
-						} else {
-							prev_el_sel
-								.find('input')
-								.data('checkradios')
-								.form.checkboxDisable(prev_el_sel.find('input'));
-						}
-					}
-
-					break;
-				case 10:
-
-					break;
-				case 11:
+				 				case 11:
 					if (parseInt(stl1_st) === 0) {
 						prev_el_sel.prop('selected', opt_value);
 					} else if (parseInt(stl1_st) === 1) {
@@ -24273,7 +24201,13 @@ var uifmsetting;
 							.find('.uifm-input2-wrap ')
 							.find('select')
 							.selectpicker('val', tmp_sel_val);
-					}
+						} else if (parseInt(stl1_st) === 2) {
+							var tmp_sel_val = rocketform.getUiData7('steps_src', parseInt(f_step), f_id, 'input2', 'options', opt_index, 'value');
+							$('#' + f_id)
+								.find('.uifm-input2-wrap ')
+								.find('select')
+								.val(tmp_sel_val);
+						}
 					break;
 			}
 		};
@@ -24311,127 +24245,177 @@ var uifmsetting;
 			} else {
 				$('#' + f_id).attr('data-zgfm-stl1-hash', valhash);
 
-				if (parseInt(stl_type) === 1) {
-
-					if (
-						$('#' + f_id)
-							.find('.uifm-input2-wrap select')
-							.data('selectpicker')
-					) {
-
-						if (parseInt(stl1_search_st) === 1) {
+				switch (parseInt(stl_type)) {
+					case 2:
+						if (
 							$('#' + f_id)
 								.find('.uifm-input2-wrap select')
-								.attr('data-live-search', true);
-						} else {
+								.data('selectpicker')
+						) {
 							$('#' + f_id)
 								.find('.uifm-input2-wrap select')
-								.attr('data-live-search', false);
+								.selectpicker('destroy');
+
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.attr('class', 'sfdc-form-control uifm-input2-opt-main')
+								.removeAttr('data-live-search');
 						}
 
 						$('#' + f_id)
 							.find('.uifm-input2-wrap select')
-							.selectpicker('refresh');
-					} else {
-						if (parseInt(stl1_search_st) === 1) {
+							.select2({
+								placeholder: 'Select an option',
+								theme: 'classic',
+								width: '100%',
+							});
+						break;
+					case 1:
+						if (
 							$('#' + f_id)
 								.find('.uifm-input2-wrap select')
-								.attr('class', 'selectpicker')
-								.attr('data-live-search', 'true')
-								.selectpicker();
-						} else {
+								.data('select2')
+						) {
 							$('#' + f_id)
 								.find('.uifm-input2-wrap select')
-								.attr('class', 'selectpicker')
-								.attr('data-live-search', 'false')
-								.selectpicker();
+								.select2('destroy');
 						}
-					}
 
+						if (
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.data('selectpicker')
+						) {
+							if (parseInt(stl1_search_st) === 1) {
+								$('#' + f_id)
+									.find('.uifm-input2-wrap select')
+									.attr('data-live-search', true);
+							} else {
+								$('#' + f_id)
+									.find('.uifm-input2-wrap select')
+									.attr('data-live-search', false);
+							}
 
-					var str_css = '';
-					$('#' + f_id + '_stl1_css').remove();
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.selectpicker('refresh');
+						} else {
+							if (parseInt(stl1_search_st) === 1) {
+								$('#' + f_id)
+									.find('.uifm-input2-wrap select')
+									.attr('class', 'selectpicker')
+									.attr('data-live-search', 'true')
+									.selectpicker();
+							} else {
+								$('#' + f_id)
+									.find('.uifm-input2-wrap select')
+									.attr('class', 'selectpicker')
+									.attr('data-live-search', 'false')
+									.selectpicker();
+							}
+						}
 
-					str_css = '<style type="text/css" id="' + f_id + '_stl1_css">';
-					str_css += '#' + f_id + ' .uifm-input2-wrap button.sfdc-btn {';
-					if (stl1_bg1_color1 && stl1_bg1_color2) {
-						str_css += 'background-image: linear-gradient(to bottom, ' + stl1_bg1_color1 + ' 0%, ' + stl1_bg1_color2 + ' 100%)!important;';
-					}
+						var str_css = '';
+						$('#' + f_id + '_stl1_css').remove();
 
-					if (stl1_border_color) {
-						str_css += 'border-color:' + stl1_border_color + '!important;';
-					}
-					str_css += '} ';
-					str_css += '#' + f_id + ' .uifm-input2-wrap button.sfdc-btn:hover, #' + f_id + ' .uifm-input2-wrap button.sfdc-btn:focus {';
-					if (stl1_bg2_color1_h && stl1_bg2_color2_h) {
-						str_css += 'background-image: linear-gradient(to bottom, ' + stl1_bg2_color1_h + ' 0%, ' + stl1_bg2_color2_h + ' 100%)!important;';
-						str_css += 'background-position:0 0!important;';
-					}
+						str_css = '<style type="text/css" id="' + f_id + '_stl1_css">';
+						str_css += '#' + f_id + ' .uifm-input2-wrap button.sfdc-btn {';
+						if (stl1_bg1_color1 && stl1_bg1_color2) {
+							str_css += 'background-image: linear-gradient(to bottom, ' + stl1_bg1_color1 + ' 0%, ' + stl1_bg1_color2 + ' 100%)!important;';
+						}
 
-					if (stl1_border_color) {
-						str_css += 'border-color:' + stl1_border_color + '!important;';
-					}
-					str_css += '} ';
-					str_css += '#' + f_id + ' .uifm-input2-wrap .sfdc-bs-caret {';
+						if (stl1_border_color) {
+							str_css += 'border-color:' + stl1_border_color + '!important;';
+						}
+						str_css += '} ';
+						str_css += '#' + f_id + ' .uifm-input2-wrap button.sfdc-btn:hover, #' + f_id + ' .uifm-input2-wrap button.sfdc-btn:focus {';
+						if (stl1_bg2_color1_h && stl1_bg2_color2_h) {
+							str_css += 'background-image: linear-gradient(to bottom, ' + stl1_bg2_color1_h + ' 0%, ' + stl1_bg2_color2_h + ' 100%)!important;';
+							str_css += 'background-position:0 0!important;';
+						}
 
-					if (stl1_icon_color) {
-						str_css += 'color:' + stl1_icon_color + '!important;';
-					}
-					str_css += '} ';
+						if (stl1_border_color) {
+							str_css += 'border-color:' + stl1_border_color + '!important;';
+						}
+						str_css += '} ';
+						str_css += '#' + f_id + ' .uifm-input2-wrap .sfdc-bs-caret {';
 
-					str_css += '#' + f_id + ' .uifm-input2-wrap .filter-option {';
+						if (stl1_icon_color) {
+							str_css += 'color:' + stl1_icon_color + '!important;';
+						}
+						str_css += '} ';
 
-					if (inp_color) {
-						str_css += 'color:' + inp_color + '!important;';
-						str_css += 'text-shadow:0 1px 0 ' + inp_color + '!important;';
-					}
+						str_css += '#' + f_id + ' .uifm-input2-wrap .filter-option {';
 
-					if (parseInt(inp_bold) === 1) {
-						str_css += 'font-weight:bold;';
-					} else {
-						str_css += 'font-weight:normal;';
-					}
+						if (inp_color) {
+							str_css += 'color:' + inp_color + '!important;';
+							str_css += 'text-shadow:0 1px 0 ' + inp_color + '!important;';
+						}
 
-					if (parseInt(inp_italic) === 1) {
-						str_css += 'font-style:italic;';
-					}
+						if (parseInt(inp_bold) === 1) {
+							str_css += 'font-weight:bold;';
+						} else {
+							str_css += 'font-weight:normal;';
+						}
 
-					if (parseInt(inp_underline) === 1) {
-						str_css += 'text-decoration:underline;';
-					}
+						if (parseInt(inp_italic) === 1) {
+							str_css += 'font-style:italic;';
+						}
 
-					if (inp_size) {
-						str_css += 'font-size:' + inp_size + ';';
-					}
+						if (parseInt(inp_underline) === 1) {
+							str_css += 'text-decoration:underline;';
+						}
 
-					str_css += '} ';
+						if (inp_size) {
+							str_css += 'font-size:' + inp_size + ';';
+						}
 
-					str_css += '#' + f_id + ' .uifm-input2-wrap .filter-option,';
-					str_css += '#' + f_id + ' .bootstrap-select.sfdc-btn-group .sfdc-dropdown-menu li a span.text {';
+						str_css += '} ';
 
-					if (parseInt(inp_font_st) === 1 && inp_font) {
-						var font_sel = JSON.parse(inp_font);
-						str_css += 'font-family:' + font_sel.family + ';';
-					}
+						str_css += '#' + f_id + ' .uifm-input2-wrap .filter-option,';
+						str_css += '#' + f_id + ' .bootstrap-select.sfdc-btn-group .sfdc-dropdown-menu li a span.text {';
 
-					str_css += '</style>';
-					$('head').append(str_css);
+						if (parseInt(inp_font_st) === 1 && inp_font) {
+							var font_sel = JSON.parse(inp_font);
+							str_css += 'font-family:' + font_sel.family + ';';
+						}
 
-					rocketform.previewfield_fontfamily2($('#' + f_id), 'input2');
-				} else {
-					if (
+						str_css += '} ';
+
+						str_css += '</style>';
+						$('head').append(str_css);
+
+						rocketform.previewfield_fontfamily2($('#' + f_id), 'input2');
+
+						break;
+
+					default:
+						if (
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.data('selectpicker')
+						) {
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.selectpicker('destroy');
+						}
+
+						if (
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.data('select2')
+						) {
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.select2('destroy');
+						}
+
 						$('#' + f_id)
 							.find('.uifm-input2-wrap select')
-							.data('selectpicker')
-					) {
-						$('#' + f_id)
-							.find('.uifm-input2-wrap select')
-							.selectpicker('destroy');
-					}
-					$('#' + f_id)
-						.find('.uifm-input2-wrap select')
-						.attr('class', 'sfdc-form-control uifm-input2-opt-main')
-						.removeAttr('data-live-search');
+							.attr('class', 'sfdc-form-control uifm-input2-opt-main')
+							.removeAttr('data-live-search');
+
+						break;
 				}
 			}
 		};
@@ -27687,7 +27671,7 @@ var uifmsetting;
 					color: '#000',
 					font: '',
 					font_st: 1,
-					style_type: 1,
+					style_type: 2,
 					options: {},
 					stl1: {
 						border_color: '#ccc',
@@ -28010,52 +27994,6 @@ var uifmsetting;
 				obj.find('.uifm-input2-wrap').html('');
 
 				switch (parseInt(f_type)) {
-					case 8:
-
-						$.each(values, function(index, value) {
-							newoptprev = $('#uifm_frm_inp2_templates')
-								.find('.sfdc-radio')
-								.clone();
-							newoptprev.attr('data-inp2-opt-index', index);
-							newoptprev.find('.uifm-inp2-rdo').prop('checked', parseInt(value['checked']));
-							newoptprev.find('.uifm-inp2-rdo').attr('name', 'uifm_' + f_id + '_opt');
-							newoptprev.find('.uifm-inp2-label').html(value['label']);
-
-							obj.find('.uifm-input2-wrap').append(newoptprev.prop('outerHTML'));
-						});
-
-						if (parseInt(f_block_align) === 1) {
-							obj.find('.uifm-input2-wrap .sfdc-radio').attr('class', 'sfdc-radio-inline');
-						} else {
-							obj.find('.uifm-input2-wrap .sfdc-radio-inline').attr('class', 'sfdc-radio');
-						}
-						break;
-					case 9:
-						$.each(values, function(index, value) {
-							newoptprev = $('#uifm_frm_inp2_templates')
-								.find('.sfdc-checkbox')
-								.clone();
-							newoptprev.attr('data-inp2-opt-index', index);
-							newoptprev.find('.uifm-inp2-chk').prop('checked', parseInt(value['checked']));
-							newoptprev.find('.uifm-inp2-chk').attr('name', 'uifm_' + f_id + '_opt');
-							newoptprev.find('.uifm-inp2-label').html(value['label']);
-							obj.find('.uifm-input2-wrap').append(newoptprev);
-						});
-
-						if (parseInt(f_block_align) === 1) {
-							obj.find('.uifm-input2-wrap .sfdc-checkbox').attr('class', 'sfdc-checkbox-inline');
-						} else {
-							obj.find('.uifm-input2-wrap .sfdc-checkbox-inline').attr('class', 'sfdc-checkbox');
-						}
-
-
-						$('#' + f_id).attr('data-zgfm-stl1-hash', '');
-
-						if (parseInt(stl1_st) === 1) {
-							this.previewfield_input2_stl1();
-						}
-
-						break;
 					case 10:
 						obj.find('.uifm-input2-wrap').append('<select class="sfdc-form-control uifm-input2-opt-main" ></select>');
 						$.each(values, function(index, value) {
@@ -28075,22 +28013,14 @@ var uifmsetting;
 							.html(rocketform.pricesettings_labelformat($('#' + f_id)));
 
 						$('#' + f_id).attr('data-zgfm-stl1-hash', '');
-						if (parseInt(stl1_st) === 1) {
-							this.previewfield_input2_stl1();
+						switch (parseInt(stl1_st)) {
+							case 1:
+							case 2:
+								this.previewfield_input2_stl1();
+								break;
+							default:
+								break;
 						}
-						break;
-					case 11:
-						obj.find('.uifm-input2-wrap').append('<select class="sfdc-form-control uifm-input2-opt-main" multiple ></select>');
-						$.each(values, function(index, value) {
-							newoptprev = '<option data-inp2-opt-index="' + index + '" ';
-
-							if (parseInt(value['checked']) === 1) {
-								newoptprev += ' selected ';
-							}
-							newoptprev += ' > ' + value['label'] + ' </option>';
-							obj.find('.uifm-input2-wrap select').append(newoptprev);
-						});
-						obj.find('.uifm-input2-wrap').append('<span class="uifm_frm_price_lbl_cont"></span>');
 						break;
 				}
 
@@ -28130,6 +28060,8 @@ var uifmsetting;
 
 					rocketform.previewfield_fontfamily(obj, 'input2', '.uifm-input2-opt-main');
 				}
+
+				rocketform.previewfield_priceslabel(obj);
 			}
 		};
 
@@ -28156,13 +28088,6 @@ var uifmsetting;
 						});
 					}
 					break;
-				case 9:
-				case 11:
-					var el_checked = el.is(':checked') ? 1 : 0;
-					var el_box_index = el.closest('.uifm-fld-inp2-options-row');
-					rocketform.setUiData7('steps_src', parseInt(f_step), f_id, 'input2', 'options', el_box_index, 'checked', el_checked);
-
-					break;
 			}
 
 			switch (parseInt(f_type)) {
@@ -28186,25 +28111,6 @@ var uifmsetting;
 				.find("[data-inp2-opt-index='" + opt_index + "']");
 
 			switch (parseInt(f_type)) {
-				case 8:
-				case 9:
-					prev_el_sel.find('input').prop('checked', opt_value);
-
-					if (parseInt(stl1_st) === 1) {
-						if (opt_value === 1) {
-							prev_el_sel
-								.find('input')
-								.data('checkradios')
-								.form.checkboxEnable(prev_el_sel.find('input'));
-						} else {
-							prev_el_sel
-								.find('input')
-								.data('checkradios')
-								.form.checkboxDisable(prev_el_sel.find('input'));
-						}
-					}
-
-					break;
 				case 10:
 					if (parseInt(stl1_st) === 0) {
 						prev_el_sel.prop('selected', opt_value);
@@ -28214,10 +28120,13 @@ var uifmsetting;
 							.find('.uifm-input2-wrap ')
 							.find('select')
 							.selectpicker('val', tmp_sel_val);
+					} else if (parseInt(stl1_st) === 2) {
+						var tmp_sel_val = rocketform.getUiData7('steps_src', parseInt(f_step), f_id, 'input2', 'options', opt_index, 'value');
+						$('#' + f_id)
+							.find('.uifm-input2-wrap ')
+							.find('select')
+							.val(tmp_sel_val);
 					}
-					break;
-				case 11:
-
 					break;
 			}
 		};
@@ -28255,129 +28164,177 @@ var uifmsetting;
 			} else {
 				$('#' + f_id).attr('data-zgfm-stl1-hash', valhash);
 
-				if (parseInt(stl_type) === 1) {
-
-					if (
-						$('#' + f_id)
-							.find('.uifm-input2-wrap select')
-							.data('selectpicker')
-					) {
-
-						if (parseInt(stl1_search_st) === 1) {
+				switch (parseInt(stl_type)) {
+					case 2:
+						if (
 							$('#' + f_id)
 								.find('.uifm-input2-wrap select')
-								.attr('data-live-search', true);
-						} else {
+								.data('selectpicker')
+						) {
 							$('#' + f_id)
 								.find('.uifm-input2-wrap select')
-								.attr('data-live-search', false);
+								.selectpicker('destroy');
+
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.attr('class', 'sfdc-form-control uifm-input2-opt-main')
+								.removeAttr('data-live-search');
 						}
 
 						$('#' + f_id)
 							.find('.uifm-input2-wrap select')
-							.selectpicker('refresh');
-					} else {
-						if (parseInt(stl1_search_st) === 1) {
+							.select2({
+								placeholder: 'Select an option',
+								theme: 'classic',
+								width: '100%',
+							});
+						break;
+					case 1:
+						if (
 							$('#' + f_id)
 								.find('.uifm-input2-wrap select')
-								.attr('class', 'selectpicker')
-								.attr('data-live-search', 'true')
-								.selectpicker();
-						} else {
+								.data('select2')
+						) {
 							$('#' + f_id)
 								.find('.uifm-input2-wrap select')
-								.attr('class', 'selectpicker')
-								.attr('data-live-search', 'false')
-								.selectpicker();
+								.select2('destroy');
 						}
-					}
 
+						if (
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.data('selectpicker')
+						) {
+							if (parseInt(stl1_search_st) === 1) {
+								$('#' + f_id)
+									.find('.uifm-input2-wrap select')
+									.attr('data-live-search', true);
+							} else {
+								$('#' + f_id)
+									.find('.uifm-input2-wrap select')
+									.attr('data-live-search', false);
+							}
 
-					var str_css = '';
-					$('#' + f_id + '_stl1_css').remove();
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.selectpicker('refresh');
+						} else {
+							if (parseInt(stl1_search_st) === 1) {
+								$('#' + f_id)
+									.find('.uifm-input2-wrap select')
+									.attr('class', 'selectpicker')
+									.attr('data-live-search', 'true')
+									.selectpicker();
+							} else {
+								$('#' + f_id)
+									.find('.uifm-input2-wrap select')
+									.attr('class', 'selectpicker')
+									.attr('data-live-search', 'false')
+									.selectpicker();
+							}
+						}
 
-					str_css = '<style type="text/css" id="' + f_id + '_stl1_css">';
-					str_css += '#' + f_id + ' .uifm-input2-wrap button.sfdc-btn {';
-					if (stl1_bg1_color1 && stl1_bg1_color2) {
-						str_css += 'background-image: linear-gradient(to bottom, ' + stl1_bg1_color1 + ' 0%, ' + stl1_bg1_color2 + ' 100%)!important;';
-					}
+						var str_css = '';
+						$('#' + f_id + '_stl1_css').remove();
 
-					if (stl1_border_color) {
-						str_css += 'border-color:' + stl1_border_color + '!important;';
-					}
-					str_css += '} ';
-					str_css += '#' + f_id + ' .uifm-input2-wrap button.sfdc-btn:hover, #' + f_id + ' .uifm-input2-wrap button.sfdc-btn:focus {';
-					if (stl1_bg2_color1_h && stl1_bg2_color2_h) {
-						str_css += 'background-image: linear-gradient(to bottom, ' + stl1_bg2_color1_h + ' 0%, ' + stl1_bg2_color2_h + ' 100%)!important;';
-						str_css += 'background-position:0 0!important;';
-					}
+						str_css = '<style type="text/css" id="' + f_id + '_stl1_css">';
+						str_css += '#' + f_id + ' .uifm-input2-wrap button.sfdc-btn {';
+						if (stl1_bg1_color1 && stl1_bg1_color2) {
+							str_css += 'background-image: linear-gradient(to bottom, ' + stl1_bg1_color1 + ' 0%, ' + stl1_bg1_color2 + ' 100%)!important;';
+						}
 
-					if (stl1_border_color) {
-						str_css += 'border-color:' + stl1_border_color + '!important;';
-					}
-					str_css += '} ';
-					str_css += '#' + f_id + ' .uifm-input2-wrap .sfdc-bs-caret {';
+						if (stl1_border_color) {
+							str_css += 'border-color:' + stl1_border_color + '!important;';
+						}
+						str_css += '} ';
+						str_css += '#' + f_id + ' .uifm-input2-wrap button.sfdc-btn:hover, #' + f_id + ' .uifm-input2-wrap button.sfdc-btn:focus {';
+						if (stl1_bg2_color1_h && stl1_bg2_color2_h) {
+							str_css += 'background-image: linear-gradient(to bottom, ' + stl1_bg2_color1_h + ' 0%, ' + stl1_bg2_color2_h + ' 100%)!important;';
+							str_css += 'background-position:0 0!important;';
+						}
 
-					if (stl1_icon_color) {
-						str_css += 'color:' + stl1_icon_color + '!important;';
-					}
-					str_css += '} ';
+						if (stl1_border_color) {
+							str_css += 'border-color:' + stl1_border_color + '!important;';
+						}
+						str_css += '} ';
+						str_css += '#' + f_id + ' .uifm-input2-wrap .sfdc-bs-caret {';
 
-					str_css += '#' + f_id + ' .uifm-input2-wrap .filter-option {';
+						if (stl1_icon_color) {
+							str_css += 'color:' + stl1_icon_color + '!important;';
+						}
+						str_css += '} ';
 
-					if (inp_color) {
-						str_css += 'color:' + inp_color + '!important;';
-						str_css += 'text-shadow:0 1px 0 ' + inp_color + '!important;';
-					}
+						str_css += '#' + f_id + ' .uifm-input2-wrap .filter-option {';
 
-					if (parseInt(inp_bold) === 1) {
-						str_css += 'font-weight:bold;';
-					} else {
-						str_css += 'font-weight:normal;';
-					}
+						if (inp_color) {
+							str_css += 'color:' + inp_color + '!important;';
+							str_css += 'text-shadow:0 1px 0 ' + inp_color + '!important;';
+						}
 
-					if (parseInt(inp_italic) === 1) {
-						str_css += 'font-style:italic;';
-					}
+						if (parseInt(inp_bold) === 1) {
+							str_css += 'font-weight:bold;';
+						} else {
+							str_css += 'font-weight:normal;';
+						}
 
-					if (parseInt(inp_underline) === 1) {
-						str_css += 'text-decoration:underline;';
-					}
+						if (parseInt(inp_italic) === 1) {
+							str_css += 'font-style:italic;';
+						}
 
-					if (inp_size) {
-						str_css += 'font-size:' + inp_size + ';';
-					}
+						if (parseInt(inp_underline) === 1) {
+							str_css += 'text-decoration:underline;';
+						}
 
-					str_css += '} ';
+						if (inp_size) {
+							str_css += 'font-size:' + inp_size + ';';
+						}
 
-					str_css += '#' + f_id + ' .uifm-input2-wrap .filter-option,';
-					str_css += '#' + f_id + ' .bootstrap-select.sfdc-btn-group .sfdc-dropdown-menu li a span.text {';
+						str_css += '} ';
 
-					if (parseInt(inp_font_st) === 1 && inp_font) {
-						var font_sel = JSON.parse(inp_font);
-						str_css += 'font-family:' + font_sel.family + ';';
-					}
+						str_css += '#' + f_id + ' .uifm-input2-wrap .filter-option,';
+						str_css += '#' + f_id + ' .bootstrap-select.sfdc-btn-group .sfdc-dropdown-menu li a span.text {';
 
-					str_css += '} ';
+						if (parseInt(inp_font_st) === 1 && inp_font) {
+							var font_sel = JSON.parse(inp_font);
+							str_css += 'font-family:' + font_sel.family + ';';
+						}
 
-					str_css += '</style>';
-					$('head').append(str_css);
+						str_css += '} ';
 
-					rocketform.previewfield_fontfamily2($('#' + f_id), 'input2');
-				} else {
-					if (
+						str_css += '</style>';
+						$('head').append(str_css);
+
+						rocketform.previewfield_fontfamily2($('#' + f_id), 'input2');
+
+						break;
+
+					default:
+						if (
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.data('selectpicker')
+						) {
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.selectpicker('destroy');
+						}
+
+						if (
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.data('select2')
+						) {
+							$('#' + f_id)
+								.find('.uifm-input2-wrap select')
+								.select2('destroy');
+						}
+
 						$('#' + f_id)
 							.find('.uifm-input2-wrap select')
-							.data('selectpicker')
-					) {
-						$('#' + f_id)
-							.find('.uifm-input2-wrap select')
-							.selectpicker('destroy');
-					}
-					$('#' + f_id)
-						.find('.uifm-input2-wrap select')
-						.attr('class', 'sfdc-form-control uifm-input2-opt-main')
-						.removeAttr('data-live-search');
+							.attr('class', 'sfdc-form-control uifm-input2-opt-main')
+							.removeAttr('data-live-search');
+
+						break;
 				}
 			}
 		};
@@ -32527,7 +32484,7 @@ if (!$uifm.isFunction(zgfm_back_fld_options)) {
 				});
 			};
 
-						this.update_db_structure = function() {
+			this.update_db_structure = function() {
 				$.ajax({
 					type: 'POST',
 					url: rockfm_vars.uifm_siteurl + 'formbuilder/settings/system_update_table',
@@ -32545,7 +32502,7 @@ if (!$uifm.isFunction(zgfm_back_fld_options)) {
 				});
 			};
 
-						this.generate_field_htmldata = function(showAlert = true) {
+			this.generate_field_htmldata = function(showAlert = true) {
 				$.ajax({
 					type: 'POST',
 					url: rockfm_vars.uifm_siteurl + 'formbuilder/fields/ajax_dev_genfieldopts',
@@ -32557,7 +32514,7 @@ if (!$uifm.isFunction(zgfm_back_fld_options)) {
 					},
 					beforeSend: function() {},
 					success: function(response) {
-						if (showAlert == true) { 
+						if (showAlert == true) {
 							alert('generate field options finished');
 						}
 					},
@@ -33529,7 +33486,7 @@ if (!$uifm.isFunction(zgfm_back_helper)) {
 				return Math.floor(Math.random() * Date.now());
 			};
 
-	        this.moveArrayItemToNewIndex = function(arr, old_index, new_index) {
+			this.moveArrayItemToNewIndex = function(arr, old_index, new_index) {
 				if (new_index >= arr.length) {
 					var k = new_index - arr.length + 1;
 					while (k--) {
@@ -33537,10 +33494,9 @@ if (!$uifm.isFunction(zgfm_back_helper)) {
 					}
 				}
 				arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-				return arr; 
+				return arr;
 			};
-
-					};
+		};
 		window.zgfm_back_helper = zgfm_back_helper = $.zgfm_back_helper = new zgfm_back_helper();
 	})($uifm, window);
 }
@@ -34912,7 +34868,7 @@ if (!$uifm.isFunction(zgfm_back_upgrade)) {
 				if (options == null) {
 					options = {};
 				}
-				  _this_obj=this;
+				_this_obj = this;
 				this.$element = $(element);
 				this.options = $.extend(
 					{},
@@ -34949,7 +34905,7 @@ if (!$uifm.isFunction(zgfm_back_upgrade)) {
 							$(element)
 								.parent()
 								.attr('data-thopt-width') || 100,
-						backend: this.$element.data('backend')||0,
+						backend: this.$element.data('backend') || 0,
 						baseClass: this.$element.data('base-class'),
 					},
 					options
@@ -35049,16 +35005,13 @@ if (!$uifm.isFunction(zgfm_back_upgrade)) {
 			uiformDCheckbox.prototype._constructor = uiformDCheckbox;
 
 			uiformDCheckbox.prototype._refresh = function() {
-
-if (parseInt(_this_obj.options.backend) === 1) {
-				 this.$canvas_parent = this.$element.closest('.uifm-input17-wrap').width();
+				if (parseInt(_this_obj.options.backend) === 1) {
+					this.$canvas_parent = this.$element.closest('.uifm-input17-wrap').width();
 				} else {
 					this.$canvas_parent = this.$element.closest('.rockfm-input17-wrap').width();
 				}
 
-
-
-				 				this._enableCheckboxVal(this.$opt_gal_checkbox, this);
+				this._enableCheckboxVal(this.$opt_gal_checkbox, this);
 				this._setValToChkBoxInput(this);
 				this._get_items();
 			};
@@ -35459,10 +35412,10 @@ if (parseInt(_this_obj.options.backend) === 1) {
 									.attr('data-inp17-opt-index');
 
 								if (parseInt(_this_obj.options.backend) === 1) {
-					var tmp_container = $(this).closest('.uifm-input17-wrap');
-				} else {
-					var tmp_container = $(this).closest('.rockfm-input17-wrap');
-				}
+									var tmp_container = $(this).closest('.uifm-input17-wrap');
+								} else {
+									var tmp_container = $(this).closest('.rockfm-input17-wrap');
+								}
 
 								var tmp_radiobtn_items = tmp_container.find('.uifm-dradiobtn-item');
 
@@ -35505,10 +35458,10 @@ if (parseInt(_this_obj.options.backend) === 1) {
 									.attr('data-inp17-opt-index');
 
 								if (parseInt(_this_obj.options.backend) === 1) {
-					var tmp_container = $(this).closest('.uifm-input17-wrap');
-				} else {
-					var tmp_container = $(this).closest('.rockfm-input17-wrap');
-				}
+									var tmp_container = $(this).closest('.uifm-input17-wrap');
+								} else {
+									var tmp_container = $(this).closest('.rockfm-input17-wrap');
+								}
 								var tmp_radiobtn_items = tmp_container.find('.uifm-dradiobtn-item');
 
 								var tmp_item_index;
@@ -35745,7 +35698,7 @@ $uifm(document).ready(function($) {
 	}
 	$('.uifm_selectpicker').selectpicker();
 
-	if ($.fn.colorpicker) { 
+	if ($.fn.colorpicker) {
 		$('.uifm-custom-color').colorpicker();
 	}
 
@@ -35772,7 +35725,7 @@ $uifm(document).ready(function($) {
 			verticaldownclass: 'sfdc-glyphicon sfdc-glyphicon-minus',
 		});
 
-				$('.uifm_frm_form_skin_spinner').TouchSpin({
+		$('.uifm_frm_form_skin_spinner').TouchSpin({
 			verticalbuttons: true,
 			min: 0,
 			max: 10000,
@@ -35781,7 +35734,7 @@ $uifm(document).ready(function($) {
 			verticaldownclass: 'sfdc-glyphicon sfdc-glyphicon-minus',
 		});
 
-			$('.uifm_frm_form_skin_spinner').TouchSpin({
+		$('.uifm_frm_form_skin_spinner').TouchSpin({
 			verticalbuttons: true,
 			min: 0,
 			max: 10000,
@@ -35789,8 +35742,7 @@ $uifm(document).ready(function($) {
 			verticalupclass: 'sfdc-glyphicon sfdc-glyphicon-plus',
 			verticaldownclass: 'sfdc-glyphicon sfdc-glyphicon-minus',
 		});
-
-			}
+	}
 
 	$('.tooltip-option-enable input').tooltip({
 		title: 'Enable',
@@ -35894,8 +35846,6 @@ $uifm(document).ready(function($) {
 		}
 	});
 
-
-
 	$(document).on('change', '.uifm-formskin-setoption-st', function(e) {
 		var store = $(this).data('form-store');
 		var f_store = store.split('-');
@@ -35952,27 +35902,27 @@ $uifm(document).ready(function($) {
 			rocketform.wizardtab_refreshPreview();
 		});
 
-	if ($.fn.colorpicker) { 
-	$('#uiform-settings-tab3-2,#uiform-settings-tab3-4')
-		.find('.uifm-custom-color')
-		.colorpicker()
-		.on('changeColor', function(ev) {
-			var store = $(this).data('form-store');
-			var main_sec = $(this).data('form-msec');
-			var f_store = store.split('-');
-			var f_sec = f_store[0];
-			var f_opt = f_store[1];
-			var f_val = $(this)
-				.find('input')
-				.val();
-			if (f_val) {
-				rocketform.setUiData3(main_sec, f_sec, f_opt, f_val);
-				var obj_field = $('.uiform-preview-base');
-				if (obj_field) {
-					rocketform.setDataOptToPrevForm(obj_field, main_sec, f_sec + '-' + f_opt, f_val);
+	if ($.fn.colorpicker) {
+		$('#uiform-settings-tab3-2,#uiform-settings-tab3-4')
+			.find('.uifm-custom-color')
+			.colorpicker()
+			.on('changeColor', function(ev) {
+				var store = $(this).data('form-store');
+				var main_sec = $(this).data('form-msec');
+				var f_store = store.split('-');
+				var f_sec = f_store[0];
+				var f_opt = f_store[1];
+				var f_val = $(this)
+					.find('input')
+					.val();
+				if (f_val) {
+					rocketform.setUiData3(main_sec, f_sec, f_opt, f_val);
+					var obj_field = $('.uiform-preview-base');
+					if (obj_field) {
+						rocketform.setDataOptToPrevForm(obj_field, main_sec, f_sec + '-' + f_opt, f_val);
+					}
 				}
-			}
-		});
+			});
 	}
 
 	$('#uiform-settings-tab3-4')
@@ -36006,13 +35956,13 @@ $uifm(document).ready(function($) {
 		rocketform.loadForm_tab_skin_updateBG();
 	});
 
-		if ($.fn.colorpicker) { 
-	$('.uifm_frm_skin_bgcolor_event')
-		.colorpicker()
-		.on('changeColor', function(ev) {
-			rocketform.loadForm_tab_skin_updateBG();
-		});
-	}	
+	if ($.fn.colorpicker) {
+		$('.uifm_frm_skin_bgcolor_event')
+			.colorpicker()
+			.on('changeColor', function(ev) {
+				rocketform.loadForm_tab_skin_updateBG();
+			});
+	}
 	$('.uifm_frm_wiz_st_event').on('switchChange.bootstrapSwitchZgpb', function(event, state) {
 		rocketform.guidedtour_showTextOnPreviewPane(false);
 		rocketform.wizardtab_enableStatus();

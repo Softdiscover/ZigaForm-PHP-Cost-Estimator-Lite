@@ -28,6 +28,7 @@ if (ZIGAFORM_C_LITE === 1) {
 			b_star: 'assets/backend/js/bratestar/3.5.7/js/star-rating',
 			b_cpicker: 'assets/backend/js/colorpicker/2.5/js/bootstrap-colorpicker',
 			b_selpicker: 'assets/common/js/bselect/1.12.4/js/bootstrap-select-mod',
+			b_selpicker2: '/assets/common/js/select2/4.0.13/js/select2.full.min',
 			b_switch: 'assets/backend/js/bswitch/bootstrap-switch',
 			b_checkradios: 'assets/common/js/checkradio/2.2.2/js/jquery.checkradios',
 			placeholder: 'assets/common/js/placeholder/ie.placeholder',
@@ -118,6 +119,7 @@ if (ZIGAFORM_C_LITE === 1) {
 			b_star: 'assets/backend/js/bratestar/3.5.7/js/star-rating',
 			b_cpicker: 'assets/backend/js/colorpicker/2.5/js/bootstrap-colorpicker',
 			b_selpicker: 'assets/common/js/bselect/1.12.4/js/bootstrap-select-mod',
+			b_selpicker2: '/assets/common/js/select2/4.0.13/js/select2.full.min',
 			b_switch: 'assets/backend/js/bswitch/bootstrap-switch',
 			b_checkradios: 'assets/common/js/checkradio/2.2.2/js/jquery.checkradios',
 			placeholder: 'assets/common/js/placeholder/ie.placeholder',
@@ -205,7 +207,7 @@ if (ZIGAFORM_C_LITE === 1) {
 			 */
 			window.$uifm = $uifm;
 			//window.$uifm = $uifm = $;
-			require(['b_slider', 'script1', 'b_touchspin', 'b_switch', 'bootstrap', 'flatpickr', 'flatpickr_moment', 'b_dtpicker2', 'b_star', 'b_cpicker', 'j_form', 'acclib', 'blueimp-gallery', 'blueimp-gallery-jquery', 'b_selpicker', 'iframescript', 'b_checkradios', 'b_jasny', 'placeholder'], function(
+			require(['b_slider', 'script1', 'b_touchspin', 'b_switch', 'bootstrap', 'flatpickr', 'flatpickr_moment', 'b_dtpicker2', 'b_star', 'b_cpicker', 'j_form', 'acclib', 'blueimp-gallery', 'blueimp-gallery-jquery', 'b_selpicker', 'b_selpicker2', 'iframescript', 'b_checkradios', 'b_jasny', 'placeholder'], function(
 				bootstrapSlider,
 				script,
 				TouchSpin,
@@ -220,6 +222,7 @@ if (ZIGAFORM_C_LITE === 1) {
 				accounting,
 				blueimpgal,
 				selectpicker,
+				select2,
 				iframescript
 			) {
 				_zgfm_loader_form(script, blueimpgal, accounting);
@@ -234,7 +237,7 @@ if (ZIGAFORM_C_LITE === 1) {
 			 */
 			window.$uifm = $uifm;
 			//window.$uifm = $uifm = $;
-			require(['b_slider', 'script1', 'b_touchspin', 'b_switch', 'bootstrap', 'flatpickr', 'flatpickr_moment', 'b_dtpicker2', 'b_star', 'b_cpicker', 'j_form', 'acclib', 'blueimp-gallery', 'blueimp-gallery-jquery', 'b_selpicker', 'waypoints', 'iframescript', 'b_checkradios', 'b_jasny', 'placeholder'], function(
+			require(['b_slider', 'script1', 'b_touchspin', 'b_switch', 'bootstrap', 'flatpickr', 'flatpickr_moment', 'b_dtpicker2', 'b_star', 'b_cpicker', 'j_form', 'acclib', 'blueimp-gallery', 'blueimp-gallery-jquery', 'b_selpicker', 'b_selpicker2', 'waypoints', 'iframescript', 'b_checkradios', 'b_jasny', 'placeholder'], function(
 				bootstrapSlider,
 				script,
 				TouchSpin,
@@ -249,6 +252,7 @@ if (ZIGAFORM_C_LITE === 1) {
 				accounting,
 				blueimpgal,
 				selectpicker,
+				select2,
 				waypoints,
 				iframescript
 			) {
@@ -339,6 +343,7 @@ function uifm_load_cssfiles() {
 		{ id: 'uifm_css_b_date_2', href: UIFORM_SRC + 'assets/backend/js/bdatetime/4.17.45/bootstrap-datetimepicker.css' },
 		{ id: 'uifm_css_b_cpicker', href: UIFORM_SRC + 'assets/backend/js/colorpicker/2.5/css/bootstrap-colorpicker.css' },
 		{ id: 'uifm_css_b_selpicker', href: UIFORM_SRC + 'assets/common/js/bselect/1.12.4/css/bootstrap-select-mod.css' },
+		{ id: 'uifm_css_b_selpicker2', href: UIFORM_SRC + 'assets/common/js/select2/4.0.13/css/select2.min.css' },
 		{ id: 'uifm_css_b_checkradio', href: UIFORM_SRC + 'assets/common/js/checkradio/2.2.2/css/jquery.checkradios.css' },
 		{ id: 'uifm_css_star_rating', href: UIFORM_SRC + 'assets/backend/js/bratestar/star-rating.css' },
 		{ id: 'uifm_css_b_switch', href: UIFORM_SRC + 'assets/backend/js/bswitch/bootstrap-switch.css' },
