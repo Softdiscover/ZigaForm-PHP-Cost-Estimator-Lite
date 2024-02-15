@@ -1,5 +1,5 @@
-# Copyright (C) 2024 Zigaform WP Cost Estimation Form Builder 6.0.0
-# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 6.0.0 package.
+# Copyright (C) 2024 Zigaform WP Cost Estimation Form Builder 6.0.2
+# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 6.0.2 package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rocket form\n"
@@ -732,7 +732,7 @@ msgstr "Formularname"
 msgid "Success"
 msgstr "Erfolgsmeldung"
 
-#: application/modules/formbuilder/controllers/forms.php:691, application/modules/formbuilder/controllers/forms.php:3131, application/modules/formbuilder/controllers/forms.php:3191
+#: application/modules/formbuilder/controllers/forms.php:691, application/modules/formbuilder/controllers/forms.php:3156, application/modules/formbuilder/controllers/forms.php:3216
 msgid "Shortcodes"
 msgstr "Shortcode"
 
@@ -740,11 +740,11 @@ msgstr "Shortcode"
 msgid "Error! User has no permission to edit this form"
 msgstr "Error! User has no permission to edit this form"
 
-#: application/modules/formbuilder/controllers/forms.php:1026
+#: application/modules/formbuilder/controllers/forms.php:1034
 msgid "Error on saving form"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/forms.php:2771
+#: application/modules/formbuilder/controllers/forms.php:2796
 msgid "Forms in trash"
 msgstr "Formularname"
 

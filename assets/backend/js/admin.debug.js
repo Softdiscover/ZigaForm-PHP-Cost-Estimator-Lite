@@ -24160,8 +24160,7 @@ var uifmsetting;
 			var options = rocketform.getUiData5('steps_src', parseInt(f_step), f_id, 'input2', 'options');
 
 			switch (parseInt(f_type)) {
-
-				 				case 9:
+				case 9:
 				case 11:
 					var el_checked = el.is(':checked') ? 1 : 0;
 					var el_box_index = el.closest('.uifm-fld-inp2-options-row');
@@ -24191,8 +24190,7 @@ var uifmsetting;
 				.find("[data-inp2-opt-index='" + opt_index + "']");
 
 			switch (parseInt(f_type)) {
-
-				 				case 11:
+				case 11:
 					if (parseInt(stl1_st) === 0) {
 						prev_el_sel.prop('selected', opt_value);
 					} else if (parseInt(stl1_st) === 1) {
@@ -24201,13 +24199,13 @@ var uifmsetting;
 							.find('.uifm-input2-wrap ')
 							.find('select')
 							.selectpicker('val', tmp_sel_val);
-						} else if (parseInt(stl1_st) === 2) {
-							var tmp_sel_val = rocketform.getUiData7('steps_src', parseInt(f_step), f_id, 'input2', 'options', opt_index, 'value');
-							$('#' + f_id)
-								.find('.uifm-input2-wrap ')
-								.find('select')
-								.val(tmp_sel_val);
-						}
+					} else if (parseInt(stl1_st) === 2) {
+						var tmp_sel_val = rocketform.getUiData7('steps_src', parseInt(f_step), f_id, 'input2', 'options', opt_index, 'value');
+						$('#' + f_id)
+							.find('.uifm-input2-wrap ')
+							.find('select')
+							.val(tmp_sel_val);
+					}
 					break;
 			}
 		};

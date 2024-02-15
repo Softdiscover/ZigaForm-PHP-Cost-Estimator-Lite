@@ -87,7 +87,6 @@ class Settings extends BackendController
             }
 
             foreach ($value as $fieldToUpdate => $fieldData) {
-                
                 // Replace 'your_field_type' with the new type for the field
                 $newFieldType = $fieldData['type'] ?? '';
                 $newFieldNull = $fieldData['null'] == 'YES' ? '' : 'NOT NULL';

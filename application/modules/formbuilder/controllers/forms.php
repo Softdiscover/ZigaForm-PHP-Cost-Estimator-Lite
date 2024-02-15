@@ -925,10 +925,18 @@ class Forms extends BackendController
              $this->db->set($data4);
              $this->db->where('fmb_id', $json['id']);
              $this->db->update($this->model_forms->table);
+            
+            
+             if ($this->createCustomFolder()) {
+                 $newPublicDir = FCPATH . '/uploads/form-styles';
+             } else {
+                 $newPublicDir = FCPATH . '/assets/frontend/css/';
+             }
 
+            
              // generate form css
              ob_start();
-             $pathCssFile = FCPATH . '/assets/frontend/css/rockfm_form' . $json['id'] . '.css';
+             $pathCssFile = $newPublicDir . '/rockfm_form' . $json['id'] . '.css';
              $f           = fopen($pathCssFile, 'w');
              fwrite($f, $gen_return['output_css']);
              fclose($f);
@@ -1032,6 +1040,23 @@ class Forms extends BackendController
         echo json_encode($json);
         die();
     }
+
+    protected function createCustomFolder()
+    {
+        $folderPath = FCPATH . '/uploads/form-styles';
+        if (!file_exists($folderPath)) {
+            mkdir($folderPath, 0755, true);
+        }
+
+
+        if (file_exists($folderPath)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 
     /**
      * Forms::generate_form_getField()
@@ -1904,7 +1929,7 @@ class Forms extends BackendController
                     $count_str   = 0;
                     if ( isset($child_field['inner'])) {
                         foreach ( $child_field['inner'] as $key => $value) {
-                            $str_output .= '<div data-zgpb-blocknum="' . $value['num_tab'] . '" class="zgpb-fl-gs-block-style sfdc-col-sm-' . $value['cols'] . '">';
+                            $str_output .= '<div data-zgpb-blocknum="' . $value['num_tab'] . '" class="zgpb-fl-gs-block-style sfdc-col-xs-' . $value['cols'] . ' sfdc-col-sm-' . $value['cols'] . '">';
                             if ( $count_str === $key) {
                                 $str_output .= '<div class="zgpb-fl-gs-block-inner">';
                             } else {
@@ -2030,7 +2055,7 @@ class Forms extends BackendController
                                 $tmp_col = $tmp_col_rest;
                             }
 
-                            $str_output .= '<div class="zgpb-fl-gs-block-style sfdc-col-sm-' . $tmp_col . '" data-zgpb-blocknum="' . $value['num_tab'] . '" data-zgpb-width="" data-zgpb-blockcol="' . $tmp_col . '">';
+                            $str_output .= '<div class="zgpb-fl-gs-block-style sfdc-col-xs-' . $tmp_col . ' sfdc-col-sm-' . $tmp_col . '" data-zgpb-blocknum="' . $value['num_tab'] . '" data-zgpb-width="" data-zgpb-blockcol="' . $tmp_col . '">';
                             $str_output .= '<div class="uiform-items-container zgpb-fl-gs-block-inner">';
 
                             if ( ! empty($value['children'])) {

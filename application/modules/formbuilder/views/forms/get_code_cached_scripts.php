@@ -37,7 +37,7 @@ ob_start();
     
     <link href="<?php echo base_url(); ?>assets/common/js/bgallery/3.1.3/css/bootstrap-image-gallery.css" rel="stylesheet">
      
-    <link href="<?php echo base_url(); ?>assets/frontend/css/rockfm_form<?php echo $id_form; ?>.css?<?php echo date('YmdHis'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>uploads/form-styles/rockfm_form<?php echo $id_form; ?>.css?<?php echo date('YmdHis'); ?>" rel="stylesheet">
     
     <?php if ( ZIGAFORM_C_LITE === 0) { ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>application/modules/addon_func_anim/views/frontend/assets/js/waypoints/2.0.5/waypoints.min.js"></script>
@@ -83,10 +83,6 @@ ob_start();
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/common/js/blueimp/2.16.0/js/blueimp-gallery.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/common/js/bgallery/3.1.3/js/bootstrap-image-gallery.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/frontend/js/js.php"></script>
-    
-    
-    
-    
     
     <noscript>
        Powered by <a href="https://softdiscover.com/zigaform/?uifm_v=<?php echo model_settings::$db_config['version']; ?>" title="PHP Form Builder & Contact " >ZigaForm version <?php echo model_settings::$db_config['version']; ?></a>

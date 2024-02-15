@@ -1266,7 +1266,7 @@ if (!$uifm.isFunction(rocketfm)) {
 							});
 						}
 
-												if (obj_form.find('.rockfm-input2-sel-styl2').length) {
+						if (obj_form.find('.rockfm-input2-sel-styl2').length) {
 							tmp_load_obj = obj_form.find('.rockfm-input2-sel-styl2');
 							tmp_load_obj.each(function(i) {
 								$(this).select2({
