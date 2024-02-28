@@ -1,5 +1,5 @@
-# Copyright (C) 2024 Zigaform WP Cost Estimation Form Builder 6.0.3
-# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 6.0.3 package.
+# Copyright (C) 2024 Zigaform WP Cost Estimation Form Builder 6.0.6
+# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 6.0.6 package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rocket form\n"
@@ -758,7 +758,7 @@ msgstr "error found while submitting"
 msgid "Offline success"
 msgstr "Offline success"
 
-#: application/modules/formbuilder/controllers/frontend.php:2145
+#: application/modules/formbuilder/controllers/frontend.php:2146
 msgid "Order summary"
 msgstr "Modulo d'ordine"
 

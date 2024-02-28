@@ -217,6 +217,7 @@ ob_start();
 
 
 </table>
+<?php if ($hide_total !== 'yes') {?>
 <table cellspacing="0" cellpadding="0">
     <?php if (isset($price_tax_st) && intval($price_tax_st) === 1) { ?>
         <tr>
@@ -236,6 +237,7 @@ ob_start();
         <td width="200" align="left" valign="top"><?php echo ($show_only_value == 'yes')?$form_cost_total:Uiform_Form_Helper::cformat_numeric($format_price_conf, $form_cost_total) . ' ' . $current_cost_cur; ?></td>
     </tr>
 </table>
+<?php }?>
 <?php
 $cntACmp = ob_get_contents();
 ob_end_clean();
