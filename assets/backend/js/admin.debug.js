@@ -3308,7 +3308,10 @@ if (!$uifm.isFunction(rocketform)) {
 								$('#uifm_frm_email_usr_tmpl_pdf_font').val(mail_usr_pdf_font);
 								break;
 							case 'email_html_fullpage':
-								$('#uifm_frm_main_email_htmlfullpage').val(value);
+								if ($('#uifm_frm_main_email_htmlfullpage').length) {
+									let email_htmlfullpage = parseInt(this.getUiData2('main', 'email_html_fullpage')) === 1 ? true : false;
+									$('#uifm_frm_main_email_htmlfullpage').bootstrapSwitchZgpb('state', email_htmlfullpage);
+								}
 								break;
 							case 'email_dissubm':
 								if ($('#uifm_frm_main_email_dissubm').length) {
