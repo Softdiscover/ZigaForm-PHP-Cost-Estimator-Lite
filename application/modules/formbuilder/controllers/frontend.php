@@ -2388,44 +2388,31 @@ class Frontend extends FrontendController
             return $mail_errors;
         }
 
-        /*
-         $this->email->clear(TRUE);
-         $this->email->set_newline("\r\n");*/
-                /*getting admin mail*/
+         
                 $data['from_name'] = ! empty($data['from_name']) ? $data['from_name'] : model_settings::$db_config['site_title'];
-
-             // $headers = array();
-               // $message_format='html';
-                // $content_type = $message_format == "html" ? "text/html" : "text/plain";
-               // $headers[] = "MIME-Version: 1.0";
-               // $headers[] = "Content-type: {$content_type}";
-                // $headers[] = "charset=utf8";
-               // $headers[] = "From: \"{$data['from_name']}\" <{$data['from_mail']}>";
-
+ 
                 $to = trim($data['to']);
 
         if ( preg_match('/^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/', $to)) {
-            // $this->email->from($data['from_mail'], $data['from_name']);
-            // $this->email->to($to);
-            // $this->email->subject($data['subject']);
-            // $this->email->set_mailtype("html");
-            // $this->email->message($data['message']);
-
+            
             // phpmail library
-            require_once FCPATH . 'application/helpers/phpmailer/PHPMailerAutoload.php';
-
-            // Create a new PHPMailer instance
-            $mail = new PHPMailer();
-
+            if ( version_compare(phpversion(), '8.0', '>=')) {
+                require_once FCPATH . 'application/helpers/phpmailer/6.9.1/vendor/autoload.php';
+                // Create a new PHPMailer instance
+                $mail = new \PHPMailer\PHPMailer\PHPMailer();
+            } else {
+                require_once FCPATH . 'application/helpers/phpmailer/5.2.16/PHPMailerAutoload.php';
+                // Create a new PHPMailer instance
+                $mail = new PHPMailer();
+            }
+ 
             if ( ! empty($data['mail_replyto'])
                 && preg_match('/^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/', $data['mail_replyto'])) {
                 $mail_replyto_name = substr($data['mail_replyto'], 0, strrpos($data['mail_replyto'], '@'));
                 // $headers[] = "Reply-To: \"{$mail_replyto_name}\" <{$data['mail_replyto']}>";
 
                 $mail->addReplyTo($data['mail_replyto'], $mail_replyto_name);
-
-                // $this->email->reply_to($data['mail_replyto']);
-                // $data['subject'].=" - ".$data['mail_replyto'];
+ 
             }
                 // cc
             if ( ! empty($data['cc'])) {
