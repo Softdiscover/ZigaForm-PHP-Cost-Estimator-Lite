@@ -265,7 +265,14 @@ class Settings extends BackendController
         } else {
             update_option('zgfm_fields_fastload', 0);
         }
-
+        
+        $recordexpsetting = (isset($_POST['uifm_frm_main_recordexpsetting']) && $_POST['uifm_frm_main_recordexpsetting']) ? filter_var($_POST['uifm_frm_main_recordexpsetting'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : '';
+        if ($recordexpsetting !== '') {
+            update_option('zgfm_frm_main_recexpdelimiter', $recordexpsetting);
+        } else {
+            update_option('zgfm_frm_main_recexpdelimiter', '');
+        }
+        
         $this->db->set($data);
         $this->db->where($where);
         $this->db->update($this->model_settings->table);
@@ -296,7 +303,7 @@ class Settings extends BackendController
         $pofilespath = FCPATH . 'i18n/languages/backend/';
         $data['language']        = $query->language;
         $data['lang_list']       = Uiform_Form_Helper::getLanguageList($pofilespath);
-
+        $data['zgfm_frm_main_recexpdelimiter']       = get_option('zgfm_frm_main_recexpdelimiter', '');
         $data['fields_fastload'] = get_option('zgfm_fields_fastload', 0);
 
         $this->template->loadPartial('layout', 'settings/view_settings', $data);
