@@ -261,7 +261,7 @@ CREATE TABLE `cepf_cest_uiform_settings` (
 -- ----------------------------
 -- Records of cepf_cest_uiform_settings
 -- ----------------------------
-INSERT INTO `cepf_cest_uiform_settings` VALUES ('6.1.1', '1', '', '0', '', '','', '/usr/sbin/sendmail', 'en', '1', 'Zigaform - Cost Estimation - Contact & Survey', 'test@example.com', '2016-02-17 13:05:33', '1980-01-01 00:00:01');
+INSERT INTO `cepf_cest_uiform_settings` VALUES ('6.1.2', '1', '', '0', '', '','', '/usr/sbin/sendmail', 'en', '1', 'Zigaform - Cost Estimation - Contact & Survey', 'test@example.com', '2016-02-17 13:05:33', '1980-01-01 00:00:01');
 
 -- ----------------------------
 -- Table structure for `cepf_cest_uiform_user`

@@ -88,7 +88,7 @@ if ( ! defined('BASEPATH')) {
                                             <?php
                                             $title           = __('Create amazing estimative forms with Zigaform', 'FRocket_admin');
                                             $summary         = __('Ultimate PHP Cost Estimator by zigaform.com', 'FRocket_admin');
-                                            $share_this_data = "st_url='https://softdiscover.com/zigaform/php-cost-estimator/' st_title='{$title}' st_summary='{$summary}'";
+                                            $share_this_data = "st_url='https://php-cost-estimator.zigaform.com/' st_title='{$title}' st_summary='{$summary}'";
                                             ?>
                                         <div id="zgfm-page-about-shbuttons" align="center">
                                             <span class='st_facebook_vcount' displayText='Facebook' <?php echo $share_this_data; ?> ></span>

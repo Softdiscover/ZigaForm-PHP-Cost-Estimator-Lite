@@ -19,7 +19,7 @@ https://kb.softdiscover.com/docs/zigaform-php-cost-estimator/installation/via-wi
 
 ## Support ##
 
-Please see https://softdiscover.com/zigaform/php-cost-estimator/#contact for more details.
+Please see https://php-cost-estimator.zigaform.com/#contact for more details.
 
 ### Features:
 * real-time drag and drop form builder which makes to build estimation forms
@@ -74,7 +74,7 @@ Please see https://softdiscover.com/zigaform/php-cost-estimator/#contact for mor
 >
 >Try out [Zigaform - PHP Cost Estimation & Payment Form Builder Premium](https://codecanyon.net/item/zigaform-php-calculator-cost-estimation-form-builder/15883447?ref=softdiscover)
 
-More info in https://softdiscover.com/zigaform/php-cost-estimator/
+More info in https://php-cost-estimator.zigaform.com/
 
  
 ** OVERALL FEATURES
