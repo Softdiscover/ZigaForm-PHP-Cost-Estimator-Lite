@@ -21,7 +21,7 @@ ob_start();
 <div class='sfdc-wrap'>
     
     <div class="sfdc-alert sfdc-alert-danger">
-  <strong><?php echo __('Error!', 'FRocket_admin'); ?></strong> <?php echo __('An error has ocurred. Use rollback option or load the form again. if the problem continues, report the issue on next:  ', 'FRocket_admin'); ?> <a href="https://softdiscover.com/zigaform/contact/">https://softdiscover.com/zigaform/contact/</a>
+  <strong><?php echo __('Error!', 'FRocket_admin'); ?></strong> <?php echo __('An error has ocurred. Use rollback option or load the form again. if the problem continues, report the issue on next:  ', 'FRocket_admin'); ?> <a href="https://zigaform.com/contact/">https://zigaform.com/contact/</a>
 </div>
   
     <div>

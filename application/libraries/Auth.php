@@ -404,7 +404,47 @@ class Auth {
 					}
 				}
 			}
+			if ( version_compare( $install_ver, '7.0.0', '<' ) ) {
+				$tbname = 'cepf_cest_uiform_form';
 
+				$query2 = $this->CI->db->query( "SHOW TABLES LIKE '$tbname'" );
+				$row    = (array) $query2->row();
+
+			 if ( (string) reset( $row ) === $tbname ) {
+
+				 $query2 = $this->CI->db->query( 'SHOW COLUMNS FROM ' . $tbname . " LIKE 'fmb_type'" );
+				 $row    = (array) $query2->row();
+				 if ( empty( $row ) ) {
+						$sql = 'ALTER TABLE ' . $tbname . ' ADD  fmb_type TINYINT(1) NULL DEFAULT 0;';
+						$this->CI->db->query( $sql );
+				 }
+
+					$query2 = $this->CI->db->query( 'SHOW COLUMNS FROM ' . $tbname . " LIKE 'fmb_parent'" );
+					$row    = (array) $query2->row();
+				 if ( empty( $row ) ) {
+					  $sql = 'ALTER TABLE ' . $tbname . ' ADD  fmb_parent BIGINT DEFAULT 0;';
+					  $this->CI->db->query( $sql );
+				 }
+			 }
+		 }
+		 
+		 if (version_compare($install_ver, '7.0.0', '<')) {
+			$tbname = 'cepf_cest_uiform_form_log';
+
+			$query2 = $this->CI->db->query("SHOW TABLES LIKE '$tbname'");
+			$row    = (array) $query2->row();
+
+			if ((string) reset($row) === $tbname) {
+
+				$query2 = $this->CI->db->query('SHOW COLUMNS FROM ' . $tbname . " LIKE 'log_frm_parent'");
+				$row    = (array) $query2->row();
+				if (empty($row)) {
+					$sql = 'ALTER TABLE ' . $tbname . ' ADD  log_frm_parent BIGINT DEFAULT 0;';
+					$this->CI->db->query($sql);
+				}
+
+			}
+		}
 					// update
 
 					$data  = array(

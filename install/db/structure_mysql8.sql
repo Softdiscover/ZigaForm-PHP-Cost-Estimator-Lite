@@ -116,6 +116,8 @@ CREATE TABLE `cepf_cest_uiform_form` (
   `fmb_inv_tpl_html` longtext NULL ,
   `fmb_rec_tpl_st` tinyint NULL DEFAULT 0 ,
   `fmb_inv_tpl_st` tinyint NULL DEFAULT 0 ,
+  `fmb_type` TINYINT NULL DEFAULT 0 ,
+			`fmb_parent` BIGINT DEFAULT 0 ,
   PRIMARY KEY (`fmb_id`)
 ) DEFAULT CHARSET=utf8mb4;
 
@@ -169,6 +171,7 @@ CREATE TABLE `cepf_cest_uiform_form_log`  (
   `updated_ip` varchar(100)  DEFAULT NULL,
   `created_by` varchar(100) NULL DEFAULT NULL,
   `updated_by` varchar(100) NULL DEFAULT NULL,
+  `log_frm_parent` BIGINT DEFAULT 0,
   PRIMARY KEY (`log_id`) USING BTREE
 ) DEFAULT CHARSET=utf8mb4;
 

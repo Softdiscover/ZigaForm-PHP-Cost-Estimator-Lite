@@ -29,6 +29,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 	<!-- jquery ui -->
 	<link href="<?php echo base_url(); ?>assets/common/js/jqueryui/1.10.3/themes/start/jquery-ui.min.css" rel="stylesheet">
 	<!-- bootstrap -->
+	<link href="<?php echo base_url(); ?>assets/common/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
 	 <link href="<?php echo base_url(); ?>assets/common/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/common/bootstrap/3.3.7/css/bootstrap-theme.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/common/bootstrap/3.3.7/css/bootstrap-sfdc.css" rel="stylesheet">
@@ -63,8 +64,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 	<link href="<?php echo base_url(); ?>assets/backend/js/btouchspin/jquery.bootstrap-touchspin.css" rel="stylesheet">
 	<!-- bootstrap icon picker -->
 	<link href="<?php echo base_url(); ?>assets/backend/js/biconpicker/1.9.0/css/bootstrap-iconpicker.css" rel="stylesheet">
-	<!-- bootstrap date time picker -->
-	<link href="<?php echo base_url(); ?>assets/backend/js/bdatetime/4.7.45/bootstrap-datetimepicker.css" rel="stylesheet">
+ 
 	<!-- star rating -->
 	<link href="<?php echo base_url(); ?>assets/backend/js/bratestar/star-rating.css" rel="stylesheet">
 	<!-- data tables -->

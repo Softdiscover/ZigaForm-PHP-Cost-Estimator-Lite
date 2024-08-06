@@ -17,6 +17,19 @@ if ( ! defined( 'BASEPATH' ) ) {
 }
 
 class Uiform_Form_Helper {
+	public static function isJson($string)
+	{
+		try {
+			json_decode($string);
+			return (json_last_error() === JSON_ERROR_NONE);
+		} catch (Exception $e) {
+			 return false;
+		}
+	}
+
+	public static function compareByOrder($a, $b) {
+        return $a['order'] - $b['order'];
+    }
 
 	public static function human_filesize( $bytes, $decimals = 2 ) {
 		$size   = array( 'B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB' );
@@ -131,6 +144,11 @@ class Uiform_Form_Helper {
 	 * @return array
 	 */
 	public static function sanitizeInput_html( $string ) {
+	
+		if(!is_string($string)){
+            return $string;
+        }
+        
 		$string = stripslashes( $string );
 		$string = str_replace( array( '‘', '’', '“', '”' ), array( "'", "'", '"', '"' ), $string );
 		$string = html_entity_decode( $string, ENT_QUOTES, 'UTF-8' );
@@ -138,7 +156,21 @@ class Uiform_Form_Helper {
 		$string = trim( $string, "\x00..\x1F" );
 		return $string;
 	}
+	
+	public static function sanitizeInput_data_html($string)
+	{
 
+		if (!is_string($string)) {
+			return $string;
+		}
+
+	 
+		$string = str_replace(array('‘', '’', '“', '”'), array("'", "'", '"', '"'), $string);
+		$string = html_entity_decode($string, ENT_QUOTES, 'UTF-8');
+		$string = preg_replace('/[\n\r\t]/', ' ', $string);
+		$string = trim($string, "\x00..\x1F");
+		return $string;
+	}
 	/**
 	 * Sanitize input
 	 *

@@ -57,7 +57,7 @@ if ( ! defined('BASEPATH')) {
                                 <!-- required for floating -->
                                 <!-- Nav tabs -->
                                 <ul id="zgfm-tab-calc-list-mathvars" class="sfdc-nav sfdc-nav-tabs tabs-left">
-                                    <li class=" sfdc-active"><a href="#zgfm-menu-calc-tab-0" data-zgfm-id="0" data-toggle="sfdc-tab"><?php echo __('Main', 'FRocket_admin'); ?></a></li>
+                                    
                                 </ul>
                                 </div>
                                 <div class="sfdc-col-xs-9">

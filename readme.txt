@@ -25,7 +25,7 @@ https://www.youtube.com/watch?v=oGgk2FC0p90&w=532&rel=0
     ♦ Form builder for adding input fields on the form
     ♦ Add one or more calculated fields
     ♦ Predefined forms templates
-	♦ Check other calculators made with zigaform : https://kb.softdiscover.com/docs/zigaform-wordpress-cost-estimator/examples/
+	♦ Check other calculators made with zigaform : https://php-cost-estimator.zigaform.com/docs-category/examples/
 
 
 ### Features (Free Lite version):
@@ -312,7 +312,7 @@ Here are some sample formulas that can be used in the math formula feature:
  
 
 
-.... and note that the **return** value of that function will be the value assigned to the calculated field. More info here: https://kb.softdiscover.com/docs/zigaform-wordpress-cost-estimator/create-form/math-calculation/
+.... and note that the **return** value of that function will be the value assigned to the calculated field. More info here: https://php-cost-estimator.zigaform.com/docs/math-calculation/
 
 
 == Installation ==

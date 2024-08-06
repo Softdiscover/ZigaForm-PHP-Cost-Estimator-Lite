@@ -50,7 +50,7 @@ function get_option( $option, $default = '' ) {
 	 * @param string     $option     Option name.
 	 */
 	/*
-	$pre = apply_filters( "pre_option_{$option}", false, $option );
+	$pre = do_filter( "pre_option_{$option}", false, $option );
 	if ( false !== $pre )
 		return $pre;*/
 
@@ -89,7 +89,7 @@ function get_option( $option, $default = '' ) {
 					wp_cache_set( 'notoptions', $notoptions, 'options' );
 
 
-					//return apply_filters( "default_option_{$option}", $default, $option, $passed_default );
+					//return do_filter( "default_option_{$option}", $default, $option, $passed_default );
 				}
 
 			}
@@ -108,7 +108,7 @@ function get_option( $option, $default = '' ) {
 	 *                       unserialized prior to being returned.
 	 * @param string $option Option name.
 	 */
-	// return apply_filters( "option_{$option}", maybe_unserialize( $value ), $option );
+	// return do_filter( "option_{$option}", maybe_unserialize( $value ), $option );
 
 		$ci_inst =& get_instance();
 
@@ -177,7 +177,7 @@ function update_option( $option, $value, $autoload = null ) {
 	 * @param mixed  $old_value The old option value.
 	 * @param string $option    Option name.
 	 */
-	// $value = apply_filters( "pre_update_option_{$option}", $value, $old_value, $option );
+	// $value = do_filter( "pre_update_option_{$option}", $value, $old_value, $option );
 
 	/**
 	 * Filters an option before its value is (maybe) serialized and updated.
@@ -188,7 +188,7 @@ function update_option( $option, $value, $autoload = null ) {
 	 * @param string $option    Name of the option.
 	 * @param mixed  $old_value The old option value.
 	 */
-	// $value = apply_filters( 'pre_update_option', $value, $option, $old_value );
+	// $value = do_filter( 'pre_update_option', $value, $option, $old_value );
 
 	/*
 	 * If the new and old values are the same, no need to update.
@@ -205,7 +205,7 @@ function update_option( $option, $value, $autoload = null ) {
 
 	/** This filter is documented in wp-includes/option.php */
 	/*
-	if ( apply_filters( "default_option_{$option}", false, $option, false ) === $old_value ) {
+	if ( do_filter( "default_option_{$option}", false, $option, false ) === $old_value ) {
 		// Default setting for new options is 'yes'.
 		if ( null === $autoload ) {
 			$autoload = 'yes';

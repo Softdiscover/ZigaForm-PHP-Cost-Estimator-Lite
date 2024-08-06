@@ -680,7 +680,7 @@ $uifm(document).ready(function ($) {
             $('#uifm-tab-inner-vars-3').hide();
         }
   /*calc variables*/    
-    zgfm_back_calc.calc_table_refreshCodes();   
+    /*zgfm_back_calc.calc_table_refreshCodes();   */
 });
 
 

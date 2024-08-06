@@ -1,0 +1,19 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2024-08-02 21:44:22 --> Query error: Unknown column 'fmb_type' in 'where clause'
+ERROR - 2024-08-02 21:44:24 --> Query error: Unknown column 'fmb_type' in 'where clause'
+ERROR - 2024-08-02 21:56:42 --> 404 Page Not Found --> default/zerror
+ERROR - 2024-08-02 21:56:45 --> 404 Page Not Found --> default/zerror
+ERROR - 2024-08-02 21:59:42 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 21:59:54 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:00:32 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:04:30 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:08:26 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:08:39 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:08:58 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:09:55 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:11:14 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:12:48 --> Severity: Warning  --> array_map(): Expected parameter 2 to be an array, null given /var/www/phpcost/public/application/modules/formbuilder/controllers/forms.php 1279
+ERROR - 2024-08-02 22:27:26 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:32:21 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325
+ERROR - 2024-08-02 22:41:25 --> Severity: Warning  --> Use of undefined constant ZIGAFORM_F_LITE - assumed 'ZIGAFORM_F_LITE' (this will throw an Error in a future version of PHP) /var/www/phpcost/public/application/modules/formbuilder/views/forms/create_form.php 325

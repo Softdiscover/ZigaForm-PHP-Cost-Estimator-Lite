@@ -14,7 +14,7 @@ Follow the installation process here:
 
 1) uncompress the zip file and copy all files under the folder to your host via ftp.
 2) then follow the next: 
-https://kb.softdiscover.com/docs/zigaform-php-cost-estimator/installation/via-wizard-installer/
+https://php-cost-estimator.zigaform.com/docs/via-wizard-installer/
 
 
 ## Support ##

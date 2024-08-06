@@ -18,7 +18,7 @@ if (!$uifm.isFunction(rocketform)) {
 			uifmvariable.fields_flag_stored = [];
 
 			var mainrformb = {
-				app_ver: '1.6.3',
+				app_ver: '7.0.0',
 				main: {
 					submit_ajax: '1',
 					add_css: '',
@@ -79,6 +79,7 @@ if (!$uifm.isFunction(rocketform)) {
 						start_color: '#eeeeee',
 						end_color: '#ffffff',
 						solid_color: '#ffffff',
+						angle: '0',
 						image: '',
 					},
 					form_border_radius: {
@@ -127,7 +128,7 @@ if (!$uifm.isFunction(rocketform)) {
 					},
 				},
 				onsubm: {
-					sm_successtext: '<div class="rockfm-alert rockfm-alert-success" role="alert">Success! Form was sent successfully.</div>',
+					sm_successtext: "<div class='rockfm-alert rockfm-alert-success' role='alert'>Success! Form was sent successfully.</div>", 
 					sm_boxmsg_bg_st: '0',
 					sm_boxmsg_bg_type: '1',
 					sm_boxmsg_bg_solid: '',
@@ -490,308 +491,814 @@ if (!$uifm.isFunction(rocketform)) {
 				obj.addClass('uifm-highlight-edited');
 			};
 			arguments.callee.getUiData = function(name) {
-				return mainrformb[name];
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					switch (name) { 
+						case 'skin': 
+						case 'onsubm': 
+						case 'main': 
+						case 'app_ver': 
+						case 'calculation': 
+							case 'invoice': 
+							return msobj.multistepSettings[name]; 
+							break; 
+
+ 						default: 
+							return msobj.availableForms[msobj.activeFormId]['core'][name]; 
+							break; 
+					} 
+				} else { 
+					return mainrformb[name]; 
+				} 
 			};
 			arguments.callee.setUiData = function(name, value) {
-				mainrformb[name] = value;
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					switch (name) { 
+						case 'skin': 
+						case 'onsubm': 
+						case 'main': 
+						case 'app_ver': 
+						case 'calculation': 
+							case 'invoice': 
+							msobj.multistepSettings[name] = value; 
+							break; 
+
+ 						default: 
+							msobj.availableForms[msobj.activeFormId]['core'][name] = value; 
+							break; 
+					} 
+				} else { 
+					mainrformb[name] = value; 
+				} 
 			};
 			arguments.callee.getUiData2 = function(name, index) {
-				try {
-					return mainrformb[name][index];
-				} catch (err) {
-					console.log('error getUiData2: ' + err.message);
-				}
+				try { 
+					if (rocketform.isMultiStepActive()) { 
+						let msobj = this.getInnerVariable('multistepobj'); 
+
+ 						switch (name) { 
+							case 'skin': 
+							case 'onsubm': 
+							case 'main': 
+							case 'app_ver': 
+							case 'calculation': 
+							case 'invoice': 
+								return msobj.multistepSettings[name][index]; 
+								break; 
+
+ 							default: 
+								return msobj.availableForms[msobj.activeFormId]['core'][name][index]; 
+								break; 
+						} 
+					} else { 
+						return mainrformb[name][index]; 
+					} 
+				} catch (err) { 
+					console.log('error getUiData2: ' + err.message); 
+				} 
 			};
 
 			arguments.callee.delUiData2 = function(name, index) {
-				delete mainrformb[name][index];
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					switch (name) { 
+						case 'skin': 
+						case 'onsubm': 
+						case 'main': 
+						case 'app_ver': 
+						case 'calculation': 
+							case 'invoice': 
+							return msobj.multistepSettings[name][index]; 
+							break; 
+
+ 						default: 
+							delete msobj.availableForms[msobj.activeFormId]['core'][name][index]; 
+							break; 
+					} 
+				} else { 
+					delete mainrformb[name][index]; 
+				} 
 			};
 			arguments.callee.spliceUiData2 = function(name, index) {
-				if (parseInt(index) > -1) {
-					mainrformb[name].splice(parseInt(index), 1);
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					if (parseInt(index) > -1) { 
+						switch (name) { 
+							case 'skin': 
+							case 'onsubm': 
+							case 'main': 
+							case 'app_ver': 
+							case 'calculation': 
+							case 'invoice': 
+								msobj.multistepSettings[name].splice(parseInt(index), 1); 
+								break; 
+
+ 							default: 
+								msobj.availableForms[msobj.activeFormId]['core'][name].splice(parseInt(index), 1); 
+								break; 
+						} 
+					} 
+				} else { 
+					if (parseInt(index) > -1) { 
+						mainrformb[name].splice(parseInt(index), 1); 
+					} 
+				} 
 			};
 
 			arguments.callee.setUiData2 = function(name, index, value) {
-				if (!mainrformb.hasOwnProperty(name)) {
-					mainrformb[name] = {};
-				}
-				if (!mainrformb[name].hasOwnProperty(index)) {
-					mainrformb[name][index] = {};
-				}
-				mainrformb[name][index] = value;
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					switch (name) { 
+						case 'skin': 
+						case 'onsubm': 
+						case 'main': 
+						case 'app_ver': 
+						case 'calculation': 
+							case 'invoice': 
+							msobj.multistepSettings[name][index] = value; 
+							break; 
+
+ 						default: 
+							if (!msobj.availableForms[msobj.activeFormId]['core'].hasOwnProperty(name)) { 
+								mainrformb[name] = {}; 
+							} 
+							if (!msobj.availableForms[msobj.activeFormId]['core'][name].hasOwnProperty(index)) { 
+								msobj.availableForms[msobj.activeFormId]['core'][name][index] = {}; 
+							} 
+							msobj.availableForms[msobj.activeFormId]['core'][name][index] = value; 
+							break; 
+					} 
+				} else { 
+					if (!mainrformb.hasOwnProperty(name)) { 
+						mainrformb[name] = {}; 
+					} 
+					if (!mainrformb[name].hasOwnProperty(index)) { 
+						mainrformb[name][index] = {}; 
+					} 
+					mainrformb[name][index] = value; 
+				} 
 			};
 			arguments.callee.addIndexUiData2 = function(name, index, value) {
-				if (typeof mainrformb[name][index] == 'undefined') {
-				} else {
-					mainrformb[name][index][value] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					switch (name) { 
+						case 'skin': 
+						case 'onsubm': 
+						case 'main': 
+						case 'app_ver': 
+						case 'calculation': 
+							case 'invoice': 
+							msobj.multistepSettings[name][index][value] = {}; 
+							break; 
+
+ 						default: 
+							if (typeof msobj.availableForms[msobj.activeFormId]['core'][name][index] == 'undefined') { 
+							} else { 
+								msobj.availableForms[msobj.activeFormId]['core'][name][index][value] = {}; 
+							} 
+							break; 
+					} 
+				} else { 
+					if (typeof mainrformb[name][index] == 'undefined') { 
+					} else { 
+						mainrformb[name][index][value] = {}; 
+					} 
+				} 
 			};
 			arguments.callee.getUiData3 = function(name, index, key) {
-				try {
-					return mainrformb[name][index][key];
-				} catch (err) {
-					console.log('error getUiData3: ' + err.message);
-				}
+				try { 
+					if (rocketform.isMultiStepActive()) { 
+						let msobj = this.getInnerVariable('multistepobj'); 
+
+ 						switch (name) { 
+							case 'skin': 
+							case 'onsubm': 
+							case 'main': 
+							case 'app_ver': 
+							case 'calculation': 
+							case 'invoice': 
+								return msobj.multistepSettings[name][index][key]; 
+								break; 
+
+ 							default: 
+								return msobj.availableForms[msobj.activeFormId]['core'][name][index][key]; 
+								break; 
+						} 
+					} else { 
+						return mainrformb[name][index][key]; 
+					} 
+				} catch (err) { 
+					console.log('error getUiData3: ' + err.message); 
+				} 
 			};
 			arguments.callee.delUiData3 = function(name, index, key) {
-				delete mainrformb[name][index][key];
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					switch (name) { 
+						case 'skin': 
+						case 'onsubm': 
+						case 'main': 
+						case 'app_ver': 
+						case 'calculation': 
+							case 'invoice': 
+							delete msobj.multistepSettings[name][index][key]; 
+							break; 
+
+ 						default: 
+							delete msobj.availableForms[msobj.activeFormId]['core'][name][index][key]; 
+							break; 
+					} 
+				} else { 
+					delete mainrformb[name][index][key]; 
+				} 
 			};
 
 			arguments.callee.spliceUiData3 = function(name, index, key) {
-				if (parseInt(key) > -1) {
-					mainrformb[name][index].splice(parseInt(key), 1);
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					if (parseInt(key) > -1) { 
+						switch (name) { 
+							case 'skin': 
+							case 'onsubm': 
+							case 'main': 
+							case 'app_ver': 
+							case 'calculation': 
+							case 'invoice': 
+								msobj.multistepSettings[name][index].splice(parseInt(key), 1); 
+								break; 
+
+ 							default: 
+								msobj.availableForms[msobj.activeFormId]['core'][name][index].splice(parseInt(key), 1); 
+								break; 
+						} 
+					} 
+				} else { 
+					if (parseInt(key) > -1) { 
+						mainrformb[name][index].splice(parseInt(key), 1); 
+					} 
+				} 
 			};
 
 			arguments.callee.setUiData3 = function(name, index, key, value) {
-				if (!mainrformb.hasOwnProperty(name)) {
-					mainrformb[name] = {};
-				}
-				if (!mainrformb[name].hasOwnProperty(index)) {
-					mainrformb[name][index] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
 
-				mainrformb[name][index][key] = value;
-			};
-			arguments.callee.setUiData4 = function(name, index, key, option, value) {
-				if (!mainrformb.hasOwnProperty(name)) {
-					mainrformb[name] = {};
-				}
-				if (!mainrformb[name].hasOwnProperty(index)) {
-					mainrformb[name][index] = {};
-				}
+ 					switch (name) { 
+						case 'skin': 
+						case 'onsubm': 
+						case 'main': 
+						case 'app_ver': 
+						case 'calculation': 
+							case 'invoice': 
+							msobj.multistepSettings[name][index][key] = value; 
+							break; 
 
-				if (!mainrformb[name][index].hasOwnProperty(key)) {
-					mainrformb[name][index][key] = {};
-				}
+ 						default: 
+							if (!msobj.availableForms[msobj.activeFormId]['core'].hasOwnProperty(name)) { 
+								msobj.availableForms[msobj.activeFormId]['core'][name] = {}; 
+							} 
+							if (!msobj.availableForms[msobj.activeFormId]['core'][name].hasOwnProperty(index)) { 
+								msobj.availableForms[msobj.activeFormId]['core'][name][index] = {}; 
+							} 
 
-				mainrformb[name][index][key][option] = value;
+ 							msobj.availableForms[msobj.activeFormId]['core'][name][index][key] = value; 
+							break; 
+					} 
+				} else { 
+					if (!mainrformb.hasOwnProperty(name)) { 
+						mainrformb[name] = {}; 
+					} 
+					if (!mainrformb[name].hasOwnProperty(index)) { 
+						mainrformb[name][index] = {}; 
+					} 
+
+ 					mainrformb[name][index][key] = value; 
+				} 
 			};
-			arguments.callee.getUiData4 = function(name, index, key, option) {
-				try {
-					return mainrformb[name][index][key][option];
-				} catch (err) {
-					console.log('error getUiData4: name: ' + name + ' index:' + index + ' key:' + key + ' option:' + option + ' error:' + err.message);
-				}
-			};
+
+						arguments.callee.mm_setUiData3 = function(name, index, key, value) { 
+				let msobj = this.getInnerVariable('multistepobj'); 
+				msobj.setUiData3(name, index, key, value); 
+			}; 
+
+						arguments.callee.setUiData4 = function(name, index, key, option, value) { 
+				if (rocketform.isMultiStepActive()) {  
+					let msobj = this.getInnerVariable('multistepobj');  
+                    switch (name) {  
+						case 'skin':  
+						case 'onsubm':  
+						case 'main':  
+						case 'app_ver':  
+						case 'calculation': 
+							case 'invoice': 
+							msobj.multistepSettings[name][index][key][option] = value;  
+							break;  
+
+  						default:  
+							if (!msobj.availableForms[msobj.activeFormId]['core'].hasOwnProperty(name)) {  
+								msobj.availableForms[msobj.activeFormId]['core'][name] = {};  
+							}  
+							if (!msobj.availableForms[msobj.activeFormId]['core'][name].hasOwnProperty(index)) {  
+								msobj.availableForms[msobj.activeFormId]['core'][name][index] = {};  
+							}  
+
+		  							if (!msobj.availableForms[msobj.activeFormId]['core'][name][index].hasOwnProperty(key)) {  
+								msobj.availableForms[msobj.activeFormId]['core'][name][index][key] = {};  
+							}  
+
+		  							msobj.availableForms[msobj.activeFormId]['core'][name][index][key][option] = value;  
+							break;  
+					}  
+
+
+					 					 				} else {  
+					if (!mainrformb.hasOwnProperty(name)) {  
+						mainrformb[name] = {};  
+					}  
+					if (!mainrformb[name].hasOwnProperty(index)) {  
+						mainrformb[name][index] = {};  
+					}  
+
+  					if (!mainrformb[name][index].hasOwnProperty(key)) {  
+						mainrformb[name][index][key] = {};  
+					}  
+
+  					mainrformb[name][index][key][option] = value;  
+				}  
+			}; 
+			arguments.callee.getUiData4 = function(name, index, key, option) { 
+				try {  
+					if (rocketform.isMultiStepActive()) {  
+						let msobj = this.getInnerVariable('multistepobj');  
+
+						 						switch (name) {  
+							case 'skin':  
+							case 'onsubm':  
+							case 'main':  
+							case 'app_ver':  
+							case 'calculation': 
+								case 'invoice': 
+								msobj.multistepSettings[name][index][key][option] = value;  
+								break; 
+							default:  
+								return msobj.availableForms[msobj.activeFormId]['core'][name][index][key][option];  
+								break;  
+						}  
+
+						 					} else {  
+						return mainrformb[name][index][key][option];  
+					}  
+				} catch (err) {  
+					console.log('error getUiData4: name: ' + name + ' index:' + index + ' key:' + key + ' option:' + option + ' error:' + err.message);  
+				}  
+			}; 
 			arguments.callee.getUiData5 = function(name, index, key, section, option) {
-				try {
-					if (typeof mainrformb[name][index] == 'undefined') {
-						return '';
-					} else {
-						return mainrformb[name][index][key][section][option];
-					}
-				} catch (err) {
-					console.log('error getUiData5: ' + err.message);
-					return '';
-				}
+				try { 
+					if (rocketform.isMultiStepActive()) { 
+						let msobj = this.getInnerVariable('multistepobj'); 
+
+						if (typeof msobj.availableForms[msobj.activeFormId]['core'][name][index] == 'undefined') { 
+							return ''; 
+						} else { 
+							return msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option]; 
+						} 
+					} else { 
+						if (typeof mainrformb[name][index] == 'undefined') { 
+							return ''; 
+						} else { 
+							return mainrformb[name][index][key][section][option]; 
+						} 
+					} 
+				} catch (err) { 
+					console.log('error getUiData5: ' + err.message); 
+					return ''; 
+				} 
 			};
 			arguments.callee.setUiData5 = function(name, index, key, section, option, value) {
-				if (!mainrformb.hasOwnProperty(name)) {
-					mainrformb[name] = {};
-				}
-				if (!mainrformb[name].hasOwnProperty(index)) {
-					mainrformb[name][index] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
 
-				if (!mainrformb[name][index].hasOwnProperty(key)) {
-					mainrformb[name][index][key] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'].hasOwnProperty(name)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name] = {}; 
+					} 
+					if (!msobj.availableForms[msobj.activeFormId]['core'][name].hasOwnProperty(index)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key].hasOwnProperty(section)) {
-					mainrformb[name][index][key][section] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index].hasOwnProperty(key)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key] = {}; 
+					} 
 
-				mainrformb[name][index][key][section][option] = value;
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key].hasOwnProperty(section)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section] = {}; 
+					} 
+
+ 					msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option] = value; 
+				} else { 
+					if (!mainrformb.hasOwnProperty(name)) { 
+						mainrformb[name] = {}; 
+					} 
+					if (!mainrformb[name].hasOwnProperty(index)) { 
+						mainrformb[name][index] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index].hasOwnProperty(key)) { 
+						mainrformb[name][index][key] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key].hasOwnProperty(section)) { 
+						mainrformb[name][index][key][section] = {}; 
+					} 
+
+ 					mainrformb[name][index][key][section][option] = value; 
+				} 
 			};
 			arguments.callee.addIndexUiData5 = function(name, index, key, section, option, value) {
-				if (typeof mainrformb[name][index][key][section][option] == 'undefined') {
-				} else {
-					mainrformb[name][index][key][section][option][value] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					if (typeof msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option] == 'undefined') { 
+					} else { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][value] = {}; 
+					} 
+				} else { 
+					if (typeof mainrformb[name][index][key][section][option] == 'undefined') { 
+					} else { 
+						mainrformb[name][index][key][section][option][value] = {}; 
+					} 
+				} 
 			};
 
 			arguments.callee.getUiData6 = function(name, index, key, section, option, option2) {
-				try {
-					if (typeof mainrformb[name][index][key][section][option][option2] == 'undefined') {
-						return '';
-					} else {
-						return mainrformb[name][index][key][section][option][option2];
-					}
-				} catch (err) {
-					console.log('error handled - getUiData6: ' + err.message);
-					return '';
-				}
+				try { 
+					if (rocketform.isMultiStepActive()) { 
+						let msobj = this.getInnerVariable('multistepobj'); 
+
+ 						if (typeof msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2] == 'undefined') { 
+							return ''; 
+						} else { 
+							return msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2]; 
+						} 
+					} else { 
+						if (typeof mainrformb[name][index][key][section][option][option2] == 'undefined') { 
+							return ''; 
+						} else { 
+							return mainrformb[name][index][key][section][option][option2]; 
+						} 
+					} 
+				} catch (err) { 
+					console.log('error handled - getUiData6: ' + err.message); 
+					return ''; 
+				} 
 			};
 
 			arguments.callee.setUiData6 = function(name, index, key, section, option, option2, value) {
-				if (!mainrformb.hasOwnProperty(name)) {
-					mainrformb[name] = {};
-				}
-				if (!mainrformb[name].hasOwnProperty(index)) {
-					mainrformb[name][index] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
 
-				if (!mainrformb[name][index].hasOwnProperty(key)) {
-					mainrformb[name][index][key] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'].hasOwnProperty(name)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name] = {}; 
+					} 
+					if (!msobj.availableForms[msobj.activeFormId]['core'][name].hasOwnProperty(index)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key].hasOwnProperty(section)) {
-					mainrformb[name][index][key][section] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index].hasOwnProperty(key)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section].hasOwnProperty(option)) {
-					mainrformb[name][index][key][section][option] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key].hasOwnProperty(section)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section] = {}; 
+					} 
 
-				mainrformb[name][index][key][section][option][option2] = value;
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section].hasOwnProperty(option)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option] = {}; 
+					} 
+
+ 					msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2] = value; 
+				} else { 
+					if (!mainrformb.hasOwnProperty(name)) { 
+						mainrformb[name] = {}; 
+					} 
+					if (!mainrformb[name].hasOwnProperty(index)) { 
+						mainrformb[name][index] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index].hasOwnProperty(key)) { 
+						mainrformb[name][index][key] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key].hasOwnProperty(section)) { 
+						mainrformb[name][index][key][section] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section].hasOwnProperty(option)) { 
+						mainrformb[name][index][key][section][option] = {}; 
+					} 
+
+ 					mainrformb[name][index][key][section][option][option2] = value; 
+				} 
 			};
 
 			arguments.callee.delUiData6 = function(name, index, key, section, option, option2) {
-				delete mainrformb[name][index][key][section][option][option2];
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					delete msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2]; 
+				} else { 
+					delete mainrformb[name][index][key][section][option][option2]; 
+				} 
 			};
 
 			arguments.callee.getUiData7 = function(name, index, key, section, option, option2, option3) {
-				try {
-					if (typeof mainrformb[name][index][key][section][option][option2][option3] == 'undefined') {
-						return '';
-					} else {
-						return mainrformb[name][index][key][section][option][option2][option3];
-					}
-				} catch (err) {
-					console.log('error handled - getUiData7: ' + err.message);
-					return '';
-				}
+				try { 
+					if (rocketform.isMultiStepActive()) { 
+						let msobj = this.getInnerVariable('multistepobj'); 
+
+ 						if (typeof msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3] == 'undefined') { 
+							return ''; 
+						} else { 
+							return msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3]; 
+						} 
+					} else { 
+						if (typeof mainrformb[name][index][key][section][option][option2][option3] == 'undefined') { 
+							return ''; 
+						} else { 
+							return mainrformb[name][index][key][section][option][option2][option3]; 
+						} 
+					} 
+				} catch (err) { 
+					console.log('error handled - getUiData7: ' + err.message); 
+					return ''; 
+				} 
 			};
 			arguments.callee.setUiData7 = function(name, index, key, section, option, option2, option3, value) {
-				if (!mainrformb.hasOwnProperty(name)) {
-					mainrformb[name] = {};
-				}
-				if (!mainrformb[name].hasOwnProperty(index)) {
-					mainrformb[name][index] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
 
-				if (!mainrformb[name][index].hasOwnProperty(key)) {
-					mainrformb[name][index][key] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'].hasOwnProperty(name)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name] = {}; 
+					} 
+					if (!msobj.availableForms[msobj.activeFormId]['core'][name].hasOwnProperty(index)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key].hasOwnProperty(section)) {
-					mainrformb[name][index][key][section] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index].hasOwnProperty(key)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section].hasOwnProperty(option)) {
-					mainrformb[name][index][key][section][option] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key].hasOwnProperty(section)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section][option].hasOwnProperty(option2)) {
-					mainrformb[name][index][key][section][option][option2] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section].hasOwnProperty(option)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option] = {}; 
+					} 
 
-				mainrformb[name][index][key][section][option][option2][option3] = value;
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option].hasOwnProperty(option2)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2] = {}; 
+					} 
+
+ 					msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3] = value; 
+				} else { 
+					if (!mainrformb.hasOwnProperty(name)) { 
+						mainrformb[name] = {}; 
+					} 
+					if (!mainrformb[name].hasOwnProperty(index)) { 
+						mainrformb[name][index] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index].hasOwnProperty(key)) { 
+						mainrformb[name][index][key] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key].hasOwnProperty(section)) { 
+						mainrformb[name][index][key][section] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section].hasOwnProperty(option)) { 
+						mainrformb[name][index][key][section][option] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section][option].hasOwnProperty(option2)) { 
+						mainrformb[name][index][key][section][option][option2] = {}; 
+					} 
+
+ 					mainrformb[name][index][key][section][option][option2][option3] = value; 
+				} 
 			};
 			arguments.callee.addIndexUiData7 = function(name, index, key, section, option, option2, value) {
-				if (typeof mainrformb[name][index][key][section][option][option2] == 'undefined') {
-				} else {
-					mainrformb[name][index][key][section][option][option2][value] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					if (typeof msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2] == 'undefined') { 
+					} else { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][value] = {}; 
+					} 
+				} else { 
+					if (typeof mainrformb[name][index][key][section][option][option2] == 'undefined') { 
+					} else { 
+						mainrformb[name][index][key][section][option][option2][value] = {}; 
+					} 
+				} 
 			};
 			arguments.callee.setUiData8 = function(name, index, key, section, option, option2, option3, option4, value) {
-				if (!mainrformb.hasOwnProperty(name)) {
-					mainrformb[name] = {};
-				}
-				if (!mainrformb[name].hasOwnProperty(index)) {
-					mainrformb[name][index] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
 
-				if (!mainrformb[name][index].hasOwnProperty(key)) {
-					mainrformb[name][index][key] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'].hasOwnProperty(name)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name] = {}; 
+					} 
+					if (!msobj.availableForms[msobj.activeFormId]['core'][name].hasOwnProperty(index)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key].hasOwnProperty(section)) {
-					mainrformb[name][index][key][section] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index].hasOwnProperty(key)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section].hasOwnProperty(option)) {
-					mainrformb[name][index][key][section][option] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key].hasOwnProperty(section)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section][option].hasOwnProperty(option2)) {
-					mainrformb[name][index][key][section][option][option2] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section].hasOwnProperty(option)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section][option][option2].hasOwnProperty(option3)) {
-					mainrformb[name][index][key][section][option][option2][option3] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option].hasOwnProperty(option2)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2] = {}; 
+					} 
 
-				mainrformb[name][index][key][section][option][option2][option3][option4] = value;
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2].hasOwnProperty(option3)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3] = {}; 
+					} 
+
+ 					msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3][option4] = value; 
+				} else { 
+					if (!mainrformb.hasOwnProperty(name)) { 
+						mainrformb[name] = {}; 
+					} 
+					if (!mainrformb[name].hasOwnProperty(index)) { 
+						mainrformb[name][index] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index].hasOwnProperty(key)) { 
+						mainrformb[name][index][key] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key].hasOwnProperty(section)) { 
+						mainrformb[name][index][key][section] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section].hasOwnProperty(option)) { 
+						mainrformb[name][index][key][section][option] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section][option].hasOwnProperty(option2)) { 
+						mainrformb[name][index][key][section][option][option2] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section][option][option2].hasOwnProperty(option3)) { 
+						mainrformb[name][index][key][section][option][option2][option3] = {}; 
+					} 
+
+ 					mainrformb[name][index][key][section][option][option2][option3][option4] = value; 
+				} 
 			};
 			arguments.callee.addIndexUiData8 = function(name, index, key, section, option, option2, option3, value) {
-				if (typeof mainrformb[name][index][key][section][option][option2][option3] == 'undefined') {
-				} else {
-					mainrformb[name][index][key][section][option][option2][option3][value] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					if (typeof msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3] == 'undefined') { 
+					} else { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3][value] = {}; 
+					} 
+				} else { 
+					if (typeof mainrformb[name][index][key][section][option][option2][option3] == 'undefined') { 
+					} else { 
+						mainrformb[name][index][key][section][option][option2][option3][value] = {}; 
+					} 
+				} 
 			};
 			arguments.callee.delUiData8 = function(name, index, key, section, option, option2, option3, option4) {
-				delete mainrformb[name][index][key][section][option][option2][option3][option4];
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					delete msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3][option4]; 
+				} else { 
+					delete mainrformb[name][index][key][section][option][option2][option3][option4]; 
+				} 
 			};
 
 			arguments.callee.setUiData9 = function(name, index, key, section, option, option2, option3, option4, option5, value) {
-				if (!mainrformb.hasOwnProperty(name)) {
-					mainrformb[name] = {};
-				}
-				if (!mainrformb[name].hasOwnProperty(index)) {
-					mainrformb[name][index] = {};
-				}
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
 
-				if (!mainrformb[name][index].hasOwnProperty(key)) {
-					mainrformb[name][index][key] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'].hasOwnProperty(name)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name] = {}; 
+					} 
+					if (!msobj.availableForms[msobj.activeFormId]['core'][name].hasOwnProperty(index)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key].hasOwnProperty(section)) {
-					mainrformb[name][index][key][section] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index].hasOwnProperty(key)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section].hasOwnProperty(option)) {
-					mainrformb[name][index][key][section][option] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key].hasOwnProperty(section)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section][option].hasOwnProperty(option2)) {
-					mainrformb[name][index][key][section][option][option2] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section].hasOwnProperty(option)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section][option][option2].hasOwnProperty(option3)) {
-					mainrformb[name][index][key][section][option][option2][option3] = {};
-				}
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option].hasOwnProperty(option2)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2] = {}; 
+					} 
 
-				if (!mainrformb[name][index][key][section][option][option2][option3].hasOwnProperty(option4)) {
-					mainrformb[name][index][key][section][option][option2][option3][option4] = {};
-				}
-				mainrformb[name][index][key][section][option][option2][option3][option4][option5] = value;
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2].hasOwnProperty(option3)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3] = {}; 
+					} 
+
+ 					if (!msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3].hasOwnProperty(option4)) { 
+						msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3][option4] = {}; 
+					} 
+					msobj.availableForms[msobj.activeFormId]['core'][name][index][key][section][option][option2][option3][option4][option5] = value; 
+				} else { 
+					if (!mainrformb.hasOwnProperty(name)) { 
+						mainrformb[name] = {}; 
+					} 
+					if (!mainrformb[name].hasOwnProperty(index)) { 
+						mainrformb[name][index] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index].hasOwnProperty(key)) { 
+						mainrformb[name][index][key] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key].hasOwnProperty(section)) { 
+						mainrformb[name][index][key][section] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section].hasOwnProperty(option)) { 
+						mainrformb[name][index][key][section][option] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section][option].hasOwnProperty(option2)) { 
+						mainrformb[name][index][key][section][option][option2] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section][option][option2].hasOwnProperty(option3)) { 
+						mainrformb[name][index][key][section][option][option2][option3] = {}; 
+					} 
+
+ 					if (!mainrformb[name][index][key][section][option][option2][option3].hasOwnProperty(option4)) { 
+						mainrformb[name][index][key][section][option][option2][option3][option4] = {}; 
+					} 
+					mainrformb[name][index][key][section][option][option2][option3][option4][option5] = value; 
+				} 
 			};
 
-			arguments.callee.checkIntegrityDataField = function(id) {
-				var status = false;
-				try {
+			arguments.callee.checkIntegrityDataField = function(id) { 
+				var status = false; 
+				try { 
 
-					if ('.uiform-step-content #' + id) {
-						var f_step = $('#' + id)
-							.closest('.uiform-step-pane')
-							.data('uifm-step');
+ 					if ('.uiform-step-content #' + id) { 
+						var f_step = $('#' + id) 
+							.closest('.uiform-step-pane') 
+							.data('uifm-step'); 
 
-						if (typeof mainrformb['steps_src'][parseInt(f_step)][id] == 'undefined') {
-							status = false;
-						} else {
-							status = true;
-						}
-					} else {
-						status = false;
-					}
-					return status;
-				} catch (err) {
-					console.log('error handled - checkIntegrityDataField : ' + err.message);
-					return false;
-				}
+ 						if (rocketform.isMultiStepActive()) { 
+							let msobj = this.getInnerVariable('multistepobj'); 
+
+ 							if (typeof msobj.availableForms[msobj.activeFormId]['core']['steps_src'][parseInt(f_step)][id] == 'undefined') { 
+								status = false; 
+							} else { 
+								status = true; 
+							} 
+						} else { 
+							if (typeof mainrformb['steps_src'][parseInt(f_step)][id] == 'undefined') { 
+								status = false; 
+							} else { 
+								status = true; 
+							} 
+						} 
+					} else { 
+						status = false; 
+					} 
+					return status; 
+				} catch (err) { 
+					console.log('error handled - checkIntegrityDataField : ' + err.message); 
+					return false; 
+				} 
 			};
 
 			arguments.callee.dumpvar3 = function(object) {
@@ -910,6 +1417,9 @@ if (!$uifm.isFunction(rocketform)) {
 					'#uifm-custom-val-num-btn',
 					'#uifm-custom-val-mail-btn',
 					'#uifm-fld-inp2-block-align-box',
+					'.uifm-set-section-input20', 
+					'.uifm-set-section-input-wizard-options', 
+					'.uifm-set-section-inputheading', 
 					'.uifm-set-section-inputprepend',
 					'.uifm-set-section-inputappend',
 					'.uifm-set-section-input4-range',
@@ -1035,53 +1545,62 @@ if (!$uifm.isFunction(rocketform)) {
 					});
 				}
 			};
-			arguments.callee.setDataToSettingTabAndPreview = function(id_field, data_field) {
-				var idselected = $('#uifm-field-selected-id').val();
-				var obj_field = $('#' + id_field);
-				var f_store_a;
-				if (id_field === idselected) {
-					var tabobject = $('#uifm-field-selected-id').parent();
+			arguments.callee.setDataToSettingTabAndPreview = function(id_field, data_field) { 
+				var idselected = $('#uifm-field-selected-id').val(); 
+				var obj_field = $('#' + id_field); 
+				var f_store_a; 
+				if (id_field === idselected) { 
+					var tabobject = $('#uifm-field-selected-id').parent(); 
 
-					$.each(data_field, function(index, value) {
-						if ($.isPlainObject(value)) {
-							$.each(value, function(index2, value2) {
-								if ($.isPlainObject(value2)) {
-									$.each(value2, function(index3, value3) {
-										if ($.isPlainObject(value3)) {
-											$.each(value3, function(index4, value4) {
-												f_store_a = [];
-												f_store_a.push(index);
-												f_store_a.push(index2);
-												f_store_a.push(index3);
-												f_store_a.push(index4);
+ 					$.each(data_field, function(index, value) { 
+						if ($.isPlainObject(value)) { 
+							$.each(value, function(index2, value2) { 
+								if ($.isPlainObject(value2)) { 
+									if (index == 'input2' && index2 == 'options') { 
+										f_store_a = []; 
+										f_store_a.push(index); 
+										f_store_a.push(index2); 
 
-												rocketform.setDataOptToSetTab(tabobject, f_store_a.join('-'), value4);
-												rocketform.setDataOptToPrevField(obj_field, f_store_a.join('-'), value4);
-											});
-										} else {
-											f_store_a = [];
-											f_store_a.push(index);
-											f_store_a.push(index2);
-											f_store_a.push(index3);
+ 										rocketform.setDataOptToSetTab(tabobject, f_store_a.join('-'), value2); 
+										rocketform.setDataOptToPrevField(obj_field, f_store_a.join('-'), value2); 
+									} else { 
+										$.each(value2, function(index3, value3) { 
+											if ($.isPlainObject(value3)) { 
+												$.each(value3, function(index4, value4) { 
+													f_store_a = []; 
+													f_store_a.push(index); 
+													f_store_a.push(index2); 
+													f_store_a.push(index3); 
+													f_store_a.push(index4); 
 
-											rocketform.setDataOptToSetTab(tabobject, f_store_a.join('-'), value3);
-											rocketform.setDataOptToPrevField(obj_field, f_store_a.join('-'), value3);
-										}
-									});
-								} else {
-									f_store_a = [];
-									f_store_a.push(index);
-									f_store_a.push(index2);
+ 													rocketform.setDataOptToSetTab(tabobject, f_store_a.join('-'), value4); 
+													rocketform.setDataOptToPrevField(obj_field, f_store_a.join('-'), value4); 
+												}); 
+											} else { 
+												f_store_a = []; 
+												f_store_a.push(index); 
+												f_store_a.push(index2); 
+												f_store_a.push(index3); 
 
-									rocketform.setDataOptToSetTab(tabobject, f_store_a.join('-'), value2);
-									rocketform.setDataOptToPrevField(obj_field, f_store_a.join('-'), value2);
-								}
-							});
-						} else {
-							rocketform.setDataOptToSetTab_1(tabobject, index, value, data_field['type']);
-						}
-					});
-				}
+ 												rocketform.setDataOptToSetTab(tabobject, f_store_a.join('-'), value3); 
+												rocketform.setDataOptToPrevField(obj_field, f_store_a.join('-'), value3); 
+											} 
+										}); 
+									} 
+								} else { 
+									f_store_a = []; 
+									f_store_a.push(index); 
+									f_store_a.push(index2); 
+
+ 									rocketform.setDataOptToSetTab(tabobject, f_store_a.join('-'), value2); 
+									rocketform.setDataOptToPrevField(obj_field, f_store_a.join('-'), value2); 
+								} 
+							}); 
+						} else { 
+							rocketform.setDataOptToSetTab_1(tabobject, index, value, data_field['type']); 
+						} 
+					}); 
+				} 
 			};
 			arguments.callee.loadForm_updatePreviewField = function(id_field, data_field) {
 				try {
@@ -1152,11 +1671,20 @@ if (!$uifm.isFunction(rocketform)) {
 				var style, s_x, s_y, s_blur, s_st, s_color;
 
 
-				s_st = this.getUiData3('skin', 'form_shadow', 'show_st');
-				s_x = this.getUiData3('skin', 'form_shadow', 'h_shadow');
-				s_y = this.getUiData3('skin', 'form_shadow', 'v_shadow');
-				s_blur = this.getUiData3('skin', 'form_shadow', 'blur');
-				s_color = this.getUiData3('skin', 'form_shadow', 'color');
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					s_st = msobj.getUiData3('skin', 'form_shadow', 'show_st'); 
+					s_x = msobj.getUiData3('skin', 'form_shadow', 'h_shadow'); 
+					s_y = msobj.getUiData3('skin', 'form_shadow', 'v_shadow'); 
+					s_blur = msobj.getUiData3('skin', 'form_shadow', 'blur'); 
+					s_color = msobj.getUiData3('skin', 'form_shadow', 'color'); 
+				} else { 
+					s_st = this.getUiData3('skin', 'form_shadow', 'show_st'); 
+					s_x = this.getUiData3('skin', 'form_shadow', 'h_shadow'); 
+					s_y = this.getUiData3('skin', 'form_shadow', 'v_shadow'); 
+					s_blur = this.getUiData3('skin', 'form_shadow', 'blur'); 
+					s_color = this.getUiData3('skin', 'form_shadow', 'color'); 
+				} 
 
 				if (parseInt(s_st) === 1) {
 					style = s_x + 'px ' + s_y + 'px ' + s_blur + 'px ' + s_color;
@@ -1216,14 +1744,22 @@ if (!$uifm.isFunction(rocketform)) {
 					obj.find(inputClass).removeCss('border-radius');
 				}
 			};
-			arguments.callee.previewform_elementBorderRadius = function(obj, section) {
-				var show_st = this.getUiData3('skin', 'form_border_radius', 'show_st');
-				var size = this.getUiData3('skin', 'form_border_radius', 'size');
-				if (parseInt(show_st) === 1) {
-					obj.find('.uiform-main-form').css('border-radius', size + 'px');
-				} else {
-					obj.find('.uiform-main-form').removeCss('border-radius');
-				}
+			arguments.callee.previewform_elementBorderRadius = function(obj, section) { 
+				var show_st, size; 
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					show_st = msobj.getUiData3('skin', 'form_border_radius', 'show_st'); 
+					size = msobj.getUiData3('skin', 'form_border_radius', 'size'); 
+				} else { 
+					show_st = this.getUiData3('skin', 'form_border_radius', 'show_st'); 
+					size = this.getUiData3('skin', 'form_border_radius', 'size'); 
+				} 
+
+ 				if (parseInt(show_st) === 1) { 
+					obj.find('.uiform-main-form').css('border-radius', size + 'px'); 
+				} else { 
+					obj.find('.uiform-main-form').removeCss('border-radius'); 
+				} 
 			};
 
 			arguments.callee.previewsummbox_elementBorderRadius = function() {
@@ -1286,28 +1822,36 @@ if (!$uifm.isFunction(rocketform)) {
 				}
 			};
 
-			arguments.callee.previewfield_elementTextarea = function(obj, section) {
-				var f_id = obj.attr('id');
-				var f_step = $('#' + f_id)
-					.closest('.uiform-step-pane')
-					.data('uifm-step');
-				var show_st = this.getUiData5('steps_src', f_step, f_id, section, 'show_st');
-				var text = this.getUiData5('steps_src', f_step, f_id, section, 'text');
-				var font = this.getUiData5('steps_src', f_step, f_id, section, 'font');
-				var font_st = this.getUiData5('steps_src', f_step, f_id, section, 'font_st');
-				if (parseInt(show_st) === 1) {
-					this.previewfield_elementHelpBlockText(obj, section);
+			arguments.callee.previewfield_elementTextarea = function(obj, section) { 
+				var f_id = obj.attr('id'); 
+				var f_step = $('#' + f_id) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
+				var show_st = this.getUiData5('steps_src', f_step, f_id, section, 'show_st'); 
+				var text = this.getUiData5('steps_src', f_step, f_id, section, 'text'); 
+				var font = this.getUiData5('steps_src', f_step, f_id, section, 'font'); 
+				var font_st = this.getUiData5('steps_src', f_step, f_id, section, 'font_st'); 
 
-					if (parseInt(font_st) === 1 && font) {
-						var font_sel = JSON.parse(font);
-						obj.find('.uifm-help-block').css('font-family', font_sel.family);
-					} else {
-						obj.find('.uifm-help-block').removeCss('font-family');
-					}
-				} else {
-					obj.find('.uifm-help-block').css('display', 'none');
-					obj.find('.uifm-label-helpblock').hide();
-				}
+ 				var color = this.getUiData5('steps_src', f_step, f_id, section, 'color'); 
+
+ 				if (parseInt(show_st) === 1) { 
+					this.previewfield_elementHelpBlockText(obj, section); 
+					let cssSelectors = {}; 
+					if (parseInt(font_st) === 1 && font) { 
+						var font_sel = JSON.parse(font); 
+						cssSelectors['font-family'] = font_sel.family; 
+					} 
+
+ 					if (color != '') { 
+						cssSelectors['color'] = color; 
+					} 
+					if (Object.keys(cssSelectors).length) { 
+						obj.find('.uifm-help-block').css(cssSelectors); 
+					} 
+				} else { 
+					obj.find('.uifm-help-block').css('display', 'none'); 
+					obj.find('.uifm-label-helpblock').hide(); 
+				} 
 			};
 
 			arguments.callee.previewfield_helpBlockPosition = function(obj, section) {
@@ -1763,23 +2307,33 @@ if (!$uifm.isFunction(rocketform)) {
 					obj.find(inputClass).removeCss('border');
 				}
 			};
-			arguments.callee.previewform_elementBorder = function(obj, section) {
-				var show_st = this.getUiData3('skin', 'form_border', 'show_st');
-				var color = this.getUiData3('skin', 'form_border', 'color');
-				var style = this.getUiData3('skin', 'form_border', 'style');
-				var width = this.getUiData3('skin', 'form_border', 'width');
-				var border_sty;
-				if (parseInt(show_st) === 1) {
-					if (parseInt(style) === 1) {
-						border_sty = 'solid ';
-					} else {
-						border_sty = 'dotted ';
-					}
-					border_sty += color + ' ' + width + 'px';
-					obj.find('.uiform-main-form').css('border', border_sty);
-				} else {
-					obj.find('.uiform-main-form').removeCss('border');
-				}
+			arguments.callee.previewform_elementBorder = function(obj, section) { 
+				var show_st, color, style, width; 
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					show_st = msobj.getUiData3('skin', 'form_border', 'show_st'); 
+					color = msobj.getUiData3('skin', 'form_border', 'color'); 
+					style = msobj.getUiData3('skin', 'form_border', 'style'); 
+					width = msobj.getUiData3('skin', 'form_border', 'width'); 
+				} else { 
+					show_st = this.getUiData3('skin', 'form_border', 'show_st'); 
+					color = this.getUiData3('skin', 'form_border', 'color'); 
+					style = this.getUiData3('skin', 'form_border', 'style'); 
+					width = this.getUiData3('skin', 'form_border', 'width'); 
+				} 
+
+ 				var border_sty; 
+				if (parseInt(show_st) === 1) { 
+					if (parseInt(style) === 1) { 
+						border_sty = 'solid '; 
+					} else { 
+						border_sty = 'dotted '; 
+					} 
+					border_sty += color + ' ' + width + 'px'; 
+					obj.find('.uiform-main-form').css('border', border_sty); 
+				} else { 
+					obj.find('.uiform-main-form').removeCss('border'); 
+				} 
 			};
 
 			arguments.callee.previewsummbox_elementBorder = function() {
@@ -1836,96 +2390,86 @@ if (!$uifm.isFunction(rocketform)) {
 					obj.find(inputClass).removeCss('background-image');
 				}
 			};
-			arguments.callee.previewform_elementPadding = function(obj, section) {
-				var show_st = this.getUiData3('skin', 'form_padding', 'show_st');
-				var pos_top = this.getUiData3('skin', 'form_padding', 'pos_top');
-				var pos_right = this.getUiData3('skin', 'form_padding', 'pos_right');
-				var pos_bottom = this.getUiData3('skin', 'form_padding', 'pos_bottom');
-				var pos_left = this.getUiData3('skin', 'form_padding', 'pos_left');
-				if (parseInt(show_st) === 1) {
-					var pad_tmp = pos_top + 'px ' + pos_right + 'px ' + pos_bottom + 'px ' + pos_left + 'px';
-					obj.find('.uiform-main-form').css('padding', pad_tmp);
-				} else {
-					obj.find('.uiform-main-form').removeCss('padding');
-				}
-			};
-			arguments.callee.previewform_elementBackground = function(obj, section) {
-				var show_st = this.getUiData3('skin', 'form_background', 'show_st');
-				var type = this.getUiData3('skin', 'form_background', 'type');
-				var start_color = this.getUiData3('skin', 'form_background', 'start_color');
-				var end_color = this.getUiData3('skin', 'form_background', 'end_color');
-				var solid_color = this.getUiData3('skin', 'form_background', 'solid_color');
-				var skin_bg_imgurl = this.getUiData3('skin', 'form_background', 'image');
+			arguments.callee.previewform_elementPadding = function(obj, section) { 
+				var show_st, pos_top, pos_right, pos_bottom, pos_left; 
 
-				if (parseInt(show_st) === 1) {
-					switch (parseInt(type)) {
-						case 2:
-							obj.find('.uiform-main-form').css({
-								background: start_color,
-								'background-image': '-webkit-linear-gradient(top, ' + start_color + ', ' + end_color + ')',
-								'background-image': '-moz-linear-gradient(top, ' + start_color + ', ' + end_color + ')',
-								'background-image': '-ms-linear-gradient(top, ' + start_color + ', ' + end_color + ')',
-								'background-image': '-o-linear-gradient(top, ' + start_color + ', ' + end_color + ')',
-								'background-image': 'linear-gradient(to bottom, ' + start_color + ',' + end_color + ')',
-							});
-							if ($('.uiform-main-form').find('.uiform-divider-text')) {
-								$('.uiform-main-form')
-									.find('.uiform-divider-text')
-									.css({
-										background: start_color,
-										'background-image': '-webkit-linear-gradient(top, ' + start_color + ', ' + end_color + ')',
-										'background-image': '-moz-linear-gradient(top, ' + start_color + ', ' + end_color + ')',
-										'background-image': '-ms-linear-gradient(top, ' + start_color + ', ' + end_color + ')',
-										'background-image': '-o-linear-gradient(top, ' + start_color + ', ' + end_color + ')',
-										'background-image': 'linear-gradient(to bottom, ' + start_color + ',' + end_color + ')',
-									});
-							}
-							break;
-						case 1:
-						default:
-							if (solid_color) {
-								obj.find('.uiform-main-form').css('background', solid_color);
-							}
-							if ($('.uiform-main-form').find('.uiform-divider-text')) {
-								$('.uiform-main-form')
-									.find('.uiform-divider-text')
-									.css('background', solid_color);
-							}
+ 				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					show_st = msobj.getUiData3('skin', 'form_padding', 'show_st'); 
+					pos_top = msobj.getUiData3('skin', 'form_padding', 'pos_top'); 
+					pos_right = msobj.getUiData3('skin', 'form_padding', 'pos_right'); 
+					pos_bottom = msobj.getUiData3('skin', 'form_padding', 'pos_bottom'); 
+					pos_left = msobj.getUiData3('skin', 'form_padding', 'pos_left'); 
+				} else { 
+					show_st = this.getUiData3('skin', 'form_padding', 'show_st'); 
+					pos_top = this.getUiData3('skin', 'form_padding', 'pos_top'); 
+					pos_right = this.getUiData3('skin', 'form_padding', 'pos_right'); 
+					pos_bottom = this.getUiData3('skin', 'form_padding', 'pos_bottom'); 
+					pos_left = this.getUiData3('skin', 'form_padding', 'pos_left'); 
+				} 
 
-							break;
-					}
-					if (skin_bg_imgurl) {
-						obj.find('.uiform-main-form').removeCss('background-image');
-						obj.find('.uiform-main-form').css({
-							'background-image': "url('" + skin_bg_imgurl + "')",
-							'background-repeat': 'repeat',
-						});
-						if ($('.uiform-main-form').find('.uiform-divider-text')) {
-							$('.uiform-main-form')
-								.find('.uiform-divider-text')
-								.css({
-									'background-image': "url('" + skin_bg_imgurl + "')",
-									'background-repeat': 'repeat',
-								});
-						}
-					} else {
-					}
-				} else {
-					obj.find('.uiform-main-form').removeCss('background');
-					obj.find('.uiform-main-form').removeCss('background-image');
-					if ($('.uiform-main-form').find('.uiform-divider-text')) {
-						$('.uiform-main-form')
-							.find('.uiform-divider-text')
-							.removeCss('background');
-						$('.uiform-main-form')
-							.find('.uiform-divider-text')
-							.removeCss('background-image');
-						$('.uiform-main-form')
-							.find('.uiform-divider-text')
-							.removeCss('background-repeat');
-					}
-				}
-			};
+ 				if (parseInt(show_st) === 1) { 
+					var pad_tmp = pos_top + 'px ' + pos_right + 'px ' + pos_bottom + 'px ' + pos_left + 'px'; 
+					obj.find('.uiform-main-form').css('padding', pad_tmp); 
+				} else { 
+					obj.find('.uiform-main-form').removeCss('padding'); 
+				} 
+			}; 
+			arguments.callee.previewform_elementBackground = function(obj, section) { 
+				var show_st, type, start_color, end_color, solid_color, skin_bg_imgurl, angle; 
+
+ 				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					show_st = msobj.getUiData3('skin', 'form_background', 'show_st'); 
+					type = msobj.getUiData3('skin', 'form_background', 'type'); 
+					start_color = msobj.getUiData3('skin', 'form_background', 'start_color'); 
+					end_color = msobj.getUiData3('skin', 'form_background', 'end_color'); 
+					solid_color = msobj.getUiData3('skin', 'form_background', 'solid_color'); 
+					skin_bg_imgurl = msobj.getUiData3('skin', 'form_background', 'image'); 
+					angle = msobj.getUiData3('skin', 'form_background', 'angle'); 
+				} else { 
+					show_st = this.getUiData3('skin', 'form_background', 'show_st'); 
+					type = this.getUiData3('skin', 'form_background', 'type'); 
+					start_color = this.getUiData3('skin', 'form_background', 'start_color'); 
+					end_color = this.getUiData3('skin', 'form_background', 'end_color'); 
+					solid_color = this.getUiData3('skin', 'form_background', 'solid_color'); 
+					skin_bg_imgurl = this.getUiData3('skin', 'form_background', 'image'); 
+					angle = this.getUiData3('skin', 'form_background', 'angle'); 
+				} 
+
+ 				if (parseInt(show_st) === 1) { 
+					switch (parseInt(type)) { 
+						case 2: 
+							obj.find('.uiform-main-form').css({ 
+								background: start_color, 
+								'background-image': '-webkit-linear-gradient(' + angle + 'deg, ' + start_color + ', ' + end_color + ')', 
+								'background-image': '-moz-linear-gradient(' + angle + 'deg, ' + start_color + ', ' + end_color + ')', 
+								'background-image': '-ms-linear-gradient(' + angle + 'deg, ' + start_color + ', ' + end_color + ')', 
+								'background-image': '-o-linear-gradient(' + angle + 'deg, ' + start_color + ', ' + end_color + ')', 
+								'background-image': 'linear-gradient(' + angle + 'deg, ' + start_color + ',' + end_color + ')', 
+							}); 
+							break; 
+						case 1: 
+						default: 
+							if (solid_color) { 
+								obj.find('.uiform-main-form').css('background', solid_color); 
+							} 
+
+ 							break; 
+					} 
+					if (skin_bg_imgurl) { 
+						obj.find('.uiform-main-form').removeCss('background-image'); 
+						obj.find('.uiform-main-form').css({ 
+							'background-image': "url('" + skin_bg_imgurl + "')", 
+							'background-repeat': 'repeat', 
+						}); 
+					} else { 
+					} 
+				} else { 
+					obj.find('.uiform-main-form').removeCss('background'); 
+					obj.find('.uiform-main-form').removeCss('background-image'); 
+				} 
+			}; 
 			arguments.callee.previewform_summboxBackground = function() {
 				var show_st = this.getUiData3('summbox', 'form_background', 'show_st');
 				var type = this.getUiData3('summbox', 'form_background', 'type');
@@ -2076,11 +2620,11 @@ if (!$uifm.isFunction(rocketform)) {
 				switch (parseInt(pos)) {
 					case 1:
 						output['left'] = 1;
-						output['right'] = 10;
+						output['right'] = 11;
 						break;
 					case 2:
 						output['left'] = 2;
-						output['right'] = 9;
+						output['right'] = 10;
 						break;
 					case 3:
 						output['left'] = 3;
@@ -2294,6 +2838,7 @@ if (!$uifm.isFunction(rocketform)) {
 									case 'end_color':
 									case 'solid_color':
 									case 'image':
+										case 'angle':
 										this.previewform_elementBackground(obj, section);
 										break;
 									default:
@@ -2327,15 +2872,24 @@ if (!$uifm.isFunction(rocketform)) {
 				}
 			};
 
-			arguments.callee.previewform_skin_maxwidth = function() {
-				var maxwidth_st = this.getUiData3('skin', 'form_width', 'show_st');
-				var maxwidth = this.getUiData3('skin', 'form_width', 'max');
-				if (parseInt(maxwidth_st) === 1) {
-					$('.uiform-main-form').css('max-width', maxwidth + 'px');
-				} else {
-					$('.uiform-main-form').removeCss('max-width');
-				}
-			};
+			arguments.callee.previewform_skin_maxwidth = function() { 
+				var maxwidth_st, maxwidth; 
+
+ 				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					maxwidth_st = msobj.getUiData3('skin', 'form_width', 'show_st'); 
+					maxwidth = msobj.getUiData3('skin', 'form_width', 'max'); 
+				} else { 
+					maxwidth_st = this.getUiData3('skin', 'form_width', 'show_st'); 
+					maxwidth = this.getUiData3('skin', 'form_width', 'max'); 
+				} 
+
+ 				if (parseInt(maxwidth_st) === 1) { 
+					$('.uiform-main-form').css('max-width', maxwidth + 'px'); 
+				} else { 
+					$('.uiform-main-form').removeCss('max-width'); 
+				} 
+			}; 
 			arguments.callee.setDataOptToPrevField = function(obj, f_store, value) {
 				try {
 					var id = obj.attr('id');
@@ -2380,6 +2934,30 @@ if (!$uifm.isFunction(rocketform)) {
 										.find('.uifm-inp-lbl')
 										.html(value);
 									break;
+									case 'levels': 
+									let inputObj = obj.find('.uifm-txtbox-inp-val'); 
+									let htmlContent = inputObj.html(); 
+									switch (parseInt(value)) { 
+										case 1: 
+											inputObj.replaceWith('<h1 class="uifm-txtbox-inp-val">' + htmlContent + '</h1>'); 
+											break; 
+										case 2: 
+											inputObj.replaceWith('<h2 class="uifm-txtbox-inp-val">' + htmlContent + '</h2>'); 
+											break; 
+										case 3: 
+											inputObj.replaceWith('<h3 class="uifm-txtbox-inp-val">' + htmlContent + '</h3>'); 
+											break; 
+										case 4: 
+											inputObj.replaceWith('<h4 class="uifm-txtbox-inp-val">' + htmlContent + '</h4>'); 
+											break; 
+										case 5: 
+											inputObj.replaceWith('<h5 class="uifm-txtbox-inp-val">' + htmlContent + '</h5>'); 
+											break; 
+										case 6: 
+											inputObj.replaceWith('<h6 class="uifm-txtbox-inp-val">' + htmlContent + '</h6>'); 
+											break; 
+									} 
+									break;	
 								case 'value':
 									var tmp_val = obj.find(inputClass).get(0) || null;
 									if (tmp_val) {
@@ -2477,6 +3055,9 @@ if (!$uifm.isFunction(rocketform)) {
 											break;
 									}
 									break;
+									case 'padding': 
+									this.previewfield_input20padding(obj, option); 
+									break;	
 								case 'prepe_txt':
 								case 'append_txt':
 									this.previewfield_prepappTxtOnInput(obj, option);
@@ -2978,12 +3559,12 @@ if (!$uifm.isFunction(rocketform)) {
 								case 'text':
 
 								case 'font':
+									case 'color': 
 									this.previewfield_elementTextarea(obj, section);
 									break;
 								case 'pos':
-									this.previewfield_helpBlockPosition(obj, section);
-									break;
-								case 'show_st':
+
+																case 'show_st':
 									this.previewfield_helpBlockPosition(obj, section);
 
 									break;
@@ -3308,16 +3889,29 @@ if (!$uifm.isFunction(rocketform)) {
 								$('#uifm_frm_email_usr_tmpl_pdf_font').val(mail_usr_pdf_font);
 								break;
 							case 'email_html_fullpage':
-								if ($('#uifm_frm_main_email_htmlfullpage').length) {
-									let email_htmlfullpage = parseInt(this.getUiData2('main', 'email_html_fullpage')) === 1 ? true : false;
-									$('#uifm_frm_main_email_htmlfullpage').bootstrapSwitchZgpb('state', email_htmlfullpage);
-								}
+								if ($('#uifm_frm_main_email_htmlfullpage').length) { 
+									let email_htmlfullpage; 
+									if (rocketform.isMultiStepActive()) { 
+										let msobj = this.getInnerVariable('multistepobj'); 
+										email_htmlfullpage = parseInt(msobj.multistepSettings['main']['email_html_fullpage']) === 1 ? true : false; 
+									} else { 
+										email_htmlfullpage = parseInt(this.getUiData2('main', 'email_html_fullpage')) === 1 ? true : false; 
+									} 
+									$('#uifm_frm_main_email_htmlfullpage').bootstrapSwitchZgpb('state', email_htmlfullpage); 
+								} 
 								break;
 							case 'email_dissubm':
-								if ($('#uifm_frm_main_email_dissubm').length) {
-									var email_dissubm = parseInt(this.getUiData2('main', 'email_dissubm')) === 1 ? true : false;
-									$('#uifm_frm_main_email_dissubm').bootstrapSwitchZgpb('state', email_dissubm);
-								}
+								if ($('#uifm_frm_main_email_dissubm').length) { 
+									var email_dissubm; 
+									if (rocketform.isMultiStepActive()) { 
+										let msobj = this.getInnerVariable('multistepobj'); 
+										email_dissubm = parseInt(msobj.multistepSettings['main']['email_dissubm']) === 1 ? true : false; 
+									} else { 
+										email_dissubm = parseInt(this.getUiData2('main', 'email_dissubm')) === 1 ? true : false; 
+									} 
+
+ 									$('#uifm_frm_main_email_dissubm').bootstrapSwitchZgpb('state', email_dissubm); 
+								} 
 
 								break;
 							case 'pdf_html_fullpage':
@@ -3919,6 +4513,9 @@ if (!$uifm.isFunction(rocketform)) {
 											.colorpicker('setValue', value);
 										tab.find('#uifm_frm_skin_fmbg_color_3').val(value);
 										break;
+										case 'angle': 
+										tab.find('#uifm_frm_skin_fmbg_angle').val(value); 
+										break;
 									case 'solid_color':
 										tab
 											.find('#uifm_frm_skin_fmbg_color_1')
@@ -4059,12 +4656,33 @@ if (!$uifm.isFunction(rocketform)) {
 									break;
 							}
 							switch (String(option)) {
+								case 'padding': 
+								switch (opt2) { 
+									case 'top': 
+										tab.find('#uifm_fld_input20_padding_top').val(value); 
+										break; 
+									case 'bottom': 
+										tab.find('#uifm_fld_input20_padding_bottom').val(value); 
+										break; 
+									case 'right': 
+										tab.find('#uifm_fld_input20_padding_right').val(value); 
+										break; 
+									case 'left': 
+										tab.find('#uifm_fld_input20_padding_left').val(value); 
+										break; 
+									default: 
+										break; 
+								} 
+								break;
 								case 'value_lbl':
 									tab.find('#uifm_fld_input' + prefix_ind + '_value').val(value);
 									break;
 								case 'value_lbl_last':
 									tab.find('#uifm_fld_input' + prefix_ind + '_value_lbl_last').val(value);
 									break;
+									case 'levels': 
+									tab.find('#zgfm-f-input-level-selectel').val(value); 
+									break; 
 								case 'value':
 									tab.find('#uifm_fld_input_value').val(value);
 									break;
@@ -6067,8 +6685,71 @@ if (!$uifm.isFunction(rocketform)) {
 				$('.sfdc-nav-tabs a[href="#uiform-settings-tab3-2"]').sfdc_tab('show');
 			};
 
-			arguments.callee.loadForm_globalSettings_end = function() {};
+			arguments.callee.loadForm_globalSettings_multistep = function() { 
+				rocketform.loading_panelbox2(1); 
+				$('.sfdc-nav-tabs a[href="#uiformc-menu-secmm"]').sfdc_tab('show'); 
+				var destBg = $('.sfdc-nav-tabs a[href="#uiformc-menu-secmm"]').data('color'); 
+				$('.uiformc-tab-content-inner').css('border-color', destBg); 
 
+				let msobj = this.getInnerVariable('multistepobj'); 
+				if (!msobj) { 
+					this.setInnerVariable('multistepobj', new ZgfmManager($)); 
+					msobj = this.getInnerVariable('multistepobj'); 
+					msobj.init(); 
+				} 
+			}; 
+			arguments.callee.loadForm_globalSettings_end = function() {}; 
+			arguments.callee.loadFormSavedMultiStep = function(id) { 
+
+				  				rocketform.showLoader(1, true, true); 
+				const self = this; 
+				$.ajax({ 
+					type: 'POST', 
+					url: rockfm_vars.uifm_siteurl + 'multistep/dashboard/ajax_load_multistep', 
+					data: { 
+						action: 'rocket_fbuilder_load_form_multistep', 
+						page: 'zgfm_form_builder', 
+						zgfm_security: uiform_vars.ajax_nonce, 
+						form_id: id, 
+						csrf_field_name: uiform_vars.csrf_field_name, 
+					}, 
+					success: function(msg) { 
+						let msobj = self.getInnerVariable('multistepobj'); 
+						if (!msobj) { 
+							self.setInnerVariable('multistepobj', new ZgfmManager($)); 
+							msobj = self.getInnerVariable('multistepobj'); 
+						} 
+
+						  						msobj.loadMultistep(msg); 
+
+  						msobj.loadForm(msg); 
+
+ 						rocketform.loadFormToEditPanel_default_Multistep(msg); 
+						rocketform.loading_panelbox('rocketform-bk-dashboard', 0); 
+
+
+						var refreshIntervalId = null; 
+
+ 						var checkIfCoreDataIsSet = function() { 
+							if (parseInt($('.uiform-main-form').length) != 0) { 
+								zgfm_back_addon.load_addon(); 
+								clearInterval(refreshIntervalId); 
+							} 
+						}; 
+						refreshIntervalId = setInterval(checkIfCoreDataIsSet, 1000); 
+
+
+						rocketform.formvariables_genListToIntMem(); 
+						rocketform.fieldsdata_email_genListToIntMem(); 
+
+						zgfm_back_helper.tooltip_removeall(); 
+
+
+ 						rocketform.loading_panelbox2(0); 
+
+  					}, 
+				}); 
+			};
 			arguments.callee.loadFormSaved = function(id) {
 				rocketform.showLoader(1, true, true);
 				$.ajax({
@@ -6150,7 +6831,84 @@ if (!$uifm.isFunction(rocketform)) {
 					return i;
 				}).length;
 			};
+			arguments.callee.loadFormToEditPanel_default_Multistep = function(form_data) { 
 
+				  				if (typeof form_data != 'undefined' && form_data) { 
+					$('#uifm_frm_invoice_tpl_enable').bootstrapSwitchZgpb('state', parseInt(form_data.data['fmb_inv_tpl_st'])); 
+					$('#uifm_frm_record_tpl_enable').bootstrapSwitchZgpb('state', parseInt(form_data.data['fmb_rec_tpl_st'])); 
+					var editor, content; 
+					if (typeof tinymce != 'undefined' && form_data.data.hasOwnProperty('fmb_inv_tpl_html') && form_data.data['fmb_inv_tpl_html'] != null) { 
+						editor = tinymce.get('uifm_frm_invoice_tpl_content'); 
+						if (editor && editor instanceof tinymce.Editor) { 
+							content = form_data.data['fmb_inv_tpl_html']; 
+							editor.setContent(content, { format: 'html' }); 
+						} else { 
+							$('textarea#uifm_frm_invoice_tpl_content').val(form_data.data['fmb_inv_tpl_html']); 
+						} 
+					} 
+					if (typeof tinymce != 'undefined' && form_data.data.hasOwnProperty('fmb_rec_tpl_html') && form_data.data['fmb_rec_tpl_html'] != null) { 
+						editor = tinymce.get('uifm_frm_record_tpl_content'); 
+						if (editor && editor instanceof tinymce.Editor) { 
+							content = form_data.data['fmb_rec_tpl_html']; 
+							editor.setContent(content, { format: 'html' }); 
+						} else { 
+							$('textarea#uifm_frm_record_tpl_content').val(form_data.data['fmb_rec_tpl_html']); 
+						} 
+					} 
+				}  
+				let tmpTab = $('a[href="#uiformc-menu-secmm"]'); 
+				tmpTab.sfdc_tab('show'); 
+				$('.uiformc-tab-content-inner').css('border-color', tmpTab.attr('data-color')); 
+
+				let msobj = this.getInnerVariable('multistepobj'); 
+				if (!msobj) { 
+					this.setInnerVariable('multistepobj', new ZgfmManager($)); 
+					msobj = this.getInnerVariable('multistepobj'); 
+					msobj.init(); 
+				} 
+
+				var tab; 
+
+ 				tab = $('#uiform-build-form-tab'); 
+
+ 				$.each(msobj.multistepSettings, function(i, value) { 
+					switch (String(i)) { 
+						case 'main': 
+						case 'onsubm': 
+						case 'invoice': 
+						case 'calculation': 
+							if ($.isPlainObject(value)) { 
+								$.each(value, function(i2, value2) { 
+									rocketform.setDataOptToSetFormTab(tab, i, i2, value2); 
+								}); 
+							} else { 
+							} 
+							break; 
+					} 
+				}); 
+
+
+ 				var form_tab_skin = msobj.multistepSettings['skin']; 
+
+ 				tab = $('#uiform-settings-tab3-2'); 
+				var obj_field = $('.uiform-preview-base'); 
+				$.each(form_tab_skin, function(i, value) { 
+					if ($.isPlainObject(value)) { 
+						$.each(value, function(i2, value2) { 
+							rocketform.setDataOptToSetFormTab(tab, 'skin', i + '-' + i2, value2); 
+							rocketform.setDataOptToPrevForm(obj_field, 'skin', i + '-' + i2, value2); 
+						}); 
+					} else { 
+						rocketform.setDataOptToSetFormTab(tab, 'skin', i + '-' + '', value); 
+						rocketform.setDataOptToPrevForm(obj_field, 'skin', i + '-', value); 
+					} 
+				}); 
+
+
+ 				rocketform.hideLoader(); 
+
+				$(window).trigger('resize'); 
+			}; 
 			arguments.callee.loadFormToEditPanel_default = function(form_data) {
 
 				if (typeof mainrformb['invoice'] == 'undefined') {
@@ -6260,7 +7018,20 @@ if (!$uifm.isFunction(rocketform)) {
 
 				rocketform.hideLoader();
 
-				$('a[href="#uiformc-menu-sec1"]').sfdc_tab('show');
+				if (String($('#uifm_frm_main_ismultistep').val()) === 'yes') { 
+					let tmpTab = $('a[href="#uiformc-menu-secmm"]'); 
+					tmpTab.sfdc_tab('show'); 
+					$('.uiformc-tab-content-inner').css('border-color', tmpTab.attr('data-color')); 
+
+					let msobj = this.getInnerVariable('multistepobj'); 
+					if (!msobj) { 
+						this.setInnerVariable('multistepobj', new ZgfmManager($)); 
+						msobj = this.getInnerVariable('multistepobj'); 
+						msobj.init(); 
+					} 
+				} else { 
+					$('a[href="#uiformc-menu-sec1"]').sfdc_tab('show'); 
+				} 
 				$(window).trigger('resize');
 
 				var tmp_sm_enable_st = this.getUiData3('summbox', 'setting', 'enable_st');
@@ -6273,7 +7044,117 @@ if (!$uifm.isFunction(rocketform)) {
 
 				zgfm_back_calc.calc_refreshvars_init();
 			};
+			arguments.callee.loadFormToEditPanel_defaultMultistep = function(form_data) { 
+				let msobj = this.getInnerVariable('multistepobj'); 
 
+				if (typeof msobj.availableForms[msobj.activeFormId]['core']['main'] == 'undefined') { 
+					this.setUiData('main', form_data.data.fmb_data['main']); 
+				} 
+				var tab; 
+
+ 				tab = $('#uiform-build-form-tab'); 
+
+
+ 				var form_tab_skin = this.getUiData('skin'); 
+
+ 				tab = $('#uiform-settings-tab3-2'); 
+				var obj_field = $('.uiform-preview-base'); 
+				$.each(form_tab_skin, function(i, value) { 
+					if ($.isPlainObject(value)) { 
+						$.each(value, function(i2, value2) { 
+							rocketform.setDataOptToSetFormTab(tab, 'skin', i + '-' + i2, value2); 
+							rocketform.setDataOptToPrevForm(obj_field, 'skin', i + '-' + i2, value2); 
+						}); 
+					} else { 
+						rocketform.setDataOptToSetFormTab(tab, 'skin', i + '-' + '', value); 
+						rocketform.setDataOptToPrevForm(obj_field, 'skin', i + '-', value); 
+					} 
+				}); 
+
+
+ 				$('.uiform_frm_wiz_main_content').hide(); 
+
+ 				rocketform.hideLoader(); 
+
+
+
+				$(window).trigger('resize'); 
+			}; 
+			arguments.callee.loadFormToEditPanelMultiStep = function(form_data) { 
+
+				  				let msobj = this.getInnerVariable('multistepobj'); 
+				try { 
+
+ 					var mainrformb_tmp = { 
+						main: form_data.data.fmb_data['main'], 
+						skin: form_data.data.fmb_data['skin'], 
+						wizard: form_data.data.fmb_data['wizard'], 
+						onsubm: form_data.data.fmb_data['onsubm'], 
+						num_tabs: form_data.data.fmb_data['num_tabs'], 
+						steps: form_data.data.fmb_data['steps'], 
+						steps_src: form_data.data.fmb_data['steps_src'], 
+					}; 
+
+ 					msobj.availableForms[msobj.activeFormId]['core'] = $.extend(true, {}, mainrformb_tmp); 
+
+					for (var key in form_data.addons) { 
+						if (form_data.addons.hasOwnProperty(key)) { 
+							zgfm_back_addon.load_addon(key, form_data.addons[key]); 
+						} 
+					} 
+					zgfm_back_addon.load_initData(form_data.addons); 
+
+					rocketform.saveform_cleanForm2(); 
+
+					zgfm_back_upgrade.initialize(); 
+
+					rocketform.guidedtour_showTextOnPreviewPane(false); 
+
+ 					$('.uiform-preview-base').html(form_data.data.fmb_html_backend); 
+
+					$('input,textarea').attr('autocomplete', 'off'); 
+					$('#zgfm_edit_panel').disableAutoFill({ 
+						passwordField: '.password', 
+					}); 
+
+					if (parseInt($('.uiform-main-form').length) != 0) { 
+					} else { 
+						rocketform.loadFormSaved_regenerateForm(); 
+						return; 
+					} 
+
+					$('#uifm_frm_main_title').val(form_data.data.fmb_name); 
+					$.each(msobj.availableForms[msobj.activeFormId]['core']['steps_src'], function(index, value) { 
+						$.each(value, function(index2, value2) { 
+							rocketform.enableFieldPlugin(index, value2.id, value2.type, value2); 
+						}); 
+					}); 
+
+ 					if (typeof msobj.availableForms[msobj.activeFormId]['core']['steps'] == 'undefined') { 
+						msobj.availableForms[msobj.activeFormId]['core']['steps'] = {}; 
+						this.setUiData('num_tabs', form_data.data.fmb_data['num_tabs']); 
+						this.setUiData('steps', form_data.data.fmb_data['steps']); 
+					} 
+
+					if (typeof msobj.availableForms[msobj.activeFormId]['core']['onsubm'] == 'undefined') { 
+						msobj.availableForms[msobj.activeFormId]['core']['onsubm'] = {}; 
+						this.setUiData('onsubm', form_data.data.fmb_data['onsubm']); 
+					} 
+					if (typeof msobj.availableForms[msobj.activeFormId]['core']['skin'] == 'undefined') { 
+						msobj.availableForms[msobj.activeFormId]['core']['skin'] = {}; 
+						this.setUiData('skin', form_data.data.fmb_data['skin']); 
+					} 
+
+					if (typeof msobj.availableForms[msobj.activeFormId]['core']['wizard'] == 'undefined') { 
+						msobj.availableForms[msobj.activeFormId]['core']['wizard'] = {}; 
+						this.setUiData('wizard', form_data.data.fmb_data['wizard']); 
+					} 
+
+ 					rocketform.loadFormToEditPanel_defaultMultistep(form_data); 
+				} catch (ex) { 
+					console.error(' load form error : ', ex.message); 
+				} 
+			}; 
 			arguments.callee.loadFormToEditPanel = function(form_data) {
 				try {
 
@@ -7765,7 +8646,8 @@ if (!$uifm.isFunction(rocketform)) {
 				addon_data['textarea_id'] = tab_opt;
 				addon_data['field_id'] = tmp_id;
 				addon_data['textarea_content'] = tmp_content;
-				zgfm_back_addon.do_action('tinyMCE_onChange', addon_data);
+
+			 				wp.hooks.applyFilters('zgfm.tinyMCE_onChange', addon_data); 
 			};
 			arguments.callee.initPanel = function() {
 				this.loading_panelbox('rocketform-bk-dashboard', 1);
@@ -7776,6 +8658,21 @@ if (!$uifm.isFunction(rocketform)) {
 			arguments.callee.printmaindata = function() {
 				console.log(this.dumpvar3(mainrformb));
 			};
+			arguments.callee.printmaindataMultistep = function() { 
+				console.log(this.dumpvar3(this.getInnerVariable('multistepobj').availableForms)); 
+			}; 
+			arguments.callee.printmaindataMultistepSettings = function() { 
+				console.log(this.dumpvar3(this.getInnerVariable('multistepobj').multistepSettings)); 
+			}; 
+			arguments.callee.printmaindataMultistepSelectedForm = function() { 
+				console.log(this.dumpvar3(this.getInnerVariable('multistepobj').debugCurrentSelectedForm())); 
+			}; 
+			arguments.callee.setMainData = function($newData) { 
+				mainrformb = $newData; 
+			}; 
+			arguments.callee.getMainData = function() { 
+				return mainrformb; 
+			}; 
 			arguments.callee.redirect_tourl = function(redirect) {
 				if (window.event) {
 					window.event.returnValue = false;
@@ -7816,7 +8713,7 @@ if (!$uifm.isFunction(rocketform)) {
 						values_tmp.type = el_type;
 						el_id = element.attr('id') ? element.attr('id') : 0;
 						values_tmp.id = el_id;
-						values_tmp.num_tab = parseInt(f_step);
+						values_tmp.num_tab = f_step;
 
 						if (el_container === 1) {
 							values_tmp.children = {};
@@ -7939,7 +8836,15 @@ if (!$uifm.isFunction(rocketform)) {
 				}
 				return fields;
 			};
+			arguments.callee.loadNewFormMultiStep = function() { 
+				rocketform.loadFormToEditPanel_default_Multistep(null); 
 
+				if (parseInt($('#rocketform-bk-dashboard').length) != 0) { 
+					rocketform.loading_panelbox('rocketform-bk-dashboard', 0); 
+				} 
+				rocketform.formvariables_genListToIntMem(); 
+
+			};
 			arguments.callee.loadNewForm = function() {
 				rocketform.loadFormToEditPanel_default(null);
 
@@ -7959,11 +8864,249 @@ if (!$uifm.isFunction(rocketform)) {
 				});
 				modal_obj.on('show.bs.sfdc-modal', rocketform.modal_centerPos(modal_obj));
 			};
-			arguments.callee.formsetting_setFieldName_check = function() {
-				var modal_obj = $('#uifm_form_setting_setfname');
+			arguments.callee.formsetting_setFieldName_check = function() { 
+				var modal_obj = $('#uifm_form_setting_setfname'); 
+				var titleObj = $('#uifm-popup-setfname'); 
+				var titleMsg = $('#uifm-popup-setfname').val(); 
 
-				modal_obj.sfdc_modal('hide');
-			};
+ 				if (titleMsg === '') { 
+					titleObj.tooltip({ 
+						animation: false, 
+						placement: 'top', 
+						container: 'body', 
+						html: true, 
+						title: $('#uifm_frm_title_required').val(), 
+					}); 
+					titleObj.tooltip('show'); 
+					return; 
+				} 
+
+ 				let dataObj = { 
+					action: 'rocket_fbuilder_save_newform', 
+					page: 'zgfm_form_builder', 
+					zgfm_security: uiform_vars.ajax_nonce, 
+					uifm_frm_main_title: $('#uifm_frm_main_title').val(), 
+					uifm_frm_main_ismultistep: $('#uifm_frm_main_ismultistep').val(), 
+					csrf_field_name: uiform_vars.csrf_field_name, 
+				}; 
+
+ 				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					msobj.saveRoute(); 
+					let multistepSettings = msobj.multistepSettings; 
+					let multistepParentArr = msobj.getDrawflowArr(); 
+					dataObj['form_data'] = encodeURIComponent(JSON.stringify(multistepParentArr['drawflow']['zigaform'])); 
+					dataObj['form_data2'] = encodeURIComponent(JSON.stringify(multistepSettings)); 
+
+					msobj.multistepSettings['name'] = titleMsg; 
+				} else { 
+					dataObj['form_data'] = encodeURIComponent(JSON.stringify(mainrformb)); 
+				} 
+
+ 				$.ajax({ 
+					type: 'POST', 
+					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_save_newform',  
+					async: true, 
+					data: dataObj, 
+					success: function(msg) { 
+						if (parseInt(msg.id) > 0) { 
+							if ($('#uifm_frm_main_ismultistep').val() === 'yes') { 
+								$('#uifm_frm_mm_main_id').val(msg.id); 
+							} else { 
+								$('#uifm_frm_main_id').val(msg.id); 
+							} 
+
+ 							$('#uifm_frm_main_isnewform').val('1'); 
+						} else { 
+							alert('Error'); 
+						} 
+					}, 
+				}); 
+				modal_obj.sfdc_modal('hide'); 
+			}; 
+			arguments.callee.saveTabContentMultistep = function() { 
+				var editor, content; 
+				mainrformb['onsubm'] = {}; 
+				var onsubm_msgsuc; 
+				if (typeof tinymce != 'undefined') { 
+					editor = tinymce.get('uifm_frm_subm_msg'); 
+					if (editor && editor instanceof tinymce.Editor) { 
+						onsubm_msgsuc = tinymce.get('uifm_frm_subm_msg').getContent(); 
+					} else { 
+						onsubm_msgsuc = $('#uifm_frm_subm_msg').val() ? $('#uifm_frm_subm_msg').val() : ''; 
+					} 
+				} 
+				var onsubm_bg_st = $('#uifm_frm_subm_bgst').prop('checked') ? 1 : 0; 
+				var onsubm_bg_type = $('#uifm_frm_subm_bgst_handle').find('input:checked') 
+					? $('#uifm_frm_subm_bgst_handle') 
+							.find('input:checked') 
+							.val() 
+					: 1; 
+				var onsubm_bg_solid = $('#uifm_frm_subm_bgst_typ1_col').val(); 
+				var onsubm_bg_start = $('#uifm_frm_subm_bgst_typ2_col1').val(); 
+				var onsubm_bg_end = $('#uifm_frm_subm_bgst_typ2_col2').val(); 
+				var onsubm_redirect_st = $('#uifm_frm_subm_redirect_st').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				var onsubm_redirect_url = $('#uifm_frm_subm_redirect_url').val(); 
+				this.setUiData2('onsubm', 'sm_successtext', encodeURIComponent(onsubm_msgsuc)); 
+				this.setUiData2('onsubm', 'sm_boxmsg_bg_st', onsubm_bg_st); 
+				this.setUiData2('onsubm', 'sm_boxmsg_bg_type', onsubm_bg_type); 
+				this.setUiData2('onsubm', 'sm_boxmsg_bg_solid', onsubm_bg_solid); 
+				this.setUiData2('onsubm', 'sm_boxmsg_bg_start', onsubm_bg_start); 
+				this.setUiData2('onsubm', 'sm_boxmsg_bg_end', onsubm_bg_end); 
+				this.setUiData2('onsubm', 'sm_redirect_st', onsubm_redirect_st); 
+				this.setUiData2('onsubm', 'sm_redirect_url', encodeURIComponent(onsubm_redirect_url)); 
+				var main_addcss = $('textarea#uifm_frm_main_addcss') 
+					.data('CodeMirrorInstance') 
+					.getValue(); 
+				var main_addjs = $('textarea#uifm_frm_main_addjs') 
+					.data('CodeMirrorInstance') 
+					.getValue(); 
+				var main_onload_scroll = $('#uifm_frm_main_onload_scroll').prop('checked') ? 1 : 0; 
+				var main_preload_noconf = $('#uifm_frm_main_preload_noconflict').prop('checked') ? 1 : 0; 
+				this.setUiData2('main', 'add_css', encodeURIComponent(main_addcss)); 
+				this.setUiData2('main', 'add_js', encodeURIComponent(main_addjs)); 
+				this.setUiData2('main', 'onload_scroll', main_onload_scroll); 
+				this.setUiData2('main', 'preload_noconflict', main_preload_noconf); 
+
+                                var main_priceest = $('#uifm_frm_main_pricest').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				this.setUiData2('main', 'price_st', main_priceest); 
+				var main_paymentst = $('#uifm_frm_main_paymentst').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				this.setUiData2('main', 'payment_st', main_paymentst); 
+				var main_currency = $('#uifm_frm_main_price_currency').val(); 
+				var main_currency_symbol = $('#uifm_frm_main_price_currency_symbol').val(); 
+				var main_cur_format_st = $('#uifm_frm_main_price_format_st').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				var main_cur_decimal = $('#uifm_frm_main_price_decimal').val(); 
+				var main_cur_thousand = $('#uifm_frm_main_price_thousand').val(); 
+				var main_cur_precision = $('#uifm_frm_main_price_precision').val(); 
+				var main_currency_tax_st = $('#uifm_frm_main_price_tax_st').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				var main_currency_tax_val = $('#uifm_frm_main_price_tax_val').val(); 
+
+ 				this.setUiData2('main', 'price_currency', main_currency); 
+				this.setUiData2('main', 'price_currency_symbol', main_currency_symbol); 
+				this.setUiData2('main', 'price_format_st', main_cur_format_st); 
+				this.setUiData2('main', 'price_sep_decimal', main_cur_decimal); 
+				this.setUiData2('main', 'price_sep_thousand', main_cur_thousand); 
+				this.setUiData2('main', 'price_sep_precision', main_cur_precision); 
+				this.setUiData2('main', 'price_tax_st', main_currency_tax_st); 
+				this.setUiData2('main', 'price_tax_val', main_currency_tax_val); 
+
+				let main_recaptchav3_enable = $('#uifm_frm_main_recaptchav3_enable').prop('checked') ? 1 : 0; 
+				this.setUiData2('main', 'recaptchav3_enable', main_recaptchav3_enable); 
+				this.setUiData2('main', 'recaptchav3_sitekey', $('#uifm_frm_main_recaptchav3_sitekey').val()); 
+				this.setUiData2('main', 'recaptchav3_secretkey', $('#uifm_frm_main_recaptchav3_secretkey').val()); 
+
+ 				var main_pdf_onpage = $('#uifm_frm_main_pdf_show_onpage').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				this.setUiData2('main', 'pdf_show_onpage', main_pdf_onpage); 
+				this.setUiData2('main', 'pdf_paper_size', $('#uifm_frm_main_pdf_papersize').val()); 
+
+ 				this.setUiData2('main', 'pdf_paper_orie', $('#uifm_frm_main_pdf_paperorien').val()); 
+
+ 				var mail_usr_pdf_font = $('#uifm_frm_email_usr_tmpl_pdf_font').val(); 
+				this.setUiData2('main', 'pdf_font', mail_usr_pdf_font); 
+
+ 				var mail_usr_pdf_charset = $('#uifm_frm_email_usr_pdf_charset').val(); 
+				this.setUiData2('main', 'pdf_charset', mail_usr_pdf_charset); 
+
+ 				var mail_usr_email_html_fullpage = $('#uifm_frm_main_email_htmlfullpage').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				this.setUiData2('main', 'email_html_fullpage', mail_usr_email_html_fullpage); 
+
+ 				var mail_usr_pdf_html_fullpage = $('#uifm_frm_main_pdf_htmlfullpage').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				this.setUiData2('main', 'email_pdf_fullpage', mail_usr_pdf_html_fullpage); 
+				if ($('#uifm_frm_main_email_dissubm').length) { 
+					var email_dissubm = $('#uifm_frm_main_email_dissubm').bootstrapSwitchZgpb('state') ? 1 : 0; 
+					this.setUiData2('main', 'email_dissubm', email_dissubm); 
+				} 
+				var email_template_msg; 
+
+ 				var mail_from_email = $('#uifm_frm_from_email').val(); 
+				var mail_from_name = $('#uifm_frm_from_name').val(); 
+				this.setUiData2('onsubm', 'mail_from_email', mail_from_email); 
+				this.setUiData2('onsubm', 'mail_from_name', mail_from_name); 
+
+				if (typeof tinymce != 'undefined') { 
+					editor = tinymce.get('uifm_frm_email_tmpl'); 
+					if (editor && editor instanceof tinymce.Editor) { 
+						email_template_msg = tinymce.get('uifm_frm_email_tmpl').getContent(); 
+					} else { 
+						email_template_msg = $('#uifm_frm_email_tmpl').val() ? $('#uifm_frm_email_tmpl').val() : ''; 
+					} 
+				} 
+				var email_recipient = $('#uifm_frm_email_recipient').val(); 
+				var email_cc = $('#uifm_frm_email_cc').val(); 
+				var email_bcc = $('#uifm_frm_email_bcc').val(); 
+				var email_subject = $('#uifm_frm_email_subject').val(); 
+				var email_replyto = $('#uifm_frm_email_replyto').val(); 
+
+ 				this.setUiData2('onsubm', 'mail_template_msg', encodeURIComponent(email_template_msg)); 
+				this.setUiData2('onsubm', 'mail_recipient', email_recipient); 
+				this.setUiData2('onsubm', 'mail_cc', email_cc); 
+				this.setUiData2('onsubm', 'mail_bcc', email_bcc); 
+				this.setUiData2('onsubm', 'mail_subject', email_subject); 
+				this.setUiData2('onsubm', 'mail_replyto', email_replyto); 
+
+				var mail_usr_st = $('#uifm_frm_email_usr_sendst').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				if (typeof tinymce != 'undefined') { 
+					editor = tinymce.get('uifm_frm_email_usr_tmpl'); 
+					if (editor && editor instanceof tinymce.Editor) { 
+						email_template_msg = tinymce.get('uifm_frm_email_usr_tmpl').getContent(); 
+					} else { 
+						email_template_msg = $('#uifm_frm_email_usr_tmpl').val() ? $('#uifm_frm_email_usr_tmpl').val() : ''; 
+					} 
+				} 
+				var email_template_pdf_msg; 
+				var mail_usr_pdf_st = $('#uifm_frm_email_usr_attachpdfst').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				if (typeof tinymce != 'undefined') { 
+					editor = tinymce.get('uifm_frm_email_usr_tmpl_pdf'); 
+					if (editor && editor instanceof tinymce.Editor) { 
+						email_template_pdf_msg = tinymce.get('uifm_frm_email_usr_tmpl_pdf').getContent(); 
+					} else { 
+						email_template_pdf_msg = $('#uifm_frm_email_usr_tmpl_pdf').val() ? $('#uifm_frm_email_usr_tmpl_pdf').val() : ''; 
+					} 
+				} 
+
+ 				var mail_usr_recipient = $('#uifm_frm_email_usr_recipient').val(); 
+				var mail_usr_cc = $('#uifm_frm_email_usr_cc').val(); 
+				var mail_usr_bcc = $('#uifm_frm_email_usr_bcc').val(); 
+				var mail_usr_subject = $('#uifm_frm_email_usr_subject').val(); 
+				var mail_usr_pdf_fn = $('#uifm_frm_email_usr_tmpl_pdf_fn').val(); 
+				var mail_usr_replyto = $('#uifm_frm_email_usr_replyto').val(); 
+
+ 				this.setUiData2('onsubm', 'mail_usr_st', mail_usr_st); 
+				this.setUiData2('onsubm', 'mail_usr_template_msg', encodeURIComponent(email_template_msg)); 
+				this.setUiData2('onsubm', 'mail_usr_pdf_st', mail_usr_pdf_st); 
+				this.setUiData2('onsubm', 'mail_usr_pdf_template_msg', encodeURIComponent(email_template_pdf_msg)); 
+				this.setUiData2('onsubm', 'mail_usr_pdf_fn', encodeURIComponent(mail_usr_pdf_fn)); 
+				this.setUiData2('onsubm', 'mail_usr_recipient', mail_usr_recipient); 
+				this.setUiData2('onsubm', 'mail_usr_cc', mail_usr_cc); 
+				this.setUiData2('onsubm', 'mail_usr_bcc', mail_usr_bcc); 
+				this.setUiData2('onsubm', 'mail_usr_subject', mail_usr_subject); 
+				this.setUiData2('onsubm', 'mail_usr_replyto', mail_usr_replyto);
+
+				var inv_from_text1 = $('#uifm_frm_inv_from_text1').val(); 
+				var inv_from_text2 = $('#uifm_frm_inv_from_text2').val(); 
+				var inv_from_text3 = $('#uifm_frm_inv_from_text3').val(); 
+				var inv_from_text4 = $('#uifm_frm_inv_from_text4').val(); 
+				var inv_from_text5 = $('#uifm_frm_inv_from_text5').val(); 
+
+ 				var inv_to_text1 = $('#uifm_frm_inv_to_text1').val(); 
+				var inv_to_text2 = $('#uifm_frm_inv_to_text2').val(); 
+				var inv_to_text3 = $('#uifm_frm_inv_to_text3').val(); 
+				var inv_to_text4 = $('#uifm_frm_inv_to_text4').val(); 
+				var inv_to_text5 = $('#uifm_frm_inv_to_text5').val(); 
+				this.setUiData2('invoice', 'from_text1', encodeURIComponent(inv_from_text1)); 
+				this.setUiData2('invoice', 'from_text2', encodeURIComponent(inv_from_text2)); 
+				this.setUiData2('invoice', 'from_text3', encodeURIComponent(inv_from_text3)); 
+				this.setUiData2('invoice', 'from_text4', encodeURIComponent(inv_from_text4)); 
+				this.setUiData2('invoice', 'from_text5', encodeURIComponent(inv_from_text5)); 
+				this.setUiData2('invoice', 'to_text1', encodeURIComponent(inv_to_text1)); 
+				this.setUiData2('invoice', 'to_text2', encodeURIComponent(inv_to_text2)); 
+				this.setUiData2('invoice', 'to_text3', encodeURIComponent(inv_to_text3)); 
+				this.setUiData2('invoice', 'to_text4', encodeURIComponent(inv_to_text4)); 
+				this.setUiData2('invoice', 'to_text5', encodeURIComponent(inv_to_text5)); 
+
+				zgfm_back_calc.saveform_processVariables(); 
+
+							}; 
 			arguments.callee.saveTabContent = function() {
 				var tab_content = {},
 					tab_titles = {},
@@ -8240,26 +9383,86 @@ if (!$uifm.isFunction(rocketform)) {
 					},
 				});
 			};
-			arguments.callee.exportForm_loadCodebyForm = function() {
-				var idform = $('#uifm-list-form-cmb').val();
-				rocketform.showLoader(1, true, true);
-				$.ajax({
-					type: 'POST',
-					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_load_export_form',
-					data: {
-						action: 'rocket_fbuilder_export_form',
-						page: 'zgfm_cost_estimate',
-						zgfm_security: uiform_vars.ajax_nonce,
-						form_id: parseInt(idform),
-						csrf_field_name: uiform_vars.csrf_field_name,
-					},
-					success: function(msg) {
-						$('#uifm_frm_exportform_code').html(msg);
-						rocketform.hideLoader();
-					},
-				});
-			};
 
+						arguments.callee.importFormFromExportCode = function() { 
+				var $button = $(this); 
+
+ 				$button.find('.loading-icon').hide(); 
+				$('#import').click(function() { 
+					$button.prop('disabled', true).addClass('disabled'); 
+					$button.find('.loading-icon').show(); 
+					var importcode = $('#uifm_frm_exportform_code').val(); 
+					$.ajax({ 
+						url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_load_import_code_form', 
+						method: 'POST', 
+						data: { 
+							action: 'rocket_fbuilder_import_code_form', 
+							page: 'zgfm_form_builder', 
+							zgfm_security: uiform_vars.ajax_nonce, 
+							importcode: importcode, 
+							csrf_field_name: uiform_vars.csrf_field_name, 
+						}, 
+						success: function(response) { 
+							$('#zgfm-page-import-success-msg').show(); 
+
+ 							setTimeout(function() { 
+								window.location.href = response.redirect_url; 
+							}, 2000); 
+						}, 
+						error: function() { 
+							$('#zgfm-page-import-success-msg').text('An error occurred.'); 
+							$button.prop('disabled', false).removeClass('disabled'); 
+							$button.find('.loading-icon').hide(); 
+							rocketform.importForm_onfailPopup(); 
+						}, 
+					}); 
+				}); 
+			}; 
+
+						arguments.callee.exportForm_loadCodebyForm = function() { 
+				var idform = $('#uifm-list-form-cmb').val(); 
+				rocketform.showLoader(1, true, true); 
+				var $button = $('#copy'); 
+				$button.prop('disabled', true).addClass('disabled'); 
+				$button.find('.loading-icon').show(); 
+				$.ajax({ 
+					type: 'POST', 
+					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_load_export_form', 
+					data: { 
+						action: 'rocket_fbuilder_export_form', 
+						page: 'zgfm_form_builder', 
+						zgfm_security: uiform_vars.ajax_nonce, 
+						form_id: parseInt(idform), 
+						csrf_field_name: uiform_vars.csrf_field_name, 
+					}, 
+					success: function(msg) { 
+						$('#uifm_frm_exportform_code').html(msg); 
+						rocketform.hideLoader(); 
+
+ 						$button.prop('disabled', false).removeClass('disabled'); 
+						$button.find('.loading-icon').hide(); 
+
+ 						rocketform.exportForm_copyToClipboard(); 
+					}, 
+				}); 
+			}; 
+			arguments.callee.exportForm_copyToClipboard = function() { 
+				const textElement = document.getElementById('uifm_frm_exportform_code'); 
+				const copyButton = document.getElementById('copy'); 
+
+ 				const copyText = e => { 
+					window.getSelection().selectAllChildren(textElement); 
+					document.execCommand('copy'); 
+					e.target.setAttribute('tooltip', 'Copied! ✅'); 
+				}; 
+
+ 				const resetTooltip = e => { 
+					e.target.setAttribute('tooltip', 'Copy to clipboard'); 
+				}; 
+
+ 				copyButton.addEventListener('click', e => copyText(e)); 
+				copyButton.addEventListener('mouseover', e => resetTooltip(e)); 
+			}; 
 			arguments.callee.importForm_onfailExit = function() {
 				var re_url = rockfm_vars.uifm_siteurl + 'formbuilder/forms/create_uiform';
 				rocketform.redirect_tourl(re_url);
@@ -8456,12 +9659,17 @@ if (!$uifm.isFunction(rocketform)) {
 					beforeSend: function() {
 						$('#uifm_modal_msg .sfdc-modal-body').html(' <i class="sfdc-glyphicon sfdc-glyphicon-refresh gly-spin"></i>');
 					},
-					success: function(response) {
-						var arrJson = (JSON && JSON.parse(response)) || $.parseJSON(response);
-						$('#uifm_modal_msg').sfdc_modal('show');
-						$('#uifm_modal_msg .sfdc-modal-title').html(arrJson.html_title);
-						$('#uifm_modal_msg .sfdc-modal-body').html(arrJson.html);
-					},
+					success: function(response) { 
+						var arrJson = (JSON && JSON.parse(response)) || $.parseJSON(response); 
+						$('#uifm_modal_msg').sfdc_modal({ 
+							backdrop: 'static', 
+							keyboard: false, 
+							show: true, 
+						}); 
+						$('#uifm_modal_msg .sfdc-modal-header').html(arrJson.header); 
+						$('#uifm_modal_msg .sfdc-modal-body').html(arrJson.html); 
+						$('#uifm_modal_msg .sfdc-modal-footer').html(arrJson.footer); 
+					}, 
 				});
 			};
 			arguments.callee.loadFormSaved_regen_closePopUp = function(idval) {
@@ -8543,23 +9751,302 @@ if (!$uifm.isFunction(rocketform)) {
 					}
 				});
 			};
+			arguments.callee.multistepRefreshCurrrentForm = function() { 
+				rocketform.loading_panelbox2(1); 
 
+				rocketform.showLoader(3, true, false); 
+
+				rocketform.previewfield_removeAllPopovers(); 
+
+ 				this.saveform_cleanForm_multistep(); 
+
+				this.saveform_updateOptionsToFields(); 
+
+				if ($(document).find('.uifm-highlight-edited')) { 
+					$(document) 
+						.find('.uifm-highlight-edited') 
+						.removeClass('uifm-highlight-edited'); 
+				} 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked').prop('checked', false); 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked') 
+					.closest('.uiform-fields-quick-options') 
+					.removeCss('display'); 
+				this.closeSettingTab(); 
+				rocketform.showLoader(3, true, true); 
+				this.saveTabContent(); 
+
+ 				rocketform.setUiData('app_ver', uiform_vars.app_version); 
+				var tmp_frm = mainrformb; 
+				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) { 
+					var rockfm_tmp_rs = $('.uiform-main-form').find('.uifm-input-ratingstar'); 
+					rockfm_tmp_rs.each(function(i) { 
+						$(this).rating('destroy'); 
+					}); 
+				} 
+
+ 				var html_backend = $('.uiform-preview-base').html(); 
+
+				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) { 
+					$('.uiform-main-form') 
+						.find('.uifm-input-ratingstar') 
+						.each(function(i) { 
+							rocketform.input9settings_updateField($(this).closest('.uiform-field'), 'input9'); 
+						}); 
+				} 
+
+ 				var tmp_addon_data = wp.hooks.applyFilters('zgfm.getData_beforeSubmitForm', {}); 
+				var editor; 
+				var uifm_frm_rec_tpl_html; 
+				var uifm_frm_rec_tpl_st = $('#uifm_frm_record_tpl_enable').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				if (typeof tinymce != 'undefined') { 
+					editor = tinymce.get('uifm_frm_record_tpl_content'); 
+					if (editor && editor instanceof tinymce.Editor) { 
+						uifm_frm_rec_tpl_html = tinymce.get('uifm_frm_record_tpl_content').getContent(); 
+					} else { 
+						uifm_frm_rec_tpl_html = $('#uifm_frm_record_tpl_content').val() ? $('#uifm_frm_record_tpl_content').val() : ''; 
+					} 
+				} 
+
+				rocketform.showLoader(5, false, true); 
+				rocketform.loading_panelbox2(0); 
+
+			}; 
+			arguments.callee.saveFormOnBackground = function() { 
+				rocketform.previewfield_removeAllPopovers(); 
+
+
+				this.saveform_updateOptionsToFields(); 
+
+				if ($(document).find('.uifm-highlight-edited')) { 
+					$(document) 
+						.find('.uifm-highlight-edited') 
+						.removeClass('uifm-highlight-edited'); 
+				} 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked').prop('checked', false); 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked') 
+					.closest('.uiform-fields-quick-options') 
+					.removeCss('display'); 
+
+ 				$('#uifm-field-selected-id').val(''); 
+
+
+ 				var tab_content = {}, 
+					tab_titles = {}, 
+					tabcontent_tmp, 
+					tabtitle_tmp; 
+				var var_steps_src = this.getUiData('steps_src'); 
+
+ 				$.each(var_steps_src, function(i, value) { 
+					tabcontent_tmp = {}; 
+					tabcontent_tmp.content = rocketform.getLayoutFormByStep(i); 
+					tab_content[i] = tabcontent_tmp; 
+				}); 
+
+ 				this.setUiData2('steps', 'tab_cont', tab_content); 
+
+
+ 				rocketform.setUiData('app_ver', uiform_vars.app_version); 
+				var tmp_frm = mainrformb; 
+				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) { 
+					var rockfm_tmp_rs = $('.uiform-main-form').find('.uifm-input-ratingstar'); 
+					rockfm_tmp_rs.each(function(i) { 
+						$(this).rating('destroy'); 
+					}); 
+				} 
+
+
+
+			}; 
+
+ 			arguments.callee.saveMultiForm = function() { 
+				rocketform.loading_panelbox2(1); 
+
+				rocketform.showLoader(3, true, false); 
+
+ 				let msobj = this.getInnerVariable('multistepobj'); 
+
+				msobj.saveRoute(); 
+
+ 				let multistepSettings = msobj.multistepSettings; 
+				let multistepParentArr = msobj.getDrawflowArr(); 
+				const multistepChildArr = msobj.availableForms; 
+
+ 				var activeTab = $('.uiformc-menu-wrap .sfdc-nav-tabs .sfdc-active > a').first();
+
+
+												if (String(activeTab.attr('href'))=== '#uiformc-menu-sec1') { 
+
+					msobj.saveCurrentSelectedFormToCore();
+				}
+
+				if ($(document).find('.uifm-highlight-edited')) { 
+					$(document) 
+						.find('.uifm-highlight-edited') 
+						.removeClass('uifm-highlight-edited'); 
+				} 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked').prop('checked', false); 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked') 
+					.closest('.uiform-fields-quick-options') 
+					.removeCss('display'); 
+
+				this.saveTabContentMultistep(); 
+
+ 				rocketform.setUiData('app_ver', uiform_vars.app_version); 
+
+				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) { 
+					var rockfm_tmp_rs = $('.uiform-main-form').find('.uifm-input-ratingstar'); 
+					rockfm_tmp_rs.each(function(i) { 
+						$(this).rating('destroy'); 
+					}); 
+				} 
+
+				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) { 
+					$('.uiform-main-form') 
+						.find('.uifm-input-ratingstar') 
+						.each(function(i) { 
+							rocketform.input9settings_updateField($(this).closest('.uiform-field'), 'input9'); 
+						}); 
+				} 
+
+ 				var tmp_addon_data = wp.hooks.applyFilters('zgfm.getData_beforeSubmitForm', {}); 
+
+				var editor; 
+				var uifm_frm_rec_tpl_html; 
+				var uifm_frm_rec_tpl_st = $('#uifm_frm_record_tpl_enable').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				if (typeof tinymce != 'undefined') { 
+					editor = tinymce.get('uifm_frm_record_tpl_content'); 
+					if (editor && editor instanceof tinymce.Editor) { 
+						uifm_frm_rec_tpl_html = tinymce.get('uifm_frm_record_tpl_content').getContent(); 
+					} else { 
+						uifm_frm_rec_tpl_html = $('#uifm_frm_record_tpl_content').val() ? $('#uifm_frm_record_tpl_content').val() : ''; 
+					} 
+				} 
+
+ 				const hashData = { 
+					parent: { 
+						data1: multistepParentArr['drawflow']['zigaform'], 
+						data2: multistepSettings, 
+					}, 
+					children: multistepChildArr, 
+				}; 
+
+ 				const hashDataGen = CryptoJS.MD5(JSON.stringify(hashData)).toString(); 
+
+ 				$.ajax({ 
+					type: 'POST', 
+					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_save_parentform', 
+					data: { 
+						action: 'rocket_fbuilder_multistep_save_parentform', 
+						page: 'zgfm_form_builder', 
+						zgfm_security: uiform_vars.ajax_nonce, 
+						form_data: encodeURIComponent(JSON.stringify(multistepParentArr['drawflow']['zigaform'])), 
+						form_data2: encodeURIComponent(JSON.stringify(multistepSettings)), 
+						uifm_frm_rec_tpl_st: uifm_frm_rec_tpl_st, 
+						uifm_frm_rec_tpl_html: encodeURIComponent(uifm_frm_rec_tpl_html), 
+						addon_data: encodeURIComponent(JSON.stringify(tmp_addon_data)), 
+						form_id: $('#uifm_frm_mm_main_id').val(), 
+						hash_data: hashDataGen, 
+						name: msobj.multistepSettings['name'] || 'Form',
+						csrf_field_name: uiform_vars.csrf_field_name, 
+					}, 
+					success: function(msg) { 
+						for (const key in multistepChildArr) { 
+							$.ajax({ 
+								type: 'POST', 
+								url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_save_childform',
+								async: false, 
+								data: { 
+									action: 'rocket_fbuilder_multistep_save_childform', 
+									page: 'zgfm_form_builder', 
+									zgfm_security: uiform_vars.ajax_nonce, 
+									form_data: encodeURIComponent(JSON.stringify(multistepChildArr[key]['core'])), 
+									uifm_frm_main_title: multistepChildArr[key]['name'], 
+									uifm_frm_main_id: key, 
+									hash_data: hashDataGen, 
+									log_id: msg.log_id || 0, 
+									csrf_field_name: uiform_vars.csrf_field_name, 
+								}, 
+								success: function(msg) { 
+
+									  								}, 
+							}); 
+						} 
+
+
+ 						$.ajax({ 
+							type: 'POST', 
+							url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_build_multistep', 
+							async: false, 
+							data: { 
+								action: 'rocket_fbuilder_multistep_build_front', 
+								page: 'zgfm_form_builder', 
+								zgfm_security: uiform_vars.ajax_nonce, 
+								form_id: msg.id, 
+								csrf_field_name: uiform_vars.csrf_field_name, 
+							}, 
+							success: function(msg) { 
+
+								  								if (parseInt(msg.id) > 0) { 
+									if (parseInt($('#uifm_frm_main_isnewform').val()) === 1) { 
+										rocketform.saveForm_showModalSuccess(msg.id); 
+									} 
+									$('#uifm_frm_main_id').val(msg.id); 
+									$('#uifm_frm_main_isnewform').val('0'); 
+								} 
+							}, 
+						}); 
+
+						rocketform.loading_panelbox2(0); 
+
+						rocketform.showLoader(5, false, true); 
+
+  					}, 
+				}); 
+			}; 
 			arguments.callee.saveForm = function() {
 				rocketform.loading_panelbox2(1);
 
 				rocketform.showLoader(3, true, false);
 
+				var editor; 
+				var uifm_frm_rec_tpl_html; 
+				var uifm_frm_rec_tpl_st = $('#uifm_frm_record_tpl_enable').bootstrapSwitchZgpb('state') ? 1 : 0; 
+				if (typeof tinymce != 'undefined') { 
+					editor = tinymce.get('uifm_frm_record_tpl_content'); 
+					if (editor && editor instanceof tinymce.Editor) { 
+						uifm_frm_rec_tpl_html = tinymce.get('uifm_frm_record_tpl_content').getContent(); 
+					} else { 
+						uifm_frm_rec_tpl_html = $('#uifm_frm_record_tpl_content').val() ? $('#uifm_frm_record_tpl_content').val() : ''; 
+					} 
+				} 
+
 				if (parseInt($('#uifm_frm_main_id').val()) === 0) {
-					$.ajax({
+
+									let dataObj = { 
+						action: 'rocket_fbuilder_save_newform', 
+						page: 'zgfm_form_builder', 
+						zgfm_security: uiform_vars.ajax_nonce, 
+						uifm_frm_main_title: $('#uifm_frm_main_title').val(), 
+						uifm_frm_rec_tpl_st: uifm_frm_rec_tpl_st, 
+						uifm_frm_rec_tpl_html: encodeURIComponent(uifm_frm_rec_tpl_html), 
+					}; 
+
+ 					if (rocketform.isMultiStepActive()) { 
+						let msobj = this.getInnerVariable('multistepobj'); 
+						msobj.saveRoute(); 
+						let multistepSettings = msobj.multistepSettings; 
+						let multistepParentArr = msobj.getDrawflowArr(); 
+						dataObj['form_data'] = encodeURIComponent(JSON.stringify(multistepParentArr['drawflow']['zigaform'])); 
+						dataObj['form_data2'] = encodeURIComponent(JSON.stringify(multistepSettings)); 
+					} else { 
+						dataObj['form_data'] = encodeURIComponent(JSON.stringify(mainrformb)); 
+					} 
+
+
+ 									$.ajax({
 						type: 'POST',
 						url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_save_newform',
-						data: {
-							action: 'rocket_fbuilder_save_newform',
-							page: 'zgfm_form_builder',
-							zgfm_security: uiform_vars.ajax_nonce,
-							uifm_frm_main_title: $('#uifm_frm_main_title').val(),
-							csrf_field_name: uiform_vars.csrf_field_name,
-						},
+						data: dataObj, 
 
 						success: function(msg) {
 							if (parseInt(msg.id) > 0) {
@@ -8618,8 +10105,8 @@ if (!$uifm.isFunction(rocketform)) {
 							rocketform.input9settings_updateField($(this).closest('.uiform-field'), 'input9');
 						});
 				}
-				var tmp_addon_data = zgfm_back_addon.do_action('getData_beforeSubmitForm', null);
-				var editor;
+				var tmp_addon_data = wp.hooks.applyFilters('zgfm.getData_beforeSubmitForm', {}); 
+
 				var uifm_frm_inv_tpl_html;
 				var uifm_frm_inv_tpl_st = $('#uifm_frm_invoice_tpl_enable').bootstrapSwitchZgpb('state') ? 1 : 0;
 				if (typeof tinymce != 'undefined') {
@@ -8630,18 +10117,9 @@ if (!$uifm.isFunction(rocketform)) {
 						uifm_frm_inv_tpl_html = $('#uifm_frm_invoice_tpl_content').val() ? $('#uifm_frm_invoice_tpl_content').val() : '';
 					}
 				}
-				var uifm_frm_rec_tpl_html;
-				var uifm_frm_rec_tpl_st = $('#uifm_frm_record_tpl_enable').bootstrapSwitchZgpb('state') ? 1 : 0;
-				if (typeof tinymce != 'undefined') {
-					editor = tinymce.get('uifm_frm_record_tpl_content');
-					if (editor && editor instanceof tinymce.Editor) {
-						uifm_frm_rec_tpl_html = tinymce.get('uifm_frm_record_tpl_content').getContent();
-					} else {
-						uifm_frm_rec_tpl_html = $('#uifm_frm_record_tpl_content').val() ? $('#uifm_frm_record_tpl_content').val() : '';
-					}
-				}
 
-				$.ajax({
+
+				 				$.ajax({
 					type: 'POST',
 					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_save_form',
 					data: {
@@ -8770,25 +10248,36 @@ if (!$uifm.isFunction(rocketform)) {
 				rocketform.setUiData4('steps', 'tab_title', nro, 'title', tab_title);
 			};
 
-			arguments.callee.saveform_cleanForm2 = function() {
-				var tmp_arr;
-				var tmp_len;
-				var tmp_i;
-				var tmp_new_arr;
+			arguments.callee.saveform_cleanForm2 = function() { 
+				var tmp_arr; 
+				var tmp_len; 
+				var tmp_i; 
+				var tmp_new_arr; 
 
-				tmp_arr = mainrformb['steps_src'];
-				tmp_new_arr = {};
-				tmp_len = tmp_arr.length;
-				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) {
-					if ($.isArray(tmp_arr[tmp_i])) {
-						tmp_new_arr[tmp_i] = {};
-					} else {
-						tmp_new_arr[tmp_i] = tmp_arr[tmp_i];
-					}
-				}
+ 				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					tmp_arr = msobj.availableForms[msobj.activeFormId]['core']['steps_src']; 
+				} else { 
+					tmp_arr = mainrformb['steps_src']; 
+				} 
 
-				mainrformb['steps_src'] = tmp_new_arr;
-			};
+ 				tmp_new_arr = []; 
+				tmp_len = tmp_arr.length; 
+
+				  				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) { 
+					if ($.isArray(tmp_arr[tmp_i])) { 
+					} else { 
+						tmp_new_arr[tmp_i] = tmp_arr[tmp_i]; 
+					} 
+				} 
+
+ 				if (rocketform.isMultiStepActive()) { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+					msobj.availableForms[msobj.activeFormId]['core']['steps_src'] = tmp_new_arr; 
+				} else { 
+					mainrformb['steps_src'] = tmp_new_arr; 
+				} 
+			}; 
 			arguments.callee.saveform_cleanForm = function() {
 				try {
 					var numtabs = $('.uiform-steps li');
@@ -8971,7 +10460,193 @@ if (!$uifm.isFunction(rocketform)) {
 					console.error('saveform_cleanForm : ', ex.message);
 				}
 			};
-			arguments.callee.wizardtab_cleanTabs = function() {
+			arguments.callee.saveform_cleanForm_multistep = function() { 
+				try { 
+					let msobj = this.getInnerVariable('multistepobj'); 
+
+ 					var numtabs = $('.uiform-steps li'); 
+					var currentTab, currentIndex, currentVal, currentFields; 
+					$.each(numtabs, function(index, value) { 
+						currentTab = $(this) 
+							.find('a') 
+							.attr('href'); 
+						if (parseInt($(currentTab).length) != 0) { 
+							currentIndex = $(this) 
+								.find('a') 
+								.attr('data-tab-nro'); 
+
+ 							currentFields = $(currentTab).find('.uiform-field'); 
+							if (parseInt(currentFields.length) != 0) { 
+								$.each(currentFields, function(index2, value2) { 
+									try { 
+										if (typeof msobj.availableForms[msobj.activeFormId]['core']['steps_src'][currentIndex][$(this).attr('id')] == 'undefined') { 
+											$(this).remove(); 
+											rocketform.delUiData3('steps_src', currentIndex, $(this).attr('id')); 
+										} else { 
+											let tmp_field = msobj.availableForms[msobj.activeFormId]['core']['steps_src'][currentIndex][$(this).attr('id')]; 
+
+ 											if (tmp_field.hasOwnProperty('clogic')) { 
+												let tmp_clist = tmp_field['clogic']['list']; 
+												if (tmp_clist && tmp_clist.length > 0) { 
+													var tmp_new_clist = []; 
+													$.each(tmp_clist, function(clindex, clvalue) { 
+														if ($('#' + clvalue['field_fire']).length == 0) { 
+														} else { 
+															tmp_new_clist.push(tmp_clist[clindex]); 
+														} 
+													}); 
+
+													if (parseInt(tmp_new_clist.length) === 0) { 
+														msobj.availableForms[msobj.activeFormId]['core']['steps_src'][currentIndex][$(this).attr('id')]['clogic']['show_st'] = '0'; 
+													} 
+
+ 													msobj.availableForms[msobj.activeFormId]['core']['steps_src'][currentIndex][$(this).attr('id')]['clogic']['list'] = tmp_new_clist; 
+												} else { 
+													msobj.availableForms[msobj.activeFormId]['core']['steps_src'][currentIndex][$(this).attr('id')]['clogic']['show_st'] = '0'; 
+												} 
+											} 
+										} 
+									} catch (ex) { 
+										$(this).remove(); 
+										try { 
+											rocketform.delUiData3('steps_src', currentIndex, $(this).attr('id')); 
+										} catch (ex) {} 
+									} 
+								}); 
+							} else { 
+							} 
+						} else { 
+							$(this).remove(); 
+							$(currentTab).remove(); 
+						} 
+					}); 
+
+ 					var tmp_arr; 
+					var tmp_len; 
+					var tmp_i; 
+
+ 					if ( 
+						parseInt( 
+							$.map(msobj.availableForms[msobj.activeFormId]['core']['steps_src'], function(n, i) { 
+								return i; 
+							}).length 
+						) != 0 
+					) { 
+						$.each(msobj.availableForms[msobj.activeFormId]['core']['steps_src'], function(index3, value3) { 
+							$.each(value3, function(index4, value4) { 
+								if (parseInt($('#' + index4).length) != 0) { 
+									switch (parseInt(value4['type'])) { 
+										case 8: 
+										case 9: 
+										case 10: 
+										case 11: 
+
+											tmp_arr = msobj.availableForms[msobj.activeFormId]['core']['steps_src'][index3][index4]['input2']['options']; 
+											var tmp_len = tmp_arr.length, 
+												tmp_i; 
+											for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]); 
+											if ($.isArray(tmp_arr)) { 
+												tmp_arr.splice(0, tmp_len); 
+												msobj.availableForms[msobj.activeFormId]['core']['steps_src'][index3][index4]['input2']['options'] = tmp_arr; 
+											} 
+
+ 											break; 
+									} 
+								} else { 
+									rocketform.delUiData3('steps_src', index3, index4); 
+								} 
+							}); 
+						}); 
+					} 
+
+					if ( 
+						parseInt( 
+							$.map(msobj.availableForms[msobj.activeFormId]['core']['steps_src'], function(n, i) { 
+								return i; 
+							}).length 
+						) != 0 
+					) { 
+						$.each(msobj.availableForms[msobj.activeFormId]['core']['steps_src'], function(index3, value3) { 
+							$.each(value3, function(index4, value4) { 
+								if (parseInt($('#' + index4).length) === 0) { 
+									switch (parseInt(value4['type'])) { 
+										case 1: 
+										case 2: 
+										case 3: 
+										case 4: 
+										case 5: 
+											break; 
+										default: 
+											rocketform.delUiData3('steps_src', index3, index4); 
+											break; 
+									} 
+								} 
+							}); 
+						}); 
+					} 
+
+ 					var tmp_arr = rocketform.getUiData('steps_src'); 
+					var tmp_arr_new = {}; 
+					var tmp_len = 0; 
+					$.each(tmp_arr, function(key, value) { 
+						tmp_len++; 
+						if (tmp_arr[key] && !$.isEmptyObject(tmp_arr[key])) { 
+							tmp_arr_new[key] = value; 
+						} 
+					}); 
+
+ 					rocketform.setUiData('steps_src', tmp_arr_new); 
+
+
+ 					var tmpnum_list = $('#uifm_frm_skin_tabs_box .uifm_frm_skin_tab_content'); 
+					var tmpTabs = {}; 
+					var tabCount = 0; 
+					tmpnum_list.each(function(i) { 
+						var tmpTab_inner_num = $(this).attr('data-tab-nro'); 
+						var tmpTab_inner = {}; 
+						tmpTab_inner.title = $(this) 
+							.find('.uifm_frm_skin_tab_title_evt') 
+							.val(); 
+
+						if (msobj.availableForms[msobj.activeFormId]['core']['steps_src'].hasOwnProperty(parseInt(tmpTab_inner_num))) { 
+							if (tmpTab_inner_num) { 
+								tmpTabs[tmpTab_inner_num] = tmpTab_inner; 
+							} 
+							tabCount++; 
+						} else { 
+							delete msobj.availableForms[msobj.activeFormId]['core']['steps']['tab_title'][parseInt(tmpTab_inner_num)]; 
+
+ 							var tmp_arr_2 = rocketform.getUiData2('steps', 'tab_title'); 
+							var tmp_arr_new_2 = {}; 
+							var tmp_len_2 = 0; 
+							$.each(tmp_arr_2, function(key, value) { 
+								tmp_len_2++; 
+								if (tmp_arr_2[key] && !$.isEmptyObject(tmp_arr_2[key])) { 
+									tmp_arr_new_2[key] = value; 
+								} 
+							}); 
+							rocketform.setUiData2('steps', 'tab_title', tmp_arr_new_2); 
+
+							$('.uiform-step-list .uiform-steps li a[data-tab-nro="' + tmpTab_inner_num + '"]') 
+								.parent() 
+								.remove(); 
+
+							$(this) 
+								.parent() 
+								.remove(); 
+						} 
+					}); 
+					this.setUiData2('steps', 'num_tabs', tabCount); 
+
+					$('.uiform-main-form') 
+						.find('.uiform-draggable-field') 
+						.remove(); 
+				} catch (ex) { 
+					console.error('saveform_cleanForm : ', ex.message); 
+				} 
+			}; 
+
+ 			arguments.callee.wizardtab_cleanTabs = function() {
 				$('#uifm_frm_skin_tabs_box').html('');
 				var numtabs = $('.uiform-steps li');
 				var currentTab, currentIndex, currentVal, currentFields;
@@ -9295,6 +10970,7 @@ if (!$uifm.isFunction(rocketform)) {
 				var count = 0;
 				switch (wiz_theme_typ) {
 					case 0:
+						default:
 						$('.uiform-step-list').addClass('uiform-wiztheme0');
 						string_html += '';
 						string_html += '<ul class="uiform-steps">';
@@ -9779,21 +11455,24 @@ if (!$uifm.isFunction(rocketform)) {
 					console.error('  updateName error : ', ex.message);
 				}
 			};
-			arguments.callee.fieldsetting_deleteField = function(idselected) {
-				var fld_step = $('#' + idselected)
-					.closest('.uiform-step-pane')
-					.data('uifm-step');
-				$('#' + idselected).remove();
-				rocketform.closeSettingTab();
-				rocketform.delUiData3('steps_src', fld_step, idselected);
-				var tmp_arr = mainrformb['steps_src'][fld_step];
-				var tmp_len = tmp_arr.length,
-					tmp_i;
-				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]);
-				if ($.isArray(tmp_arr)) {
-					tmp_arr.splice(0, tmp_len);
-					mainrformb['steps_src'][fld_step] = tmp_arr;
-				}
+			arguments.callee.fieldsetting_deleteField = function(idselected) { 
+				var fld_step = $('#' + idselected) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
+				$('#' + idselected).remove(); 
+				rocketform.closeSettingTab(); 
+				rocketform.delUiData3('steps_src', fld_step, idselected); 
+
+ 				var tmp_arr = rocketform.getUiData2('steps_src', fld_step); 
+
+ 				var tmp_len = tmp_arr.length, 
+					tmp_i; 
+				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]); 
+				if ($.isArray(tmp_arr)) { 
+					tmp_arr.splice(0, tmp_len); 
+
+ 					rocketform.setUiData2('steps_src', tmp_arr); 
+				} 
 			};
 
 			arguments.callee.fieldsetting_deleteFieldFromPreview = function(el) {
@@ -9939,7 +11618,12 @@ if (!$uifm.isFunction(rocketform)) {
 				}
 			};
 			arguments.callee.previewform_showForm = function(type) {
-				var idform = $('#uifm_frm_main_id').val();
+				var idform; 
+				if (rocketform.isMultiStepActive()) { 
+					idform = $('#uifm_frm_mm_main_id').val(); 
+				} else { 
+					idform = $('#uifm_frm_main_id').val(); 
+				} 
 				var prev_msg_notsaved = $('#uifm_frm_preview_msg_notsaved').val();
 				var prev_box_desk_title = $('#uifm_frm_preview_msg_desktop_title').val();
 				var prev_box_tablet_title = $('#uifm_frm_preview_msg_tablet_title').val();
@@ -9985,7 +11669,10 @@ if (!$uifm.isFunction(rocketform)) {
 							$('#uifm_preview_form')
 								.find('.sfdc-modal-body')
 								.html(msg);
-							rocketform.previewform_resizeBox(type);
+							  setTimeout(function () {
+								rocketform.previewform_resizeBox(type);
+							  },  1000); 
+
 						},
 					});
 				} else {
@@ -10092,7 +11779,6 @@ if (!$uifm.isFunction(rocketform)) {
 				var f_step = $('#' + f_id)
 					.closest('.uiform-step-pane')
 					.data('uifm-step');
-
 				rocketform.setUiData7('steps_src', parseInt(f_step), f_id, 'input2', 'options', optnro, 'price', opt_value);
 			};
 
@@ -10201,31 +11887,33 @@ if (!$uifm.isFunction(rocketform)) {
 				}
 			};
 
-			arguments.callee.input17settings_deleteOption = function(element) {
-				var el = $(element);
-				var f_id = $('#uifm-field-selected-id').val();
-				var opt_index = el.closest('.uifm-fld-inp17-options-row').data('opt-index');
+			arguments.callee.input17settings_deleteOption = function(element) { 
+				var el = $(element); 
+				var f_id = $('#uifm-field-selected-id').val(); 
+				var opt_index = el.closest('.uifm-fld-inp17-options-row').data('opt-index'); 
 
-				var f_step = $('#' + f_id)
-					.closest('.uiform-step-pane')
-					.data('uifm-step');
+ 				var f_step = $('#' + f_id) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
 
-				el.closest('.uifm-fld-inp17-options-row').remove();
-				rocketform.delUiData6('steps_src', parseInt(f_step), f_id, 'input17', 'options', parseInt(opt_index));
+				el.closest('.uifm-fld-inp17-options-row').remove(); 
+				rocketform.delUiData6('steps_src', parseInt(f_step), f_id, 'input17', 'options', parseInt(opt_index)); 
 
-				var tmp_arr = mainrformb['steps_src'][parseInt(f_step)][f_id]['input17']['options'];
-				var tmp_len = tmp_arr.length,
-					tmp_i;
-				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]);
-				if ($.isArray(tmp_arr)) {
-					tmp_arr.splice(0, tmp_len);
-					mainrformb['steps_src'][parseInt(f_step)][f_id]['input17']['options'] = tmp_arr;
-				}
+ 				var tmp_arr = rocketform.getUiData5('steps_src', parseInt(f_step), f_id, 'input17', 'options'); 
 
-				var prev_el_sel = $('#' + f_id)
-					.find('.uifm-input17-wrap ')
-					.find("[data-inp17-opt-index='" + opt_index + "']");
-				prev_el_sel.remove();
+ 				var tmp_len = tmp_arr.length, 
+					tmp_i; 
+				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]); 
+				if ($.isArray(tmp_arr)) { 
+					tmp_arr.splice(0, tmp_len); 
+
+ 					rocketform.setUiData5('steps_src', parseInt(f_step), f_id, 'input17', 'options', tmp_arr); 
+				} 
+
+				var prev_el_sel = $('#' + f_id) 
+					.find('.uifm-input17-wrap ') 
+					.find("[data-inp17-opt-index='" + opt_index + "']"); 
+				prev_el_sel.remove(); 
 			};
 
 			arguments.callee.input17settings_deleteAllOptions = function() {
@@ -10777,21 +12465,24 @@ if (!$uifm.isFunction(rocketform)) {
 				var tmp_new_arr = {};
 				var tmp_var1, tmp_var2, tmp_var3;
 
-				var myObject = new Map();
-				var optkey;
-				for (var i in lines) {
-					tmp_var1 = lines[i][0] || '';
-					tmp_var2 = lines[i][1] || '';
-					tmp_var3 = lines[i][2] || '';
+				var myObject = new Map(); 
+				var optkey; 
+				var counter = 1; 
+				for (var i in lines) { 
+					tmp_var1 = lines[i][0] || ''; 
+					tmp_var2 = lines[i][1] || ''; 
+					tmp_var3 = lines[i][2] || ''; 
 
-					optkey = zgfm_back_helper.generateUniqueID(5);
-					myObject.set(optkey, {
-						value: tmp_var2,
-						label: tmp_var1,
-						checked: 0,
-						price: tmp_var3,
-					});
-				}
+ 					var optkey = zgfm_back_helper.generateUniqueID(5); 
+					myObject.set(optkey, { 
+						value: tmp_var2, 
+						label: tmp_var1, 
+						checked: 0, 
+						id: optkey, 
+						order: counter, 
+					}); 
+					counter++; 
+				} 
 
 				tmp_new_arr = Array.from(myObject).reduce(
 					(obj, [key, value]) => Object.assign(obj, { [key]: value }), 
@@ -10909,25 +12600,28 @@ if (!$uifm.isFunction(rocketform)) {
 				});
 			};
 
-			arguments.callee.clogic_tabeditor_removeifnomatch = function(index) {
-				var f_id = $('#uifm-field-selected-id').val();
-				var f_step = $('#' + f_id)
-					.closest('.uiform-step-pane')
-					.data('uifm-step');
-				var opt_index = index;
+			arguments.callee.clogic_tabeditor_removeifnomatch = function(index) { 
+				var f_id = $('#uifm-field-selected-id').val(); 
+				var f_step = $('#' + f_id) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
+				var opt_index = index; 
 
-				$('#uifm-conditional-logic-list')
-					.find('.uifm-conditional-row[data-row-index="' + index + '"]')
-					.remove();
-				rocketform.delUiData6('steps_src', parseInt(f_step), f_id, 'clogic', 'list', parseInt(opt_index));
-				var tmp_arr = mainrformb['steps_src'][parseInt(f_step)][f_id]['clogic']['list'];
-				var tmp_len = tmp_arr.length,
-					tmp_i;
-				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]);
-				if ($.isArray(tmp_arr)) {
-					tmp_arr.splice(0, tmp_len);
-					mainrformb['steps_src'][parseInt(f_step)][f_id]['clogic']['list'] = tmp_arr;
-				}
+				$('#uifm-conditional-logic-list') 
+					.find('.uifm-conditional-row[data-row-index="' + index + '"]') 
+					.remove(); 
+				rocketform.delUiData6('steps_src', parseInt(f_step), f_id, 'clogic', 'list', parseInt(opt_index)); 
+
+ 				var tmp_arr = rocketform.getUiData5('steps_src', parseInt(f_step), f_id, 'clogic', 'list'); 
+
+ 				var tmp_len = tmp_arr.length, 
+					tmp_i; 
+				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]); 
+				if ($.isArray(tmp_arr)) { 
+					tmp_arr.splice(0, tmp_len); 
+
+ 					rocketform.setUiData5('steps_src', parseInt(f_step), f_id, 'clogic', 'list', tmp_arr); 
+				} 
 			};
 
 			arguments.callee.input17settings_addNewImg = function(el) {
@@ -10967,26 +12661,29 @@ if (!$uifm.isFunction(rocketform)) {
 					title: 'image description',
 				});
 			};
-			arguments.callee.input17settings_delImglistIndex = function(el) {
-				el = $(el);
-				var f_id = $('#uifm-field-selected-id').val();
-				var item_img = el.closest('.uifm-fld-inp17-options-row');
-				var optindex = item_img.attr('data-opt-index');
-				var f_step = $('#' + f_id)
-					.closest('.uiform-step-pane')
-					.data('uifm-step');
-				var opt2index = el.closest('.uifm_frm_inp17_opt_imgwrap').attr('data-opt-index');
-				el.closest('.uifm_frm_inp17_opt_imgwrap').remove();
-				rocketform.delUiData8('steps_src', parseInt(f_step), f_id, 'input17', 'options', parseInt(optindex), 'img_list', parseInt(opt2index));
-				var tmp_arr = mainrformb['steps_src'][parseInt(f_step)][f_id]['input17']['options'][parseInt(optindex)]['img_list'];
-				var tmp_len = tmp_arr.length,
-					tmp_i;
-				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]);
-				if ($.isArray(tmp_arr)) {
-					tmp_arr.splice(0, tmp_len);
-					mainrformb['steps_src'][parseInt(f_step)][f_id]['input17']['options'][parseInt(optindex)]['img_list'] = tmp_arr;
-				}
-			};
+			arguments.callee.input17settings_delImglistIndex = function(el) { 
+				el = $(el); 
+				var f_id = $('#uifm-field-selected-id').val(); 
+				var item_img = el.closest('.uifm-fld-inp17-options-row'); 
+				var optindex = item_img.attr('data-opt-index'); 
+				var f_step = $('#' + f_id) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
+				var opt2index = el.closest('.uifm_frm_inp17_opt_imgwrap').attr('data-opt-index'); 
+				el.closest('.uifm_frm_inp17_opt_imgwrap').remove(); 
+				rocketform.delUiData8('steps_src', parseInt(f_step), f_id, 'input17', 'options', parseInt(optindex), 'img_list', parseInt(opt2index)); 
+
+ 				var tmp_arr = rocketform.getUiData7('steps_src', parseInt(f_step), f_id, 'input17', 'options', parseInt(optindex), 'img_list'); 
+
+ 				var tmp_len = tmp_arr.length, 
+					tmp_i; 
+				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]); 
+				if ($.isArray(tmp_arr)) { 
+					tmp_arr.splice(0, tmp_len); 
+
+ 					rocketform.setUiData7('steps_src', parseInt(f_step), f_id, 'input17', 'options', parseInt(optindex), 'img_list', tmp_arr); 
+				} 
+			}; 
 
 			arguments.callee.input17settings_labelOption = function(el) {
 				el = $(el);
@@ -11528,156 +13225,170 @@ if (!$uifm.isFunction(rocketform)) {
 				}
 			};
 
-			arguments.callee.input2settings_tabeditor_generateAllOptions = function() {
-				$('#uifm-fld-inp2-options-container').html('');
-				var f_id = $('#uifm-field-selected-id').val();
-				var f_step = $('#' + f_id)
-					.closest('.uiform-step-pane')
-					.data('uifm-step');
-				var f_type = this.getUiData4('steps_src', f_step, f_id, 'type');
-				var newopt;
+			arguments.callee.input2settings_tabeditor_generateAllOptions = function() { 
+				$('#uifm-fld-inp2-options-container').html(''); 
+				var f_id = $('#uifm-field-selected-id').val(); 
+				var f_step = $('#' + f_id) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
+				var f_type = this.getUiData4('steps_src', f_step, f_id, 'type'); 
+				var newopt; 
 
-				var options = this.getUiData5('steps_src', f_step, f_id, 'input2', 'options');
-				switch (parseInt(f_type)) {
-					case 8:
-						$.each(options, function(index, value) {
-							newopt = $('#uifm_frm_inp2_templates')
-								.find('.uifm-fld-inp2-options-row')
-								.clone();
-							newopt.attr('data-opt-index', index);
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('id', 'uifm_frm_inp2_opt' + index + '_rdo');
-							newopt.find('.uifm_frm_inp2_opt_checked').prop('checked', parseInt(value['checked']));
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('type', 'radio');
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('name', 'uifm_inp2_rdo');
+ 				var options = this.getUiData5('steps_src', f_step, f_id, 'input2', 'options'); 
+				const objArray = Object.values(options); 
+				objArray.sort((a, b) => a.order - b.order); 
 
-							newopt.find('.uifm_frm_inp2_opt_label_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_label');
-							newopt.find('.uifm_frm_inp2_opt_label_evt').val(value['label']);
+ 				options = objArray; 
 
-							newopt.find('.uifm_frm_inp2_opt_value_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_value');
-							newopt.find('.uifm_frm_inp2_opt_value_evt').val(value['value']);
+ 				var valhash = CryptoJS.MD5(JSON.stringify(options)); 
 
-							newopt.find('.uifm_frm_inp2_opt_price_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_price');
+ 				var f_checkhash = $('#uifm-fld-inp2-options-container').attr('data-check-hash'); 
+
+ 				if (String(f_checkhash) === String(valhash)) { 
+					return; 
+				} 
+
+ 				$('#uifm-fld-inp2-options-container').attr('data-check-hash', String(valhash)); 
+
+ 				switch (parseInt(f_type)) { 
+					case 8: 
+						$.each(options, function(index, value) { 
+							newopt = $('#uifm_frm_inp2_templates') 
+								.find('.uifm-fld-inp2-options-row') 
+								.clone(); 
+							newopt.attr('data-opt-index', value['id']); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_rdo'); 
+							newopt.find('.uifm_frm_inp2_opt_checked').prop('checked', parseInt(value['checked'])); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('type', 'radio'); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('name', 'uifm_inp2_rdo'); 
+
+ 							newopt.find('.uifm_frm_inp2_opt_label_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_label'); 
+							newopt.find('.uifm_frm_inp2_opt_label_evt').val(value['label']); 
+
+ 							newopt.find('.uifm_frm_inp2_opt_value_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_value'); 
+							newopt.find('.uifm_frm_inp2_opt_value_evt').val(value['value']); 
+
+                                                        newopt.find('.uifm_frm_inp2_opt_price_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_price');
 							newopt.find('.uifm_frm_inp2_opt_price_evt').val(value['price']);
 
-							$('#uifm-fld-inp2-options-container').append(newopt);
-						});
-						break;
-					case 9:
-						$.each(options, function(index, value) {
-							newopt = $('#uifm_frm_inp2_templates')
-								.find('.uifm-fld-inp2-options-row')
-								.clone();
-							newopt.attr('data-opt-index', index);
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('id', 'uifm_frm_inp2_opt' + index + '_chk');
-							newopt.find('.uifm_frm_inp2_opt_checked').prop('checked', parseInt(value['checked']));
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('name', 'uifm_inp2_chk');
+                            							$('#uifm-fld-inp2-options-container').append(newopt); 
+						}); 
+						break; 
+					case 9: 
+						$.each(options, function(index, value) { 
+							newopt = $('#uifm_frm_inp2_templates') 
+								.find('.uifm-fld-inp2-options-row') 
+								.clone(); 
+							newopt.attr('data-opt-index', value['id']); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_chk'); 
+							newopt.find('.uifm_frm_inp2_opt_checked').prop('checked', parseInt(value['checked'])); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('name', 'uifm_inp2_chk'); 
 
-							newopt.find('.uifm_frm_inp2_opt_label_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_label');
-							newopt.find('.uifm_frm_inp2_opt_label_evt').val(value['label']);
+ 							newopt.find('.uifm_frm_inp2_opt_label_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_label'); 
+							newopt.find('.uifm_frm_inp2_opt_label_evt').val(value['label']); 
 
-							newopt.find('.uifm_frm_inp2_opt_value_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_value');
-							newopt.find('.uifm_frm_inp2_opt_value_evt').val(value['value']);
-
-							newopt.find('.uifm_frm_inp2_opt_price_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_price');
+ 							newopt.find('.uifm_frm_inp2_opt_value_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_value'); 
+							newopt.find('.uifm_frm_inp2_opt_value_evt').val(value['value']); 
+							newopt.find('.uifm_frm_inp2_opt_price_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_price');
 							newopt.find('.uifm_frm_inp2_opt_price_evt').val(value['price']);
+							$('#uifm-fld-inp2-options-container').append(newopt); 
+						}); 
+						break; 
+					case 10: 
+						$.each(options, function(index, value) { 
+							newopt = $('#uifm_frm_inp2_templates') 
+								.find('.uifm-fld-inp2-options-row') 
+								.clone(); 
+							newopt.attr('data-opt-index', value['id']); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_rdo'); 
+							newopt.find('.uifm_frm_inp2_opt_checked').prop('checked', parseInt(value['checked'])); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('type', 'radio'); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('name', 'uifm_inp2_rdo'); 
 
-							$('#uifm-fld-inp2-options-container').append(newopt);
-						});
-						break;
-					case 10:
-						$.each(options, function(index, value) {
-							newopt = $('#uifm_frm_inp2_templates')
-								.find('.uifm-fld-inp2-options-row')
-								.clone();
-							newopt.attr('data-opt-index', index);
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('id', 'uifm_frm_inp2_opt' + index + '_rdo');
-							newopt.find('.uifm_frm_inp2_opt_checked').prop('checked', parseInt(value['checked']));
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('type', 'radio');
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('name', 'uifm_inp2_rdo');
+ 							newopt.find('.uifm_frm_inp2_opt_label_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_label'); 
+							newopt.find('.uifm_frm_inp2_opt_label_evt').val(value['label']); 
 
-							newopt.find('.uifm_frm_inp2_opt_label_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_label');
-							newopt.find('.uifm_frm_inp2_opt_label_evt').val(value['label']);
-
-							newopt.find('.uifm_frm_inp2_opt_value_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_value');
-							newopt.find('.uifm_frm_inp2_opt_value_evt').val(value['value']);
-
-							newopt.find('.uifm_frm_inp2_opt_price_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_price');
+ 							newopt.find('.uifm_frm_inp2_opt_value_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_value'); 
+							newopt.find('.uifm_frm_inp2_opt_value_evt').val(value['value']); 
+							newopt.find('.uifm_frm_inp2_opt_price_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_price');
 							newopt.find('.uifm_frm_inp2_opt_price_evt').val(value['price']);
+							$('#uifm-fld-inp2-options-container').append(newopt); 
+						}); 
+						break; 
+					case 11: 
+						$.each(options, function(index, value) { 
+							newopt = $('#uifm_frm_inp2_templates') 
+								.find('.uifm-fld-inp2-options-row') 
+								.clone(); 
+							newopt.attr('data-opt-index', value['id']); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_chk'); 
+							newopt.find('.uifm_frm_inp2_opt_checked').prop('checked', parseInt(value['checked'])); 
+							newopt.find('.uifm_frm_inp2_opt_checked').attr('name', 'uifm_inp2_chk'); 
 
-							$('#uifm-fld-inp2-options-container').append(newopt);
-						});
-						break;
-					case 11:
-						$.each(options, function(index, value) {
-							newopt = $('#uifm_frm_inp2_templates')
-								.find('.uifm-fld-inp2-options-row')
-								.clone();
-							newopt.attr('data-opt-index', index);
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('id', 'uifm_frm_inp2_opt' + index + '_chk');
-							newopt.find('.uifm_frm_inp2_opt_checked').prop('checked', parseInt(value['checked']));
-							newopt.find('.uifm_frm_inp2_opt_checked').attr('name', 'uifm_inp2_chk');
+ 							newopt.find('.uifm_frm_inp2_opt_label_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_label'); 
+							newopt.find('.uifm_frm_inp2_opt_label_evt').val(value['label']); 
 
-							newopt.find('.uifm_frm_inp2_opt_label_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_label');
-							newopt.find('.uifm_frm_inp2_opt_label_evt').val(value['label']);
-
-							newopt.find('.uifm_frm_inp2_opt_value_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_value');
-							newopt.find('.uifm_frm_inp2_opt_value_evt').val(value['value']);
-
-							newopt.find('.uifm_frm_inp2_opt_price_evt').attr('id', 'uifm_frm_inp2_opt' + index + '_price');
+ 							newopt.find('.uifm_frm_inp2_opt_value_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_value'); 
+							newopt.find('.uifm_frm_inp2_opt_value_evt').val(value['value']); 
+							newopt.find('.uifm_frm_inp2_opt_price_evt').attr('id', 'uifm_frm_inp2_opt' + value['id'] + '_price');
 							newopt.find('.uifm_frm_inp2_opt_price_evt').val(value['price']);
+							$('#uifm-fld-inp2-options-container').append(newopt); 
+						}); 
+						break; 
+				} 
 
-							$('#uifm-fld-inp2-options-container').append(newopt);
-						});
-						break;
-				}
+				zgfm_back_input2.input2settings_refreshSortable(); 
+			}; 
 
-				zgfm_back_input2.input2settings_refreshSortable();
-			};
+			arguments.callee.input2settings_deleteOption = function(element) { 
+				var el = $(element); 
+				var f_id = $('#uifm-field-selected-id').val(); 
+				var opt_index = el.closest('.uifm-fld-inp2-options-row').data('opt-index'); 
 
-			arguments.callee.input2settings_deleteOption = function(element) {
-				var el = $(element);
-				var f_id = $('#uifm-field-selected-id').val();
-				var opt_index = el.closest('.uifm-fld-inp2-options-row').data('opt-index');
+ 				var f_step = $('#' + f_id) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
 
-				var f_step = $('#' + f_id)
-					.closest('.uiform-step-pane')
-					.data('uifm-step');
-				var f_type = $('#uifm-field-selected-type').val();
-				el.closest('.uifm-fld-inp2-options-row').remove();
-				rocketform.delUiData6('steps_src', parseInt(f_step), f_id, 'input2', 'options', opt_index);
-				var tmp_arr = mainrformb['steps_src'][parseInt(f_step)][f_id]['input2']['options'];
-				var tmp_len = tmp_arr.length,
-					tmp_i;
-				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]);
-				if ($.isArray(tmp_arr)) {
-					tmp_arr.splice(0, tmp_len);
-					mainrformb['steps_src'][parseInt(f_step)][f_id]['input2']['options'] = tmp_arr;
-				}
-				switch (parseInt(f_type)) {
-					case 8:
-						$('#' + f_id)
-							.data('uiform_radiobtn')
-							.input2settings_preview_genAllOptions();
-						break;
-					case 9:
-						$('#' + f_id)
-							.data('uiform_checkbox')
-							.input2settings_preview_genAllOptions();
-						break;
-					case 10:
+				  				var f_type = $('#uifm-field-selected-type').val(); 
+				el.closest('.uifm-fld-inp2-options-row').remove(); 
 
-						$('#' + f_id)
-							.data('uiform_select')
-							.input2settings_preview_genAllOptions();
+  				rocketform.delUiData6('steps_src', parseInt(f_step), f_id, 'input2', 'options', opt_index); 
 
-						break;
-					case 11:
-						$('#' + f_id)
-							.data('uiform_multiselect')
-							.input2settings_preview_genAllOptions();
-						break;
-				}
-			};
+ 				var tmp_arr = rocketform.getUiData5('steps_src', parseInt(f_step), f_id, 'input2', 'options'); 
+
+ 				var tmp_len = tmp_arr.length, 
+					tmp_i; 
+				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]); 
+				if ($.isArray(tmp_arr)) { 
+					tmp_arr.splice(0, tmp_len); 
+
+ 					rocketform.setUiData5('steps_src', parseInt(f_step), f_id, 'input2', 'options', tmp_arr); 
+				} 
+				switch (parseInt(f_type)) { 
+					case 8: 
+						$('#' + f_id) 
+							.data('uiform_radiobtn') 
+							.input2settings_preview_genAllOptions(); 
+						break; 
+					case 9: 
+						$('#' + f_id) 
+							.data('uiform_checkbox') 
+							.input2settings_preview_genAllOptions(); 
+						break; 
+					case 10: 
+
+ 						$('#' + f_id) 
+							.data('uiform_select') 
+							.input2settings_preview_genAllOptions(); 
+
+ 						break; 
+					case 11: 
+						$('#' + f_id) 
+							.data('uiform_multiselect') 
+							.input2settings_preview_genAllOptions(); 
+						break; 
+				} 
+			}; 
 
 			arguments.callee.input2settings_preview_genAllOptions = function(obj, section, option) {};
 			arguments.callee.input17settings_preview_setOption = function(obj, index, opt, index2, opt2, value) {
@@ -12244,7 +13955,18 @@ if (!$uifm.isFunction(rocketform)) {
 					rocketform.setDataOptToPrevField(obj_field, store, f_val);
 				}
 			};
-
+			arguments.callee.previewfield_input20padding = function(obj, option) { 
+				var f_id = obj.attr('id'); 
+				var f_step = $('#' + f_id) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
+				obj.find('.uifm-txtbox-inp-val').css({ 
+					'padding-top': rocketform.getUiData6('steps_src', parseInt(f_step), f_id, 'input', 'padding', 'top') + 'px', 
+					'padding-right': rocketform.getUiData6('steps_src', parseInt(f_step), f_id, 'input', 'padding', 'right') + 'px', 
+					'padding-bottom': rocketform.getUiData6('steps_src', parseInt(f_step), f_id, 'input', 'padding', 'bottom') + 'px', 
+					'padding-left': rocketform.getUiData6('steps_src', parseInt(f_step), f_id, 'input', 'padding', 'left') + 'px', 
+				}); 
+			}; 
 			arguments.callee.previewfield_prepappTxtOnInput = function(obj, option) {
 				var f_id = obj.attr('id');
 				var f_step = $('#' + f_id)
@@ -12790,25 +14512,30 @@ if (!$uifm.isFunction(rocketform)) {
 
 				rocketform.setUiData7('steps_src', parseInt(f_step), f_id, 'clogic', 'list', parseInt(optnro), 'minput', cl_sel_minput);
 			};
-			arguments.callee.clogic_deleteConditional = function(elm) {
-				var el = $(elm);
-				var f_id = $('#uifm-field-selected-id').val();
-				var opt_index = el.closest('.uifm-conditional-row').data('row-index');
+			arguments.callee.clogic_deleteConditional = function(elm) { 
+				var el = $(elm); 
+				var f_id = $('#uifm-field-selected-id').val(); 
+				var opt_index = el.closest('.uifm-conditional-row').data('row-index'); 
 
-				var f_step = $('#' + f_id)
-					.closest('.uiform-step-pane')
-					.data('uifm-step');
+ 				var f_step = $('#' + f_id) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
 
-				el.closest('.uifm-conditional-row').remove();
-				rocketform.delUiData6('steps_src', parseInt(f_step), f_id, 'clogic', 'list', parseInt(opt_index));
-				var tmp_arr = mainrformb['steps_src'][parseInt(f_step)][f_id]['clogic']['list'];
-				var tmp_len = tmp_arr.length,
-					tmp_i;
-				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]);
-				if ($.isArray(tmp_arr)) {
-					tmp_arr.splice(0, tmp_len);
-					mainrformb['steps_src'][parseInt(f_step)][f_id]['clogic']['list'] = tmp_arr;
-				}
+				el.closest('.uifm-conditional-row').remove(); 
+				rocketform.delUiData6('steps_src', parseInt(f_step), f_id, 'clogic', 'list', parseInt(opt_index)); 
+
+ 				var tmp_arr; 
+
+ 				tmp_arr = rocketform.getUiData5('steps_src', parseInt(f_step), f_id, 'clogic', 'list'); 
+
+ 				var tmp_len = tmp_arr.length, 
+					tmp_i; 
+				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]); 
+				if ($.isArray(tmp_arr)) { 
+					tmp_arr.splice(0, tmp_len); 
+
+ 					rocketform.setUiData5('steps_src', parseInt(f_step), f_id, 'clogic', 'list', tmp_arr); 
+				} 
 			};
 
 			arguments.callee.clogic_changeField = function(elm) {
@@ -13121,6 +14848,7 @@ if (!$uifm.isFunction(rocketform)) {
 
 
 					var new_parent_id = rocketform.getFieldsAfterDraggable(el, pickfield_type, true, pickfield.attr('id'));
+					rocketform.enableFieldPlugin(f_step, new_parent_id, pickfield_type, rocketform.getUiData3('steps_src', f_step, new_parent_id)); 
 				}
 
 				setTimeout(function() {
@@ -13309,26 +15037,28 @@ if (!$uifm.isFunction(rocketform)) {
 				});
 			};
 
-			arguments.callee.fields2_fieldsetting_deleteField = function(idselected) {
-				var fld_step = $('#' + idselected)
-					.closest('.uiform-step-pane')
-					.data('uifm-step');
-				fld_step = parseInt(fld_step);
+			arguments.callee.fields2_fieldsetting_deleteField = function(idselected) { 
+				var fld_step = $('#' + idselected) 
+					.closest('.uiform-step-pane') 
+					.data('uifm-step'); 
+				fld_step = parseInt(fld_step); 
 
-				rocketform.delUiData3('steps_src', fld_step, idselected);
+ 				rocketform.delUiData3('steps_src', fld_step, idselected); 
 
-				rocketform.closeSettingTab();
+				rocketform.closeSettingTab(); 
 
-				var tmp_arr = mainrformb['steps_src'][fld_step];
-				var tmp_len = tmp_arr.length,
-					tmp_i;
-				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]);
-				if ($.isArray(tmp_arr)) {
-					tmp_arr.splice(0, tmp_len);
-					mainrformb['steps_src'][fld_step] = tmp_arr;
-				}
 
-				$('#' + idselected).remove();
+ 				var tmp_arr = rocketform.getUiData2('steps_src', fld_step); 
+				var tmp_len = tmp_arr.length, 
+					tmp_i; 
+				for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]); 
+				if ($.isArray(tmp_arr)) { 
+					tmp_arr.splice(0, tmp_len); 
+
+ 					rocketform.setUiData2('steps_src', fld_step, tmp_arr); 
+				} 
+
+				$('#' + idselected).remove(); 
 			};
 
 			arguments.callee.fieldQuickOptions_DuplicateField = function(element) {
@@ -14196,7 +15926,164 @@ if (!$uifm.isFunction(rocketform)) {
 					},
 				});
 			};
+			arguments.callee.refreshPreviewSection_process_multistep = function() { 
+				var tmp_frm = mainrformb; 
 
+ 				$.ajax({ 
+					type: 'POST', 
+					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_refresh_previewpanel', 
+					data: { 
+						action: 'rocket_fbuilder_refreshpreviewpanel', 
+						page: 'zgfm_form_builder', 
+						zgfm_security: uiform_vars.ajax_nonce, 
+						uifm_frm_main_title: $('#uifm_frm_main_title').val(), 
+						uifm_frm_main_id: $('#uifm_frm_main_id').val(), 
+						form_data: encodeURIComponent(JSON.stringify(tmp_frm)), 
+						csrf_field_name: uiform_vars.csrf_field_name, 
+					}, 
+					success: function(msg) { 
+						msg.data.fmb_html_backend = decodeURIComponent(msg.data.fmb_html_backend); 
+
+						rocketform.loadFormToEditPanelMultiStep(msg); 
+
+						rocketform.loading_panelbox2(0); 
+						if ( 
+							parseInt( 
+								$.map(mainrformb['steps_src'], function(n, i) { 
+									return i; 
+								}).length 
+							) != 0 
+						) { 
+							$.each(mainrformb['steps_src'], function(index3, value3) { 
+								$.each(value3, function(index4, value4) { 
+									switch (parseInt(value4['type'])) { 
+										case 1: 
+										case 2: 
+										case 3: 
+										case 4: 
+										case 5: 
+											break; 
+										case 8: 
+										case 9: 
+										case 10: 
+										case 11: 
+											var tmp_opt = rocketform.getUiData5('steps_src', parseInt(index3), value4['id'], 'input2', 'options'); 
+
+ 											rocketform.setUiData5('steps_src', parseInt(index3), value4['id'], 'input2', 'options', {}); 
+
+ 											for (var key in tmp_opt) { 
+												rocketform.addIndexUiData5('steps_src', parseInt(index3), value4['id'], 'input2', 'options', String(key)); 
+												rocketform.setUiData6('steps_src', parseInt(index3), value4['id'], 'input2', 'options', String(key), { 
+													value: tmp_opt[key]['value'], 
+													label: tmp_opt[key]['label'], 
+													checked: tmp_opt[key]['checked'], 
+													order: tmp_opt[key]['order'], 
+													id: tmp_opt[key]['id'], 
+												}); 
+											} 
+
+ 											break; 
+										default: 
+											break; 
+									} 
+								}); 
+							}); 
+						} 
+					}, 
+				}); 
+			}; 
+			arguments.callee.refreshPreviewSection_processMultistep = function() { 
+				rocketform.loading_panelbox2(0); 
+				let msobj = this.getInnerVariable('multistepobj'); 
+
+ 				if (Object.hasOwn(msobj.availableForms[msobj.activeFormId], 'preview')) { 
+					let formData = {}; 
+					formData['data'] = {}; 
+					formData['data']['fmb_data'] = msobj.availableForms[msobj.activeFormId]['core']; 
+
+ 					if (msobj.availableForms[msobj.activeFormId].hasOwnProperty('name')) { 
+						formData['data']['fmb_name'] = msobj.availableForms[msobj.activeFormId]['name']; 
+					} 
+
+ 					if (msobj.availableForms[msobj.activeFormId].hasOwnProperty('preview')) { 
+						formData['data']['fmb_html_backend'] = msobj.availableForms[msobj.activeFormId]['preview']; 
+					} 
+
+ 					formData['addons'] = {}; 
+
+ 					rocketform.loadFormToEditPanelMultiStep(formData); 
+
+ 					return; 
+				} 
+
+ 				return; 
+
+				var tmp_frm = mainrformb; 
+
+ 				$.ajax({ 
+					type: 'POST', 
+					url: ajaxurl, 
+					data: { 
+						action: 'rocket_fbuilder_refreshpreviewpanel', 
+						page: 'zgfm_form_builder', 
+						zgfm_security: uiform_vars.ajax_nonce, 
+						uifm_frm_main_title: $('#uifm_frm_main_title').val(), 
+						uifm_frm_main_id: $('#uifm_frm_main_id').val(), 
+						form_data: encodeURIComponent(JSON.stringify(tmp_frm)), 
+					}, 
+					success: function(msg) { 
+						msg.data.fmb_html_backend = decodeURIComponent(msg.data.fmb_html_backend); 
+
+						rocketform.loadFormToEditPanel(msg); 
+
+						rocketform.wizardform_refresh(); 
+
+ 						rocketform.loading_panelbox2(0); 
+						if ( 
+							parseInt( 
+								$.map(mainrformb['steps_src'], function(n, i) { 
+									return i; 
+								}).length 
+							) != 0 
+						) { 
+							$.each(mainrformb['steps_src'], function(index3, value3) { 
+								$.each(value3, function(index4, value4) { 
+									switch (parseInt(value4['type'])) { 
+										case 1: 
+										case 2: 
+										case 3: 
+										case 4: 
+										case 5: 
+											break; 
+										case 8: 
+										case 9: 
+										case 10: 
+										case 11: 
+											var tmp_opt = rocketform.getUiData5('steps_src', parseInt(index3), value4['id'], 'input2', 'options'); 
+
+ 											rocketform.setUiData5('steps_src', parseInt(index3), value4['id'], 'input2', 'options', {}); 
+
+ 											for (var key in tmp_opt) { 
+												rocketform.addIndexUiData5('steps_src', parseInt(index3), value4['id'], 'input2', 'options', String(key)); 
+												rocketform.setUiData6('steps_src', parseInt(index3), value4['id'], 'input2', 'options', String(key), { 
+													value: tmp_opt[key]['value'], 
+													label: tmp_opt[key]['label'], 
+													checked: tmp_opt[key]['checked'], 
+													order: tmp_opt[key]['order'], 
+													id: tmp_opt[key]['id'], 
+												}); 
+											} 
+
+ 											break; 
+										default: 
+											break; 
+									} 
+								}); 
+							}); 
+						} 
+					}, 
+				}); 
+			}; 
 			arguments.callee.regenerateform = function() {
 				rocketform.loading_panelbox2(1);
 				this.refreshPreviewSection_process();
@@ -14220,9 +16107,13 @@ if (!$uifm.isFunction(rocketform)) {
 					success: function(msg) {
 						msg.data.fmb_html_backend = decodeURIComponent(msg.data.fmb_html_backend);
 
-						rocketform.loadFormToEditPanel(msg);
+						if (rocketform.isMultiStepActive()) { 
+							rocketform.loadFormToEditPanelMultiStep(msg); 
+						} else { 
+							rocketform.loadFormToEditPanel(msg); 
 
-						rocketform.wizardform_refresh();
+							rocketform.wizardform_refresh(); 
+						} 
 
 						if (
 							parseInt(
@@ -14273,10 +16164,92 @@ if (!$uifm.isFunction(rocketform)) {
 					},
 				});
 			};
+			arguments.callee.multistepLimpiarForm = function() { 
+				$('.uiform-items-container').html(''); 
+			}; 
+			arguments.callee.multistepRefreshCurrentForm = function() { 
+				rocketform.loading_panelbox2(1); 
+				$('.uiform-items-container').html(''); 
+				if ($(document).find('.uifm-highlight-edited')) { 
+					$(document) 
+						.find('.uifm-highlight-edited') 
+						.removeClass('uifm-highlight-edited'); 
+				} 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked').prop('checked', false); 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked') 
+					.closest('.uiform-fields-quick-options') 
+					.removeCss('display'); 
 
+				this.closeSettingTab(); 
+
+				rocketform.showLoader(2, true, true); 
+
+				this.saveTabContent(); 
+
+				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) { 
+					var rockfm_tmp_rs = $('.uiform-main-form').find('.uifm-input-ratingstar'); 
+					rockfm_tmp_rs.each(function(i) { 
+						$(this).rating('destroy'); 
+					}); 
+				} 
+
+ 				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) { 
+					$('.uiform-main-form') 
+						.find('.uifm-input-ratingstar') 
+						.each(function(i) { 
+							rocketform.input9settings_updateField($(this).closest('.uiform-field'), 'input9'); 
+						}); 
+				} 
+
+ 				this.refreshPreviewSection_process_multistep(); 
+				rocketform.loading_panelbox2(0); 
+
+				$('.sfdc-tooltip').hide(); 
+			}; 
+			arguments.callee.refreshPreviewSectionMultistep = function() { 
+				rocketform.loading_panelbox2(1); 
+
+				if ($(document).find('.uifm-highlight-edited')) { 
+					$(document) 
+						.find('.uifm-highlight-edited') 
+						.removeClass('uifm-highlight-edited'); 
+				} 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked').prop('checked', false); 
+				$('.uiform-main-form .uiform-fields-qopt-select input:checked') 
+					.closest('.uiform-fields-quick-options') 
+					.removeCss('display'); 
+				rocketform.showLoader(2, true, true); 
+
+
+				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) { 
+					var rockfm_tmp_rs = $('.uiform-main-form').find('.uifm-input-ratingstar'); 
+					rockfm_tmp_rs.each(function(i) { 
+						$(this).rating('destroy'); 
+					}); 
+				} 
+
+ 				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) { 
+					$('.uiform-main-form') 
+						.find('.uifm-input-ratingstar') 
+						.each(function(i) { 
+							rocketform.input9settings_updateField($(this).closest('.uiform-field'), 'input9'); 
+						}); 
+				} 
+
+ 				this.refreshPreviewSection_processMultistep(); 
+
+				$('.sfdc-tooltip').hide(); 
+
+				enableDraggableItems(); 
+				enableSortableItems(); 
+			}; 
 			arguments.callee.refreshPreviewSection = function() {
 				rocketform.loading_panelbox2(1);
-				rocketform.saveform_cleanForm();
+				if (rocketform.isMultiStepActive()) { 
+					rocketform.saveform_cleanForm_multistep(); 
+				} else { 
+					rocketform.saveform_cleanForm(); 
+				} 
 
 				if ($(document).find('.uifm-highlight-edited')) {
 					$(document)
@@ -14289,7 +16262,11 @@ if (!$uifm.isFunction(rocketform)) {
 					.removeCss('display');
 				this.closeSettingTab();
 
-				this.saveTabContent();
+				if (rocketform.isMultiStepActive()) { 
+					this.saveTabContentMultistep(); 
+				} else { 
+					this.saveTabContent(); 
+				} 
 
 				if (parseInt($('.uiform-main-form').find('.uifm-input-ratingstar').length) != 0) {
 					var rockfm_tmp_rs = $('.uiform-main-form').find('.uifm-input-ratingstar');
@@ -14306,7 +16283,11 @@ if (!$uifm.isFunction(rocketform)) {
 						});
 				}
 
-				this.refreshPreviewSection_process();
+				if (rocketform.isMultiStepActive()) { 
+					this.refreshPreviewSection_process_multistep(); 
+				} else { 
+					this.refreshPreviewSection_process(); 
+				} 
 
 				$('.sfdc-tooltip').hide();
 			};
@@ -14492,7 +16473,9 @@ if (!$uifm.isFunction(rocketform)) {
 
 			arguments.callee.formvariables_genListToIntMem = function() {
 				rocketform.formvariables_generateTable();
-				return;
+				if (rocketform.isMultiStepActive()) { 
+					return; 
+				} 
 
 				if (!rocketform.getInnerVariable('form_rec_vars')) {
 					rocketform.setInnerVariable('form_rec_vars', []);
@@ -14560,27 +16543,33 @@ if (!$uifm.isFunction(rocketform)) {
 				this.setInnerVariable('form_rec_vars', temp);
 				rocketform.formvariables_generateTable();
 			};
-			arguments.callee.formvariables_generateTable = function() {
-				var id = $('#uifm_frm_main_id').val();
+			arguments.callee.formvariables_generateTable = function() { 
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = rocketform.getInnerVariable('multistepobj'); 
 
-				var tmp_frm = mainrformb;
+ 					msobj.formvariables_generateTable(); 
+				} else { 
+					var id = $('#uifm_frm_main_id').val(); 
 
-				$.ajax({
-					type: 'POST',
-					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_variables_emailpage',
-					data: {
-						action: 'rocket_fbuilder_variables_emailpage',
-						page: 'zgfm_cost_estimate',
-						zgfm_security: uiform_vars.ajax_nonce,
-						form_id: id,
-						form_data: encodeURIComponent(JSON.stringify(tmp_frm)),
-						csrf_field_name: uiform_vars.csrf_field_name,
-					},
-					success: function(msg) {
-						$('#uiform-form-mailset-vars-tab-1 .uifm-tab-inner-vars-1').html(msg.message);
-					},
-				});
-			};
+					var tmp_frm = mainrformb; 
+
+ 					$.ajax({ 
+						type: 'POST', 
+						url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_variables_emailpage',
+						data: { 
+							action: 'rocket_fbuilder_variables_emailpage', 
+							page: 'zgfm_form_builder', 
+							zgfm_security: uiform_vars.ajax_nonce, 
+							form_id: id, 
+							form_data: encodeURIComponent(JSON.stringify(tmp_frm)), 
+							csrf_field_name: uiform_vars.csrf_field_name,
+						}, 
+						success: function(msg) { 
+							$('#uiform-form-mailset-vars-tab-1 .uifm-tab-inner-vars-1').html(msg.message); 
+						}, 
+					}); 
+				} 
+			}; 
 
 			arguments.callee.formvariables_findFieldName = function(id) {
 				var tmpval = '';
@@ -14687,35 +16676,43 @@ if (!$uifm.isFunction(rocketform)) {
 				}
 			};
 
-			arguments.callee.invoiceoptions_genListToIntMem = function() {
-				rocketform.setInnerVariable('form_vars_invoice_optto', []);
+			arguments.callee.invoiceoptions_genListToIntMem = function() { 
+				rocketform.setInnerVariable('form_vars_invoice_optto', []); 
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = rocketform.getInnerVariable('multistepobj'); 
 
-				if (
-					parseInt(
-						$.map(mainrformb['steps_src'], function(n, i) {
-							return i;
-						}).length
-					) != 0
-				) {
-					$.each(mainrformb['steps_src'], function(index3, value3) {
-						$.each(value3, function(index4, value4) {
-							if (parseInt($('#' + index4).length) != 0) {
-								switch (parseInt(value4['type'])) {
-									case 6:
-									case 7:
-									case 28:
-									case 29:
-									case 30:
-										rocketform.invoiceoptions_addTolist(value4['id']);
-										break;
-								}
-							}
-						});
-					});
-				}
 
-				rocketform.invoiceoptions_generateHtml();
-			};
+				} else {  
+
+				 					if ( 
+						parseInt( 
+							$.map(mainrformb['steps_src'], function(n, i) { 
+								return i; 
+							}).length 
+						) != 0 
+					) { 
+						$.each(mainrformb['steps_src'], function(index3, value3) { 
+							$.each(value3, function(index4, value4) { 
+								if (parseInt($('#' + index4).length) != 0) { 
+									switch (parseInt(value4['type'])) { 
+										case 6: 
+										case 7: 
+										case 28: 
+										case 29: 
+										case 30: 
+											rocketform.invoiceoptions_addTolist(value4['id']); 
+											break; 
+									} 
+								} 
+							}); 
+						}); 
+					} 
+					rocketform.invoiceoptions_generateHtml(); 
+				} 
+
+
+
+				  				 			}; 
 			arguments.callee.invoiceoptions_addTolist = function(value) {
 
 				var temp;
@@ -15208,22 +17205,7 @@ if (!$uifm.isFunction(rocketform)) {
 						rocketform.formvariables_generateTable();
 						rocketform.customeremail_generateHtml();
 
-						let tmp_addon_arr = uiform_vars.addon;
-
-						var tmp_function;
-						var tmp_controller;
-
-						for (var property1 in tmp_addon_arr) {
-							if ('fieldName_onBlur' === String(property1)) {
-								for (var property2 in tmp_addon_arr[property1]) {
-									for (var property3 in tmp_addon_arr[property1][property2]) {
-										tmp_controller = tmp_addon_arr[property1][property2][property3]['controller'];
-										tmp_function = tmp_addon_arr[property1][property2][property3]['function'];
-										window[tmp_controller][tmp_function]();
-									}
-								}
-							}
-						}
+						wp.hooks.applyFilters('zgfm.fieldName_onBlur'); 
 					});
 
 					$(".uifm-fld-val-opts .sfdc-btn-group > .sfdc-btn[data-settings-option='group-checkboxes']").click(function() {
@@ -15373,7 +17355,40 @@ if (!$uifm.isFunction(rocketform)) {
 							}
 						}
 					});
+					$(document).on('change', '.zgfm-f-input-level-select', function(e) { 
+						if (e) { 
+							e.stopPropagation(); 
+							e.preventDefault(); 
+						} 
+						var f_val = $(this).val(); 
+						let fontSize = 13; 
+						switch (parseInt(f_val)) { 
+							case 1: 
+								fontSize = 36; 
+								break; 
+							case 2: 
+								fontSize = 30; 
+								break; 
+							case 3: 
+								fontSize = 24; 
+								break; 
+							case 4: 
+								fontSize = 18; 
+								break; 
+							case 5: 
+								fontSize = 14; 
+								break; 
+							case 6: 
+								fontSize = 12; 
+								break; 
 
+ 							default: 
+								break; 
+						} 
+						$('#uifm_fld_inp_size') 
+							.val(fontSize) 
+							.change(); 
+					});
 					$(document).on('change keyup', '.uifm-f-setoption', function(e) {
 						if (e) {
 							e.stopPropagation();
@@ -16170,7 +18185,12 @@ if (!$uifm.isFunction(rocketform)) {
 			};
 
 			arguments.callee.rollback_openModal = function() {
-				var id = $('#uifm_frm_main_id').val();
+				var id; 
+				if (rocketform.isMultiStepActive()) { 
+					id = $('#uifm_frm_mm_main_id').val(); 
+				} else { 
+					id = $('#uifm_frm_main_id').val(); 
+				} 
 
 				try {
 					rocketform.fields_showModalOptions();
@@ -16218,18 +18238,25 @@ if (!$uifm.isFunction(rocketform)) {
 							zgfm_security: uiform_vars.ajax_nonce,
 							log_id: id,
 							csrf_field_name: uiform_vars.csrf_field_name,
+							is_multistep: rocketform.isMultiStepActive() ? 1 : 0,
 						},
-						success: function(msg) {
-							msg.data.fmb_html_backend = decodeURIComponent(msg.data.fmb_html_backend);
+						success: function(msg) { 
+							if (rocketform.isMultiStepActive()) { 
 
-							rocketform.loadFormToEditPanel(msg);
+								  								let msobj = rocketform.getInnerVariable('multistepobj'); 
+								msobj.rollback(msg); 
+							} else { 
+								msg.data.fmb_html_backend = decodeURIComponent(msg.data.fmb_html_backend); 
 
-							rocketform.wizardform_refresh();
+								rocketform.loadFormToEditPanel(msg); 
 
-							rocketform.loading_panelbox2(0);
+								rocketform.wizardform_refresh(); 
 
-							$('#zgpb-modal1').sfdc_modal('hide');
-						},
+ 								rocketform.loading_panelbox2(0); 
+							} 
+
+							$('#zgpb-modal1').sfdc_modal('hide'); 
+						}, 
 					});
 				} catch (ex) {
 					console.error('error rollback_openModal ', ex.message);
@@ -16297,46 +18324,103 @@ if (!$uifm.isFunction(rocketform)) {
 				}
 			};
 
-			arguments.callee.variables_openModal = function() {
-				var id = $('#uifm_frm_main_id').val();
+			arguments.callee.variables_openModal = function() { 
+				if (rocketform.isMultiStepActive()) { 
+					let msobj = rocketform.getInnerVariable('multistepobj'); 
 
-				rocketform.fields_showModalOptions();
-				this.saveTabContent();
+ 					let modal_header = $('#uifm_mm_frm_variables_modal_title').val(); 
+					let modal_body = msobj.formvariables_generateTable_modal(); 
+					let modal_footer = `<button data-dismiss="modal" class="sfdc-btn sfdc-btn-primary" type="button">${$('#uifm_mm_frm_variables_modal_btn_close').val()}</button>`; 
 
-				var tmp_frm = mainrformb;
+ 					$('#zgpb-modal1') 
+						.find('.sfdc-modal-dialog') 
+						.find('.zgpb-modal-header-inner') 
+						.html(modal_header); 
+					$('#zgpb-modal1') 
+						.find('.sfdc-modal-dialog') 
+						.find('.sfdc-modal-body') 
+						.html(modal_body); 
+					$('#zgpb-modal1') 
+						.find('.sfdc-modal-dialog') 
+						.find('.zgpb-modal-footer-wrap') 
+						.html(modal_footer); 
 
-				$.ajax({
-					type: 'POST',
-					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_variables_openmodal',
-					data: {
-						action: 'rocket_fbuilder_variables_openmodal',
-						page: 'zgfm_cost_estimate',
-						zgfm_security: uiform_vars.ajax_nonce,
-						form_id: id,
-						form_data: encodeURIComponent(JSON.stringify(tmp_frm)),
-						csrf_field_name: uiform_vars.csrf_field_name,
-					},
-					success: function(msg) {
-						$('#zgpb-modal1')
-							.find('.sfdc-modal-dialog')
-							.find('.zgpb-modal-header-inner')
-							.html(msg.modal_header);
-						$('#zgpb-modal1')
-							.find('.sfdc-modal-dialog')
-							.find('.sfdc-modal-body')
-							.html(msg.modal_body);
-						$('#zgpb-modal1')
-							.find('.sfdc-modal-dialog')
-							.find('.zgpb-modal-footer-wrap')
-							.html(msg.modal_footer);
+ 					$('#zgpb-modal1').on('show.bs.sfdc-modal', function() { 
+						$(this) 
+							.find('.sfdc-modal-body') 
+							.css({ 
+								'max-height': '100%', 
+							}); 
+					}); 
 
-						$('[data-toggle="tooltip"]').tooltip({ container: 'body' });
-					},
-				});
-			};
+ 					$('#zgpb-modal1').sfdc_modal({ 
+						show: true, 
+						keyboard: true, 
+					}); 
+					$('#zgpb-modal1') 
+						.find('.sfdc-modal-dialog') 
+						.css({ 
+							'max-height': '100%', 
+							width: '1200px', 
+						}); 
+					$('[data-toggle="tooltip"]').tooltip({ container: 'body' }); 
+				} else { 
+					var id = $('#uifm_frm_main_id').val(); 
+
+ 					rocketform.fields_showModalOptions(); 
+					this.saveTabContent(); 
+
+					var tmp_frm = mainrformb; 
+
+ 					$.ajax({ 
+						type: 'POST', 
+						url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_variables_openmodal',
+						data: { 
+							action: 'rocket_fbuilder_variables_openmodal', 
+							page: 'zgfm_form_builder', 
+							zgfm_security: uiform_vars.ajax_nonce, 
+							form_id: id, 
+							form_data: encodeURIComponent(JSON.stringify(tmp_frm)),
+							csrf_field_name: uiform_vars.csrf_field_name,
+						}, 
+						success: function(msg) { 
+							$('#zgpb-modal1') 
+								.find('.sfdc-modal-dialog') 
+								.find('.zgpb-modal-header-inner') 
+								.html(msg.modal_header); 
+							$('#zgpb-modal1') 
+								.find('.sfdc-modal-dialog') 
+								.find('.sfdc-modal-body') 
+								.html(msg.modal_body); 
+							$('#zgpb-modal1') 
+								.find('.sfdc-modal-dialog') 
+								.find('.zgpb-modal-footer-wrap') 
+								.html(msg.modal_footer); 
+
+							$('[data-toggle="tooltip"]').tooltip({ container: 'body' }); 
+						}, 
+					}); 
+				} 
+			}; 
 			arguments.callee.get_coreData = function() {
 				return mainrformb;
 			};
+			arguments.callee.isMultiStepActive = function() { 
+				if ($('.zgfm_mulstistep_mode').length > 0) { 
+					return true; 
+				} 
+
+ 				return false; 
+			}; 
+			arguments.callee.goToList = function() {  
+				window.location.href = `${uiform_vars.url_site}formbuilder/forms/list_uiforms`;  
+			};  
+			arguments.callee.goToMultiStepForm = function(id) {  
+				window.location.href = `${uiform_vars.url_site}formbuilder/forms/create_uiform?is_multistep=yes&form_id=${id}`;  
+			};  
+			arguments.callee.goToSingleForm = function(id) {  
+				window.location.href = `${uiform_vars.url_site}formbuilder/forms/create_uiform?form_id=${id}`;  
+			}; 
 		};
 	})($uifm, window);
 }
@@ -17824,7 +19908,7 @@ rocketform();
 
 	var init = function(tb, options) {
 		uipanel_main_content = $('#rocketform-bk-content');
-		uifm_footer_credit = $('#wpfooter') || null;
+		uifm_footer_credit = $('#wpfooter');
 		uipanel_object = $(tb);
 		uifm_panels['left'] = uipanel_object.find('.uifm-edit-panel-left');
 		uifm_panels['center'] = uipanel_object.find('.uifm-edit-panel-center');
@@ -17914,6 +19998,7 @@ rocketform();
 		}
 
 		var tmp_main_pos = uipanel_main_content.offset();
+		var tmp_main_pos_left = tmp_main_pos.left;
 		var tmp_main_pos_top = tmp_main_pos.top;
 		var tmp_main_pos_bottom = parseFloat(tmp_main_pos_top) + tmp_main_height;
 
@@ -17927,12 +20012,11 @@ rocketform();
 
 		if (tmp_footer_pos_top > tmp_main_pos_bottom) {
 			var tmp_diff = tmp_footer_pos_top - tmp_main_pos_bottom;
-			uifm_main_height = tmp_main_height + tmp_diff - 100;
+			uifm_main_height = tmp_main_height + tmp_diff - 10;
 		} else {
 			uifm_main_height = tmp_main_height;
 		}
 
-		uipanel_main_content.css('height', uifm_main_height + 'px');
 
 		var tmp_menu_height;
 		var tmp_height_ret;
@@ -17941,7 +20025,6 @@ rocketform();
 		tmp_menu_height = $('.uiformc-menu-wrap')
 			.first()
 			.height();
-		tmp_pleft_height = uifm_panels['left'].find('.uiform-builder-fields').height();
 
 		if (tmp_footer_pos_top > tmp_main_pos_bottom) {
 			tmp_diff_inner_h = uifm_main_height - tmp_menu_height - tmp_pleft_height;
@@ -17955,39 +20038,21 @@ rocketform();
 		}
 		uifm_allpanel_height = tmp_height_ret;
 
-		uifm_panels['left'].find('.uiform-builder-fields').height(uifm_allpanel_height);
 
-		uifm_panels['center'].find('.uiform-builder-preview').height(uifm_allpanel_height);
 
-		uifm_panels['right'].find('.uiform-builder-data').height(uifm_allpanel_height);
 
 		$('.uiform-builder-maintab-container .uiform-tab-content').height(parseFloat(uifm_allpanel_height - 170));
 	};
 
 	var onTogglerLeftPanel = function() {
-		var newWidthPanelLeft;
-		var bothWidthPanel;
-		var newWidthPanelCenter;
-		if ($('#uifm-panel-arrow-left').hasClass('uifm-layout-toggler-open')) {
+
+		 		if ($('#uifm-panel-arrow-left').hasClass('uifm-layout-toggler-open')) {
 			$('#uifm-panel-arrow-left').removeClass('uifm-layout-toggler-open');
-			if (uipanel_percentage) {
-				newWidthPanelLeft = ((parseFloat(10) * 100) / parseFloat(uifm_width_panel)).toFixed(3);
-			} else {
-				newWidthPanelLeft = 10;
-			}
 
-			bothWidthPanel = parseFloat(uifm_width_panel_left) + parseFloat(uifm_width_panel_center);
-			newWidthPanelCenter = parseFloat(bothWidthPanel) - parseFloat(newWidthPanelLeft);
+			  			uipanel_object.find('.uifm-edit-panel-left').css('flex', '0 0 10px');
+			uipanel_object.find('.uifm-edit-panel-center').css('flex', '2');
 
-			if (uipanel_percentage) {
-				uipanel_object.find('.uifm-edit-panel-left').css('width', newWidthPanelLeft + '%');
-				uipanel_object.find('.uifm-edit-panel-center').css('width', newWidthPanelCenter + '%');
-			} else {
-				uipanel_object.find('.uifm-edit-panel-left').css('width', newWidthPanelLeft + 'px');
-				uipanel_object.find('.uifm-edit-panel-center').css('width', newWidthPanelCenter + 'px');
-			}
-
-			uipanel_object.find('.uifm-edit-panel-left').addClass('uifm-panel-tog-left-closed');
+						uipanel_object.find('.uifm-edit-panel-left').addClass('uifm-panel-tog-left-closed');
 
 			$('#uifm-panel-arrow-left')
 				.find('.uifm-arrow-open')
@@ -18001,26 +20066,12 @@ rocketform();
 		} else {
 			$('#uifm-panel-arrow-left').removeClass('uifm-layout-toggler-close');
 			uipanel_object.find('.uifm-edit-panel-left').removeClass('uifm-panel-tog-left-closed');
-			var innerwidthLeft = uifm_panelleft_width;
-			innerwidthLeft += 17;
-			if (uipanel_percentage) {
-				newWidthPanelLeft = ((parseFloat(innerwidthLeft) * 100) / parseFloat(uifm_width_panel)).toFixed(3);
-			} else {
-				newWidthPanelLeft = innerwidthLeft;
-			}
 
-			bothWidthPanel = parseFloat(uifm_width_panel_left) + parseFloat(uifm_width_panel_center);
-			newWidthPanelCenter = parseFloat(bothWidthPanel) - parseFloat(newWidthPanelLeft);
 
-			if (uipanel_percentage) {
-				uipanel_object.find('.uifm-edit-panel-left').css('width', newWidthPanelLeft + '%');
-				uipanel_object.find('.uifm-edit-panel-center').css('width', newWidthPanelCenter + '%');
-			} else {
-				uipanel_object.find('.uifm-edit-panel-left').css('width', newWidthPanelLeft + 'px');
-				uipanel_object.find('.uifm-edit-panel-center').css('width', newWidthPanelCenter + 'px');
-			}
+		 						uipanel_object.find('.uifm-edit-panel-left').css('flex', '1');
+			uipanel_object.find('.uifm-edit-panel-center').css('flex', '1');
 
-			$('#uifm-panel-arrow-left')
+						$('#uifm-panel-arrow-left')
 				.find('.uifm-arrow-open')
 				.css('display', 'block');
 			$('#uifm-panel-arrow-left')
@@ -18045,8 +20096,8 @@ rocketform();
 
 			newWidthPanelCenter = parseFloat(bothWidthPanel) - parseFloat(newWidthPanelRight);
 
-			uipanel_object.find('.uifm-edit-panel-right').css('width', newWidthPanelRight + '%');
-			uipanel_object.find('.uifm-edit-panel-center').css('width', newWidthPanelCenter + '%');
+			uipanel_object.find('.uifm-edit-panel-right').css('flex', '0 0 10px');
+			uipanel_object.find('.uifm-edit-panel-center').css('flex', '2');
 
 			uipanel_object.find('.uifm-edit-panel-right').addClass('uifm-panel-tog-right-closed');
 
@@ -18066,8 +20117,8 @@ rocketform();
 			newWidthPanelRight = ((parseFloat(innerwidthRight) * 100) / parseFloat(uifm_width_panel)).toFixed(3);
 			bothWidthPanel = parseFloat(uifm_width_panel_right) + parseFloat(uifm_width_panel_center);
 			newWidthPanelCenter = parseFloat(bothWidthPanel) - parseFloat(newWidthPanelRight);
-			uipanel_object.find('.uifm-edit-panel-right').css('width', newWidthPanelRight + '%');
-			uipanel_object.find('.uifm-edit-panel-center').css('width', newWidthPanelCenter + '%');
+			uipanel_object.find('.uifm-edit-panel-right').css('flex', '1');
+			uipanel_object.find('.uifm-edit-panel-center').css('flex', '1');
 
 			$('#uifm-panel-arrow-right')
 				.find('.uifm-arrow-open')
@@ -18103,6 +20154,14 @@ rocketform();
 					onTogglerRightPanel();
 				});
 				init(this, options);
+			});
+		},
+		ColumnToggleRefresh: function() {
+			return this.each(function() {
+				function resize_panel() {
+					onPanelResize();
+				}
+				resize_panel();
 			});
 		},
 	});
@@ -18324,12 +20383,13 @@ var uifmsetting;
 					style: '1',
 					width: '1',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -18641,7 +20701,7 @@ var uifmsetting;
 					front_lines: '2',
 				},
 				label: {
-					text: 'Text label',
+					text: 'Type the characters below:',
 					size: '14',
 					bold: 0,
 					italic: 0,
@@ -18676,12 +20736,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -18989,7 +21050,7 @@ var uifmsetting;
 				},
 				price: {
 					enable_st: '1',
-					lbl_show_st: '1',
+					lbl_show_st: '0',
 					lbl_show_format: '%3Cp%3E(%5Buifm_symbol%5D%20%5Buifm_price%5D%20%5Buifm_currency%5D)%3C%2Fp%3E',
 					color: '#FF0000',
 					font: '{"family":"\'Comic Sans MS\', Arial, sans-serif","name":"Comic Sans MS","classname":"comicsansms"}',
@@ -19031,12 +21092,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -19281,6 +21343,10 @@ var uifmsetting;
 			var f_block_align = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'block_align');
 			var f_type = rocketform.getUiData4('steps_src', f_step, f_id, 'type');
 			var values = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'options');
+			const objArray = Object.values(values);
+				objArray.sort((a, b) => a.order - b.order);
+
+				values = objArray;
 			var stl1_st = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'style_type');
 
 			var input2_check = rocketform.getUiData4('steps_src', f_step, f_id, 'input2');
@@ -19302,7 +21368,7 @@ var uifmsetting;
 							newoptprev = $('#uifm_frm_inp2_templates')
 								.find('.sfdc-radio')
 								.clone();
-							newoptprev.attr('data-inp2-opt-index', index);
+							newoptprev.attr('data-inp2-opt-index', value['id']);
 							newoptprev.find('.uifm-inp2-rdo').prop('checked', parseInt(value['checked']));
 							newoptprev.find('.uifm-inp2-rdo').attr('name', 'uifm_' + f_id + '_opt');
 							newoptprev.find('.uifm-inp2-label').html(value['label']);
@@ -19665,12 +21731,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -20002,12 +22069,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -20319,12 +22387,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -20664,12 +22733,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -21141,12 +23211,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -21734,7 +23805,7 @@ var uifmsetting;
 				},
 				price: {
 					enable_st: '1',
-					lbl_show_st: '1',
+					lbl_show_st: '0',
 					lbl_show_format: '%3Cp%3E(%5Buifm_symbol%5D%20%5Buifm_price%5D%20%5Buifm_currency%5D)%3C%2Fp%3E',
 					color: '#FF0000',
 					font: '{"family":"\'Comic Sans MS\', Arial, sans-serif","name":"Comic Sans MS","classname":"comicsansms"}',
@@ -21776,12 +23847,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -22087,7 +24159,7 @@ var uifmsetting;
 				},
 				price: {
 					enable_st: '1',
-					lbl_show_st: '1',
+					lbl_show_st: '0',
 					lbl_show_format: '%3Cp%3E(%5Buifm_symbol%5D%20%5Buifm_price%5D%20%5Buifm_currency%5D)%3C%2Fp%3E',
 					color: '#FF0000',
 					font: '{"family":"\'Comic Sans MS\', Arial, sans-serif","name":"Comic Sans MS","classname":"comicsansms"}',
@@ -22129,12 +24201,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -22457,12 +24530,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -22845,6 +24919,7 @@ var uifmsetting;
 				field_name: '',
 				type_n: '',
 				input: {
+					levels: 1, 
 					value: 'Type your heading here',
 					size: '14',
 					bold: 0,
@@ -22911,12 +24986,13 @@ var uifmsetting;
 					style: '1',
 					width: '0',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -23467,12 +25543,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -23785,7 +25862,7 @@ var uifmsetting;
 				},
 				price: {
 					enable_st: '1',
-					lbl_show_st: '1',
+					lbl_show_st: '0',
 					lbl_show_format: '%3Cp%3E(%5Buifm_symbol%5D%20%5Buifm_price%5D%20%5Buifm_currency%5D)%3C%2Fp%3E',
 					color: '#FF0000',
 					font: '{"family":"\'Comic Sans MS\', Arial, sans-serif","name":"Comic Sans MS","classname":"comicsansms"}',
@@ -23827,12 +25904,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -24076,6 +26154,10 @@ var uifmsetting;
 			var f_block_align = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'block_align');
 			var f_type = rocketform.getUiData4('steps_src', f_step, f_id, 'type');
 			var values = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'options');
+			const objArray = Object.values(values);
+				objArray.sort((a, b) => a.order - b.order);
+
+				values = objArray;
 			var stl1_st = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'style_type');
 
 			var input2_check = rocketform.getUiData4('steps_src', f_step, f_id, 'input2');
@@ -24094,7 +26176,7 @@ var uifmsetting;
 					case 11:
 						obj.find('.uifm-input2-wrap').append('<select class="sfdc-form-control uifm-input2-opt-main" multiple ></select>');
 						$.each(values, function(index, value) {
-							newoptprev = '<option data-inp2-opt-index="' + index + '" ';
+							newoptprev = '<option data-inp2-opt-index="' + value['id'] + '" ';
 
 							if (parseInt(value['checked']) === 1) {
 								newoptprev += ' selected ';
@@ -24985,12 +27067,13 @@ var uifmsetting;
 					style: '1',
 					width: '0',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -25349,12 +27432,13 @@ var uifmsetting;
 					style: '1',
 					width: '1',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -25723,12 +27807,13 @@ var uifmsetting;
 					style: '1',
 					width: '1',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -26049,7 +28134,7 @@ var uifmsetting;
 				},
 				price: {
 					enable_st: '1',
-					lbl_show_st: '1',
+					lbl_show_st: '0',
 					lbl_show_format: '%3Cp%3E(%5Buifm_symbol%5D%20%5Buifm_price%5D%20%5Buifm_currency%5D)%3C%2Fp%3E',
 					color: '#FF0000',
 					font: '{"family":"\'Comic Sans MS\', Arial, sans-serif","name":"Comic Sans MS","classname":"comicsansms"}',
@@ -26091,12 +28176,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -26342,6 +28428,10 @@ var uifmsetting;
 			var f_block_align = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'block_align');
 			var f_type = rocketform.getUiData4('steps_src', f_step, f_id, 'type');
 			var values = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'options');
+			const objArray = Object.values(values);
+				objArray.sort((a, b) => a.order - b.order);
+
+				values = objArray;
 			var stl1_st = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'style_type');
 
 			var input2_check = rocketform.getUiData4('steps_src', f_step, f_id, 'input2');
@@ -26363,7 +28453,7 @@ var uifmsetting;
 							newoptprev = $('#uifm_frm_inp2_templates')
 								.find('.sfdc-radio')
 								.clone();
-							newoptprev.attr('data-inp2-opt-index', index);
+							newoptprev.attr('data-inp2-opt-index', value['id']);
 							newoptprev.find('.uifm-inp2-rdo').prop('checked', parseInt(value['checked']));
 							newoptprev.find('.uifm-inp2-rdo').attr('name', 'uifm_' + f_id + '_opt');
 							newoptprev.find('.uifm-inp2-label').html(value['label']);
@@ -26737,12 +28827,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -27064,12 +29155,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -27386,12 +29478,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -27703,7 +29796,7 @@ var uifmsetting;
 				},
 				price: {
 					enable_st: '1',
-					lbl_show_st: '1',
+					lbl_show_st: '0',
 					lbl_show_format: '%3Cp%3E(%5Buifm_symbol%5D%20%5Buifm_price%5D%20%5Buifm_currency%5D)%3C%2Fp%3E',
 					color: '#FF0000',
 					font: '{"family":"\'Comic Sans MS\', Arial, sans-serif","name":"Comic Sans MS","classname":"comicsansms"}',
@@ -27745,12 +29838,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -27994,6 +30088,10 @@ var uifmsetting;
 			var f_block_align = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'block_align');
 			var f_type = rocketform.getUiData4('steps_src', f_step, f_id, 'type');
 			var values = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'options');
+			const objArray = Object.values(values);
+				objArray.sort((a, b) => a.order - b.order);
+
+				values = objArray;
 			var stl1_st = rocketform.getUiData5('steps_src', f_step, f_id, 'input2', 'style_type');
 
 			var input2_check = rocketform.getUiData4('steps_src', f_step, f_id, 'input2');
@@ -28012,7 +30110,7 @@ var uifmsetting;
 					case 10:
 						obj.find('.uifm-input2-wrap').append('<select class="sfdc-form-control uifm-input2-opt-main" ></select>');
 						$.each(values, function(index, value) {
-							newoptprev = '<option data-inp2-opt-index="' + index + '" ';
+							newoptprev = '<option data-inp2-opt-index="' + value['id'] + '" ';
 
 							if (parseInt(value['checked']) === 1) {
 								newoptprev += ' selected ';
@@ -28542,7 +30640,7 @@ var uifmsetting;
 				},
 				price: {
 					enable_st: '1',
-					lbl_show_st: '1',
+					lbl_show_st: '0',
 					lbl_show_format: '%3Cp%3E(%5Buifm_symbol%5D%20%5Buifm_price%5D%20%5Buifm_currency%5D)%3C%2Fp%3E',
 					color: '#FF0000',
 					font: '{"family":"\'Comic Sans MS\', Arial, sans-serif","name":"Comic Sans MS","classname":"comicsansms"}',
@@ -28585,12 +30683,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -28882,7 +30981,7 @@ var uifmsetting;
 				},
 				price: {
 					enable_st: '1',
-					lbl_show_st: '1',
+					lbl_show_st: '0',
 					lbl_show_format: '%3Cp%3E(%5Buifm_symbol%5D%20%5Buifm_price%5D%20%5Buifm_currency%5D)%3C%2Fp%3E',
 					color: '#FF0000',
 					font: '{"family":"\'Comic Sans MS\', Arial, sans-serif","name":"Comic Sans MS","classname":"comicsansms"}',
@@ -28925,12 +31024,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -29213,6 +31313,7 @@ var uifmsetting;
 				order_frm: '0',
 				type_n: 'submitbtn',
 				input: {
+					ms_action: 'next', 
 					value: 'Submit button',
 					size: '14',
 					bold: 0,
@@ -29223,6 +31324,12 @@ var uifmsetting;
 					font_st: 1,
 					val_align: '',
 					obj_align: '',
+					padding: { 
+						top: '10', 
+						bottom: '10', 
+						left: '20', 
+						right: '20', 
+					}, 
 				},
 				label: {
 					text: 'Text label',
@@ -29279,12 +31386,13 @@ var uifmsetting;
 					style: '1',
 					width: '0',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -29455,6 +31563,7 @@ var uifmsetting;
 					'.uifm-set-section-inputboxborder',
 					'.uifm-set-section-input-objalign',
 					'.uifm-set-section-helpblock',
+					'.uifm-set-section-input20', 
 					'.uifm-set-section-label-lbltxt',
 					'.uifm-set-section-label-sublbltxt',
 					'.uifm-set-section-input1-txtvalue',
@@ -29464,7 +31573,9 @@ var uifmsetting;
 				$.each(clvars, function() {
 					$(String(this)).removeClass('uifm-hide');
 				});
-
+if (rocketform.isMultiStepActive()) {  
+	$('.uifm-set-section-input-wizard-options').removeClass('uifm-hide'); 
+} 
 				if ('#uiform-settings-tab-1') {
 					$('.sfdc-nav-tabs a[href="#uiform-settings-tab-1"]').sfdc_tab('show');
 				}
@@ -29567,7 +31678,7 @@ var uifmsetting;
 				},
 				price: {
 					enable_st: '1',
-					lbl_show_st: '1',
+					lbl_show_st: '0',
 					lbl_show_format: '%3Cp%3E(%5Buifm_symbol%5D%20%5Buifm_price%5D%20%5Buifm_currency%5D)%3C%2Fp%3E',
 					color: '#FF0000',
 					font: '{"family":"\'Comic Sans MS\', Arial, sans-serif","name":"Comic Sans MS","classname":"comicsansms"}',
@@ -29610,12 +31721,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -29962,12 +32074,13 @@ var uifmsetting;
 					style: '1',
 					width: '1',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -30332,12 +32445,13 @@ var uifmsetting;
 					style: '1',
 					width: '1',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -30679,12 +32793,13 @@ var uifmsetting;
 					block_align: '0',
 					grid_layout: '2',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				validate: {
 					typ_val: '0',
@@ -31036,12 +33151,13 @@ var uifmsetting;
 					style: '1',
 					width: '0',
 				},
-				help_block: {
-					text: 'here your content',
-					show_st: '0',
-					font: '',
-					font_st: '0',
-					pos: '',
+				help_block: { 
+					text: 'here your content', 
+					show_st: '0', 
+					font: '', 
+					font_st: '0', 
+					pos: '', 
+color:'', 
 				},
 				clogic: {
 					show_st: '0',
@@ -31384,7 +33500,6 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 
 						tmp_content_val = encodeURIComponent(tmp_txt_value);
 
-						let tmp_hash = rocketform.getUiData4('calculation', 'variables', index, 'hash');
 						let tmp_new_hash = CryptoJS.MD5(JSON.stringify(tmp_content_val));
 
 
@@ -31445,7 +33560,7 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 						zgfm_back_calc.calc_addNew_onlyPreview(value2['id'], value2['order']);
 					}
 
-					tmp_tab_cont.find('a[data-zgfm-id=' + value2['id'] + ']').html(value2['tab_title']);
+					tmp_tab_cont.find('a[data-zgfm-id=' + value2['id'] + ']').html(zgfm_back_helper.truncateString(value2['tab_title'], 30) );
 					tmp_tab_cont
 						.find('.sfdc-tab-content div[id=zgfm-menu-calc-tab-' + value2['id'] + ']')
 						.find('.uifm_frm_calc_tabtitle')
@@ -31494,7 +33609,7 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 
 				var tmp_val = $(el).val();
 
-				$('#zgfm-tab-calc-sourcecode-wrapper .sfdc-active a[data-zgfm-order=' + index + ']').html(tmp_val);
+				$('#zgfm-tab-calc-sourcecode-wrapper .sfdc-active a[data-zgfm-order=' + index + ']').html(zgfm_back_helper.truncateString(tmp_val, 30));
 
 				rocketform.setUiData4('calculation', 'variables', index, 'tab_title', tmp_val);
 			};
@@ -31547,21 +33662,24 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 
 				var numorder;
 				var is_main;
+				var tabtitleStr;
 				if (parseInt(lenArrs) === 0) {
 					optindex = '0';
 					is_main = '1';
 					numorder = 0;
+					tabtitleStr = 'Main';
 				} else {
 					numorder = parseInt(lenArrs) + 1;
 					optindex = zgfm_back_helper.generateUniqueID(5);
 					is_main = '0';
+					tabtitleStr = 'Optional Var ' + numorder;
 				}
 
 				rocketform.addIndexUiData2('calculation', 'variables', numorder);
 
 				rocketform.setUiData3('calculation', 'variables', numorder, {
 					hash: '',
-					tab_title: 'Optional Var ' + numorder,
+					tab_title: tabtitleStr,
 					id: optindex,
 					is_main: is_main,
 					order: numorder,
@@ -31611,7 +33729,9 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 
 			this.calc_addNew_onlyPreview = function(optindex, numorder) {
 				var tmp_tab = $('#zgfm-tab-calc-sourcecode-wrapper');
-				var tmp_tab_title = 'Optional Var ' + numorder;
+				var tmpCalcRow = rocketform.getUiData3('calculation', 'variables', numorder);
+
+								var tmp_tab_title = tmpCalcRow['tab_title'];
 
 				var tmp_li;
 				var tmp_class;
@@ -31648,77 +33768,121 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 			};
 
 			this.calc_refreshEvents = function() {
-				$('.uiform-wrap #zgfm-tab-calc-sourcecode-wrapper .tabs-left').on('shown.bs.sfdc-tab', function(e) {
-					var tmp_tab_obj = $(e.target).data('zgfm-id');
 
-					var cminst = $('#uifm_frm_calc_content' + tmp_tab_obj).data('CodeMirrorInstance');
+						 						zgfm_back_calc.calc_refreshvars_init();
+						zgfm_back_calc.calc_refreshvars_init2();
+					$('.uiform-wrap #zgfm-tab-calc-sourcecode-wrapper .tabs-left').on('shown.bs.sfdc-tab', function(e) {
+						var tmp_tab_obj = $(e.target).data('zgfm-id');
 
-					cminst.refresh();
-					zgfm_back_calc.calc_refreshvars_init();
-					zgfm_back_calc.calc_refreshvars_init2();
+							var cminst = $('#uifm_frm_calc_content' + tmp_tab_obj).data('CodeMirrorInstance');
 
-					zgfm_back_calc.calc_variables_showusedvars(tmp_tab_obj);
-				});
-			};
+							cminst.refresh();
 
-			this.calc_refreshvars_init = function() {
-				try {
-					var arr_types_allowed = [6, 7, 8, 9, 10, 11, 16, 18, 24, 26, 28, 29, 30, 40, 41, 42];
-					var field = $('#uifm_frm_calc_cmbo_field_var');
-					var var_fields = rocketform.getUiData('steps_src');
 
-					var string_res = '';
-					string_res += '<option data-type="" value="">Choose a field</option>';
-					$.each(var_fields, function(index, value) {
-						$.each(value, function(index2, value2) {
-							if ($.inArray(parseInt(value2.type), arr_types_allowed) >= 0) {
-								string_res += '<option data-uniqueid="' + value2.id + '" data-type="' + value2.type + '" value="' + value2.id + '">' + value2.field_name + '</option>';
+						zgfm_back_calc.calc_variables_showusedvars(tmp_tab_obj);
+					});
+				};
+
+				this.calc_refreshvars_init = function() {
+					try {
+
+
+																	var arr_types_allowed = [6, 7, 8, 9, 10, 11, 16, 18, 24, 26, 28, 29, 30, 40, 41, 42];
+						var field = $('#uifm_frm_calc_cmbo_field_var');
+						var string_res;
+						var var_fields=[];
+
+						 						if (rocketform.isMultiStepActive()) {
+
+														var msobj = rocketform.getInnerVariable('multistepobj');
+
+							 							for (let key in msobj.availableForms) {
+								if (msobj.availableForms.hasOwnProperty(key)) {
+
+									 									for (let key2 in msobj.availableForms[key]['core']['steps_src'][0]) { 
+
+									 										var_fields.push({
+											type: msobj.availableForms[key]['core']['steps_src'][0][key2]['type'],
+											id: msobj.availableForms[key]['core']['steps_src'][0][key2]['id'],
+											field_name: msobj.availableForms[key]['core']['steps_src'][0][key2]['field_name'],
+											form_id: key,
+											form_name: msobj.availableForms[key]['name'],
+										});
+									}
+
+
+																										}
 							}
+							string_res = '';
+						string_res += '<option data-type="" value="">Choose a field</option>';
+						$.each(var_fields, function(index2, value2) {
+
+															if ($.inArray(parseInt(value2.type), arr_types_allowed) >= 0) {
+									string_res += '<option data-form-id="'+ value2.form_id +'" data-uniqueid="' + value2.id + '" data-type="' + value2.type + '" value="' + value2.id + '">' + `${value2.form_name} : ${value2.field_name}` + '</option>';
+								}
+
+													});
+
+												} else { 
+
+													var_fields = rocketform.getUiData('steps_src');
+
+														string_res = '';
+						string_res += '<option data-type="" value="">Choose a field</option>';
+						$.each(var_fields, function(index, value) {
+							$.each(value, function(index2, value2) {
+								if ($.inArray(parseInt(value2.type), arr_types_allowed) >= 0) {
+									string_res += '<option data-uniqueid="' + value2.id + '" data-type="' + value2.type + '" value="' + value2.id + '">' + value2.field_name + '</option>';
+								}
+							});
 						});
-					});
 
-					field.children().remove();
-					field.append(string_res);
-					field.chosen({ width: '100%' });
-					field.trigger('chosen:updated');
-					var tmp_boxs = ['#uifm_frm_calc_cmbo_field_var2_wrapper', '#uifm_frm_calc_cmbo_field_var3_wrapper', '#uifm_frm_calc_cmbo_addvar'];
-					$.each(tmp_boxs, function(index, value) {
-						$(value).hide();
-					});
-				} catch (err) {}
-			};
-			this.calc_refreshvars_init2 = function() {
-				try {
-					var cur_order =
-						$('#zgfm-tab-calc-sourcecode-wrapper')
-							.find('li.sfdc-active a')
-							.attr('data-zgfm-order') || 0;
+												}
 
-					var field = $('#uifm_frm_calc_cmbo_field_var4');
-					var var_fields = rocketform.getUiData2('calculation', 'variables');
 
-					var string_res = '';
-					string_res += '<option data-type="" value="">Choose a variable</option>';
 
-					var tmp_title;
-					for (var i in var_fields) {
-						tmp_title = var_fields[i].tab_title || 'unknown var ' + var_fields[i].order;
-						if (parseInt(var_fields[i].order) > parseInt(cur_order)) {
-							string_res += '<option value="' + var_fields[i].id + '"> ' + tmp_title + '</option>';
+						 													field.children().remove();
+						field.append(string_res);
+						field.chosen({ width: '100%' });
+						field.trigger('chosen:updated');
+						var tmp_boxs = ['#uifm_frm_calc_cmbo_field_var2_wrapper', '#uifm_frm_calc_cmbo_field_var3_wrapper', '#uifm_frm_calc_cmbo_addvar'];
+						$.each(tmp_boxs, function(index, value) {
+							$(value).hide();
+						});
+					} catch (err) {}
+				};
+				this.calc_refreshvars_init2 = function() {
+					try {
+						var cur_order =
+							$('#zgfm-tab-calc-sourcecode-wrapper')
+								.find('li.sfdc-active a')
+								.attr('data-zgfm-order') || 0;
+
+							var field = $('#uifm_frm_calc_cmbo_field_var4');
+						var var_fields = rocketform.getUiData2('calculation', 'variables');
+
+							var string_res = '';
+						string_res += '<option data-type="" value="">Choose a variable</option>';
+
+							var tmp_title;
+						for (var i in var_fields) {
+							tmp_title = var_fields[i].tab_title || 'unknown var ' + var_fields[i].order;
+							if (parseInt(var_fields[i].order) > parseInt(cur_order)) {
+								string_res += '<option value="' + var_fields[i].id + '"> ' + tmp_title + '</option>';
+							}
 						}
-					}
 
-					field.children().remove();
+							field.children().remove();
 
-					field.append(string_res);
-					field.chosen({ width: '100%' });
-					field.trigger('chosen:updated');
+							field.append(string_res);
+						field.chosen({ width: '100%' });
+						field.trigger('chosen:updated');
 
-					$.each('#uifm_frm_calc_cmbo_addvar4', function(index, value) {
-						$(value).hide();
-					});
-				} catch (err) {}
-			};
+							$.each('#uifm_frm_calc_cmbo_addvar4', function(index, value) {
+							$(value).hide();
+						});
+					} catch (err) {}
+				};
 			this.calc_variables_getaction = function() {
 				$('#uifm_frm_calc_cmbo_field_var7_wrapper').hide();
 
@@ -31791,120 +33955,67 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 					.find('textarea')
 					.html(tmp_gen_code);
 			};
-			this.calc_variables_getoption = function() {
-				var rtype = $('#uifm_frm_calc_cmbo_field_var option:selected').data('type');
+			this.calc_variables_getaction = function() {
 				$('#uifm_frm_calc_cmbo_field_var7_wrapper').hide();
 
-				var raction = $('#uifm_frm_calc_cmbo_field_var2 option:selected').val();
-				if (raction) {
-					var tmp_gen_code;
-					var tmp_uniqueid;
-					tmp_uniqueid = $('#uifm_frm_calc_cmbo_field_var option:selected').data('uniqueid');
+				var rtype = $('#uifm_frm_calc_cmbo_field_var option:selected').data('type');
+				if (rtype) {
+					$('#uifm_frm_calc_cmbo_field_var2_wrapper').show();
+					var field = $('#uifm_frm_calc_cmbo_field_var2');
+					field.children().remove();
 
-					$('#uifm_frm_calc_cmbo_field_var7_wrapper').hide();
+					var string_res = '';
+					string_res += '<option value="">Select an option</option>';
 
-					switch (String(raction)) {
-						case 'value':
-							$('#uifm_frm_calc_cmbo_addvar').show();
-							$('#uifm_frm_calc_cmbo_field_var3_wrapper').hide();
-
-							switch (parseInt(rtype)) {
-								case 6:
-								case 28:
-								case 29:
-								case 30:
-								case 8:
-								case 9:
-								case 10:
-								case 11:
-									$('#uifm_frm_calc_cmbo_addvar').hide();
-									$('#uifm_frm_calc_cmbo_field_var7_wrapper').show();
-									$('#uifm_frm_calc_cmbo_field_var7')
-										.val('')
-										.trigger('chosen:updated');
-
-									break;
-							}
-
-							tmp_gen_code = 'fld_' + tmp_uniqueid + '_' + raction;
-
-							$('#uifm_frm_calc_cmbo_addvar')
-								.find('textarea')
-								.html(tmp_gen_code);
-
+					switch (parseInt(rtype)) {
+						case 6:
+						case 7:
+						case 28:
+						case 29:
+						case 30:
+							string_res += '<option value="value">' + zgfm_back_calc.calc_variables_getActName('value') + '</option>';
 							break;
-						case 'price':
-						case 'isChecked':
-						case 'isUnchecked':
-						case 'isFilled':
-						case 'quantity':
-							$('#uifm_frm_calc_cmbo_addvar').show();
-							$('#uifm_frm_calc_cmbo_field_var3_wrapper').hide();
-
-							tmp_gen_code = 'fld_' + tmp_uniqueid + '_' + raction;
-							$('#uifm_frm_calc_cmbo_addvar')
-								.find('textarea')
-								.html(tmp_gen_code);
-
+						case 8:
+						case 9:
+						case 10:
+						case 11:
+							string_res += '<option value="value">' + zgfm_back_calc.calc_variables_getActName('value') + '</option>';
+						case 41:
+						case 42:
+							string_res += '<option value="price">' + zgfm_back_calc.calc_variables_getActName('price') + '</option>';
+							string_res += '<option value="isChecked">' + zgfm_back_calc.calc_variables_getActName('isChecked') + '</option>';
+							string_res += '<option value="isUnchecked">' + zgfm_back_calc.calc_variables_getActName('isUnchecked') + '</option>';
+							string_res += '<option value="optprice">' + zgfm_back_calc.calc_variables_getActName('optprice') + '</option>';
+							string_res += '<option value="optIsChecked">' + zgfm_back_calc.calc_variables_getActName('optIsChecked') + '</option>';
+							string_res += '<option value="optIsUnchecked">' + zgfm_back_calc.calc_variables_getActName('optIsUnchecked') + '</option>';
 							break;
-						case 'optprice':
-						case 'optIsChecked':
-						case 'optIsUnchecked':
-							$('#uifm_frm_calc_cmbo_field_var3_wrapper').show();
 
-							var option = $('#uifm_frm_calc_cmbo_field_var3');
-							option.children().remove();
+						case 16:
+						case 18:
+						case 40:
+							string_res += '<option value="value">' + zgfm_back_calc.calc_variables_getActName('value') + '</option>';
+							string_res += '<option value="price">' + zgfm_back_calc.calc_variables_getActName('price') + '</option>';
+							break;
 
-							var f_step = $('#' + tmp_uniqueid)
-								.closest('.uiform-step-pane')
-								.data('uifm-step');
+						case 24:
 
-							var tmp_opts;
-							switch (parseInt(rtype)) {
-								case 8:
-								case 9:
-								case 10:
-								case 11:
-
-									tmp_opts = rocketform.getUiData5('steps_src', f_step, tmp_uniqueid, 'input2', 'options');
-									if (tmp_opts) {
-										var str_opts = '';
-										str_opts += '<option value=""> Select Option</option>';
-										$.each(tmp_opts, function(index2, value2) {
-											str_opts += '<option value="' + index2 + '">' + value2.label + '</option>';
-										});
-									}
-
-									break;
-								case 41:
-								case 42:
-									tmp_opts = rocketform.getUiData5('steps_src', f_step, tmp_uniqueid, 'input17', 'options');
-									if (tmp_opts) {
-										var str_opts = '';
-										str_opts += '<option value=""> Select Option</option>';
-										$.each(tmp_opts, function(index2, value2) {
-											str_opts += '<option value="' + index2 + '">' + value2.label + '</option>';
-										});
-									}
-
-									break;
-								case 16:
-								case 18:
-								case 40:
-									break;
-							}
-
-							option.append(str_opts);
-							option.chosen({ width: '100%' });
-							option.val('').trigger('chosen:updated');
-							$('#uifm_frm_calc_cmbo_addvar').hide();
-
+						case 26:
+							string_res += '<option value="value">' + zgfm_back_calc.calc_variables_getActName('value') + '</option>';
 							break;
 					}
+
+					field.append(string_res);
+					field.chosen({ width: '100%' });
 				} else {
-					$('#uifm_frm_calc_cmbo_field_var3_wrapper').hide();
-					$('#uifm_frm_calc_cmbo_addvar').hide();
+					$('#uifm_frm_calc_cmbo_field_var2_wrapper').hide();
 				}
+
+				$('#uifm_frm_calc_cmbo_field_var2')
+					.val('')
+					.trigger('chosen:updated');
+
+				$('#uifm_frm_calc_cmbo_field_var3_wrapper').hide();
+				$('#uifm_frm_calc_cmbo_addvar').hide();
 			};
 
 			this.calc_variables_dataTypeOption = function() {
@@ -31912,9 +34023,17 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 				var raction = $('#uifm_frm_calc_cmbo_field_var2 option:selected').val();
 				var tmp_gen_code;
 				var tmp_uniqueid;
-				tmp_uniqueid = $('#uifm_frm_calc_cmbo_field_var option:selected').data('uniqueid');
 
-				tmp_gen_code = 'fld_' + tmp_uniqueid + '_' + raction;
+								let optionSelected = $('#uifm_frm_calc_cmbo_field_var option:selected');
+
+								tmp_uniqueid = optionSelected.data('uniqueid');
+
+								if (rocketform.isMultiStepActive()) {
+					tmp_gen_code = 'fld_' + optionSelected.data('form-id') + '_' + tmp_uniqueid + '_' + raction;
+				} else { 
+					tmp_gen_code = 'fld_' + tmp_uniqueid + '_' + raction;
+				}
+
 
 				$('#uifm_frm_calc_cmbo_addvar').show();
 				$('#uifm_frm_calc_cmbo_field_var3_wrapper').hide();
@@ -31949,12 +34068,20 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 
 					$('#uifm_frm_calc_cmbo_addvar').show();
 
-					tmp_uniqueid = $('#uifm_frm_calc_cmbo_field_var option:selected').data('uniqueid');
-					rtype = $('#uifm_frm_calc_cmbo_field_var option:selected').data('type');
-					tmp_action = $('#uifm_frm_calc_cmbo_field_var2 option:selected').val();
-					tmp_opt_index = $('#uifm_frm_calc_cmbo_field_var3 option:selected').val();
 
-					tmp_gen_code = 'fld_' + tmp_uniqueid + '_' + tmp_action + '_' + tmp_opt_index;
+															let optionSelected = $('#uifm_frm_calc_cmbo_field_var option:selected');
+
+					tmp_uniqueid = optionSelected.data('uniqueid');
+					rtype = optionSelected.data('type');
+					tmp_action = optionSelected.val();
+					tmp_opt_index = optionSelected.val();
+
+						if (rocketform.isMultiStepActive()) {
+						tmp_gen_code = 'fld_' + optionSelected.data('form-id') + '_' + tmp_uniqueid + '_' + tmp_action + '_' + tmp_opt_index;
+					} else { 
+						tmp_gen_code = 'fld_' + tmp_uniqueid + '_' + tmp_action + '_' + tmp_opt_index;
+					}
+
 					$('#uifm_frm_calc_cmbo_addvar')
 						.find('textarea')
 						.html(tmp_gen_code);
@@ -32041,11 +34168,11 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 				var tmp_obj = $('#zgfm-tbl-calc-variables');
 				var tmp_vars = rocketform.getUiData2('calculation', 'variables');
 
-				var tmp_str;
+				 				var tmp_str;
 				$.each(tmp_vars, function(key, value) {
 					tmp_str += '<tr>';
 					tmp_str += '<td> ' + value['tab_title'] + '</td>';
-					tmp_str += '<td><textarea style="width: 284px;" onclick="this.select();">[uifm_var opt="calc" atr1="' + key + '"]</textarea></td>';
+					tmp_str += '<td><textarea style="width: 284px;" onclick="this.select();">[uifm_var opt="calc" atr1="' + value['id'] + '"]</textarea></td>';
 					tmp_str += '</tr>';
 				});
 
@@ -32268,7 +34395,7 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 				var tmp_field_detail = {};
 				tmp_field_detail['field'] = value;
 
-				var tmp_content_front = rocketform.getInnerVariable('calculation_cont_front');
+				 				var tmp_content_front = rocketform.getInnerVariable('calculation_cont_front');
 				var replaceAll = function(str, find, replace) {
 					return str.replace(new RegExp(find, 'g'), replace);
 				};
@@ -32277,28 +34404,48 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 				};
 
 				var tmp_field_val = value.split('_');
-				tmp_field_detail['unique_id'] = tmp_field_val[1];
 
-				var tmp_field_action = (tmp_field_detail['action'] = tmp_field_val[2]);
+								var tmpUniqueId, tmpAction, tmpDataType, tmpFormId;
+				if (rocketform.isMultiStepActive()) {
+					tmpFormId = tmp_field_val[1];
+					tmpUniqueId = tmp_field_val[2];
+					tmpAction = tmp_field_val[3];
+					tmpDataType = tmp_field_val[4];
+				} else { 
+					tmpFormId = $('#uifm_frm_main_id').val();
+					tmpUniqueId = tmp_field_val[1];
+					tmpAction = tmp_field_val[2];
+					tmpDataType = tmp_field_val[3];
+				}
 
-				var tmp_field_datatype = tmp_field_val[3];
+				 				tmp_field_detail['unique_id'] = tmpUniqueId;
+
+				var tmp_field_action = (tmp_field_detail['action'] = tmpAction);
+
+				var tmp_field_datatype = tmpDataType;
 
 				var tmp_function = 'zgfm_front_calc.calc_field_get(%vars%)';
 				var tmp_params = [];
-				tmp_params.push($('#uifm_frm_main_id').val());
+
+			 				tmp_params.push(tmpFormId);
 				tmp_params.push(tmp_field_detail['unique_id']);
 				tmp_params.push(tmp_field_detail['action']);
 				var tmp_str;
 				var tmp_option = '';
 
-				if ($('#' + tmp_field_detail['unique_id']).length) {
-					var tmp_field_type = $('#' + tmp_field_detail['unique_id']).attr('data-typefield');
+								if (rocketform.isMultiStepActive()) {
+					let msobj = rocketform.getInnerVariable('multistepobj'); 
 
-					var tmp_step_num = $('#' + tmp_field_detail['unique_id'])
-						.closest('.uiform-step-pane')
-						.data('uifm-step');
+										tmp_field_type = msobj.availableForms[tmpFormId]['core']['steps_src'][0][tmpUniqueId]['type']; 
 
-					switch (parseInt(tmp_field_type)) {
+									} else { 
+					tmp_field_type = $('#' + tmp_field_detail['unique_id']).attr('data-typefield');
+				}
+
+								if (parseInt(tmp_field_type)> 0) {
+					var tmp_field_type;
+
+					 					switch (parseInt(tmp_field_type)) {
 						case 6:
 						case 28:
 						case 29:
@@ -32316,7 +34463,7 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 								case 'optprice':
 								case 'optIsChecked':
 								case 'optIsUnchecked':
-									var tmp_field_opt = tmp_field_val[3];
+									var tmp_field_opt = tmpDataType;
 									tmp_option = tmp_field_opt;
 									tmp_params.push(tmp_option);
 									break;
@@ -32338,7 +34485,8 @@ if (!$uifm.isFunction(zgfm_back_calc)) {
 
 					tmp_str = "'" + tmp_params.join("','") + "'";
 					tmp_function = replaceAll(tmp_function, '%vars%', tmp_str);
-					tmp_content_front = replaceAll2(tmp_content_front, tmp_field_detail['field'], tmp_function);
+
+										tmp_content_front = replaceAll2(tmp_content_front, tmp_field_detail['field'], tmp_function);
 				}
 
 				rocketform.setInnerVariable('calculation_cont_front', tmp_content_front);
@@ -32385,7 +34533,7 @@ if (!$uifm.isFunction(zgfm_back_err)) {
 					for (var i2 in tmp_arr[i]) {
 						tmp_fld_exist = $('#zgpb-editor-container').find('#' + tmp_arr[i][i2]['id']).length;
 						if (tmp_fld_exist == 0) {
-							result_err.push(tmp_arr[i][i2]['id']);
+							result_err.push({ msg: 'array to html', id: tmp_arr[i][i2]['id'] }); 
 						}
 					}
 				}
@@ -32399,7 +34547,10 @@ if (!$uifm.isFunction(zgfm_back_err)) {
 				$.each(tmp_arr2, function(index, element) {
 					if (zgfm_back_err.check_IdIsInArray(tmp_arr, $(element).attr('id'))) {
 					} else {
-						result_err.push($(element).attr('id'));
+						result_err.push({ 
+							msg: 'html to array', 
+							id: $(element).attr('id'), 
+						}); 
 					}
 				});
 
@@ -32809,22 +34960,13 @@ if (!$uifm.isFunction(zgfm_back_fld_options)) {
 
 				$('#uifm-field-opt-content .uiform-tab-content').height(tmp_height);
 
-				let tmp_addon_arr = uiform_vars.addon;
 
-				var tmp_function;
-				var tmp_controller;
-
-				for (var property1 in tmp_addon_arr) {
-					if ('getData_toFields' === String(property1)) {
-						for (var property2 in tmp_addon_arr[property1]) {
-							for (var property3 in tmp_addon_arr[property1][property2]) {
-								tmp_controller = tmp_addon_arr[property1][property2][property3]['controller'];
-								tmp_function = tmp_addon_arr[property1][property2][property3]['function'];
-								window[tmp_controller][tmp_function](step_pane, id);
-							}
-						}
-					}
-				}
+				if (rocketform.isMultiStepActive()) {  
+					let msobj = rocketform.getInnerVariable('multistepobj');  
+					wp.hooks.doAction('zgfm.getData_toFields', step_pane, id, msobj.activeFormId);  
+				} else {  
+					wp.hooks.doAction('zgfm.getData_toFields', step_pane, id, $('#uifm_frm_main_id').val());  
+				} 
 
 				var pickfield = $('#' + id);
 
@@ -32937,7 +35079,16 @@ if (!$uifm.isFunction(zgfm_back_general)) {
 			var zgfm_variable = [];
 			zgfm_variable.innerVars = {};
 			zgfm_variable.externalVars = {};
-
+			this.setInnerVariable = function(name, value) { 
+				zgfm_variable.innerVars[name] = value; 
+			}; 
+			this.getInnerVariable = function(name) { 
+				if (zgfm_variable.innerVars[name]) { 
+					return zgfm_variable.innerVars[name]; 
+				} else { 
+					return ''; 
+				} 
+			}; 
 			this.initialize = function() {};
 
 			this.formslist_search_refresh = function() {
@@ -33259,6 +35410,323 @@ if (!$uifm.isFunction(zgfm_back_general)) {
 					},
 				});
 			};
+
+						this.template_loadTemplate = function(element, slug) { 
+				let button = $(element); 
+				button.prop('disabled', true).addClass('disabled'); 
+				button.find('.loading-icon').show(); 
+
+ 				$.ajax({ 
+					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_load_import_template_form', 
+					method: 'POST', 
+					data: { 
+						action: 'rocket_fbuilder_import_template_form', 
+						page: 'zgfm_form_builder', 
+						zgfm_security: uiform_vars.ajax_nonce, 
+						slug: slug,
+						csrf_field_name: uiform_vars.csrf_field_name, 
+					}, 
+					success: function(response) { 
+						setTimeout(function() { 
+							window.location.href = response.redirect_url; 
+						}, 2000); 
+					}, 
+					error: function() { 
+						button.prop('disabled', false).removeClass('disabled'); 
+						button.find('.loading-icon').hide(); 
+						rocketform.importForm_onfailPopup(); 
+					}, 
+				}); 
+			}; 
+			this.template_multiple_blank = function() {  
+				window.location.href = `${uiform_vars.url_admin}formbuilder/forms/create_uiform?is_multistep=yes`;  
+			};  
+			this.template_single_blank = function() {  
+				window.location.href = `${uiform_vars.url_admin}formbuilder/forms/create_uiform`;  
+			}; 
+
+ 			this.template_selectTemplate = function(element, index) { 
+				let el = $(element); 
+				const containerSelector = el.closest('.template-selector'); 
+				const containerPreview = containerSelector.find('.preview'); 
+
+ 				let type = containerSelector.attr('data-type'); 
+				let chosenThumbnail; 
+				if (String(type) === 'multiple') { 
+					chosenThumbnail = this.getInnerVariable('templates_multiple_data')[index]; 
+				} else { 
+					chosenThumbnail = this.getInnerVariable('templates_single_data')[index]; 
+				} 
+
+ 				containerPreview.show(); 
+				var imageSrc = chosenThumbnail.image || chosenThumbnail.thumbnail; 
+
+ 				containerPreview.find('.card-title').html(chosenThumbnail.name); 
+				containerPreview.find('.card-description').html(chosenThumbnail.description); 
+				containerPreview.find('.card-button').attr('onclick', `zgfm_back_general.template_loadTemplate(this,'${chosenThumbnail.slug}')`); 
+
+ 				const previewImage = containerPreview.find('img').first(); 
+				gsap.to(previewImage, { 
+					opacity: 0, 
+					duration: 0.5, 
+					onComplete: function() { 
+						previewImage.attr('src', imageSrc); 
+
+						 						gsap.to(previewImage, { 
+							opacity: 1, 
+							duration: 0.5, 
+						}); 
+					}, 
+				}); 
+
+ 				if (chosenThumbnail.hasOwnProperty('image_backend')) { 
+					var imageSrc2 = chosenThumbnail.image_backend; 
+
+ 					const previewImage2 = containerPreview.find('img').last(); 
+					gsap.to(previewImage2, { 
+						opacity: 0, 
+						duration: 0.5, 
+						onComplete: function() { 
+							previewImage2.attr('src', imageSrc2); 
+							gsap.to(previewImage2, { 
+								opacity: 1, 
+								duration: 0.5, 
+							}); 
+						}, 
+					}); 
+				} 
+			}; 
+			this.template_selector = function() { 
+				const cards = $('.option-card'); 
+				const templateSelectors = $('.template-selector'); 
+				var templateMultipleArr = [ 
+					{ 
+						name: 'Employment', 
+						description: `This example shows a multi-step form with several conditional fields based on user input. The form adapts dynamically to show or hide fields and steps as needed, providing a tailored experience for the user.`, 
+						image_animated: '', 
+						image: `${uiform_vars.url_plugin}/assets/backend/image/templates/ms_employment_front.png`, 
+						image_backend: `${uiform_vars.url_plugin}/assets/backend/image/templates/ms_employment_backend.png`, 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/ms_employment_front.png`, 
+						slug: `ms_employment`, 
+					}, 
+					{ 
+						name: 'Website calculator', 
+						description: `This example shows a multi-step form with several conditional fields based on user input. The form adapts dynamically to show or hide fields and steps as needed, providing a tailored experience for the user.`, 
+						image_animated: '',
+						image: `${uiform_vars.url_plugin}/assets/backend/image/templates/ms_websitecalc_front.png`, 
+						image_backend: `${uiform_vars.url_plugin}/assets/backend/image/templates/ms_websitecalc_backend.png`, 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/ms_websitecalc_front.png`, 
+						slug: `ms_websitecalc`, 
+					}, 
+				]; 
+				var templateSingleArr = [ 
+					{ 
+						name: 'Online Event Registration', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/onlineeventregistration.png`, 
+						slug: `onlineeventregistration`, 
+					}, 
+					{ 
+						name: 'Reservation Request Form', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/reservationrequest.png`, 
+						slug: `reservationrequest`, 
+					}, 
+					{ 
+						name: 'Purchase Order - Point Of Sale', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/purchaseorder.png`, 
+						slug: `purchaseorder`, 
+					}, 
+					{ 
+						name: 'Website Design Request', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/websitedesignrequest.png`, 
+						slug: `websitedesignrequest`, 
+					}, 
+
+					 					{ 
+						name: 'Order form', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/orderform.png`, 
+						slug: `orderform`, 
+					}, 
+					{ 
+						name: 'Wedding planner', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/weddingplanner.png`, 
+						slug: `weddingplanner`, 
+					},
+					{ 
+						name: 'Conditional Logic', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/conditionallogic.png`, 
+						slug: `conditionallogic`, 
+					},
+					{ 
+						name: 'Loan payment calculator', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/loanpaymentcalculator.png`, 
+						slug: `loanpaymentcalculator`, 
+					}, 
+					{ 
+						name: 'Multivariable calculator', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/multivariablecalc.png`, 
+						slug: `multivariablecalc`, 
+					}, 
+				]; 
+				if (parseInt(uiform_vars.app_is_lite) !== 1) {
+					templateSingleArr.push({
+						name: 'Wizard form',
+						description: '',
+						image_animated: '',
+						image: '',
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/wizardform.png`,
+						slug: `wizardform`,
+					});
+				}
+				if (parseInt(uiform_vars.is_debug) === 1) { 
+					templateSingleArr.push({ 
+						name: 'All fields', 
+						description: '', 
+						image_animated: '', 
+						image: '', 
+						thumbnail: `${uiform_vars.url_plugin}/assets/backend/image/templates/allfields.png`, 
+						slug: `allfields`, 
+					}); 
+				} 
+
+				let cardSingleOptions = $('.single-template .thumbnails'); 
+
+ 				var carSingleOptionsContent = ''; 
+				templateSingleArr.forEach((element, index) => { 
+					carSingleOptionsContent += ` 
+						 <div class="tiny-card" onclick="zgfm_back_general.template_selectTemplate(this, ${index})"> 
+				          <div class="zgfm-thumbnail"> 
+				             
+				            <img src="${element.thumbnail}" alt="${element.name}"  > 
+				          </div> 
+				          <div class="title"> 
+				             
+				            <h3>${element.name}</h3> 
+				          </div> 
+				        </div> 
+					`; 
+				}); 
+				cardSingleOptions.append(carSingleOptionsContent); 
+
+ 				this.setInnerVariable('templates_single_data', templateSingleArr); 
+
+				let cardMultipleOptions = $('.multi-template .thumbnails'); 
+
+ 				var carSingleOptionsContent = ''; 
+				templateMultipleArr.forEach((element, index) => { 
+					carSingleOptionsContent += ` 
+						 <div class="tiny-card" onclick="zgfm_back_general.template_selectTemplate(this, ${index})"> 
+				          <div class="zgfm-thumbnail"> 
+				             
+				            <img src="${element.thumbnail}" alt="${element.name}"  > 
+				          </div> 
+				          <div class="title"> 
+				             
+				            <h3>${element.name}</h3> 
+				          </div> 
+				        </div> 
+					`; 
+				}); 
+				cardMultipleOptions.append(carSingleOptionsContent); 
+
+ 				this.setInnerVariable('templates_multiple_data', templateMultipleArr); 
+
+ 				cards.on('mouseenter', function() { 
+					const card = $(this); 
+					if (!card.hasClass('selected')) { 
+						gsap.to(card, { 
+							scale: 1.05, 
+							boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.2)', 
+							duration: 0.3, 
+						}); 
+					} 
+				}); 
+
+ 				cards.on('mouseleave', function() { 
+					const card = $(this); 
+					if (!card.hasClass('selected')) { 
+						gsap.to(card, { 
+							scale: 1, 
+							boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)', 
+							duration: 0.3, 
+						}); 
+					} 
+				}); 
+
+ 				cards.on('click', function() { 
+					const card = $(this); 
+					cards.each(function() { 
+						const c = $(this); 
+						if (!c.is(card)) { 
+							c.removeClass('selected').addClass('grayed-out'); 
+						} 
+					}); 
+					card.removeClass('grayed-out').addClass('selected'); 
+
+ 					const templateType = card.data('template'); 
+					const targetSelector = $(`.${templateType}-template`); 
+
+ 					templateSelectors.each(function() { 
+						const selector = $(this); 
+						if (!selector.is(targetSelector)) { 
+							gsap.to(selector, { 
+								opacity: 0, 
+								height: 0, 
+								display: 'none', 
+								duration: 0.3, 
+							}); 
+						} 
+					}); 
+
+ 					gsap.to(targetSelector, { 
+						display: 'block', 
+						opacity: targetSelector.css('opacity') === '1' ? 0 : 1, 
+						height: targetSelector.css('opacity') === '1' ? 0 : 'auto', 
+						duration: 0.5, 
+					}); 
+
+ 					gsap.to(card, { 
+						duration: 0.5, 
+					}); 
+				}); 
+
+
+ 				$('.thumbnails img').on('click', function() { 
+					const img = $(this); 
+					gsap.to(img, { 
+						scale: 1.2, 
+						duration: 0.2, 
+						yoyo: true, 
+						repeat: 1, 
+					}); 
+				}); 
+			}; 
 		};
 		window.zgfm_back_general = zgfm_back_general = $.zgfm_back_general = new zgfm_back_general();
 	})($uifm, window);
@@ -33278,7 +35746,12 @@ if (!$uifm.isFunction(zgfm_back_helper)) {
 			zgfm_variable.externalVars = {};
 
 			this.initialize = function() {};
-
+			this.truncateString = function(str, num) {
+				if (str.length <= num) {
+					return str;
+				}
+				return str.slice(0, num) + '...';
+			};
 			this.length_obj = function(obj) {
 				var count = 0;
 				for (var p in obj) {
@@ -33652,7 +36125,31 @@ if (!$uifm.isFunction(zgfm_back_input2)) {
 
 					rocketform.setUiData5('steps_src', f_step, f_id, 'input2', 'options', {});
 					rocketform.setUiData5('steps_src', f_step, f_id, 'input2', 'options', result2);
-				} catch (error) {
+
+					switch (parseInt(f_type)) {
+						case 8:
+							$('#' + f_id)
+								.data('uiform_radiobtn')
+								.input2settings_preview_genAllOptions();
+							break;
+						case 9:
+							$('#' + f_id)
+								.data('uiform_checkbox')
+								.input2settings_preview_genAllOptions();
+							break;
+						case 10:
+							$('#' + f_id)
+								.data('uiform_select')
+								.input2settings_preview_genAllOptions();
+							break;
+						case 11:
+							$('#' + f_id)
+								.data('uiform_multiselect')
+								.input2settings_preview_genAllOptions();
+							break;
+					}
+
+									} catch (error) {
 					console.error(error);
 				}
 			};
@@ -35670,23 +38167,81 @@ $uifm(document).ready(function($) {
 	};
 });
 
-window.wp = window.wp || {};
-(function($) {
-	wp.template = _.memoize(function(id) {
-		var compiled,
-			options = {
-				evaluate: /<#([\s\S]+?)#>/g,
-				interpolate: /\{\{\{([\s\S]+?)\}\}\}/g,
-				escape: /\{\{([^\}]+?)\}\}(?!\})/g,
-				variable: 'data',
-			};
+window.wp = window.wp || {}; 
 
-		return function(data) {
-			compiled = compiled || _.template($('#tmpl-' + id).html(), options);
-			return compiled(data);
-		};
-	});
-})($uifm);
+ (function($) { 
+	var hooks = { 
+		actions: {}, 
+		filters: {}, 
+	}; 
+
+ 	function addHook(hookType, hookName, callback, priority) { 
+		if (!hooks[hookType][hookName]) { 
+			hooks[hookType][hookName] = []; 
+		} 
+		hooks[hookType][hookName].push({ callback: callback, priority: priority || 10 }); 
+		hooks[hookType][hookName].sort(function(a, b) { 
+			return a.priority - b.priority; 
+		}); 
+	} 
+
+ 	function removeHook(hookType, hookName, callback) { 
+		if (!hooks[hookType][hookName]) { 
+			return; 
+		} 
+		hooks[hookType][hookName] = hooks[hookType][hookName].filter(function(hook) { 
+			return hook.callback !== callback; 
+		}); 
+	} 
+
+ 	function runHooks(hookType, hookName, value, args) { 
+		if (!hooks[hookType][hookName]) { 
+			return value; 
+		} 
+		hooks[hookType][hookName].forEach(function(hook) { 
+			value = hook.callback.apply(null, [value].concat(args)); 
+		}); 
+		return value; 
+	} 
+
+ 	wp.hooks = { 
+		addAction: function(hookName, namespace, callback, priority) { 
+			addHook('actions', hookName, callback, priority); 
+		}, 
+		addFilter: function(hookName, namespace, callback, priority) { 
+			addHook('filters', hookName, callback, priority); 
+		}, 
+		doAction: function(hookName, value) { 
+			var args = Array.prototype.slice.call(arguments, 2); 
+			runHooks('actions', hookName, value, args); 
+		}, 
+		applyFilters: function(hookName, value) { 
+			var args = Array.prototype.slice.call(arguments, 2); 
+			return runHooks('filters', hookName, value, args); 
+		}, 
+		removeAction: function(hookName, callback) { 
+			removeHook('actions', hookName, callback); 
+		}, 
+		removeFilter: function(hookName, callback) { 
+			removeHook('filters', hookName, callback); 
+		}, 
+	}; 
+
+	wp.template = _.memoize(function(id) { 
+		var compiled, 
+			options = { 
+				evaluate: /<#([\s\S]+?)#>/g, 
+				interpolate: /\{\{\{([\s\S]+?)\}\}\}/g, 
+				escape: /\{\{([^\}]+?)\}\}(?!\})/g, 
+				variable: 'data', 
+			}; 
+
+ 		return function(data) { 
+			compiled = compiled || _.template($('#tmpl-' + id).html(), options); 
+			return compiled(data); 
+		}; 
+	}); 
+})($uifm); 
 
 $uifm(document).ready(function($) {
 	$('input,textarea').attr('autocomplete', 'off');
@@ -35830,9 +38385,13 @@ $uifm(document).ready(function($) {
 
 	});
 
-	$(document).on('change keyup focus keypress', '#uifm-popup-setfname', function(e) {
-		var f_val = $(this).val();
-		$('#uifm_frm_main_title').val(f_val);
+	$(document).on('change keyup focus keypress', '#uifm-popup-setfname', function(e) { 
+		var f_val = $(this).val(); 
+		$('#uifm_frm_main_title').val(f_val); 
+		if (f_val) { 
+			var titleObj = $('#uifm-popup-setfname'); 
+			titleObj.tooltip('destroy'); 
+		} 
 	});
 
 	$(document).on('change', '#uiform-settings-tab3-4 .uifm-f-setoption-st', function(e) {
@@ -35934,7 +38493,11 @@ $uifm(document).ready(function($) {
 					.find('input')
 					.val();
 				if (f_val) {
-					rocketform.setUiData3(main_sec, f_sec, f_opt, f_val);
+					if (rocketform.isMultiStepActive()) { 
+						rocketform.mm_setUiData3(main_sec, f_sec, f_opt, f_val); 
+					} else { 
+						rocketform.setUiData3(main_sec, f_sec, f_opt, f_val); 
+					} 
 					var obj_field = $('.uiform-preview-base');
 					if (obj_field) {
 						rocketform.setDataOptToPrevForm(obj_field, main_sec, f_sec + '-' + f_opt, f_val);
@@ -35985,7 +38548,12 @@ $uifm(document).ready(function($) {
 		rocketform.guidedtour_showTextOnPreviewPane(false);
 		rocketform.wizardtab_enableStatus();
 	});
-
+$('.uifm_frm_pbar_st_event').on('switchChange.bootstrapSwitchZgpb', function(event, state) { 
+	rocketform.getInnerVariable('multistepobj').progresstab_enableStatus(); 
+}); 
+$('.uifm_frm_pbar_cost_st_event').on('switchChange.bootstrapSwitchZgpb', function(event, state) { 
+	rocketform.getInnerVariable('multistepobj').progresstab_cost_enableStatus(); 
+}); 
 	$('#uiform-settings-tab3-2 .switch-field,#uiform-settings-tab3-4 .switch-field').on('switchChange.bootstrapSwitchZgpb', function(event, state) {
 		var store = $(this).data('form-store');
 		var main_sec = $(this).data('form-msec');
@@ -35993,14 +38561,25 @@ $uifm(document).ready(function($) {
 		var f_sec = f_store[0];
 		var f_opt = f_store[1];
 		var f_val = state ? 1 : 0;
-		switch (main_sec) {
-			case 'skin':
-				rocketform.setUiData3(main_sec, f_sec, f_opt, f_val);
-				break;
-			case 'summbox':
-				rocketform.setUiData3(main_sec, f_sec, f_opt, f_val);
-				break;
-		}
+		if (rocketform.isMultiStepActive()) { 
+			let msobj = rocketform.getInnerVariable('multistepobj'); 
+
+ 			switch (main_sec) { 
+				case 'skin': 
+				case 'summbox': 
+					msobj.multistepSettings[main_sec][f_sec][f_opt] = f_val; 
+					break; 
+			} 
+		} else { 
+			switch (main_sec) { 
+				case 'skin': 
+					rocketform.setUiData3(main_sec, f_sec, f_opt, f_val); 
+					break; 
+				case 'summbox': 
+					rocketform.setUiData3(main_sec, f_sec, f_opt, f_val); 
+					break; 
+			} 
+		} 
 
 		var obj_field = $('.uiform-preview-base');
 		if (obj_field) {
@@ -36250,7 +38829,6 @@ $uifm(document).ready(function($) {
 
 	rocketform.wizardtab_tabManageEvt();
 
-
 	$('.uiform-wrap a[data-toggle="sfdc-tab"]').on('shown.bs.sfdc-tab', function(e) {
 		rocketform.previewfield_hideAllPopOver();
 	});
@@ -36269,17 +38847,26 @@ $uifm(document).ready(function($) {
 		let tmp_var = $('#zgfm-tab-calc-sourcecode-wrapper .tabs-left')
 			.find('li.sfdc-active a')
 			.attr('data-zgfm-id');
+		if ($('#uifm_frm_calc_content' + tmp_var).length) {
+			var cminst = $('#uifm_frm_calc_content' + tmp_var).data('CodeMirrorInstance');
+			if (cminst) {
+				cminst.refresh();
+			}
 
-		var cminst = $('#uifm_frm_calc_content' + tmp_var).data('CodeMirrorInstance');
-		if (cminst) {
-			cminst.refresh();
+			zgfm_back_calc.calc_refreshvars_init();
+			zgfm_back_calc.calc_refreshvars_init2();
+
+			zgfm_back_calc.calc_table_refreshCodes();
 		}
-		zgfm_back_calc.calc_refreshvars_init();
-		zgfm_back_calc.calc_refreshvars_init2();
 
-		zgfm_back_calc.calc_table_refreshCodes();
+		zgfm_back_calc.calc_refreshEvents();
 	});
-	zgfm_back_calc.calc_refreshEvents();
+
+
+			$('.uiform-wrap .uiform-settings-email').on('shown.bs.sfdc-tab', function (e) { 
+
+			zgfm_back_calc.calc_table_refreshCodes();
+	});
 
 
 	$('#uifm_frm_email_usr_recipient').on('change', function(e) {
@@ -36501,3 +39088,4797 @@ function uifm_validate_field(arr1, arr2) {
 
 	return arr3;
 }
+
+class Drawflow {
+	constructor(container, render = null, parent = null) {
+		this.events = {};
+		this.container = container;
+		this.precanvas = null;
+		this.nodeId = 1;
+		this.ele_selected = null;
+		this.node_selected = null;
+		this.drag = false;
+		this.reroute = false;
+		this.reroute_fix_curvature = false;
+		this.curvature = 0.5;
+		this.reroute_curvature_start_end = 0.5;
+		this.reroute_curvature = 0.5;
+		this.reroute_width = 6;
+		this.drag_point = false;
+		this.editor_selected = false;
+		this.connection = false;
+		this.connection_ele = null;
+		this.connection_selected = null;
+		this.canvas_x = 0;
+		this.canvas_y = 0;
+		this.pos_x = 0;
+		this.pos_x_start = 0;
+		this.pos_y = 0;
+		this.pos_y_start = 0;
+		this.mouse_x = 0;
+		this.mouse_y = 0;
+		this.line_path = 5;
+		this.first_click = null;
+		this.force_first_input = false;
+		this.draggable_inputs = true;
+		this.useuuid = false;
+		this.parent = parent;
+
+		this.noderegister = {};
+		this.render = render;
+		this.drawflow = { drawflow: { Home: { data: {} } } };
+		this.module = 'Home';
+		this.editor_mode = 'edit';
+		this.zoom = 1;
+		this.zoom_max = 1.6;
+		this.zoom_min = 0.5;
+		this.zoom_value = 0.1;
+		this.zoom_last_value = 1;
+
+		this.evCache = new Array();
+		this.prevDiff = -1;
+	}
+	showExport() {
+		console.log(JSON.stringify(this.export(), null, 4));
+	}
+	start() {
+		this.container.classList.add('parent-drawflow');
+		this.container.tabIndex = 0;
+		this.precanvas = document.createElement('div');
+		this.precanvas.classList.add('drawflow');
+		this.container.appendChild(this.precanvas);
+
+		this.container.addEventListener('mouseup', this.dragEnd.bind(this));
+		this.container.addEventListener('mousemove', this.position.bind(this));
+		this.container.addEventListener('mousedown', this.click.bind(this));
+
+		this.container.addEventListener('touchend', this.dragEnd.bind(this));
+		this.container.addEventListener('touchmove', this.position.bind(this));
+		this.container.addEventListener('touchstart', this.click.bind(this));
+
+		this.container.addEventListener('contextmenu', this.contextmenu.bind(this));
+		this.container.addEventListener('keydown', this.key.bind(this));
+
+		this.container.addEventListener('wheel', this.zoom_enter.bind(this));
+		this.container.addEventListener('input', this.updateNodeValue.bind(this));
+
+		this.container.addEventListener('dblclick', this.dblclick.bind(this));
+		this.container.onpointerdown = this.pointerdown_handler.bind(this);
+		this.container.onpointermove = this.pointermove_handler.bind(this);
+		this.container.onpointerup = this.pointerup_handler.bind(this);
+		this.container.onpointercancel = this.pointerup_handler.bind(this);
+		this.container.onpointerout = this.pointerup_handler.bind(this);
+		this.container.onpointerleave = this.pointerup_handler.bind(this);
+
+		this.load();
+	}
+
+	pointerdown_handler(ev) {
+		this.evCache.push(ev);
+	}
+
+	pointermove_handler(ev) {
+		for (var i = 0; i < this.evCache.length; i++) {
+			if (ev.pointerId == this.evCache[i].pointerId) {
+				this.evCache[i] = ev;
+				break;
+			}
+		}
+
+		if (this.evCache.length == 2) {
+			var curDiff = Math.abs(this.evCache[0].clientX - this.evCache[1].clientX);
+
+			if (this.prevDiff > 100) {
+				if (curDiff > this.prevDiff) {
+
+					this.zoom_in();
+				}
+				if (curDiff < this.prevDiff) {
+					this.zoom_out();
+				}
+			}
+			this.prevDiff = curDiff;
+		}
+	}
+
+	pointerup_handler(ev) {
+		this.remove_event(ev);
+		if (this.evCache.length < 2) {
+			this.prevDiff = -1;
+		}
+	}
+	remove_event(ev) {
+		for (var i = 0; i < this.evCache.length; i++) {
+			if (this.evCache[i].pointerId == ev.pointerId) {
+				this.evCache.splice(i, 1);
+				break;
+			}
+		}
+	}
+	load() {
+		for (var key in this.drawflow.drawflow[this.module].data) {
+			this.addNodeImport(this.drawflow.drawflow[this.module].data[key], this.precanvas);
+		}
+
+		if (this.reroute) {
+			for (var key in this.drawflow.drawflow[this.module].data) {
+				this.addRerouteImport(this.drawflow.drawflow[this.module].data[key]);
+			}
+		}
+
+		for (var key in this.drawflow.drawflow[this.module].data) {
+			this.updateConnectionNodes('node-' + key);
+		}
+
+		const editor = this.drawflow.drawflow;
+		let number = 1;
+		Object.keys(editor).map(function(moduleName, index) {
+			Object.keys(editor[moduleName].data).map(function(id, index2) {
+				if (parseInt(id) >= number) {
+					number = parseInt(id) + 1;
+				}
+			});
+		});
+		this.nodeId = number;
+	}
+
+	removeReouteConnectionSelected() {
+		this.dispatch('connectionUnselected', true);
+		if (this.reroute_fix_curvature) {
+			this.connection_selected.parentElement.querySelectorAll('.main-path').forEach((item, i) => {
+				item.classList.remove('selected');
+			});
+		}
+	}
+	selectNode(id) {
+		this.node_selected = document.getElementById('node-' + id);
+		this.node_selected.classList.add('selected');
+		this.dispatch('nodeSelected', id);
+	}
+	click(e) {
+		this.dispatch('click', e);
+		if (this.editor_mode === 'fixed') {
+			e.preventDefault();
+			if (e.target.classList[0] === 'parent-drawflow' || e.target.classList[0] === 'drawflow') {
+				this.ele_selected = e.target.closest('.parent-drawflow');
+			} else {
+				return false;
+			}
+		} else if (this.editor_mode === 'view') {
+			if (e.target.closest('.drawflow') != null || e.target.matches('.parent-drawflow')) {
+				this.ele_selected = e.target.closest('.parent-drawflow');
+				e.preventDefault();
+			}
+		} else {
+			this.first_click = e.target;
+			this.ele_selected = e.target;
+			if (e.button === 0) {
+				this.contextmenuDel();
+			}
+
+			if (e.target.closest('.drawflow_content_node') != null) {
+				this.ele_selected = e.target.closest('.drawflow_content_node').parentElement;
+			}
+		}
+		switch (this.ele_selected?.classList[0]) {
+			case 'drawflow-node':
+				if (this.node_selected != null) {
+					this.node_selected.classList.remove('selected');
+					if (this.node_selected != this.ele_selected) {
+						this.dispatch('nodeUnselected', true);
+					}
+				}
+				if (this.connection_selected != null) {
+					this.connection_selected.classList.remove('selected');
+					this.removeReouteConnectionSelected();
+					this.connection_selected = null;
+				}
+				if (this.node_selected != this.ele_selected) {
+					this.dispatch('nodeSelected', this.ele_selected.id.slice(5));
+				}
+				this.node_selected = this.ele_selected;
+
+				this.node_selected.classList.add('selected');
+				if (!this.draggable_inputs) {
+					if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'SELECT' && e.target.hasAttribute('contenteditable') !== true) {
+						this.drag = true;
+					}
+				} else {
+					if (e.target.tagName !== 'SELECT') {
+						this.drag = true;
+					}
+				}
+				break;
+			case 'output':
+				this.connection = true;
+				if (this.node_selected != null) {
+					this.node_selected.classList.remove('selected');
+					this.node_selected = null;
+					this.dispatch('nodeUnselected', true);
+				}
+				if (this.connection_selected != null) {
+					this.connection_selected.classList.remove('selected');
+					this.removeReouteConnectionSelected();
+					this.connection_selected = null;
+				}
+				this.drawConnection(e.target);
+				break;
+			case 'parent-drawflow':
+				if (this.node_selected != null) {
+					this.node_selected.classList.remove('selected');
+					this.node_selected = null;
+					this.dispatch('nodeUnselected', true);
+				}
+				if (this.connection_selected != null) {
+					this.connection_selected.classList.remove('selected');
+					this.removeReouteConnectionSelected();
+					this.connection_selected = null;
+				}
+				this.editor_selected = true;
+				break;
+			case 'drawflow':
+				if (this.node_selected != null) {
+					this.node_selected.classList.remove('selected');
+					this.node_selected = null;
+					this.dispatch('nodeUnselected', true);
+				}
+				if (this.connection_selected != null) {
+					this.connection_selected.classList.remove('selected');
+					this.removeReouteConnectionSelected();
+					this.connection_selected = null;
+				}
+				this.editor_selected = true;
+				break;
+			case 'main-path':
+				if (this.node_selected != null) {
+					this.node_selected.classList.remove('selected');
+					this.node_selected = null;
+					this.dispatch('nodeUnselected', true);
+				}
+				if (this.connection_selected != null) {
+					this.connection_selected.classList.remove('selected');
+					this.removeReouteConnectionSelected();
+					this.connection_selected = null;
+				}
+				this.connection_selected = this.ele_selected;
+				this.connection_selected.classList.add('selected');
+				const listclassConnection = this.connection_selected.parentElement.classList;
+				if (listclassConnection.length > 1) {
+					this.dispatch('connectionSelected', { output_id: listclassConnection[2].slice(14), input_id: listclassConnection[1].slice(13), output_class: listclassConnection[3], input_class: listclassConnection[4] });
+					if (this.reroute_fix_curvature) {
+						this.connection_selected.parentElement.querySelectorAll('.main-path').forEach((item, i) => {
+							item.classList.add('selected');
+						});
+					}
+				}
+				break;
+			case 'point':
+				this.drag_point = true;
+				this.ele_selected.classList.add('selected');
+				break;
+			case 'drawflow-delete':
+				if (this.node_selected) {
+					this.removeNodeId(this.node_selected.id);
+				}
+
+				if (this.connection_selected) {
+					this.removeConnection();
+				}
+
+				if (this.node_selected != null) {
+					this.node_selected.classList.remove('selected');
+					this.node_selected = null;
+					this.dispatch('nodeUnselected', true);
+				}
+				if (this.connection_selected != null) {
+					this.connection_selected.classList.remove('selected');
+					this.removeReouteConnectionSelected();
+					this.connection_selected = null;
+				}
+
+				break;
+			default:
+		}
+		if (e.type === 'touchstart') {
+			this.pos_x = e.touches[0].clientX;
+			this.pos_x_start = e.touches[0].clientX;
+			this.pos_y = e.touches[0].clientY;
+			this.pos_y_start = e.touches[0].clientY;
+			this.mouse_x = e.touches[0].clientX;
+			this.mouse_y = e.touches[0].clientY;
+		} else {
+			this.pos_x = e.clientX;
+			this.pos_x_start = e.clientX;
+			this.pos_y = e.clientY;
+			this.pos_y_start = e.clientY;
+		}
+		if (['input', 'output', 'main-path'].includes(this.ele_selected?.classList[0])) {
+			e.preventDefault();
+		}
+		this.dispatch('clickEnd', e);
+	}
+
+	position(e) {
+		if (e.type === 'touchmove') {
+			var e_pos_x = e.touches[0].clientX;
+			var e_pos_y = e.touches[0].clientY;
+		} else {
+			var e_pos_x = e.clientX;
+			var e_pos_y = e.clientY;
+		}
+
+		if (this.connection) {
+			this.updateConnection(e_pos_x, e_pos_y);
+		}
+		if (this.editor_selected) {
+			x = this.canvas_x + -(this.pos_x - e_pos_x);
+			y = this.canvas_y + -(this.pos_y - e_pos_y);
+			this.dispatch('translate', { x: x, y: y });
+			this.precanvas.style.transform = 'translate(' + x + 'px, ' + y + 'px) scale(' + this.zoom + ')';
+		}
+		if (this.drag) {
+			e.preventDefault();
+			var x = ((this.pos_x - e_pos_x) * this.precanvas.clientWidth) / (this.precanvas.clientWidth * this.zoom);
+			var y = ((this.pos_y - e_pos_y) * this.precanvas.clientHeight) / (this.precanvas.clientHeight * this.zoom);
+			this.pos_x = e_pos_x;
+			this.pos_y = e_pos_y;
+
+			this.ele_selected.style.top = this.ele_selected.offsetTop - y + 'px';
+			this.ele_selected.style.left = this.ele_selected.offsetLeft - x + 'px';
+
+			this.drawflow.drawflow[this.module].data[this.ele_selected.id.slice(5)].pos_x = this.ele_selected.offsetLeft - x;
+			this.drawflow.drawflow[this.module].data[this.ele_selected.id.slice(5)].pos_y = this.ele_selected.offsetTop - y;
+
+			this.updateConnectionNodes(this.ele_selected.id);
+		}
+
+		if (this.drag_point) {
+			var x = ((this.pos_x - e_pos_x) * this.precanvas.clientWidth) / (this.precanvas.clientWidth * this.zoom);
+			var y = ((this.pos_y - e_pos_y) * this.precanvas.clientHeight) / (this.precanvas.clientHeight * this.zoom);
+			this.pos_x = e_pos_x;
+			this.pos_y = e_pos_y;
+
+			var pos_x = this.pos_x * (this.precanvas.clientWidth / (this.precanvas.clientWidth * this.zoom)) - this.precanvas.getBoundingClientRect().x * (this.precanvas.clientWidth / (this.precanvas.clientWidth * this.zoom));
+			var pos_y = this.pos_y * (this.precanvas.clientHeight / (this.precanvas.clientHeight * this.zoom)) - this.precanvas.getBoundingClientRect().y * (this.precanvas.clientHeight / (this.precanvas.clientHeight * this.zoom));
+
+			this.ele_selected.setAttributeNS(null, 'cx', pos_x);
+			this.ele_selected.setAttributeNS(null, 'cy', pos_y);
+
+			const nodeUpdate = this.ele_selected.parentElement.classList[2].slice(9);
+			const nodeUpdateIn = this.ele_selected.parentElement.classList[1].slice(13);
+			const output_class = this.ele_selected.parentElement.classList[3];
+			const input_class = this.ele_selected.parentElement.classList[4];
+
+			let numberPointPosition = Array.from(this.ele_selected.parentElement.children).indexOf(this.ele_selected) - 1;
+
+			if (this.reroute_fix_curvature) {
+				const numberMainPath = this.ele_selected.parentElement.querySelectorAll('.main-path').length - 1;
+				numberPointPosition -= numberMainPath;
+				if (numberPointPosition < 0) {
+					numberPointPosition = 0;
+				}
+			}
+
+			const nodeId = nodeUpdate.slice(5);
+			const searchConnection = this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections.findIndex(function(item, i) {
+				return item.node === nodeUpdateIn && item.output === input_class;
+			});
+
+			this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections[searchConnection].points[numberPointPosition] = { pos_x: pos_x, pos_y: pos_y };
+
+			const parentSelected = this.ele_selected.parentElement.classList[2].slice(9);
+
+			this.updateConnectionNodes(parentSelected);
+		}
+
+		if (e.type === 'touchmove') {
+			this.mouse_x = e_pos_x;
+			this.mouse_y = e_pos_y;
+		}
+		this.dispatch('mouseMove', { x: e_pos_x, y: e_pos_y });
+	}
+
+	dragEnd(e) {
+		if (e.type === 'touchend') {
+			var e_pos_x = this.mouse_x;
+			var e_pos_y = this.mouse_y;
+			var ele_last = document.elementFromPoint(e_pos_x, e_pos_y);
+		} else {
+			var e_pos_x = e.clientX;
+			var e_pos_y = e.clientY;
+			var ele_last = e.target;
+		}
+
+		if (this.drag) {
+			if (this.pos_x_start != e_pos_x || this.pos_y_start != e_pos_y) {
+				this.dispatch('nodeMoved', this.ele_selected.id.slice(5));
+			}
+		}
+
+		if (this.drag_point) {
+			this.ele_selected.classList.remove('selected');
+			if (this.pos_x_start != e_pos_x || this.pos_y_start != e_pos_y) {
+				this.dispatch('rerouteMoved', this.ele_selected.parentElement.classList[2].slice(14));
+			}
+		}
+
+		if (this.editor_selected) {
+			this.canvas_x = this.canvas_x + -(this.pos_x - e_pos_x);
+			this.canvas_y = this.canvas_y + -(this.pos_y - e_pos_y);
+			this.editor_selected = false;
+		}
+		if (this.connection === true) {
+			if (ele_last.classList[0] === 'input' || (this.force_first_input && (ele_last.closest('.drawflow_content_node') != null || ele_last.classList[0] === 'drawflow-node'))) {
+				if (this.force_first_input && (ele_last.closest('.drawflow_content_node') != null || ele_last.classList[0] === 'drawflow-node')) {
+					if (ele_last.closest('.drawflow_content_node') != null) {
+						var input_id = ele_last.closest('.drawflow_content_node').parentElement.id;
+					} else {
+						var input_id = ele_last.id;
+					}
+					if (Object.keys(this.getNodeFromId(input_id.slice(5)).inputs).length === 0) {
+						var input_class = false;
+					} else {
+						var input_class = 'input_1';
+					}
+				} else {
+					var input_id = ele_last.parentElement.parentElement.id;
+					var input_class = ele_last.classList[1];
+				}
+				var output_id = this.ele_selected.parentElement.parentElement.id;
+				var output_class = this.ele_selected.classList[1];
+
+				if (output_id !== input_id && input_class !== false) {
+					if (this.container.querySelectorAll('.connection.node_in_' + input_id + '.node_out_' + output_id + '.' + output_class + '.' + input_class).length === 0) {
+
+						this.connection_ele.classList.add('node_in_' + input_id);
+						this.connection_ele.classList.add('node_out_' + output_id);
+						this.connection_ele.classList.add(output_class);
+						this.connection_ele.classList.add(input_class);
+						var id_input = input_id.slice(5);
+						var id_output = output_id.slice(5);
+
+						this.drawflow.drawflow[this.module].data[id_output].outputs[output_class].connections.push({ node: id_input, output: input_class });
+						this.drawflow.drawflow[this.module].data[id_input].inputs[input_class].connections.push({ node: id_output, input: output_class });
+						this.updateConnectionNodes('node-' + id_output);
+						this.updateConnectionNodes('node-' + id_input);
+						this.dispatch('connectionCreated', { output_id: id_output, input_id: id_input, output_class: output_class, input_class: input_class });
+					} else {
+						this.dispatch('connectionCancel', true);
+						this.connection_ele.remove();
+					}
+
+					this.connection_ele = null;
+				} else {
+					this.dispatch('connectionCancel', true);
+					this.connection_ele.remove();
+					this.connection_ele = null;
+				}
+			} else {
+				this.dispatch('connectionCancel', true);
+				this.connection_ele.remove();
+				this.connection_ele = null;
+			}
+		}
+
+		this.drag = false;
+		this.drag_point = false;
+		this.connection = false;
+		this.ele_selected = null;
+		this.editor_selected = false;
+
+		this.dispatch('mouseUp', e);
+	}
+	contextmenu(e) {
+		this.dispatch('contextmenu', e);
+		e.preventDefault();
+		if (this.editor_mode === 'fixed' || this.editor_mode === 'view') {
+			return false;
+		}
+		if (this.precanvas.getElementsByClassName('drawflow-delete').length) {
+			this.precanvas.getElementsByClassName('drawflow-delete')[0].remove();
+		}
+		if (this.node_selected || this.connection_selected) {
+			var deletebox = document.createElement('div');
+			deletebox.classList.add('drawflow-delete');
+			deletebox.innerHTML = 'x';
+			if (this.node_selected) {
+				this.node_selected.appendChild(deletebox);
+			}
+			if (this.connection_selected && this.connection_selected.parentElement.classList.length > 1) {
+				deletebox.style.top = e.clientY * (this.precanvas.clientHeight / (this.precanvas.clientHeight * this.zoom)) - this.precanvas.getBoundingClientRect().y * (this.precanvas.clientHeight / (this.precanvas.clientHeight * this.zoom)) + 'px';
+				deletebox.style.left = e.clientX * (this.precanvas.clientWidth / (this.precanvas.clientWidth * this.zoom)) - this.precanvas.getBoundingClientRect().x * (this.precanvas.clientWidth / (this.precanvas.clientWidth * this.zoom)) + 'px';
+
+				this.precanvas.appendChild(deletebox);
+			}
+		}
+	}
+	contextmenuDel() {
+		if (this.precanvas.getElementsByClassName('drawflow-delete').length) {
+			this.precanvas.getElementsByClassName('drawflow-delete')[0].remove();
+		}
+	}
+
+	key(e) {
+		this.dispatch('keydown', e);
+		if (this.editor_mode === 'fixed' || this.editor_mode === 'view') {
+			return false;
+		}
+		if (e.key === 'Delete' || (e.key === 'Backspace' && e.metaKey)) {
+			if (this.node_selected != null) {
+				if (this.first_click.tagName !== 'INPUT' && this.first_click.tagName !== 'TEXTAREA' && this.first_click.hasAttribute('contenteditable') !== true) {
+					this.removeNodeId(this.node_selected.id);
+				}
+			}
+			if (this.connection_selected != null) {
+				this.removeConnection();
+			}
+		}
+	}
+
+	zoom_enter(event, delta) {
+		if (event.ctrlKey) {
+			event.preventDefault();
+			if (event.deltaY > 0) {
+				this.zoom_out();
+			} else {
+				this.zoom_in();
+			}
+		}
+	}
+	zoom_refresh() {
+		this.dispatch('zoom', this.zoom);
+		this.canvas_x = (this.canvas_x / this.zoom_last_value) * this.zoom;
+		this.canvas_y = (this.canvas_y / this.zoom_last_value) * this.zoom;
+		this.zoom_last_value = this.zoom;
+		this.precanvas.style.transform = 'translate(' + this.canvas_x + 'px, ' + this.canvas_y + 'px) scale(' + this.zoom + ')';
+	}
+	zoom_in() {
+		if (this.zoom < this.zoom_max) {
+			this.zoom += this.zoom_value;
+			this.zoom_refresh();
+		}
+	}
+	zoom_out() {
+		if (this.zoom > this.zoom_min) {
+			this.zoom -= this.zoom_value;
+			this.zoom_refresh();
+		}
+	}
+	zoom_reset() {
+		if (this.zoom != 1) {
+			this.zoom = 1;
+			this.zoom_refresh();
+		}
+	}
+
+	createCurvature(start_pos_x, start_pos_y, end_pos_x, end_pos_y, curvature_value, type) {
+		var line_x = start_pos_x;
+		var line_y = start_pos_y;
+		var x = end_pos_x;
+		var y = end_pos_y;
+		var curvature = curvature_value;
+		switch (type) {
+			case 'open':
+				if (start_pos_x >= end_pos_x) {
+					var hx1 = line_x + Math.abs(x - line_x) * curvature;
+					var hx2 = x - Math.abs(x - line_x) * (curvature * -1);
+				} else {
+					var hx1 = line_x + Math.abs(x - line_x) * curvature;
+					var hx2 = x - Math.abs(x - line_x) * curvature;
+				}
+				return ' M ' + line_x + ' ' + line_y + ' C ' + hx1 + ' ' + line_y + ' ' + hx2 + ' ' + y + ' ' + x + '  ' + y;
+
+				break;
+			case 'close':
+				if (start_pos_x >= end_pos_x) {
+					var hx1 = line_x + Math.abs(x - line_x) * (curvature * -1);
+					var hx2 = x - Math.abs(x - line_x) * curvature;
+				} else {
+					var hx1 = line_x + Math.abs(x - line_x) * curvature;
+					var hx2 = x - Math.abs(x - line_x) * curvature;
+				}
+				return ' M ' + line_x + ' ' + line_y + ' C ' + hx1 + ' ' + line_y + ' ' + hx2 + ' ' + y + ' ' + x + '  ' + y;
+				break;
+			case 'other':
+				if (start_pos_x >= end_pos_x) {
+					var hx1 = line_x + Math.abs(x - line_x) * (curvature * -1);
+					var hx2 = x - Math.abs(x - line_x) * (curvature * -1);
+				} else {
+					var hx1 = line_x + Math.abs(x - line_x) * curvature;
+					var hx2 = x - Math.abs(x - line_x) * curvature;
+				}
+				return ' M ' + line_x + ' ' + line_y + ' C ' + hx1 + ' ' + line_y + ' ' + hx2 + ' ' + y + ' ' + x + '  ' + y;
+				break;
+			default:
+				var hx1 = line_x + Math.abs(x - line_x) * curvature;
+				var hx2 = x - Math.abs(x - line_x) * curvature;
+
+				return ' M ' + line_x + ' ' + line_y + ' C ' + hx1 + ' ' + line_y + ' ' + hx2 + ' ' + y + ' ' + x + '  ' + y;
+		}
+	}
+
+	drawConnection(ele) {
+		var connection = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+		this.connection_ele = connection;
+		var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+		path.classList.add('main-path');
+		path.setAttributeNS(null, 'd', '');
+		connection.classList.add('connection');
+		connection.appendChild(path);
+		this.precanvas.appendChild(connection);
+		var id_output = ele.parentElement.parentElement.id.slice(5);
+		var output_class = ele.classList[1];
+		this.dispatch('connectionStart', { output_id: id_output, output_class: output_class });
+	}
+
+	updateConnection(eX, eY) {
+		const precanvas = this.precanvas;
+		const zoom = this.zoom;
+		let precanvasWitdhZoom = precanvas.clientWidth / (precanvas.clientWidth * zoom);
+		precanvasWitdhZoom = precanvasWitdhZoom || 0;
+		let precanvasHeightZoom = precanvas.clientHeight / (precanvas.clientHeight * zoom);
+		precanvasHeightZoom = precanvasHeightZoom || 0;
+		var path = this.connection_ele.children[0];
+
+		var line_x = this.ele_selected.offsetWidth / 2 + (this.ele_selected.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+		var line_y = this.ele_selected.offsetHeight / 2 + (this.ele_selected.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+		var x = eX * (this.precanvas.clientWidth / (this.precanvas.clientWidth * this.zoom)) - this.precanvas.getBoundingClientRect().x * (this.precanvas.clientWidth / (this.precanvas.clientWidth * this.zoom));
+		var y = eY * (this.precanvas.clientHeight / (this.precanvas.clientHeight * this.zoom)) - this.precanvas.getBoundingClientRect().y * (this.precanvas.clientHeight / (this.precanvas.clientHeight * this.zoom));
+
+		var curvature = this.curvature;
+		var lineCurve = this.createCurvature(line_x, line_y, x, y, curvature, 'openclose');
+		path.setAttributeNS(null, 'd', lineCurve);
+	}
+
+	addConnection(id_output, id_input, output_class, input_class) {
+		var nodeOneModule = this.getModuleFromNodeId(id_output);
+		var nodeTwoModule = this.getModuleFromNodeId(id_input);
+		if (nodeOneModule === nodeTwoModule) {
+			var dataNode = this.getNodeFromId(id_output);
+			var exist = false;
+			for (var checkOutput in dataNode.outputs[output_class].connections) {
+				var connectionSearch = dataNode.outputs[output_class].connections[checkOutput];
+				if (connectionSearch.node == id_input && connectionSearch.output == input_class) {
+					exist = true;
+				}
+			}
+			if (exist === false) {
+				this.drawflow.drawflow[nodeOneModule].data[id_output].outputs[output_class].connections.push({ node: id_input.toString(), output: input_class });
+				this.drawflow.drawflow[nodeOneModule].data[id_input].inputs[input_class].connections.push({ node: id_output.toString(), input: output_class });
+
+				if (this.module === nodeOneModule) {
+					var connection = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+					var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+					path.classList.add('main-path');
+					path.setAttributeNS(null, 'd', '');
+					connection.classList.add('connection');
+					connection.classList.add('node_in_node-' + id_input);
+					connection.classList.add('node_out_node-' + id_output);
+					connection.classList.add(output_class);
+					connection.classList.add(input_class);
+					connection.appendChild(path);
+					this.precanvas.appendChild(connection);
+					this.updateConnectionNodes('node-' + id_output);
+					this.updateConnectionNodes('node-' + id_input);
+				}
+
+				this.dispatch('connectionCreated', { output_id: id_output, input_id: id_input, output_class: output_class, input_class: input_class });
+			}
+		}
+	}
+
+	updateConnectionNodes(id) {
+		const idSearch = 'node_in_' + id;
+		const idSearchOut = 'node_out_' + id;
+		var line_path = this.line_path / 2;
+		const container = this.container;
+		const precanvas = this.precanvas;
+		const curvature = this.curvature;
+		const createCurvature = this.createCurvature;
+		const reroute_curvature = this.reroute_curvature;
+		const reroute_curvature_start_end = this.reroute_curvature_start_end;
+		const reroute_fix_curvature = this.reroute_fix_curvature;
+		const rerouteWidth = this.reroute_width;
+		const zoom = this.zoom;
+		let precanvasWitdhZoom = precanvas.clientWidth / (precanvas.clientWidth * zoom);
+		precanvasWitdhZoom = precanvasWitdhZoom || 0;
+		let precanvasHeightZoom = precanvas.clientHeight / (precanvas.clientHeight * zoom);
+		precanvasHeightZoom = precanvasHeightZoom || 0;
+
+		const elemsOut = container.querySelectorAll(`.${idSearchOut}`);
+
+		Object.keys(elemsOut).map(function(item, index) {
+			if (elemsOut[item].querySelector('.point') === null) {
+				var elemtsearchId_out = container.querySelector(`#${id}`);
+
+				var id_search = elemsOut[item].classList[1].replace('node_in_', '');
+				var elemtsearchId = container.querySelector(`#${id_search}`);
+
+				var elemtsearch = elemtsearchId.querySelectorAll('.' + elemsOut[item].classList[4])[0];
+
+				var eX = elemtsearch.offsetWidth / 2 + (elemtsearch.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+				var eY = elemtsearch.offsetHeight / 2 + (elemtsearch.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+				var elemtsearchOut = elemtsearchId_out.querySelectorAll('.' + elemsOut[item].classList[3])[0];
+
+				var line_x = elemtsearchOut.offsetWidth / 2 + (elemtsearchOut.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+				var line_y = elemtsearchOut.offsetHeight / 2 + (elemtsearchOut.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+				var x = eX;
+				var y = eY;
+
+				const lineCurve = createCurvature(line_x, line_y, x, y, curvature, 'openclose');
+				elemsOut[item].children[0].setAttributeNS(null, 'd', lineCurve);
+			} else {
+				const points = elemsOut[item].querySelectorAll('.point');
+				let linecurve = '';
+				const reoute_fix = [];
+				points.forEach((item, i) => {
+					if (i === 0 && points.length - 1 === 0) {
+						var elemtsearchId_out = container.querySelector(`#${id}`);
+						var elemtsearch = item;
+
+						var eX = (elemtsearch.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var eY = (elemtsearch.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+
+						var elemtsearchOut = elemtsearchId_out.querySelectorAll('.' + item.parentElement.classList[3])[0];
+						var line_x = elemtsearchOut.offsetWidth / 2 + (elemtsearchOut.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+						var line_y = elemtsearchOut.offsetHeight / 2 + (elemtsearchOut.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature_start_end, 'open');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+
+						var elemtsearchId_out = item;
+						var id_search = item.parentElement.classList[1].replace('node_in_', '');
+						var elemtsearchId = container.querySelector(`#${id_search}`);
+						var elemtsearch = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[4])[0];
+
+						var elemtsearchIn = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[4])[0];
+						var eX = elemtsearchIn.offsetWidth / 2 + (elemtsearchIn.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+						var eY = elemtsearchIn.offsetHeight / 2 + (elemtsearchIn.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+						var line_x = (elemtsearchId_out.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var line_y = (elemtsearchId_out.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature_start_end, 'close');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+					} else if (i === 0) {
+						var elemtsearchId_out = container.querySelector(`#${id}`);
+						var elemtsearch = item;
+
+						var eX = (elemtsearch.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var eY = (elemtsearch.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+
+						var elemtsearchOut = elemtsearchId_out.querySelectorAll('.' + item.parentElement.classList[3])[0];
+						var line_x = elemtsearchOut.offsetWidth / 2 + (elemtsearchOut.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+						var line_y = elemtsearchOut.offsetHeight / 2 + (elemtsearchOut.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature_start_end, 'open');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+
+						var elemtsearchId_out = item;
+						var elemtsearch = points[i + 1];
+
+						var eX = (elemtsearch.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var eY = (elemtsearch.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var line_x = (elemtsearchId_out.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var line_y = (elemtsearchId_out.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature, 'other');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+					} else if (i === points.length - 1) {
+						var elemtsearchId_out = item;
+
+						var id_search = item.parentElement.classList[1].replace('node_in_', '');
+						var elemtsearchId = container.querySelector(`#${id_search}`);
+						var elemtsearch = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[4])[0];
+
+						var elemtsearchIn = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[4])[0];
+						var eX = elemtsearchIn.offsetWidth / 2 + (elemtsearchIn.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+						var eY = elemtsearchIn.offsetHeight / 2 + (elemtsearchIn.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+						var line_x = (elemtsearchId_out.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * (precanvas.clientWidth / (precanvas.clientWidth * zoom)) + rerouteWidth;
+						var line_y = (elemtsearchId_out.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * (precanvas.clientHeight / (precanvas.clientHeight * zoom)) + rerouteWidth;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature_start_end, 'close');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+					} else {
+						var elemtsearchId_out = item;
+						var elemtsearch = points[i + 1];
+
+						var eX = (elemtsearch.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * (precanvas.clientWidth / (precanvas.clientWidth * zoom)) + rerouteWidth;
+						var eY = (elemtsearch.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * (precanvas.clientHeight / (precanvas.clientHeight * zoom)) + rerouteWidth;
+						var line_x = (elemtsearchId_out.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * (precanvas.clientWidth / (precanvas.clientWidth * zoom)) + rerouteWidth;
+						var line_y = (elemtsearchId_out.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * (precanvas.clientHeight / (precanvas.clientHeight * zoom)) + rerouteWidth;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature, 'other');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+					}
+				});
+				if (reroute_fix_curvature) {
+					reoute_fix.forEach((itempath, i) => {
+						elemsOut[item].children[i].setAttributeNS(null, 'd', itempath);
+					});
+				} else {
+					elemsOut[item].children[0].setAttributeNS(null, 'd', linecurve);
+				}
+			}
+		});
+
+		const elems = container.querySelectorAll(`.${idSearch}`);
+		Object.keys(elems).map(function(item, index) {
+			if (elems[item].querySelector('.point') === null) {
+				var elemtsearchId_in = container.querySelector(`#${id}`);
+
+				var id_search = elems[item].classList[2].replace('node_out_', '');
+				var elemtsearchId = container.querySelector(`#${id_search}`);
+				var elemtsearch = elemtsearchId.querySelectorAll('.' + elems[item].classList[3])[0];
+
+				var line_x = elemtsearch.offsetWidth / 2 + (elemtsearch.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+				var line_y = elemtsearch.offsetHeight / 2 + (elemtsearch.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+				var elemtsearchId_in = elemtsearchId_in.querySelectorAll('.' + elems[item].classList[4])[0];
+				var x = elemtsearchId_in.offsetWidth / 2 + (elemtsearchId_in.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+				var y = elemtsearchId_in.offsetHeight / 2 + (elemtsearchId_in.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+				const lineCurve = createCurvature(line_x, line_y, x, y, curvature, 'openclose');
+				elems[item].children[0].setAttributeNS(null, 'd', lineCurve);
+			} else {
+				const points = elems[item].querySelectorAll('.point');
+				let linecurve = '';
+				const reoute_fix = [];
+				points.forEach((item, i) => {
+					if (i === 0 && points.length - 1 === 0) {
+						var elemtsearchId_out = container.querySelector(`#${id}`);
+						var elemtsearch = item;
+
+						var line_x = (elemtsearch.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var line_y = (elemtsearch.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+
+						var elemtsearchIn = elemtsearchId_out.querySelectorAll('.' + item.parentElement.classList[4])[0];
+						var eX = elemtsearchIn.offsetWidth / 2 + (elemtsearchIn.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+						var eY = elemtsearchIn.offsetHeight / 2 + (elemtsearchIn.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature_start_end, 'close');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+
+						var elemtsearchId_out = item;
+						var id_search = item.parentElement.classList[2].replace('node_out_', '');
+						var elemtsearchId = container.querySelector(`#${id_search}`);
+						var elemtsearch = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[3])[0];
+
+						var elemtsearchOut = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[3])[0];
+						var line_x = elemtsearchOut.offsetWidth / 2 + (elemtsearchOut.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+						var line_y = elemtsearchOut.offsetHeight / 2 + (elemtsearchOut.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+						var eX = (elemtsearchId_out.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var eY = (elemtsearchId_out.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature_start_end, 'open');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+					} else if (i === 0) {
+						var elemtsearchId_out = item;
+						var id_search = item.parentElement.classList[2].replace('node_out_', '');
+						var elemtsearchId = container.querySelector(`#${id_search}`);
+						var elemtsearch = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[3])[0];
+						var elemtsearchOut = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[3])[0];
+						var line_x = elemtsearchOut.offsetWidth / 2 + (elemtsearchOut.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+						var line_y = elemtsearchOut.offsetHeight / 2 + (elemtsearchOut.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+						var eX = (elemtsearchId_out.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var eY = (elemtsearchId_out.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature_start_end, 'open');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+
+						var elemtsearchId_out = item;
+						var elemtsearch = points[i + 1];
+
+						var eX = (elemtsearch.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var eY = (elemtsearch.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var line_x = (elemtsearchId_out.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var line_y = (elemtsearchId_out.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature, 'other');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+					} else if (i === points.length - 1) {
+						var elemtsearchId_out = item;
+
+						var id_search = item.parentElement.classList[1].replace('node_in_', '');
+						var elemtsearchId = container.querySelector(`#${id_search}`);
+						var elemtsearch = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[4])[0];
+
+						var elemtsearchIn = elemtsearchId.querySelectorAll('.' + item.parentElement.classList[4])[0];
+						var eX = elemtsearchIn.offsetWidth / 2 + (elemtsearchIn.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom;
+						var eY = elemtsearchIn.offsetHeight / 2 + (elemtsearchIn.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom;
+
+						var line_x = (elemtsearchId_out.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var line_y = (elemtsearchId_out.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature_start_end, 'close');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+					} else {
+						var elemtsearchId_out = item;
+						var elemtsearch = points[i + 1];
+
+						var eX = (elemtsearch.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var eY = (elemtsearch.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var line_x = (elemtsearchId_out.getBoundingClientRect().x - precanvas.getBoundingClientRect().x) * precanvasWitdhZoom + rerouteWidth;
+						var line_y = (elemtsearchId_out.getBoundingClientRect().y - precanvas.getBoundingClientRect().y) * precanvasHeightZoom + rerouteWidth;
+						var x = eX;
+						var y = eY;
+
+						var lineCurveSearch = createCurvature(line_x, line_y, x, y, reroute_curvature, 'other');
+						linecurve += lineCurveSearch;
+						reoute_fix.push(lineCurveSearch);
+					}
+				});
+				if (reroute_fix_curvature) {
+					reoute_fix.forEach((itempath, i) => {
+						elems[item].children[i].setAttributeNS(null, 'd', itempath);
+					});
+				} else {
+					elems[item].children[0].setAttributeNS(null, 'd', linecurve);
+				}
+			}
+		});
+	}
+
+	dblclick(e) {
+		if (this.connection_selected != null && this.reroute) {
+			this.createReroutePoint(this.connection_selected);
+		}
+
+		if (e.target.classList[0] === 'point') {
+			this.removeReroutePoint(e.target);
+		}
+	}
+
+	createReroutePoint(ele) {
+		this.connection_selected.classList.remove('selected');
+		const nodeUpdate = this.connection_selected.parentElement.classList[2].slice(9);
+		const nodeUpdateIn = this.connection_selected.parentElement.classList[1].slice(13);
+		const output_class = this.connection_selected.parentElement.classList[3];
+		const input_class = this.connection_selected.parentElement.classList[4];
+		this.connection_selected = null;
+		const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+		point.classList.add('point');
+		var pos_x = this.pos_x * (this.precanvas.clientWidth / (this.precanvas.clientWidth * this.zoom)) - this.precanvas.getBoundingClientRect().x * (this.precanvas.clientWidth / (this.precanvas.clientWidth * this.zoom));
+		var pos_y = this.pos_y * (this.precanvas.clientHeight / (this.precanvas.clientHeight * this.zoom)) - this.precanvas.getBoundingClientRect().y * (this.precanvas.clientHeight / (this.precanvas.clientHeight * this.zoom));
+
+		point.setAttributeNS(null, 'cx', pos_x);
+		point.setAttributeNS(null, 'cy', pos_y);
+		point.setAttributeNS(null, 'r', this.reroute_width);
+
+		let position_add_array_point = 0;
+		if (this.reroute_fix_curvature) {
+			const numberPoints = ele.parentElement.querySelectorAll('.main-path').length;
+			var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+			path.classList.add('main-path');
+			path.setAttributeNS(null, 'd', '');
+
+			ele.parentElement.insertBefore(path, ele.parentElement.children[numberPoints]);
+			if (numberPoints === 1) {
+				ele.parentElement.appendChild(point);
+			} else {
+				const search_point = Array.from(ele.parentElement.children).indexOf(ele);
+				position_add_array_point = search_point;
+				ele.parentElement.insertBefore(point, ele.parentElement.children[search_point + numberPoints + 1]);
+			}
+		} else {
+			ele.parentElement.appendChild(point);
+		}
+
+		const nodeId = nodeUpdate.slice(5);
+		const searchConnection = this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections.findIndex(function(item, i) {
+			return item.node === nodeUpdateIn && item.output === input_class;
+		});
+
+		if (this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections[searchConnection].points === undefined) {
+			this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections[searchConnection].points = [];
+		}
+
+		if (this.reroute_fix_curvature) {
+			if (position_add_array_point > 0 || this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections[searchConnection].points !== []) {
+				this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections[searchConnection].points.splice(position_add_array_point, 0, { pos_x: pos_x, pos_y: pos_y });
+			} else {
+				this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections[searchConnection].points.push({ pos_x: pos_x, pos_y: pos_y });
+			}
+
+			ele.parentElement.querySelectorAll('.main-path').forEach((item, i) => {
+				item.classList.remove('selected');
+			});
+		} else {
+			this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections[searchConnection].points.push({ pos_x: pos_x, pos_y: pos_y });
+		}
+
+		this.dispatch('addReroute', nodeId);
+		this.updateConnectionNodes(nodeUpdate);
+	}
+
+	removeReroutePoint(ele) {
+		const nodeUpdate = ele.parentElement.classList[2].slice(9);
+		const nodeUpdateIn = ele.parentElement.classList[1].slice(13);
+		const output_class = ele.parentElement.classList[3];
+		const input_class = ele.parentElement.classList[4];
+
+		let numberPointPosition = Array.from(ele.parentElement.children).indexOf(ele);
+		const nodeId = nodeUpdate.slice(5);
+		const searchConnection = this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections.findIndex(function(item, i) {
+			return item.node === nodeUpdateIn && item.output === input_class;
+		});
+
+		if (this.reroute_fix_curvature) {
+			const numberMainPath = ele.parentElement.querySelectorAll('.main-path').length;
+			ele.parentElement.children[numberMainPath - 1].remove();
+			numberPointPosition -= numberMainPath;
+			if (numberPointPosition < 0) {
+				numberPointPosition = 0;
+			}
+		} else {
+			numberPointPosition--;
+		}
+		this.drawflow.drawflow[this.module].data[nodeId].outputs[output_class].connections[searchConnection].points.splice(numberPointPosition, 1);
+
+		ele.remove();
+		this.dispatch('removeReroute', nodeId);
+		this.updateConnectionNodes(nodeUpdate);
+	}
+
+	registerNode(name, html, props = null, options = null) {
+		this.noderegister[name] = { html: html, props: props, options: options };
+	}
+
+	getNodeFromId(id) {
+		var moduleName = this.getModuleFromNodeId(id);
+		if (moduleName == '') {
+			return {};
+		}
+
+		return JSON.parse(JSON.stringify(this.drawflow.drawflow[moduleName].data[id]));
+	}
+	getNodesFromName(name) {
+		var nodes = [];
+		const editor = this.drawflow.drawflow;
+		Object.keys(editor).map(function(moduleName, index) {
+			for (var node in editor[moduleName].data) {
+				if (editor[moduleName].data[node].name == name) {
+					nodes.push(editor[moduleName].data[node].id);
+				}
+			}
+		});
+		return nodes;
+	}
+
+	addNode(name, num_in, num_out, ele_pos_x, ele_pos_y, classoverride, data, html, typenode = false) {
+		if (this.useuuid) {
+			var newNodeId = this.getUuid();
+		} else {
+			var newNodeId = this.nodeId;
+		}
+		const parent = document.createElement('div');
+		parent.classList.add('parent-node');
+
+		const node = document.createElement('div');
+		node.innerHTML = '';
+		node.setAttribute('id', 'node-' + newNodeId);
+		node.classList.add('drawflow-node');
+		if (classoverride != '') {
+			node.classList.add(...classoverride.split(' '));
+		}
+
+		const inputs = document.createElement('div');
+		inputs.classList.add('inputs');
+
+		const outputs = document.createElement('div');
+		outputs.classList.add('outputs');
+
+		const uifm_options = document.createElement('div');
+		uifm_options.classList.add('drawflow_uifm_opt_edit');
+		uifm_options.innerHTML = `
+		<i class="fa fa-pencil" aria-hidden="true"></i>
+		`;
+
+		const uifm_options_delete = document.createElement('div');
+		uifm_options_delete.classList.add('drawflow_uifm_opt_delete');
+		uifm_options_delete.innerHTML = `
+		 <i class="fa fa-trash" aria-hidden="true"></i>
+		`;
+
+		const json_inputs = {};
+		for (var x = 0; x < num_in; x++) {
+			const input = document.createElement('div');
+			input.classList.add('input');
+			input.classList.add('input_' + (x + 1));
+			json_inputs['input_' + (x + 1)] = { connections: [] };
+			inputs.appendChild(input);
+		}
+
+		const json_outputs = {};
+		for (var x = 0; x < num_out; x++) {
+			const output = document.createElement('div');
+			output.classList.add('output');
+			output.classList.add('output_' + (x + 1));
+			json_outputs['output_' + (x + 1)] = { connections: [] };
+			outputs.appendChild(output);
+		}
+
+		const content = document.createElement('div');
+		content.classList.add('drawflow_content_node');
+		if (typenode === false) {
+			content.innerHTML = html;
+		} else if (typenode === true) {
+			content.appendChild(this.noderegister[html].html.cloneNode(true));
+		} else {
+			if (parseInt(this.render.version) === 3) {
+				let wrapper = this.render.h(this.noderegister[html].html, this.noderegister[html].props, this.noderegister[html].options);
+				wrapper.appContext = this.parent;
+				this.render.render(wrapper, content);
+			} else {
+				let wrapper = new this.render({
+					parent: this.parent,
+					render: h => h(this.noderegister[html].html, { props: this.noderegister[html].props }),
+					...this.noderegister[html].options,
+				}).$mount();
+				content.appendChild(wrapper.$el);
+			}
+		}
+
+		Object.entries(data).forEach(function(key, value) {
+			if (typeof key[1] === 'object') {
+				insertObjectkeys(null, key[0], key[0]);
+			} else {
+				var elems = content.querySelectorAll('[df-' + key[0] + ']');
+				for (var i = 0; i < elems.length; i++) {
+					elems[i].value = key[1];
+					if (elems[i].isContentEditable) {
+						elems[i].innerText = key[1];
+					}
+				}
+			}
+		});
+
+		function insertObjectkeys(object, name, completname) {
+			if (object === null) {
+				var object = data[name];
+			} else {
+				var object = object[name];
+			}
+			if (object !== null) {
+				Object.entries(object).forEach(function(key, value) {
+					if (typeof key[1] === 'object') {
+						insertObjectkeys(object, key[0], completname + '-' + key[0]);
+					} else {
+						var elems = content.querySelectorAll('[df-' + completname + '-' + key[0] + ']');
+						for (var i = 0; i < elems.length; i++) {
+							elems[i].value = key[1];
+							if (elems[i].isContentEditable) {
+								elems[i].innerText = key[1];
+							}
+						}
+					}
+				});
+			}
+		}
+		node.appendChild(inputs);
+		node.appendChild(content);
+		node.appendChild(outputs);
+		node.appendChild(uifm_options);
+		node.appendChild(uifm_options_delete);
+
+		node.style.top = ele_pos_y + 'px';
+		node.style.left = ele_pos_x + 'px';
+		parent.appendChild(node);
+		this.precanvas.appendChild(parent);
+		var json = {
+			id: newNodeId,
+			name: name,
+			data: data,
+			class: classoverride,
+			html: html,
+			typenode: typenode,
+			inputs: json_inputs,
+			outputs: json_outputs,
+			pos_x: ele_pos_x,
+			pos_y: ele_pos_y,
+		};
+		this.drawflow.drawflow[this.module].data[newNodeId] = json;
+		this.dispatch('nodeCreated', newNodeId);
+		if (!this.useuuid) {
+			this.nodeId++;
+		}
+
+		node.addEventListener('mouseenter', function() {
+			this.querySelector('.drawflow_uifm_opt_edit').style.display = 'block';
+			this.querySelector('.drawflow_uifm_opt_delete').style.display = 'block';
+		});
+
+		node.addEventListener('mouseleave', function() {
+			this.querySelector('.drawflow_uifm_opt_edit').style.display = 'none';
+			this.querySelector('.drawflow_uifm_opt_delete').style.display = 'none';
+		});
+		const self = this;
+		document.querySelector(`#node-${newNodeId} .drawflow_uifm_opt_edit`).addEventListener('click', function() {
+			document.querySelectorAll('.drawflow-node').forEach(node => {
+				if (node.classList.contains('selected')) {
+					node.classList.remove('selected');
+				}
+			});
+
+			self.selectNode(newNodeId);
+			document.querySelector('.sfdc-nav-tabs a[href="#uiformc-menu-sec1"]').click();
+		});
+		document.querySelector(`#node-${newNodeId} .drawflow_uifm_opt_delete`).addEventListener('click', function() {
+			self.selectNode(newNodeId);
+			if (self.node_selected) {
+				self.dispatch('uifmNodeUnselected', data.id);
+
+				self.removeNodeId(self.node_selected.id);
+			}
+
+			if (self.connection_selected) {
+				self.removeConnection();
+			}
+
+			if (self.node_selected != null) {
+				self.node_selected.classList.remove('selected');
+				self.node_selected = null;
+				self.dispatch('nodeUnselected', true);
+			}
+			if (self.connection_selected != null) {
+				self.connection_selected.classList.remove('selected');
+				self.removeReouteConnectionSelected();
+				self.connection_selected = null;
+			}
+		});
+		return newNodeId;
+	}
+
+	addNodeImport(dataNode, precanvas) {
+		const parent = document.createElement('div');
+		parent.classList.add('parent-node');
+
+		const node = document.createElement('div');
+		node.innerHTML = '';
+		node.setAttribute('id', 'node-' + dataNode.id);
+		node.classList.add('drawflow-node');
+		if (dataNode.class != '') {
+			node.classList.add(...dataNode.class.split(' '));
+		}
+
+		const inputs = document.createElement('div');
+		inputs.classList.add('inputs');
+
+		const outputs = document.createElement('div');
+		outputs.classList.add('outputs');
+
+		const uifm_options = document.createElement('div');
+		uifm_options.classList.add('drawflow_uifm_opt_edit');
+		uifm_options.innerHTML = `
+		<i class="fa fa-pencil" aria-hidden="true"></i>
+		`;
+
+		const uifm_options_delete = document.createElement('div');
+		uifm_options_delete.classList.add('drawflow_uifm_opt_delete');
+		uifm_options_delete.innerHTML = `
+		 <i class="fa fa-trash" aria-hidden="true"></i>
+		`;
+
+		Object.keys(dataNode.inputs).map(function(input_item, index) {
+			const input = document.createElement('div');
+			input.classList.add('input');
+			input.classList.add(input_item);
+			inputs.appendChild(input);
+			Object.keys(dataNode.inputs[input_item].connections).map(function(output_item, index) {
+				var connection = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+				var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+				path.classList.add('main-path');
+				path.setAttributeNS(null, 'd', '');
+				connection.classList.add('connection');
+				connection.classList.add('node_in_node-' + dataNode.id);
+				connection.classList.add('node_out_node-' + dataNode.inputs[input_item].connections[output_item].node);
+				connection.classList.add(dataNode.inputs[input_item].connections[output_item].input);
+				connection.classList.add(input_item);
+
+				connection.appendChild(path);
+				precanvas.appendChild(connection);
+			});
+		});
+
+		for (var x = 0; x < Object.keys(dataNode.outputs).length; x++) {
+			const output = document.createElement('div');
+			output.classList.add('output');
+			output.classList.add('output_' + (x + 1));
+			outputs.appendChild(output);
+		}
+
+		const content = document.createElement('div');
+		content.classList.add('drawflow_content_node');
+
+		if (dataNode.typenode === false) {
+			content.innerHTML = dataNode.html;
+		} else if (dataNode.typenode === true) {
+			content.appendChild(this.noderegister[dataNode.html].html.cloneNode(true));
+		} else {
+			if (parseInt(this.render.version) === 3) {
+				let wrapper = this.render.h(this.noderegister[dataNode.html].html, this.noderegister[dataNode.html].props, this.noderegister[dataNode.html].options);
+				wrapper.appContext = this.parent;
+				this.render.render(wrapper, content);
+			} else {
+				let wrapper = new this.render({
+					parent: this.parent,
+					render: h => h(this.noderegister[dataNode.html].html, { props: this.noderegister[dataNode.html].props }),
+					...this.noderegister[dataNode.html].options,
+				}).$mount();
+				content.appendChild(wrapper.$el);
+			}
+		}
+
+		Object.entries(dataNode.data).forEach(function(key, value) {
+			if (typeof key[1] === 'object') {
+				insertObjectkeys(null, key[0], key[0]);
+			} else {
+				var elems = content.querySelectorAll('[df-' + key[0] + ']');
+				for (var i = 0; i < elems.length; i++) {
+					elems[i].value = key[1];
+					if (elems[i].isContentEditable) {
+						elems[i].innerText = key[1];
+					}
+				}
+			}
+		});
+
+		function insertObjectkeys(object, name, completname) {
+			if (object === null) {
+				var object = dataNode.data[name];
+			} else {
+				var object = object[name];
+			}
+			if (object !== null) {
+				Object.entries(object).forEach(function(key, value) {
+					if (typeof key[1] === 'object') {
+						insertObjectkeys(object, key[0], completname + '-' + key[0]);
+					} else {
+						var elems = content.querySelectorAll('[df-' + completname + '-' + key[0] + ']');
+						for (var i = 0; i < elems.length; i++) {
+							elems[i].value = key[1];
+							if (elems[i].isContentEditable) {
+								elems[i].innerText = key[1];
+							}
+						}
+					}
+				});
+			}
+		}
+		node.appendChild(inputs);
+		node.appendChild(content);
+		node.appendChild(outputs);
+		node.appendChild(uifm_options);
+		node.appendChild(uifm_options_delete);
+
+		node.style.top = dataNode.pos_y + 'px';
+		node.style.left = dataNode.pos_x + 'px';
+		parent.appendChild(node);
+		this.precanvas.appendChild(parent);
+
+		node.addEventListener('mouseenter', function() {
+			this.querySelector('.drawflow_uifm_opt_edit').style.display = 'block';
+			this.querySelector('.drawflow_uifm_opt_delete').style.display = 'block';
+		});
+
+		node.addEventListener('mouseleave', function() {
+			this.querySelector('.drawflow_uifm_opt_edit').style.display = 'none';
+			this.querySelector('.drawflow_uifm_opt_delete').style.display = 'none';
+		});
+
+		const self = this;
+		document.querySelector(`#node-${dataNode.id} .drawflow_uifm_opt_edit`).addEventListener('click', function() {
+			document.querySelectorAll('.drawflow-node').forEach(node => {
+				if (node.classList.contains('selected')) {
+					node.classList.remove('selected');
+				}
+			});
+
+			self.selectNode(dataNode.id);
+			document.querySelector('.sfdc-nav-tabs a[href="#uiformc-menu-sec1"]').click();
+		});
+		document.querySelector(`#node-${dataNode.id} .drawflow_uifm_opt_delete`).addEventListener('click', function() {
+			self.selectNode(dataNode.id);
+			if (self.node_selected) {
+				self.dispatch('uifmNodeUnselected', dataNode.data.id);
+
+				self.removeNodeId(self.node_selected.id);
+			}
+
+			if (self.connection_selected) {
+				self.removeConnection();
+			}
+
+			if (self.node_selected != null) {
+				self.node_selected.classList.remove('selected');
+				self.node_selected = null;
+				self.dispatch('nodeUnselected', true);
+			}
+			if (self.connection_selected != null) {
+				self.connection_selected.classList.remove('selected');
+				self.removeReouteConnectionSelected();
+				self.connection_selected = null;
+			}
+		});
+	}
+
+	addRerouteImport(dataNode) {
+		const reroute_width = this.reroute_width;
+		const reroute_fix_curvature = this.reroute_fix_curvature;
+		const container = this.container;
+		Object.keys(dataNode.outputs).map(function(output_item, index) {
+			Object.keys(dataNode.outputs[output_item].connections).map(function(input_item, index) {
+				const points = dataNode.outputs[output_item].connections[input_item].points;
+				if (points !== undefined) {
+					points.forEach((item, i) => {
+						const input_id = dataNode.outputs[output_item].connections[input_item].node;
+						const input_class = dataNode.outputs[output_item].connections[input_item].output;
+						const ele = container.querySelector('.connection.node_in_node-' + input_id + '.node_out_node-' + dataNode.id + '.' + output_item + '.' + input_class);
+
+						if (reroute_fix_curvature) {
+							if (i === 0) {
+								for (var z = 0; z < points.length; z++) {
+									var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+									path.classList.add('main-path');
+									path.setAttributeNS(null, 'd', '');
+									ele.appendChild(path);
+								}
+							}
+						}
+
+						const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+						point.classList.add('point');
+						var pos_x = item.pos_x;
+						var pos_y = item.pos_y;
+
+						point.setAttributeNS(null, 'cx', pos_x);
+						point.setAttributeNS(null, 'cy', pos_y);
+						point.setAttributeNS(null, 'r', reroute_width);
+
+						ele.appendChild(point);
+					});
+				}
+			});
+		});
+	}
+
+	updateNodeValue(event) {
+		var attr = event.target.attributes;
+		for (var i = 0; i < attr.length; i++) {
+			if (attr[i].nodeName.startsWith('df-')) {
+				var keys = attr[i].nodeName.slice(3).split('-');
+				var target = this.drawflow.drawflow[this.module].data[event.target.closest('.drawflow_content_node').parentElement.id.slice(5)].data;
+				for (var index = 0; index < keys.length - 1; index += 1) {
+					if (target[keys[index]] == null) {
+						target[keys[index]] = {};
+					}
+					target = target[keys[index]];
+				}
+				target[keys[keys.length - 1]] = event.target.value;
+				if (event.target.isContentEditable) {
+					target[keys[keys.length - 1]] = event.target.innerText;
+				}
+				this.dispatch('nodeDataChanged', event.target.closest('.drawflow_content_node').parentElement.id.slice(5));
+			}
+		}
+	}
+	updateNodeNameFromId(id, newName) {
+		var moduleName = this.getModuleFromNodeId(id);
+		this.drawflow.drawflow[moduleName].data[id].name = newName;
+		this.drawflow.drawflow[moduleName].data[id].html = `<div>${newName}</div>`;
+	}
+	updateNodeDataFromId(id, data) {
+		var moduleName = this.getModuleFromNodeId(id);
+		this.drawflow.drawflow[moduleName].data[id].data = data;
+		if (this.module === moduleName) {
+			const content = this.container.querySelector('#node-' + id);
+
+			Object.entries(data).forEach(function(key, value) {
+				if (typeof key[1] === 'object') {
+					insertObjectkeys(null, key[0], key[0]);
+				} else {
+					var elems = content.querySelectorAll('[df-' + key[0] + ']');
+					for (var i = 0; i < elems.length; i++) {
+						elems[i].value = key[1];
+						if (elems[i].isContentEditable) {
+							elems[i].innerText = key[1];
+						}
+					}
+				}
+			});
+
+			function insertObjectkeys(object, name, completname) {
+				if (object === null) {
+					var object = data[name];
+				} else {
+					var object = object[name];
+				}
+				if (object !== null) {
+					Object.entries(object).forEach(function(key, value) {
+						if (typeof key[1] === 'object') {
+							insertObjectkeys(object, key[0], completname + '-' + key[0]);
+						} else {
+							var elems = content.querySelectorAll('[df-' + completname + '-' + key[0] + ']');
+							for (var i = 0; i < elems.length; i++) {
+								elems[i].value = key[1];
+								if (elems[i].isContentEditable) {
+									elems[i].innerText = key[1];
+								}
+							}
+						}
+					});
+				}
+			}
+		}
+	}
+
+	addNodeInput(id) {
+		var moduleName = this.getModuleFromNodeId(id);
+		const infoNode = this.getNodeFromId(id);
+		const numInputs = Object.keys(infoNode.inputs).length;
+		if (this.module === moduleName) {
+			const input = document.createElement('div');
+			input.classList.add('input');
+			input.classList.add('input_' + (numInputs + 1));
+			const parent = this.container.querySelector('#node-' + id + ' .inputs');
+			parent.appendChild(input);
+			this.updateConnectionNodes('node-' + id);
+		}
+		this.drawflow.drawflow[moduleName].data[id].inputs['input_' + (numInputs + 1)] = { connections: [] };
+	}
+
+	addNodeOutput(id) {
+		var moduleName = this.getModuleFromNodeId(id);
+		const infoNode = this.getNodeFromId(id);
+		const numOutputs = Object.keys(infoNode.outputs).length;
+		if (this.module === moduleName) {
+			const output = document.createElement('div');
+			output.classList.add('output');
+			output.classList.add('output_' + (numOutputs + 1));
+			const parent = this.container.querySelector('#node-' + id + ' .outputs');
+			parent.appendChild(output);
+			this.updateConnectionNodes('node-' + id);
+		}
+		this.drawflow.drawflow[moduleName].data[id].outputs['output_' + (numOutputs + 1)] = { connections: [] };
+	}
+
+	removeNodeInput(id, input_class) {
+		var moduleName = this.getModuleFromNodeId(id);
+		const infoNode = this.getNodeFromId(id);
+		if (this.module === moduleName) {
+			this.container.querySelector('#node-' + id + ' .inputs .input.' + input_class).remove();
+		}
+		const removeInputs = [];
+		Object.keys(infoNode.inputs[input_class].connections).map(function(key, index) {
+			const id_output = infoNode.inputs[input_class].connections[index].node;
+			const output_class = infoNode.inputs[input_class].connections[index].input;
+			removeInputs.push({ id_output, id, output_class, input_class });
+		});
+		removeInputs.forEach((item, i) => {
+			this.removeSingleConnection(item.id_output, item.id, item.output_class, item.input_class);
+		});
+
+		delete this.drawflow.drawflow[moduleName].data[id].inputs[input_class];
+
+		const connections = [];
+		const connectionsInputs = this.drawflow.drawflow[moduleName].data[id].inputs;
+		Object.keys(connectionsInputs).map(function(key, index) {
+			connections.push(connectionsInputs[key]);
+		});
+		this.drawflow.drawflow[moduleName].data[id].inputs = {};
+		const input_class_id = input_class.slice(6);
+		let nodeUpdates = [];
+		connections.forEach((item, i) => {
+			item.connections.forEach((itemx, f) => {
+				nodeUpdates.push(itemx);
+			});
+			this.drawflow.drawflow[moduleName].data[id].inputs['input_' + (i + 1)] = item;
+		});
+		nodeUpdates = new Set(nodeUpdates.map(e => JSON.stringify(e)));
+		nodeUpdates = Array.from(nodeUpdates).map(e => JSON.parse(e));
+
+		if (this.module === moduleName) {
+			const eles = this.container.querySelectorAll('#node-' + id + ' .inputs .input');
+			eles.forEach((item, i) => {
+				const id_class = item.classList[1].slice(6);
+				if (parseInt(input_class_id) < parseInt(id_class)) {
+					item.classList.remove('input_' + id_class);
+					item.classList.add('input_' + (id_class - 1));
+				}
+			});
+		}
+
+		nodeUpdates.forEach((itemx, i) => {
+			this.drawflow.drawflow[moduleName].data[itemx.node].outputs[itemx.input].connections.forEach((itemz, g) => {
+				if (itemz.node == id) {
+					const output_id = itemz.output.slice(6);
+					if (parseInt(input_class_id) < parseInt(output_id)) {
+						if (this.module === moduleName) {
+							const ele = this.container.querySelector('.connection.node_in_node-' + id + '.node_out_node-' + itemx.node + '.' + itemx.input + '.input_' + output_id);
+							ele.classList.remove('input_' + output_id);
+							ele.classList.add('input_' + (output_id - 1));
+						}
+						if (itemz.points) {
+							this.drawflow.drawflow[moduleName].data[itemx.node].outputs[itemx.input].connections[g] = { node: itemz.node, output: 'input_' + (output_id - 1), points: itemz.points };
+						} else {
+							this.drawflow.drawflow[moduleName].data[itemx.node].outputs[itemx.input].connections[g] = { node: itemz.node, output: 'input_' + (output_id - 1) };
+						}
+					}
+				}
+			});
+		});
+		this.updateConnectionNodes('node-' + id);
+	}
+
+	removeNodeOutput(id, output_class) {
+		var moduleName = this.getModuleFromNodeId(id);
+		const infoNode = this.getNodeFromId(id);
+		if (this.module === moduleName) {
+			this.container.querySelector('#node-' + id + ' .outputs .output.' + output_class).remove();
+		}
+		const removeOutputs = [];
+		Object.keys(infoNode.outputs[output_class].connections).map(function(key, index) {
+			const id_input = infoNode.outputs[output_class].connections[index].node;
+			const input_class = infoNode.outputs[output_class].connections[index].output;
+			removeOutputs.push({ id, id_input, output_class, input_class });
+		});
+		removeOutputs.forEach((item, i) => {
+			this.removeSingleConnection(item.id, item.id_input, item.output_class, item.input_class);
+		});
+
+		delete this.drawflow.drawflow[moduleName].data[id].outputs[output_class];
+
+		const connections = [];
+		const connectionsOuputs = this.drawflow.drawflow[moduleName].data[id].outputs;
+		Object.keys(connectionsOuputs).map(function(key, index) {
+			connections.push(connectionsOuputs[key]);
+		});
+		this.drawflow.drawflow[moduleName].data[id].outputs = {};
+		const output_class_id = output_class.slice(7);
+		let nodeUpdates = [];
+		connections.forEach((item, i) => {
+			item.connections.forEach((itemx, f) => {
+				nodeUpdates.push({ node: itemx.node, output: itemx.output });
+			});
+			this.drawflow.drawflow[moduleName].data[id].outputs['output_' + (i + 1)] = item;
+		});
+		nodeUpdates = new Set(nodeUpdates.map(e => JSON.stringify(e)));
+		nodeUpdates = Array.from(nodeUpdates).map(e => JSON.parse(e));
+
+		if (this.module === moduleName) {
+			const eles = this.container.querySelectorAll('#node-' + id + ' .outputs .output');
+			eles.forEach((item, i) => {
+				const id_class = item.classList[1].slice(7);
+				if (parseInt(output_class_id) < parseInt(id_class)) {
+					item.classList.remove('output_' + id_class);
+					item.classList.add('output_' + (id_class - 1));
+				}
+			});
+		}
+
+		nodeUpdates.forEach((itemx, i) => {
+			this.drawflow.drawflow[moduleName].data[itemx.node].inputs[itemx.output].connections.forEach((itemz, g) => {
+				if (itemz.node == id) {
+					const input_id = itemz.input.slice(7);
+					if (parseInt(output_class_id) < parseInt(input_id)) {
+						if (this.module === moduleName) {
+							const ele = this.container.querySelector('.connection.node_in_node-' + itemx.node + '.node_out_node-' + id + '.output_' + input_id + '.' + itemx.output);
+							ele.classList.remove('output_' + input_id);
+							ele.classList.remove(itemx.output);
+							ele.classList.add('output_' + (input_id - 1));
+							ele.classList.add(itemx.output);
+						}
+						if (itemz.points) {
+							this.drawflow.drawflow[moduleName].data[itemx.node].inputs[itemx.output].connections[g] = { node: itemz.node, input: 'output_' + (input_id - 1), points: itemz.points };
+						} else {
+							this.drawflow.drawflow[moduleName].data[itemx.node].inputs[itemx.output].connections[g] = { node: itemz.node, input: 'output_' + (input_id - 1) };
+						}
+					}
+				}
+			});
+		});
+
+		this.updateConnectionNodes('node-' + id);
+	}
+
+	removeNodeId(id) {
+		this.removeConnectionNodeId(id);
+		var moduleName = this.getModuleFromNodeId(id.slice(5));
+		if (this.module === moduleName) {
+			this.container.querySelector(`#${id}`).remove();
+		}
+		delete this.drawflow.drawflow[moduleName].data[id.slice(5)];
+		this.dispatch('nodeRemoved', id.slice(5));
+	}
+
+	removeConnection() {
+		if (this.connection_selected != null) {
+			var listclass = this.connection_selected.parentElement.classList;
+			this.connection_selected.parentElement.remove();
+			var index_out = this.drawflow.drawflow[this.module].data[listclass[2].slice(14)].outputs[listclass[3]].connections.findIndex(function(item, i) {
+				return item.node === listclass[1].slice(13) && item.output === listclass[4];
+			});
+			this.drawflow.drawflow[this.module].data[listclass[2].slice(14)].outputs[listclass[3]].connections.splice(index_out, 1);
+
+			var index_in = this.drawflow.drawflow[this.module].data[listclass[1].slice(13)].inputs[listclass[4]].connections.findIndex(function(item, i) {
+				return item.node === listclass[2].slice(14) && item.input === listclass[3];
+			});
+			this.drawflow.drawflow[this.module].data[listclass[1].slice(13)].inputs[listclass[4]].connections.splice(index_in, 1);
+			this.dispatch('connectionRemoved', { output_id: listclass[2].slice(14), input_id: listclass[1].slice(13), output_class: listclass[3], input_class: listclass[4] });
+			this.connection_selected = null;
+		}
+	}
+
+	removeSingleConnection(id_output, id_input, output_class, input_class) {
+		var nodeOneModule = this.getModuleFromNodeId(id_output);
+		var nodeTwoModule = this.getModuleFromNodeId(id_input);
+		if (nodeOneModule === nodeTwoModule) {
+
+			var exists = this.drawflow.drawflow[nodeOneModule].data[id_output].outputs[output_class].connections.findIndex(function(item, i) {
+				return item.node == id_input && item.output === input_class;
+			});
+			if (exists > -1) {
+				if (this.module === nodeOneModule) {
+					this.container.querySelector('.connection.node_in_node-' + id_input + '.node_out_node-' + id_output + '.' + output_class + '.' + input_class).remove();
+				}
+
+				var index_out = this.drawflow.drawflow[nodeOneModule].data[id_output].outputs[output_class].connections.findIndex(function(item, i) {
+					return item.node == id_input && item.output === input_class;
+				});
+				this.drawflow.drawflow[nodeOneModule].data[id_output].outputs[output_class].connections.splice(index_out, 1);
+
+				var index_in = this.drawflow.drawflow[nodeOneModule].data[id_input].inputs[input_class].connections.findIndex(function(item, i) {
+					return item.node == id_output && item.input === output_class;
+				});
+				this.drawflow.drawflow[nodeOneModule].data[id_input].inputs[input_class].connections.splice(index_in, 1);
+
+				this.dispatch('connectionRemoved', { output_id: id_output, input_id: id_input, output_class: output_class, input_class: input_class });
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+
+	removeConnectionNodeId(id) {
+		const idSearchIn = 'node_in_' + id;
+		const idSearchOut = 'node_out_' + id;
+
+		const elemsOut = this.container.querySelectorAll(`.${idSearchOut}`);
+		for (var i = elemsOut.length - 1; i >= 0; i--) {
+			var listclass = elemsOut[i].classList;
+
+			var index_in = this.drawflow.drawflow[this.module].data[listclass[1].slice(13)].inputs[listclass[4]].connections.findIndex(function(item, i) {
+				return item.node === listclass[2].slice(14) && item.input === listclass[3];
+			});
+			this.drawflow.drawflow[this.module].data[listclass[1].slice(13)].inputs[listclass[4]].connections.splice(index_in, 1);
+
+			var index_out = this.drawflow.drawflow[this.module].data[listclass[2].slice(14)].outputs[listclass[3]].connections.findIndex(function(item, i) {
+				return item.node === listclass[1].slice(13) && item.output === listclass[4];
+			});
+			this.drawflow.drawflow[this.module].data[listclass[2].slice(14)].outputs[listclass[3]].connections.splice(index_out, 1);
+
+			elemsOut[i].remove();
+
+			this.dispatch('connectionRemoved', { output_id: listclass[2].slice(14), input_id: listclass[1].slice(13), output_class: listclass[3], input_class: listclass[4] });
+		}
+
+		const elemsIn = this.container.querySelectorAll(`.${idSearchIn}`);
+		for (var i = elemsIn.length - 1; i >= 0; i--) {
+			var listclass = elemsIn[i].classList;
+
+			var index_out = this.drawflow.drawflow[this.module].data[listclass[2].slice(14)].outputs[listclass[3]].connections.findIndex(function(item, i) {
+				return item.node === listclass[1].slice(13) && item.output === listclass[4];
+			});
+			this.drawflow.drawflow[this.module].data[listclass[2].slice(14)].outputs[listclass[3]].connections.splice(index_out, 1);
+
+			var index_in = this.drawflow.drawflow[this.module].data[listclass[1].slice(13)].inputs[listclass[4]].connections.findIndex(function(item, i) {
+				return item.node === listclass[2].slice(14) && item.input === listclass[3];
+			});
+			this.drawflow.drawflow[this.module].data[listclass[1].slice(13)].inputs[listclass[4]].connections.splice(index_in, 1);
+
+			elemsIn[i].remove();
+
+			this.dispatch('connectionRemoved', { output_id: listclass[2].slice(14), input_id: listclass[1].slice(13), output_class: listclass[3], input_class: listclass[4] });
+		}
+	}
+
+	getModuleFromNodeId(id) {
+		var nameModule;
+		const editor = this.drawflow.drawflow;
+		Object.keys(editor).map(function(moduleName, index) {
+			Object.keys(editor[moduleName].data).map(function(node, index2) {
+				if (parseInt(node) == parseInt(id)) {
+					nameModule = moduleName;
+				}
+			});
+		});
+		return nameModule;
+	}
+
+	addModule(name) {
+		this.drawflow.drawflow[name] = { data: {} };
+		this.dispatch('moduleCreated', name);
+	}
+	changeModule(name) {
+		this.dispatch('moduleChanged', name);
+		this.module = name;
+		this.precanvas.innerHTML = '';
+		this.canvas_x = 0;
+		this.canvas_y = 0;
+		this.pos_x = 0;
+		this.pos_y = 0;
+		this.mouse_x = 0;
+		this.mouse_y = 0;
+		this.zoom = 1;
+		this.zoom_last_value = 1;
+		this.precanvas.style.transform = '';
+		this.import(this.drawflow, false);
+	}
+
+	removeModule(name) {
+		if (this.module === name) {
+			this.changeModule('Home');
+		}
+		delete this.drawflow.drawflow[name];
+		this.dispatch('moduleRemoved', name);
+	}
+
+	clearModuleSelected() {
+		this.precanvas.innerHTML = '';
+		this.drawflow.drawflow[this.module] = { data: {} };
+	}
+
+	clear() {
+		this.precanvas.innerHTML = '';
+		this.drawflow = { drawflow: { Home: { data: {} } } };
+	}
+	export() {
+		const dataExport = JSON.parse(JSON.stringify(this.drawflow));
+		this.dispatch('export', dataExport);
+		return dataExport;
+	}
+	getDrawflowArr() {
+		return JSON.parse(JSON.stringify(this.drawflow));
+	}
+	import(data, notifi = true) {
+		this.clear();
+		this.drawflow = JSON.parse(JSON.stringify(data));
+		this.load();
+		if (notifi) {
+			this.dispatch('import', 'import');
+		}
+	}
+
+	on(event, callback) {
+		if (typeof callback !== 'function') {
+			console.error(`The listener callback must be a function, the given type is ${typeof callback}`);
+			return false;
+		}
+		if (typeof event !== 'string') {
+			console.error(`The event name must be a string, the given type is ${typeof event}`);
+			return false;
+		}
+		if (this.events[event] === undefined) {
+			this.events[event] = {
+				listeners: [],
+			};
+		}
+		this.events[event].listeners.push(callback);
+	}
+
+	removeListener(event, callback) {
+
+		if (!this.events[event]) return false;
+
+		const listeners = this.events[event].listeners;
+		const listenerIndex = listeners.indexOf(callback);
+		const hasListener = listenerIndex > -1;
+		if (hasListener) listeners.splice(listenerIndex, 1);
+	}
+
+	dispatch(event, details) {
+		if (this.events[event] === undefined) {
+			return false;
+		}
+		this.events[event].listeners.forEach(listener => {
+			listener(details);
+		});
+	}
+
+	getUuid() {
+		var s = [];
+		var hexDigits = '0123456789abcdef';
+		for (var i = 0; i < 36; i++) {
+			s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+		}
+		s[14] = '4'; 
+		s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); 
+		s[8] = s[13] = s[18] = s[23] = '-';
+
+		var uuid = s.join('');
+		return uuid;
+	}
+}
+
+class ZgfmManager {
+	constructor($uifm) {
+		this.$uifm = $uifm;
+		var id = document.getElementById('zgfmFlowSection');
+		this.editor = new Drawflow(id);
+		this.availableForms = {};
+		this.activeNodeId = 0;
+		this.activeFormId = 0;
+		this.activeConnection = '';
+
+		this.multistepSettings = {
+			app_ver: '0.0.0',
+			name: '',
+			initial: 0,
+			main: {
+				submit_ajax: '1',
+				add_css: '',
+				add_js: '',
+				onload_scroll: '0',
+				preload_noconflict: '1',
+				payment_st: '0',
+				price_st: '1',
+				price_currency_symbol: '$',
+				price_currency: 'USD',
+				price_format_st: '1',
+				price_sep_decimal: '.',
+				price_sep_thousand: ',',
+				price_sep_precision: '2',
+				price_tax_st: '0',
+				price_tax_val: '0',
+				pdf_show_onpage: '1',
+				pdf_charset: 'UTF-8',
+				pdf_font: '2',
+				pdf_paper_size: 'a4',
+				pdf_paper_orie: 'landscape',
+				pdf_html_fullpage: '0',
+				email_html_fullpage: '0',
+				email_dissubm: '0',
+			},
+			calculation: {
+				enable_st: '0',
+				vars_str: '',
+				variables: {},
+			},
+			invoice: {
+				from_text1: '',
+				from_text2: '',
+				from_text3: '',
+				from_text4: '',
+				from_text5: '',
+				to_text1: '',
+				to_text2: '',
+				to_text3: '',
+				to_text4: '',
+				to_text5: '',
+			},
+			skin: {
+				form_width: {
+					show_st: '0',
+					max: '800',
+				},
+				form_padding: {
+					show_st: '1',
+					pos_top: '20',
+					pos_right: '17',
+					pos_bottom: '20',
+					pos_left: '17',
+				},
+				form_background: {
+					show_st: '1',
+					type: '1',
+					start_color: '#eeeeee',
+					end_color: '#ffffff',
+					solid_color: '#ffffff',
+					image: '',
+				},
+				form_border_radius: {
+					show_st: '0',
+					size: '5',
+				},
+				form_border: {
+					show_st: '0',
+					color: '#000',
+					style: '1',
+					width: '1',
+				},
+				form_shadow: {
+					show_st: '1',
+					color: '#CCCCCC',
+					h_shadow: '3',
+					v_shadow: '3',
+					blur: '10',
+				},
+			},
+			onsubm: {
+				sm_successtext: "<div class='rockfm-alert rockfm-alert-success' role='alert'>Success! Form was sent successfully.</div>",
+				sm_boxmsg_bg_st: '0',
+				sm_boxmsg_bg_type: '1',
+				sm_boxmsg_bg_solid: '',
+				sm_boxmsg_bg_start: '',
+				sm_boxmsg_bg_end: '',
+				sm_redirect_st: '0',
+				sm_redirect_url: '',
+				mail_from_email: '',
+				mail_from_name: '',
+				mail_template_msg: '',
+				mail_recipient: '',
+				mail_cc: '',
+				mail_bcc: '',
+				mail_subject: '',
+				mail_usr_st: '0',
+				mail_usr_template_msg: '',
+				mail_usr_pdf_st: '0',
+				mail_usr_pdf_store: '0',
+				mail_usr_pdf_template_msg: '',
+				mail_usr_pdf_fn: '',
+				mail_usr_recipient: '',
+				mail_usr_recipient_name: '',
+				mail_usr_cc: '',
+				mail_usr_bcc: '',
+				mail_usr_subject: '',
+			},
+			availableConnections: {},
+			availableNodes: {},
+			connections: {},
+			progressBarCost: {
+				enable_st: '0',
+				position: 'innertop',
+				theme_type: 'default',
+				avg_top_cost: 10000,
+				theme: {
+					default: {
+						skin_tab_default_bgcolor: '#eee',
+						skin_tab_default_shadowcolor: '#000',
+						skin_tab_default_active_bg: '#6f39b0',
+						skin_tab_default_active_txt: '#fff',
+					} 
+				},
+
+							},
+			progressBar: {
+				enable_st: '0',
+				position: 'outertop',
+				theme_type: 'numbers',
+				theme: {
+					default: {
+						skin_tab_cur_bgcolor: '#4798E7',
+						skin_tab_cur_txtcolor: '#ffffff',
+						skin_tab_cur_numtxtcolor: '#4798E7',
+						skin_tab_inac_bgcolor: '#ECF0F1',
+						skin_tab_inac_txtcolor: '#95A5A6',
+						skin_tab_inac_numtxtcolor: '#ECF0F1',
+						skin_tab_done_bgcolor: '#9a8afa',
+						skin_tab_done_txtcolor: '#ffffff',
+						skin_tab_done_numtxtcolor: '#ECF0F1',
+						skin_tab_cont_bgcolor: '#F9F9F9',
+						skin_tab_cont_borcol: '#D4D4D4',
+						skin_tab_default_txt_bgcolor: '#fff',
+					},
+					numbers: {
+						skin_tab_cur_bgcolor: '#4798E7',
+						skin_tab_cur_txtcolor: '#000000',
+						skin_tab_cur_numtxtcolor: '#4798E7',
+						skin_tab_cur_bg_numtxt: '#ffffff',
+						skin_tab_inac_bgcolor: '#cccccc',
+						skin_tab_inac_txtcolor: '#95A5A6',
+					},
+					numbers2: {
+						skin_tab_cur_bgcolor: '#4798E7',
+						skin_tab_cur_txtcolor: '#000000',
+						skin_tab_inac_bgcolor: '#cccccc',
+						skin_tab_inac_txtcolor: '#95A5A6',
+					},
+				},
+				steps: {},
+				progressBarAssigned: [],
+			},
+		};
+	}
+	saveRoute() {
+		this.multistepSettings['connections'] = {};
+
+		let df = this.getDrawflowArr();
+		let df2 = df['drawflow']['zigaform']['data'];
+
+		for (let key in df2) {
+			if (df2.hasOwnProperty(key)) {
+				let formId = df2[key]['data']['id'];
+
+				this.multistepSettings['connections'][formId] = {
+					inputs: [],
+					outputs: [],
+				};
+
+				if (Object.keys(df2[key]['outputs']).length) {
+					for (let key2 in df2[key]['outputs']['output_1']['connections']) {
+						if (df2[key]['outputs']['output_1']['connections'].hasOwnProperty(key2)) {
+							let formId2 = df2[df2[key]['outputs']['output_1']['connections'][key2]['node']]['data']['id'];
+							this.multistepSettings['connections'][formId]['outputs'].push({
+								form: formId2,
+								conn: `${formId}__${formId2}`,
+							});
+						}
+					}
+				}
+
+				if (Object.keys(df2[key]['inputs']).length) {
+					for (let key2 in df2[key]['inputs']['input_1']['connections']) {
+						if (df2[key]['inputs']['input_1']['connections'].hasOwnProperty(key2)) {
+							let formId2 = df2[df2[key]['inputs']['input_1']['connections'][key2]['node']]['data']['id'];
+							this.multistepSettings['connections'][formId]['inputs'].push({
+								form: formId2,
+								conn: `${formId}__${formId2}`,
+							});
+						}
+					}
+				}
+			}
+		}
+	}
+	rollbackLoadChildForms(children) {
+
+		const self = this;
+		this.availableForms = {};
+		for (let key in children) {
+			if (children.hasOwnProperty(key)) {
+				let tmpDataId = children[key]['id'];
+				self.availableForms[tmpDataId] = {};
+				self.availableForms[tmpDataId]['id'] = tmpDataId;
+				self.availableForms[tmpDataId]['core'] = children[key]['data'];
+				self.availableForms[tmpDataId]['preview'] = children[key]['preview'];
+			}
+		}
+	}
+	rollback(response) {
+		this.multistepSettings = response.data.parent.data.data2;
+		this.loadFormRollback(response);
+		this.activeFormId = 0;
+		this.$uifm('.sfdc-nav-tabs a[href="#uiformc-menu-secmm"]').sfdc_tab('show');
+	}
+	init() {
+		const self = this;
+		this.buttonsClicks();
+		this.events();
+		this.editor.reroute = true;
+		this.editor.editor_mode = 'edit';
+		this.editor.start();
+		this.editor.addModule('zigaform');
+		this.editor.changeModule('zigaform');
+		var $uifm = this.$uifm;
+
+		var $editor = this.editor;
+
+		this.$uifm('.uiformc-menu-wrap ul.sfdc-nav-tabs a[data-toggle="sfdc-tab"]').on('shown.bs.sfdc-tab', function(e) {
+			var newTab = $uifm(e.target);
+			var previousTab = $uifm(e.relatedTarget);
+			if (newTab.attr('href') === '#uiformc-menu-sec1') {
+				if (self.activeFormId === 0) {
+					self.$uifm('#uifm_mm_form_not_selected').show();
+				} else {
+					self.$uifm('#uifm_mm_form_not_selected').hide();
+				}
+			}
+
+			if (previousTab.attr('href') === '#uiformc-menu-sec1') {
+				if (self.activeFormId === 0) {
+					return;
+				}
+				self.saveCurrentSelectedFormToCore();
+			}
+		});
+
+		this.editor.on('uifmNodeUnselected', function(formId) {
+			delete self.availableForms[formId];
+		});
+
+		this.editor.on('nodeSelected', function(nodeId) {
+			const nodeInfo = $editor.getNodeFromId(nodeId);
+			var formId = nodeInfo.data.id;
+			self.activeFormId = formId;
+			self.activeNodeId = nodeId;
+			$uifm('#uifm_frm_main_id').val(formId);
+			$uifm('.uiform-items-container').html('');
+			rocketform.refreshPreviewSectionMultistep();
+
+			self.progresstab_loadSettings(self, false, false);
+			self.progresstab_cost_loadSettings(self, false);
+
+			self.progresstab_refreshPreview();
+			self.progresstab_cost_refreshPreview();
+		});
+		this.editor.on('nodeUnselected', function(status) {
+			self.activeFormId = 0;
+			self.activeNodeId = 0;
+			self.activeConnection = '';
+		});
+
+		this.editor.on('connectionCreated', function(info) {
+			addAnimationToConnection(info);
+			let startNode = self.editor.getNodeFromId(info.output_id);
+			let endNode = self.editor.getNodeFromId(info.input_id);
+
+			let activeConn = `${startNode.data.id}__${endNode.data.id}`;
+
+			self.multistepSettings['availableConnections'][activeConn] = {
+				rules: {
+					is_fallback: 0,
+					top_condition: 1,
+					list: [],
+				},
+				start: {},
+				end: {},
+			};
+
+			self.multistepSettings['availableConnections'][activeConn]['start']['id'] = startNode.data.id;
+			self.multistepSettings['availableConnections'][activeConn]['start']['name'] = self.availableForms[startNode.data.id].name;
+
+			self.multistepSettings['availableConnections'][activeConn]['end']['id'] = endNode.data.id;
+			self.multistepSettings['availableConnections'][activeConn]['end']['name'] = self.availableForms[endNode.data.id].name;
+
+			self.activeConnection = activeConn;
+		});
+
+		this.editor.on('connectionRemoved', function(info) {
+			let outputId = info.output_id,
+				inputId = info.input_id;
+			let startNode = self.editor.getNodeFromId(outputId);
+			let endNode = self.editor.getNodeFromId(inputId);
+
+			let activeConn = `${startNode.data.id}__${endNode.data.id}`;
+			self.activeConnection = activeConn;
+
+			delete self.multistepSettings.availableConnections[activeConn];
+			self.modalConnSettings.removeClass('open');
+			self.activeConnection = '';
+		});
+
+		this.editor.on('connectionSelected', function(info) {
+			let outputId = info.output_id,
+				inputId = info.input_id;
+
+			self.$uifm('#uifm_mm_connection_infobox .uifm_main_rules2').html('');
+
+			self.modalConnSettings.addClass('open');
+
+			let startNode = self.editor.getNodeFromId(outputId);
+			let endNode = self.editor.getNodeFromId(inputId);
+
+			let activeConn = `${startNode.data.id}__${endNode.data.id}`;
+			self.activeConnection = activeConn;
+			let form1Name = self.multistepSettings.availableConnections[activeConn]['start']['name'];
+			let form2Name = self.multistepSettings.availableConnections[activeConn]['end']['name'];
+			self.activeFormId = self.multistepSettings.availableConnections[activeConn]['start']['id'];
+			self.$uifm('#uifm_mm_connection_infobox #conn_node1').html(form1Name);
+			self.$uifm('#uifm_mm_connection_infobox #conn_node2').html(form2Name);
+
+			var isFallback = parseInt(self.multistepSettings['availableConnections'][self.activeConnection]['rules']['is_fallback']) === 1 ? true : false;
+			self.$uifm('#uifm_mm_connection_infobox_fallback').bootstrapSwitchZgpb('state', isFallback);
+
+			if (isFallback === false) {
+				self.$uifm('#uifm_main_rules_dyn').show();
+			} else {
+				self.$uifm('#uifm_main_rules_dyn').hide();
+			}
+
+			self.clogic_tabeditor_generateAllOptions(self.multistepSettings['availableConnections'][self.activeConnection]['rules']['list']);
+		});
+
+		this.editor.on('connectionUnselected', function(state) {
+			self.modalConnSettings.removeClass('open');
+			self.activeConnection = '';
+			self.$uifm('#uifm_mm_connection_infobox .uifm_main_rules2').html('');
+			self.activeFormId = 0;
+		});
+
+		const addAnimationToConnection = connection => {
+			const connectionElem = $uifm(`.node_in_node-${connection.input_id}.node_out_node-${connection.output_id}`);
+			const pathElem = connectionElem.find('path.main-path');
+
+			if (pathElem.length) {
+				pathElem.css({
+					'stroke-dasharray': '10,5',
+					animation: 'dash 2s linear infinite',
+				});
+
+				const style = document.createElement('style');
+				style.innerHTML = `
+					@keyframes dash {
+						to {
+							stroke-dashoffset: -15;
+						}
+					}
+				`;
+				document.head.appendChild(style);
+			}
+		};
+
+
+		this.modalConnSettings = this.$uifm('#uifm_mm_connection_infobox');
+	}
+	clogic_tabeditor_generateAllOptions(options) {
+		this.$uifm('#uifm_mm_connection_infobox .uifm_main_rules2').html('');
+		const self = this;
+		var optindex;
+		var logic_row;
+		var logic_cont = this.$uifm('#uifm_mm_connection_infobox .uifm_main_rules2');
+
+		this.$uifm.each(options, function(index, value) {
+			if (value) {
+				optindex = index;
+				logic_row = self.$uifm('#uiform-mm-set-clogic-tmpl .uifm-conditional-row').clone();
+				logic_row.attr('data-row-index', optindex);
+				logic_cont.append(logic_row);
+
+
+				self.clogic_getListField(logic_row);
+
+				logic_row
+					.find('.uifm_clogic_fieldsel')
+					.val(value['field_fire'])
+					.trigger('chosen:updated');
+				var field = self.search_fieldById(value['field_fire']);
+
+				self.clogic_getTypeMatch(logic_row, field.type);
+
+				if (parseInt(logic_row.find('.uifm_clogic_mtype').attr('data-loaded')) === 1) {
+					logic_row
+						.find('.uifm_clogic_mtype select')
+						.val(value['mtype'])
+						.trigger('chosen:updated');
+
+					self.clogic_getMatchInput(logic_row, field);
+
+					if (parseInt(logic_row.find('.uifm_clogic_minput').attr('data-loaded')) === 1) {
+						switch (parseInt(field.type)) {
+							case 8:
+							case 9:
+							case 10:
+							case 11:
+							case 41:
+							case 42:
+								if (parseInt(logic_row.find('.uifm_clogic_minput_1').find('option[value="' + value['minput'] + '"]').length) != 0) {
+									logic_row
+										.find('.uifm_clogic_minput_1')
+										.val(value['minput'])
+										.trigger('chosen:updated');
+								} else {
+									self.clogic_tabeditor_removeifnomatch(index);
+								}
+								break;
+							case 40:
+								var tmp_val;
+								if (parseInt(value['minput']) === 1) {
+									tmp_val = '1';
+								} else {
+									tmp_val = '0';
+								}
+								logic_row
+									.find('.uifm_clogic_minput_1')
+									.val(tmp_val)
+									.trigger('chosen:updated');
+								break;
+							case 16:
+							case 18:
+								logic_row.find('.uifm_clogic_minput_2').val(value['minput']);
+								break;
+						}
+					}
+				}
+			} else {
+				self.clogic_tabeditor_removeifnomatch(index);
+			}
+
+		});
+	}
+	clogic_tabeditor_removeifnomatch(index) {
+		var opt_index = index;
+
+		this.$uifm('#uifm_mm_connection_infobox .uifm_main_rules2')
+			.find('.uifm-conditional-row[data-row-index="' + index + '"]')
+			.remove();
+
+		delete this.multistepSettings['availableConnections'][this.activeConnection]['rules']['list'][parseInt(opt_index)];
+
+		var tmp_arr = this.multistepSettings['availableConnections'][this.activeConnection]['rules']['list'];
+
+		var tmp_len = tmp_arr.length,
+			tmp_i;
+		for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]);
+		if (this.$uifm.isArray(tmp_arr)) {
+			tmp_arr.splice(0, tmp_len);
+
+			this.multistepSettings['availableConnections'][this.activeConnection]['rules']['list'] = tmp_arr;
+		}
+	}
+	clogic_deleteConditional(elm) {
+		var el = this.$uifm(elm);
+
+		var opt_index = el.closest('.uifm-conditional-row').data('row-index');
+
+		el.closest('.uifm-conditional-row').remove();
+
+
+		delete this.multistepSettings['availableConnections'][this.activeConnection]['rules']['list'][parseInt(opt_index)];
+
+		var tmp_arr = this.multistepSettings['availableConnections'][this.activeConnection]['rules']['list'];
+
+		var tmp_len = tmp_arr.length,
+			tmp_i;
+		for (tmp_i = 0; tmp_i < tmp_len; tmp_i++) tmp_arr[tmp_i] && tmp_arr.push(tmp_arr[tmp_i]);
+		if (this.$uifm.isArray(tmp_arr)) {
+			tmp_arr.splice(0, tmp_len);
+			this.multistepSettings['availableConnections'][this.activeConnection]['rules']['list'] = tmp_arr;
+		}
+	}
+	clogic_getTypeMatch(logic_row, type) {
+		logic_row.find('.uifm_clogic_mtype').html('');
+		logic_row.find('.uifm_clogic_mtype').attr('data-loaded', '0');
+		logic_row.find('.uifm_clogic_mtype').append('<i class="sfdc-glyphicon sfdc-glyphicon-refresh sfdc-gly-spin sfdc-spin1"></i>');
+
+		logic_row
+			.find('.uifm_clogic_mtype')
+			.find('.sfdc-gly-spin')
+			.fadeOut('slow')
+			.remove();
+
+		var str;
+		switch (parseInt(type)) {
+			case 8:
+			case 9:
+			case 10:
+			case 11:
+			case 40:
+			case 41:
+			case 42:
+				str = this.$uifm('#uiform-mm-set-clogic-tmpl .uifm_clogic_mtypeinp_1').clone();
+				break;
+			case 16:
+			case 18:
+				str = this.$uifm('#uiform-mm-set-clogic-tmpl .uifm_clogic_mtypeinp_2').clone();
+				break;
+		}
+
+		logic_row.find('.uifm_clogic_mtype').append(str);
+		logic_row.find('.uifm_clogic_mtypeinp').chosen({ width: '100%' });
+		logic_row.find('.uifm_clogic_mtype').attr('data-loaded', '1');
+	}
+	clogic_changeField(elm) {
+		const self = this;
+		var el = this.$uifm(elm);
+		var el_row = el.closest('.uifm-conditional-row');
+
+		var f_id = el.val();
+		var f_step = 0;
+		var optnro = el_row.data('row-index');
+		var row_field_val = el_row
+			.find('.uifm_clogic_fieldsel')
+			.chosen()
+			.val();
+
+		var field = this.search_fieldById(row_field_val);
+
+
+		this.clogic_getTypeMatch(el_row, field.type);
+
+		var uifm_check_timer = setInterval(function() {
+			if (parseInt(el_row.find('.uifm_clogic_mtype').attr('data-loaded')) === 1) {
+				var cl_sel_mtype = el_row
+					.find('.uifm_clogic_mtype select')
+					.chosen()
+					.val();
+
+				self.clogic_getMatchInput(el_row, field);
+
+				var uifm_check2_timer = setInterval(function() {
+					if (parseInt(el_row.find('.uifm_clogic_minput').attr('data-loaded')) === 1) {
+						var cl_sel_minput;
+						switch (parseInt(field.type)) {
+							case 8:
+							case 9:
+							case 10:
+							case 11:
+							case 41:
+							case 42:
+								cl_sel_minput = el_row
+									.find('.uifm_clogic_minput_1')
+									.chosen()
+									.val();
+								break;
+							case 40:
+							case 16:
+							case 18:
+								cl_sel_minput = el_row.find('.uifm_clogic_minput_2').val();
+								break;
+						}
+
+
+						self.multistepSettings['availableConnections'][self.activeConnection]['rules']['list'][parseInt(optnro)]['field_fire'] = row_field_val;
+						self.multistepSettings['availableConnections'][self.activeConnection]['rules']['list'][parseInt(optnro)]['mtype'] = cl_sel_mtype;
+						self.multistepSettings['availableConnections'][self.activeConnection]['rules']['list'][parseInt(optnro)]['minput'] = cl_sel_minput;
+
+						clearInterval(uifm_check2_timer);
+						uifm_check2_timer = null;
+					}
+				}, 500);
+
+				clearInterval(uifm_check_timer);
+				uifm_check_timer = null;
+			}
+		}, 500);
+	}
+	clogic_changeMinput(elm) {
+		var el = this.$uifm(elm);
+		var el_row = el.closest('.uifm-conditional-row');
+		var optnro = el_row.data('row-index');
+
+		var f_step = 0;
+		var cl_sel_id = el_row
+			.find('.uifm_clogic_fieldsel')
+			.chosen()
+			.val();
+		var type = el_row.find('.uifm_clogic_fieldsel [value="' + cl_sel_id + '"]').data('type');
+		var cl_sel_minput;
+		switch (parseInt(type)) {
+			case 8:
+			case 9:
+			case 10:
+			case 11:
+			case 40:
+			case 41:
+			case 42:
+				cl_sel_minput = el_row
+					.find('.uifm_clogic_minput_1')
+					.chosen()
+					.val();
+
+				break;
+			case 16:
+			case 18:
+				cl_sel_minput = el_row.find('.uifm_clogic_minput_2').val();
+				break;
+		}
+		this.multistepSettings['availableConnections'][this.activeConnection]['rules']['list'][parseInt(optnro)]['minput'] = cl_sel_minput;
+	}
+	clogic_changeMtype(elm) {
+		var el = this.$uifm(elm);
+		var el_row = el.closest('.uifm-conditional-row');
+		var cl_sel_mtype = el_row
+			.find('.uifm_clogic_mtype select')
+			.chosen()
+			.val();
+		var optnro = el_row.data('row-index');
+
+		this.multistepSettings['availableConnections'][this.activeConnection]['rules']['list'][parseInt(optnro)]['mtype'][cl_sel_mtype];
+	}
+	clogic_getListField(logic_row) {
+		var field = this.$uifm('#uiform-mm-set-clogic-tmpl .uifm_clogic_fieldsel').clone();
+
+		var var_fields = this.availableForms[this.multistepSettings['availableConnections'][this.activeConnection]['start']['id']]['core']['steps_src'];
+
+		var arr_types_allowed = [8, 9, 10, 11, 16, 18, 40, 41, 42];
+		var string_res = '';
+
+		const self = this;
+		this.$uifm.each(var_fields, function(index, value) {
+			self.$uifm.each(value, function(index2, value2) {
+				if (self.$uifm.inArray(parseInt(value2.type), arr_types_allowed) >= 0) {
+					string_res += '<option data-type="' + value2.type + '" value="' + value2.id + '">' + value2.field_name + '</option>';
+				}
+			});
+		});
+		field.append(string_res);
+		logic_row.find('.uifm_clogic_field').append(field);
+		logic_row.find('.uifm_clogic_fieldsel').chosen({ width: '100%' });
+
+		return true;
+	}
+	search_fieldById(field_id) {
+		var var_fields = this.availableForms[this.multistepSettings['availableConnections'][this.activeConnection]['start']['id']]['core']['steps_src'];
+
+		for (var i in var_fields) {
+			for (var i2 in var_fields[i]) {
+				if (String(var_fields[i][i2].id) === String(field_id)) {
+					return var_fields[i][i2];
+				}
+			}
+		}
+		return false;
+	}
+	clogic_getMatchInput(logic_row, field) {
+		logic_row.find('.uifm_clogic_minput').html('');
+		logic_row.find('.uifm_clogic_minput').attr('data-loaded', '0');
+		logic_row.find('.uifm_clogic_minput').append('<i class="sfdc-glyphicon sfdc-glyphicon-refresh sfdc-gly-spin sfdc-spin1"></i>');
+
+		logic_row
+			.find('.uifm_clogic_minput')
+			.find('.sfdc-gly-spin')
+			.fadeOut('slow')
+			.remove();
+
+		var str;
+		var str_opts;
+		var tmp_opts;
+		switch (parseInt(field.type)) {
+			case 8:
+			case 9:
+			case 10:
+			case 11:
+				str = this.$uifm('#uiform-mm-set-clogic-tmpl .uifm_clogic_minput_1').clone();
+				tmp_opts = field.input2['options'];
+				if (tmp_opts) {
+					str_opts = '';
+					this.$uifm.each(tmp_opts, function(index2, value2) {
+						str_opts += '<option value="' + index2 + '">' + value2.value + '</option>';
+					});
+					str.append(str_opts);
+				}
+				logic_row.find('.uifm_clogic_minput').append(str);
+				logic_row.find('.uifm_clogic_minput_1').chosen({ width: '100%' });
+				break;
+			case 41:
+			case 42:
+				str = this.$uifm('#uiform-mm-set-clogic-tmpl .uifm_clogic_minput_1').clone();
+				tmp_opts = field.input17['options'];
+				if (tmp_opts) {
+					str_opts = '';
+					this.$uifm.each(tmp_opts, function(index2, value2) {
+						str_opts += '<option value="' + index2 + '">' + value2.label + '</option>';
+					});
+					str.append(str_opts);
+				}
+				logic_row.find('.uifm_clogic_minput').append(str);
+				logic_row.find('.uifm_clogic_minput_1').chosen({ width: '100%' });
+				break;
+			case 40:
+				str = this.$uifm('#uiform-mm-set-clogic-tmpl .uifm_clogic_minput_1').clone();
+
+				str_opts = '';
+				str_opts += '<option value="0">' + field.input15['txt_no'] + '</option>';
+				str_opts += '<option value="1">' + field.input15['txt_yes'] + '</option>';
+
+				str.append(str_opts);
+
+				logic_row.find('.uifm_clogic_minput').append(str);
+				logic_row.find('.uifm_clogic_minput_1').chosen({ width: '100%' });
+
+				break;
+			case 16:
+			case 18:
+				str = this.$uifm('#uiform-mm-set-clogic-tmpl .uifm_clogic_minput_2').clone();
+				var set_min = field.input4['set_min'],
+					set_max = field.input4['set_max'],
+					set_default = field.input4['set_default'],
+					set_step = field.input4['set_step'];
+				logic_row.find('.uifm_clogic_minput').append(str);
+				logic_row.find('.uifm_clogic_minput_2').TouchSpin({
+					verticalbuttons: true,
+					min: parseFloat(set_min),
+					max: parseFloat(set_max),
+					stepinterval: parseFloat(set_step),
+					verticalupclass: 'sfdc-glyphicon sfdc-glyphicon-plus',
+					verticaldownclass: 'sfdc-glyphicon sfdc-glyphicon-minus',
+					initval: parseFloat(set_default),
+				});
+				break;
+		}
+		logic_row.find('.uifm_clogic_minput').attr('data-loaded', '1');
+	}
+	clogic_changeTopCondition(elm) {
+		var el = this.$uifm(elm);
+		let tmpVal = el.val();
+		this.multistepSettings['availableConnections'][this.activeConnection]['rules']['top_condition'] = tmpVal;
+	}
+	clogic_addNewConditional() {
+		const self = this;
+		var logic_cont = this.$uifm('#uifm_mm_connection_infobox .uifm_main_rules2');
+		var num = this.$uifm('#uifm_mm_connection_infobox .uifm_main_rules2 .uifm-conditional-row').length;
+		var optindex = parseInt(num);
+
+		var logic_row = this.$uifm('#uiform-mm-set-clogic-tmpl .uifm-conditional-row').clone();
+		logic_row.attr('data-row-index', optindex);
+		logic_cont.append(logic_row);
+
+		this.clogic_getListField(logic_row);
+
+		var cl_sel_id = logic_row
+			.find('.uifm_clogic_fieldsel')
+			.chosen()
+			.val();
+		var field = this.search_fieldById(cl_sel_id);
+
+
+		this.clogic_getTypeMatch(logic_row, field.type);
+
+		var uifm_check_timer = setInterval(function() {
+
+						if (parseInt(logic_row.find('.uifm_clogic_mtype').attr('data-loaded')) === 1) {
+				var cl_sel_mtype = logic_row
+					.find('.uifm_clogic_mtype select')
+					.chosen()
+					.val();
+
+
+				self.clogic_getMatchInput(logic_row, field);
+
+				var uifm_check2_timer = setInterval(function() {
+					if (parseInt(logic_row.find('.uifm_clogic_minput').attr('data-loaded')) === 1) {
+						var cl_sel_minput;
+						switch (parseInt(field.type)) {
+							case 8:
+							case 9:
+							case 10:
+							case 11:
+							case 41:
+							case 42:
+								cl_sel_minput = logic_row
+									.find('.uifm_clogic_minput_1')
+									.chosen()
+									.val();
+								break;
+							case 40:
+							case 16:
+							case 18:
+								cl_sel_minput = logic_row.find('.uifm_clogic_minput_2').val();
+								break;
+						}
+
+						var f_step = 0;
+
+
+						var tmp_list = self.multistepSettings['availableConnections'][self.activeConnection]['rules']['list'];
+
+						if (tmp_list) {
+							self.$uifm.each(tmp_list, function(index, value) {
+								if (String(value) === '' || value === null) {
+									tmp_list.splice(index, 1);
+								}
+							});
+						}
+
+						self.multistepSettings['availableConnections'][self.activeConnection]['rules']['list'] = tmp_list;
+
+
+						self.multistepSettings['availableConnections'][self.activeConnection]['rules']['list'][parseInt(optindex)] = {};
+
+						self.multistepSettings['availableConnections'][self.activeConnection]['rules']['list'][parseInt(optindex)] = {
+							field_fire: cl_sel_id,
+							mtype: cl_sel_mtype,
+							minput: cl_sel_minput,
+						};
+
+						clearInterval(uifm_check2_timer);
+						uifm_check2_timer = null;
+					}
+				}, 500);
+
+				clearInterval(uifm_check_timer);
+				uifm_check_timer = null;
+			}
+		}, 500);
+	}
+
+	debugCurrentSelectedForm() {
+		return this.availableForms[this.activeFormId];
+	}
+	saveCurrentSelectedFormToCore() {
+		if (this.activeFormId === 0) {
+			return;
+		}
+		rocketform.saveFormOnBackground();
+
+		let newName = $uifm('#uifm_frm_main_title').val() || '';
+
+				if (newName!='') { 
+			this.changeNodeName(this.activeNodeId, newName);
+		}
+
+		this.changeNodeName(this.activeNodeId, newName);
+
+		this.availableForms[this.activeFormId]['name'] = newName;
+		this.availableForms[this.activeFormId]['preview'] = $uifm('.uiform-preview-base').html();
+	}
+	events() {
+		const self = this;
+	}
+	loadMultistep(data) {
+		this.multistepSettings = this.$uifm.extend(true, {}, this.multistepSettings, data.data.fmb_data2);
+
+		this.fixData();
+
+		this.$uifm('#uifm_mm_settings_title').val(this.multistepSettings.name);
+	}
+	fixData() {
+		if (this.$uifm.isArray(this.multistepSettings['availableConnections'])) {
+			this.multistepSettings['availableConnections'] = {};
+		}
+
+		if (this.$uifm.isArray(this.multistepSettings['availableNodes'])) {
+			this.multistepSettings['availableNodes'] = {};
+		}
+	}
+	getUiData2 = function(name, index) {
+		try {
+			return this.multistepSettings[name][index];
+		} catch (err) {
+			console.log('error getUiData2: ' + err.message);
+		}
+	};
+	spliceUiData3 = function(name, index, key) {
+		if (parseInt(key) > -1) {
+			this.multistepSettings[name][index].splice(parseInt(key), 1);
+		}
+	};
+	delUiData3 = function(name, index, key) {
+		delete this.multistepSettings[name][index][key];
+	};
+	addIndexUiData2 = function(name, index, value) {
+		if (typeof this.multistepSettings[name][index] == 'undefined') {
+		} else {
+			this.multistepSettings[name][index][value] = {};
+		}
+	};
+	setUiData3 = function(name, index, key, value) {
+		if (!this.multistepSettings.hasOwnProperty(name)) {
+			this.multistepSettings[name] = {};
+		}
+		if (!this.multistepSettings[name].hasOwnProperty(index)) {
+			this.multistepSettings[name][index] = {};
+		}
+
+		this.multistepSettings[name][index][key] = value;
+	};
+	getUiData3 = function(name, index, key) {
+		try {
+			return this.multistepSettings[name][index][key];
+		} catch (err) {
+			console.log('error mm_getUiData3: ' + err.message);
+		}
+	};
+
+	getUiData4 = function(name, index, key, option) {
+		try {
+			return this.multistepSettings[name][index][key][option];
+		} catch (err) {
+			console.log('error getUiData4: name: ' + name + ' index:' + index + ' key:' + key + ' option:' + option + ' error:' + err.message);
+		}
+	};
+	setUiData4 = function(name, index, key, option, value) {
+		if (!this.multistepSettings.hasOwnProperty(name)) {
+			this.multistepSettings[name] = {};
+		}
+		if (!this.multistepSettings[name].hasOwnProperty(index)) {
+			this.multistepSettings[name][index] = {};
+		}
+
+		if (!this.multistepSettings[name][index].hasOwnProperty(key)) {
+			this.multistepSettings[name][index][key] = {};
+		}
+
+		this.multistepSettings[name][index][key][option] = value;
+	};
+	buttonsClicks() {
+		const self = this;
+		this.button = document.getElementById('zgfm_m_showmodal');
+		if (this.button) {
+			this.button.addEventListener('click', this.handleClick.bind(this));
+		}
+		this.button2 = document.getElementById('zgfm_m_opt_export');
+		if (this.button2) {
+			this.button2.addEventListener('click', this.handleClickShowExport.bind(this));
+		}
+		this.button3 = document.getElementById('zgfm_m_opt_zoomreset');
+		if (this.button3) {
+			this.button3.addEventListener('click', this.handleClickZoomReset.bind(this));
+		}
+		this.button4 = document.getElementById('zgfm_m_opt_zoomin');
+		if (this.button4) {
+			this.button4.addEventListener('click', this.handleClickZoomIn.bind(this));
+		}
+		this.button5 = document.getElementById('zgfm_m_opt_zoomout');
+		if (this.button5) {
+			this.button5.addEventListener('click', this.handleClickZoomOut.bind(this));
+		}
+
+		this.button6 = document.getElementById('zgfm_m_addnewform');
+		if (this.button6) {
+			this.button6.addEventListener('click', this.handleClickNewForm.bind(this));
+		}
+
+		this.button7 = document.getElementById('uifm_mm_connection_infobox_btn_close');
+		if (this.button7) {
+			this.button7.addEventListener('click', this.handleClickConnBtnClose.bind(this));
+		}
+
+		this.button8 = document.getElementById('uifm_mm_connection_infobox_btn_delete_connection');
+		if (this.button8) {
+			this.button8.addEventListener('click', this.handleClickConnDelete.bind(this));
+		}
+
+		this.button9 = document.getElementById('uifm_mm_connection_infobox_newcond');
+		if (this.button9) {
+			this.button9.addEventListener('click', this.handleClickConnBtnNewCond.bind(this));
+		}
+
+		this.$uifm(document).on('change keyup focus keypress', '#uifm_mm_settings_title', function(e) {
+			var f_val = self.$uifm(this).val();
+			if (f_val) {
+				self.multistepSettings['name'] = f_val;
+			}
+		});
+
+		this.$uifm(document).on('change', '#uifm_mm_settings_initialform', function(e) {
+			var f_val = self.$uifm(this).val();
+
+			if (f_val === self.multistepSettings['initial']) {
+				return;
+			}
+
+			if (parseInt(f_val) > 0) {
+				self.multistepSettings['initial'] = f_val;
+
+				let nodeId = self.multistepSettings['availableNodes'][f_val];
+
+				self.updateNodeNumInToZero(self.editor, nodeId);
+			}
+		});
+
+		this.$uifm('#uifm_mm_connection_infobox .switch-field').on('switchChange.bootstrapSwitchZgpb', function(event, state) {
+			var f_val = state ? 1 : 0;
+			self.multistepSettings['availableConnections'][self.activeConnection]['rules']['is_fallback'] = f_val;
+
+			if (f_val === 0) {
+				self.$uifm('#uifm_main_rules_dyn').show();
+			} else {
+				self.$uifm('#uifm_main_rules_dyn').hide();
+			}
+		});
+
+		this.$uifm(document).on('change', '#uifm_frm_pbar_theme_type', function(e) {
+			var fVal = self.$uifm(this).val();
+			self.multistepSettings['progressBar']['theme_type'] = fVal;
+			self.progresstab_updateSettingsTheme(fVal);
+
+			self.progresstab_loadSettings(self, true, true);
+			self.progresstab_refreshPreview();
+		});
+
+		this.$uifm(document).on('change', '#uifm_frm_pbar_theme_position', function(e) {
+			var fVal = self.$uifm(this).val();
+			self.multistepSettings['progressBar']['position'] = fVal;
+
+			self.progresstab_refreshPreview();
+		});
+		this.$uifm(document).on('change', '#uifm_frm_pbar_cost_theme_position', function(e) {
+			var fVal = self.$uifm(this).val();
+			self.multistepSettings['progressBarCost']['position'] = fVal;
+
+			self.progresstab_cost_refreshPreview();
+		});
+		if (this.$uifm.fn.colorpicker) {
+			this.$uifm('#uiform-settings-tab3-6')
+				.find('.uifm-evt-progressbar-color')
+				.colorpicker()
+				.on('changeColor', function(ev) {
+					var store = self.$uifm(this).data('form-store');
+
+					var f_val = self
+						.$uifm(this)
+						.find('input')
+						.val();
+					if (f_val) {
+						self.setUiData4('progressBar', 'theme', self.multistepSettings['progressBar']['theme_type'], store, f_val);
+
+						self.progresstab_refreshPreview();
+					}
+				});
+				this.$uifm('#uiform-settings-tab3-7')
+				.find('.uifm-evt-progressbarcost-color')
+				.colorpicker()
+				.on('changeColor', function(ev) {
+					var store = self.$uifm(this).data('form-store');
+
+					var f_val = self
+						.$uifm(this)
+						.find('input')
+						.val();
+					if (f_val) {
+
+											let tmpData = self.multistepSettings['progressBarCost']['theme'][self.multistepSettings['progressBarCost']['theme_type']];
+
+												if (self.$uifm.isArray(tmpData) && self.multistepSettings['progressBarCost']['theme_type'] == 'default') { 
+							self.multistepSettings['progressBarCost']['theme'][self.multistepSettings['progressBarCost']['theme_type']] = {
+								skin_tab_default_bgcolor: '#eee',
+								skin_tab_default_shadowcolor: '#000',
+								skin_tab_default_active_bg: '#6f39b0',
+								skin_tab_default_active_txt: '#fff',
+							};
+						}
+
+						 						self.setUiData4('progressBarCost', 'theme', self.multistepSettings['progressBarCost']['theme_type'], store, f_val);
+
+						self.progresstab_cost_refreshPreview();
+					}
+				});
+		}
+
+				this.$uifm('.uifm_frm_form_progressbarcost_spinner').on('change', function(e) {
+			var store = self.$uifm(e.target).data('form-store');
+
+			 			var f_val = self.$uifm(e.target).val();
+			self.multistepSettings['progressBarCost'][store] = f_val;
+		});
+
+				if (this.$uifm.fn.TouchSpin) {
+
+			 			this.$uifm('.uifm_frm_form_progressbarcost_spinner').TouchSpin({
+				verticalbuttons: true,
+				min: 0,
+				max: 1000000,
+				stepinterval: 1,
+				verticalupclass: 'sfdc-glyphicon sfdc-glyphicon-plus',
+				verticaldownclass: 'sfdc-glyphicon sfdc-glyphicon-minus',
+			});
+
+	 		}
+		this.$uifm(document).on('change', '#uifm_frm_pbar_cost_theme_type', function(e) {
+			var fVal = self.$uifm(this).val();
+			self.multistepSettings['progressBarCost']['theme_type'] = fVal;
+			self.progresstab_cost_updateSettingsTheme(fVal);
+
+		});
+
+			}
+
+	updateNodeNumInToZero(editor, nodeId) {
+		var node = editor.getNodeFromId(nodeId);
+
+		if (node) {
+			var connectionsToRemove = [];
+			for (let input in node.inputs) {
+				node.inputs[input].connections.forEach(connection => {
+					connectionsToRemove.push({
+						node: connection.node,
+						output: connection.output,
+						input: input,
+					});
+				});
+			}
+
+			connectionsToRemove.forEach(connection => {
+				editor.removeSingleConnection(connection.node, nodeId, connection.output, connection.input);
+			});
+
+			node.num_in = 0;
+
+			editor.updateNodeDataFromId(nodeId, node.data);
+		}
+	}
+	handleClickConnBtnDelAllCond() {
+		this.$uifm('#uifm_mm_connection_infobox .uifm_main_rules2').html('');
+		this.multistepSettings['availableConnections'][this.activeConnection]['rules']['list'] = [];
+	}
+
+	handleClickConnBtnNewCond() {
+		this.clogic_addNewConditional();
+	}
+	handleClickConnBtnClose() {
+		this.modalConnSettings.removeClass('open');
+		this.editor.connection_selected.parentElement.querySelectorAll('.main-path').forEach((item, i) => {
+			item.classList.remove('selected');
+		});
+	}
+	handleClickConnDelete() {
+		this.handleClickConnBtnClose();
+		delete this.multistepSettings['availableConnections'][this.activeConnection];
+
+		this.editor.removeConnection();
+	}
+	loadFormRollback(response) {
+		this.editor.reroute = true;
+
+		const flow = {
+			drawflow: {
+				Home: {
+					data: {},
+				},
+				zigaform: {},
+			},
+		};
+
+		flow.drawflow.zigaform.data = JSON.parse(JSON.stringify(response.data.parent.data.data.data));
+
+		let newtmp = flow.drawflow.zigaform.data;
+
+		for (let key in newtmp) {
+			if (newtmp.hasOwnProperty(key)) {
+				for (let key2 in newtmp[key]) {
+					if (newtmp[key].hasOwnProperty(key2)) {
+						if (key2 === 'typenode') {
+							newtmp[key]['typenode'] = false;
+						}
+					}
+				}
+			}
+		}
+		flow.drawflow.zigaform.data = newtmp;
+
+		const dataToImport = flow;
+		this.editor.clear();
+		this.editor.import(dataToImport);
+
+		this.rollbackLoadChildForms(response.data.children.data);
+
+		let allConnections = this.$uifm('.connection');
+		const pathElem = allConnections.find('path.main-path');
+		if (pathElem.length) {
+			pathElem.css({
+				'stroke-dasharray': '10,5',
+				animation: 'dash 2s linear infinite',
+			});
+
+			const style = document.createElement('style');
+			style.innerHTML = `
+					@keyframes dash {
+						to {
+							stroke-dashoffset: -15;
+						}
+					}
+				`;
+			document.head.appendChild(style);
+		}
+	}
+	loadForm(response) {
+		this.editor.reroute = true;
+
+		const flow = {
+			drawflow: {
+				Home: {
+					data: {},
+				},
+				zigaform: {},
+			},
+		};
+
+		let dataLoaded = response.data.fmb_data.data;
+
+		if (this.$uifm.isArray(dataLoaded) && parseInt(dataLoaded.length) === 0) {
+			return;
+		}
+
+		if (parseInt(Object.keys(dataLoaded).length) === 0) {
+			return;
+		}
+
+		flow.drawflow.zigaform.data = JSON.parse(JSON.stringify(response.data.fmb_data.data));
+
+		let newtmp = flow.drawflow.zigaform.data;
+
+		for (let key in newtmp) {
+			if (newtmp.hasOwnProperty(key)) {
+				for (let key2 in newtmp[key]) {
+					if (newtmp[key].hasOwnProperty(key2)) {
+						if (key2 === 'typenode') {
+							newtmp[key]['typenode'] = false;
+						}
+					}
+				}
+			}
+		}
+		flow.drawflow.zigaform.data = newtmp;
+
+		const dataToImport = flow;
+		this.editor.clear();
+		this.editor.import(dataToImport);
+
+		this.loadChildForms(newtmp);
+
+		let allConnections = this.$uifm('.connection');
+		const pathElem = allConnections.find('path.main-path');
+		if (pathElem.length) {
+			pathElem.css({
+				'stroke-dasharray': '10,5',
+				animation: 'dash 2s linear infinite',
+			});
+
+			const style = document.createElement('style');
+			style.innerHTML = `
+					@keyframes dash {
+						to {
+							stroke-dashoffset: -15;
+						}
+					}
+				`;
+			document.head.appendChild(style);
+		}
+	}
+
+	loadChildForms(childNodes) {
+
+		const self = this;
+
+		for (let key in childNodes) {
+			if (childNodes.hasOwnProperty(key)) {
+				let tmpDataId = childNodes[key]['data']['id'];
+				this.$uifm.ajax({
+					type: 'POST',
+					url: rockfm_vars.uifm_siteurl + 'formbuilder/forms/ajax_mm_load_childform',
+					async: false,
+					data: {
+						action: 'rocket_fbuilder_mm_load_childform',
+						page: 'zgfm_form_builder',
+						zgfm_security: uiform_vars.ajax_nonce,
+						uifm_frm_main_child_id: tmpDataId,
+						csrf_field_name: uiform_vars.csrf_field_name,
+					},
+					success: function(msg) {
+						self.availableForms[tmpDataId] = {};
+						self.availableForms[tmpDataId]['id'] = tmpDataId;
+						self.availableForms[tmpDataId]['core'] = msg.data.fmb_data;
+						self.availableForms[tmpDataId]['name'] = msg.data.fmb_name;
+						self.availableForms[tmpDataId]['preview'] = msg.data.fmb_html_backend;
+					},
+				});
+			}
+		}
+	}
+
+	handleClick() {
+		this.$uifm('#uifm_mm_settings_initialform').html('');
+
+		for (let key in this.availableForms) {
+			if (this.availableForms.hasOwnProperty(key)) {
+				var newOption = this.$uifm('<option></option>')
+					.attr('value', this.availableForms[key]['id'])
+					.text(this.availableForms[key]['name']);
+				this.$uifm('#uifm_mm_settings_initialform').append(newOption);
+			}
+		}
+
+		this.$uifm('#uifm_mm_settings_initialform').val(this.multistepSettings['initial']);
+		this.$uifm('#uifm_mm_settings_title').val(this.multistepSettings['name']);
+
+		this.$uifm('#uifm_mm_general').sfdc_modal('show');
+	}
+	getDrawflowArr() {
+		return this.editor.getDrawflowArr();
+	}
+	handleClickShowExport() {
+		this.editor.showExport();
+	}
+	handleClickZoomReset() {
+		this.editor.zoom_reset();
+	}
+	handleClickZoomIn() {
+		this.editor.zoom_in();
+	}
+	handleClickZoomOut() {
+		this.editor.zoom_out();
+	}
+	handleClickNewForm(event) {
+		var $uifm = this.$uifm;
+		var $editor = this.editor;
+
+		const self = this;
+		const formData = rocketform.getMainData();
+		this.$uifm.ajax({
+			type: 'POST',
+			url: rockfm_vars.uifm_siteurl + 'multistep/dashboard/ajax_save_newform',
+			async: true,
+			data: {
+				action: 'rocket_fbuilder_mm_save_newform',
+				page: 'zgfm_form_builder',
+				zgfm_security: uiform_vars.ajax_nonce,
+				form_data: encodeURIComponent(JSON.stringify(formData)),
+				uifm_frm_main_multistep_parent: this.$uifm('#uifm_frm_mm_main_id').val(),
+				csrf_field_name: uiform_vars.csrf_field_name,
+			},
+			success: function(msg) {
+				if (parseInt(msg.id) > 0) {
+					$uifm('#uifm_frm_main_id').val(msg.id);
+					var data = {};
+					data.id = msg.id;
+
+					let numberOfProperties = Object.keys(self.multistepSettings['availableNodes']).length;
+
+					let nodeId;
+					if (numberOfProperties == 0) {
+						self.multistepSettings['availableNodes'] = {};
+						nodeId = $editor.addNode(msg.name, 0, 1, 50, 100, '', data, msg.name);
+						self.multistepSettings['initial'] = msg.id;
+					} else {
+						nodeId = $editor.addNode(msg.name, 1, 1, 50, 100, '', data, msg.name);
+					}
+
+					self.activeFormId = msg.id;
+					self.availableForms[msg.id] = {};
+					self.availableForms[msg.id]['core'] = JSON.parse(JSON.stringify(formData));
+					self.availableForms[msg.id]['id'] = msg.id;
+					self.availableForms[msg.id]['name'] = msg.name;
+					self.availableForms[msg.id]['preview'] = `<div class="rockfm_form_hook_outertop"></div><div class="uiform-main-form" style="padding: 20px 17px; background: rgb(255, 255, 255); box-shadow: rgb(204, 204, 204) 3px 3px 10px;">
+					 <div class="rockfm_form_hook_innertop"></div>
+					 <div class="uiform-step-content" style="min-height:100px;">
+					 <div data-uifm-step="0" id="uifm-step-tab-0" class="uiform-step-pane" style="">
+					 <div id="" class="uiform-items-container uiform-tab-container ui-sortable"></div>
+					 </div>
+					 </div>
+					 </div>`;
+					self.changeNodeName(nodeId, msg.name);
+
+					self.multistepSettings['availableNodes'][msg.id] = nodeId;
+
+				} else {
+					alert('Error');
+				}
+			},
+		});
+	}
+	formvariables_generateTable_modal() {
+		return this.formvariables_generateTable_process_main();
+	}
+	formvariables_generateTable() {
+		this.$uifm('#uiform-form-mailset-vars-tab-1 .uifm-tab-inner-vars-1').html(this.formvariables_generateTable_process());
+	}
+
+	formvariables_generateTable_process_main() {
+
+
+		 		 		let message = `
+		 <div class="sfdc-wrap">
+   <div id="zgfm-modal-calc-container">
+      <div class="sfdc-alert sfdc-alert-info"> <strong>Info!</strong> Choose your variable. Under Backend tab, you will find variables to be used in mail notification or Submission message </div>
+      <ul role="tablist" class="sfdc-nav sfdc-nav-tabs">
+         <li class="sfdc-active"><a data-toggle="sfdc-tab" role="tab" href="#zgfm-modal-calc-tab-1" aria-expanded="true">Backend</a></li>
+         <li><a data-toggle="sfdc-tab" role="tab" href="#zgfm-modal-calc-tab-2" aria-expanded="true">Frontend</a></li>
+      </ul>
+      <div class="sfdc-tab-content">
+         <div id="zgfm-modal-calc-tab-1" class="sfdc-tab-pane sfdc-in sfdc-active">
+            <h3>Fields</h3>
+          ${this.formvariables_generateTable_process()}
+            <h3>Others</h3>
+            <div class="zgfm-modal-calc-wrap-table">
+               <table class="sfdc-table sfdc-table-striped sfdc-table-bordered sfdc-table-condensed uifm-tab-box-vars-2">
+                  <thead>
+                     <tr>
+                        <th width="150">variables</th>
+                        <th>Code</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>Summary of submitted data</td>
+                        <td><textarea onclick="this.select();" style="width:298px;">[uifm_var opt="rec_summ"]</textarea></td>
+                     </tr>
+                     <tr>
+                        <td>Form Url</td>
+                        <td><textarea onclick="this.select();" style="width:298px;">[uifm_var opt="rec_url_fm"]</textarea></td>
+                     </tr>
+                     <tr>
+                        <td>Form name</td>
+                        <td><textarea onclick="this.select();" style="width: 284px;">[uifm_var opt="form_name"]</textarea></td>
+                     </tr>
+                     <tr>
+                        <td>Form record id</td>
+                        <td><textarea onclick="this.select();" style="width: 284px;">[uifm_var opt="rec_id"]</textarea></td>
+                     </tr>
+                     <tr>
+                        <td>User IP</td>
+                        <td><textarea onclick="this.select();">[uifm_var opt="user_ip"]</textarea></td>
+                     </tr>
+                     <tr>
+                        <td>Logged Username</td>
+                        <td><textarea onclick="this.select();">[uifm_var opt="logged_username"]</textarea></td>
+                     </tr>
+                     <tr>
+                        <td>Logged email</td>
+                        <td><textarea onclick="this.select();">[uifm_var opt="logged_email"]</textarea></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div id="zgfm-modal-calc-tab-2" class="sfdc-tab-pane" >
+            <h3>Fields</h3>
+                    ${this.formvariables_generateTable_process_2()}
+                  <h3>Others</h3>
+                    <div class="zgfm-modal-calc-wrap-table">
+					  <table class="sfdc-table sfdc-table-striped sfdc-table-bordered sfdc-table-condensed uifm-tab-box-vars-2">
+					    <thead>
+					      <tr>
+					        <th width="150">variables</th>
+					        <th>Code</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr>
+					        <td>Currency symbol</td>
+					        <td>
+					          <textarea onclick="this.select();">[zgfm_fvar opt="form_cur_symbol"]</textarea>
+					        </td>
+					      </tr>
+					      <tr>
+					        <td>Currency code</td>
+					        <td>
+					          <textarea onclick="this.select();">[zgfm_fvar opt="form_cur_code"]</textarea>
+					        </td>
+					      </tr>
+					      <tr>
+					        <td>Sub Total price</td>
+					        <td>
+					          <textarea onclick="this.select();">[zgfm_fvar opt="form_subtotal_amount"]</textarea>
+					        </td>
+					      </tr>
+					      <tr>
+					        <td>Tax</td>
+					        <td>
+					          <textarea onclick="this.select();">[zgfm_fvar opt="form_tax_amount"]</textarea>
+					        </td>
+					      </tr>
+					      <tr>
+					        <td>Total Amount price</td>
+					        <td>
+					          <textarea onclick="this.select();">[zgfm_fvar opt="form_total_amount"]</textarea>
+					        </td>
+					      </tr>
+					      <tr>
+					        <td>Summary content</td>
+					        <td>
+					          <textarea style="width:298px;" onclick="this.select();">[uifm_summary rows="8" heading="summary : "]</textarea>
+					        </td>
+					      </tr>
+					      <tr>
+					        <td>Summary link</td>
+					        <td>
+					          <textarea style="width: 284px;" onclick="this.select();">[uifm_summary_link value="Show summary"]</textarea>
+					        </td>
+					      </tr>
+					    </tbody>
+					  </table>
+					</div>
+                  <h3>Calculation</h3>
+                    <div class="zgfm-modal-calc-wrap-table">
+					  <table class="sfdc-table sfdc-table-striped sfdc-table-bordered sfdc-table-condensed uifm-tab-box-vars-2" id="zgfm-tbl-calc-variables">
+					    <thead>
+					      <tr>
+					        <th width="150">Calculation variables</th>
+					        <th>Code</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					    ${this.formvariables_generateTable_process_3()}
+					    </tbody>
+					  </table>
+					</div>
+         </div>
+      </div>
+   </div>
+</div>
+		`;
+		return message;
+	}
+	formvariables_generateTable_process_3() {
+
+		 		var tmp_vars = rocketform.getUiData2('calculation', 'variables');
+
+		 				var tmp_str='';
+				this.$uifm.each(tmp_vars, function(key, value) {
+					tmp_str += '<tr>';
+					tmp_str += '<td> ' + value['tab_title'] + '</td>';
+					tmp_str += '<td><textarea onclick="this.select();" style="width: 284px;">[zgfm_fvar opt="calc" atr1="' + key + '"]</textarea></td>';
+					tmp_str += '</tr>';
+				});
+
+						return tmp_str;
+	}
+	formvariables_generateTable_process_2() {
+
+		 		let message = ``;
+		let counter = 1;
+		for (let key in this.availableForms) {
+			if (this.availableForms.hasOwnProperty(key)) {
+				message += `<div class="uifm_mm_variables_section">`;
+				message += `<div class="uifm_formname"><i class="fa fa-th-list" aria-hidden="true"></i> ${this.availableForms[key]['name']}</div>`;
+				message += `<div class="zgfm-modal-calc-wrap-table">
+                                <table class="sfdc-table sfdc-table-striped sfdc-table-bordered sfdc-table-condensed uifm-tab-box-vars-1">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">${this.$uifm('#uifm_mm_frm_variables_field').val()}</th>
+                                            <th colspan="5">${this.$uifm('#uifm_mm_frm_variables_codes').val()}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>${this.$uifm('#uifm_mm_frm_variables_label').val()}</th>
+                                            <th>${this.$uifm('#uifm_mm_frm_variables_input').val()}</th>
+                                            
+                                            <th>Cost</th>
+                                            <th>${this.$uifm('#uifm_mm_frm_variables_quantity').val()}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>`;
+				console.log(`testing testing...`);
+				for (let key2 in this.availableForms[key]['core']['steps_src']) {
+					if (this.availableForms[key]['core']['steps_src'].hasOwnProperty(key2)) {
+						for (let key3 in this.availableForms[key]['core']['steps_src'][key2]) {
+							if (this.availableForms[key]['core']['steps_src'][key2].hasOwnProperty(key3)) {
+								let fname = this.availableForms[key]['core']['steps_src'][key2][key3]['field_name'];
+
+								let fid = this.availableForms[key]['core']['steps_src'][key2][key3]['id'];
+								let ftype = this.availableForms[key]['core']['steps_src'][key2][key3]['type'];
+
+								switch (parseInt(ftype)) {
+									case 8:
+									case 10:
+										case 9:
+											case 11:
+												case 16:
+
+									 												case 18:
+												case 40:
+										message += `<tr>
+                                            <td>${fname}</td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[zgfm_rfvar id="${fid}_${key}" atr1="input" atr2="label"]</textarea></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[zgfm_rfvar id="${fid}_${key}" atr1="input" atr2="value"]</textarea></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[zgfm_rfvar id="${fid}_${key}" atr1="amount"]</textarea></td>
+                                            <td></td>
+                                            
+                                        </tr>`;
+										break;
+
+
+ 									  									default:
+										break;
+								}
+							}
+						}
+					}
+				}
+
+				message += `</tbody>
+                                </table>
+                            </div>`;
+
+				message += `</div>`;
+				counter++;
+			}
+		}
+		return message;
+	}
+
+	formvariables_generateTable_process() {
+		let message = ``;
+		let counter = 1;
+		for (let key in this.availableForms) {
+			if (this.availableForms.hasOwnProperty(key)) {
+				message += `<div class="uifm_mm_variables_section">`;
+				message += `<div class="uifm_formname"><i class="fa fa-th-list" aria-hidden="true"></i> ${this.availableForms[key]['name']}</div>`;
+				message += `<div class="zgfm-modal-calc-wrap-table">
+                                <table class="sfdc-table sfdc-table-striped sfdc-table-bordered sfdc-table-condensed uifm-tab-box-vars-1">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">${this.$uifm('#uifm_mm_frm_variables_field').val()}</th>
+                                            <th colspan="5">${this.$uifm('#uifm_mm_frm_variables_codes').val()}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>${this.$uifm('#uifm_mm_frm_variables_label').val()}</th>
+                                            <th>${this.$uifm('#uifm_mm_frm_variables_input').val()}</th>
+                                            
+                                            <th>${this.$uifm('#uifm_mm_frm_variables_quantity').val()}</th>
+                                            <th>${this.$uifm('#uifm_mm_frm_variables_wrapper').val()} <a data-original-title="you can use this to show content depending if the field has ticked and has a value. if the field has no been ticked or doesnt have a value. the content inside this shortcode will not appear. " data-placement="right" data-toggle="tooltip" href="javascript:void(0);"><span class="fa fa-question-circle"></span></a></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>`;
+
+				for (let key2 in this.availableForms[key]['core']['steps_src']) {
+					if (this.availableForms[key]['core']['steps_src'].hasOwnProperty(key2)) {
+						for (let key3 in this.availableForms[key]['core']['steps_src'][key2]) {
+							if (this.availableForms[key]['core']['steps_src'][key2].hasOwnProperty(key3)) {
+								let fname = this.availableForms[key]['core']['steps_src'][key2][key3]['field_name'];
+
+								let fid = this.availableForms[key]['core']['steps_src'][key2][key3]['id'];
+								let ftype = this.availableForms[key]['core']['steps_src'][key2][key3]['type'];
+
+								switch (parseInt(ftype)) {
+									case 6:
+									case 7:
+									case 12:
+									case 13:
+									case 15:
+									case 22:
+									case 23:
+									case 24:
+									case 25:
+									case 26:
+									case 28:
+									case 29:
+									case 30:
+										message += `<tr>
+                                            <td>${fname}</td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="label"]</textarea></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="input"]</textarea></td>
+                                            <td></td>
+                                            
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_wrap id="${fid}_${key}"]here goes your content if field have some value. if no value, this will not appear.[/uifm_wrap]</textarea></td>
+                                        </tr>`;
+										break;
+									case 8:
+									case 10:
+										message += `<tr>
+                                            <td>${fname}</td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="input" atr2="label"]</textarea></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="input" atr2="value"]</textarea></td>
+                                            
+                                            <td></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_wrap id="${fid}_${key}"]here goes your content if field have some value. if no value, this will not appear.[/uifm_wrap]</textarea></td>
+                                        </tr>`;
+										break;
+
+									case 9:
+									case 11:
+										message += `<tr>
+                                            <td>${fname}</td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="input" atr2="label"]</textarea></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="input" atr2="value" atr3="format" atr4="comma" ]</textarea></td>
+                                            
+                                            <td></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_wrap id="${fid}_${key}"]here goes your content if field have some value. if no value, this will not appear.[/uifm_wrap]</textarea></td>
+                                        </tr>`;
+
+										break;
+									case 40:
+										message += `<tr>
+                                            <td>${fname}</td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="label"]</textarea></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="input"]</textarea></td>
+                                            
+                                            <td></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_wrap id="${fid}_${key}"]here goes your content if field have some value. if no value, this will not appear.[/uifm_wrap]</textarea></td>
+                                        </tr>`;
+										break;
+									case 16:
+									case 17:
+									case 18:
+										message += `<tr>
+                                            <td>${fname}</td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="label"]</textarea></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="input" atr2="value"]</textarea></td>
+                                            
+                                            <td></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_wrap id="${fid}_${key}"]here goes your content if field have some value. if no value, this will not appear.[/uifm_wrap]</textarea></td>
+                                        </tr>`;
+										break;
+									case 41:
+									case 42:
+										message += `<tr>
+                                            <td>${fname}</td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="label"]</textarea></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="input"]</textarea></td>
+                                            
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="qty"]</textarea></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_wrap id="${fid}_${key}"]here goes your content if field have some value. if no value, this will not appear.[/uifm_wrap]</textarea></td>
+                                        </tr>`;
+										break;
+									case 21:
+										message += `<tr>
+                                            <td>${fname}</td>
+                                            <td></td>
+                                            <td><textarea onclick="this.select();" class="uifm_txtarea_var">[uifm_recvar id="${fid}_${key}" atr1="input"]</textarea></td>
+                                            
+                                            <td></td>
+                                            <td></td>
+                                        </tr>`;
+										break;
+									default:
+										break;
+								}
+							}
+						}
+					}
+				}
+
+				message += `</tbody>
+                                </table>
+                            </div>`;
+
+				message += `</div>`;
+				counter++;
+			}
+		}
+		return message;
+	}
+	changeNodeName(nodeId, newName) {
+		const node = this.editor.getNodeFromId(nodeId);
+		if (node) {
+			node.name = newName;
+
+			node.html = `<div>${newName}</div>`;
+
+			this.editor.updateNodeDataFromId(nodeId, node.data);
+			this.editor.updateNodeNameFromId(nodeId, newName);
+			const nodeElement = document.querySelector(`#node-${node.id} .drawflow_content_node`);
+			if (nodeElement) {
+				nodeElement.innerHTML = node.html;
+			}
+
+		}
+	}
+
+	progresstab_refreshPreview() {
+		let progressBar = this.multistepSettings.progressBar;
+
+				if (parseInt(progressBar.enable_st) === 0) { 
+			return;
+		}
+
+				let container;
+		switch (progressBar.position) {
+			case 'outertop':
+				container = this.$uifm('.rockfm_form_hook_outertop');
+
+				break;
+			case 'innertop':
+				container = this.$uifm('.rockfm_form_hook_innertop');
+				break;
+			default:
+				break;
+		}
+		this.$uifm('.rockfm_form_hook_outertop')
+			.find('.zgfm-progress-bar')
+			.remove();
+		this.$uifm('.rockfm_form_hook_innertop')
+			.find('.zgfm-progress-bar')
+			.remove();
+
+		let defaultClass;
+
+		let type = progressBar.theme_type;
+		var border_focus_str;
+		var f_id = 'uifm_frm_wiz_css_head';
+		switch (type) {
+			case 'default':
+				defaultClass = ' uiform-wiztheme0';
+
+				var skin_tab_default_txt_bgcolor = this.getUiData4('progressBar', 'theme', type, 'skin_tab_default_txt_bgcolor');
+
+				var wiz_active_bgcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_bgcolor');
+
+				var wiz_active_txtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_txtcolor');
+
+				var wiz_active_numtxtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_numtxtcolor');
+
+				var wiz_inactive_bgcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_bgcolor');
+
+				var wiz_inactive_txtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_txtcolor');
+
+				var wiz_inactive_numtxtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_numtxtcolor');
+
+				var wiz_done_bgcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_done_bgcolor');
+
+				var wiz_done_txtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_done_txtcolor');
+
+				var wiz_done_numtxtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_done_numtxtcolor');
+
+				var wiz_cont_bgcolor = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cont_bgcolor');
+
+				var wiz_cont_borcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cont_borcol');
+
+				this.$uifm('#' + f_id + '_tab').remove();
+				border_focus_str = '<style type="text/css" id="' + f_id + '_tab">';
+
+				border_focus_str += '.uiform-wiztheme0 {';
+				if (parseInt(wiz_cont_borcol.length) != 0) {
+					border_focus_str += ' border:1px solid ' + wiz_cont_borcol + ';';
+				}
+				if (parseInt(wiz_cont_bgcolor.length) != 0) {
+					border_focus_str += ' background-color: ' + wiz_cont_bgcolor + ';';
+				}
+				border_focus_str += '} ';
+
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li a,';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li a:hover,';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li a:active {';
+				border_focus_str += 'background:' + wiz_inactive_bgcol + ';';
+				border_focus_str += 'color:' + wiz_inactive_txtcol + ';';
+				border_focus_str += '} ';
+
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps .uifm-number {';
+				border_focus_str += 'background-color: ' + skin_tab_default_txt_bgcolor + '!important;';
+				border_focus_str += 'color:' + wiz_inactive_numtxtcol + ';';
+				border_focus_str += '}';
+
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps .uifm-number:before {';
+				border_focus_str += ' border-left:14px solid ' + wiz_inactive_bgcol + '!important;';
+				border_focus_str += '}';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps .uifm-number:after {';
+				border_focus_str += ' border-left:14px solid ' + wiz_inactive_bgcol + '!important;';
+				border_focus_str += '}';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps .uifm-current .uifm-number {';
+				border_focus_str += 'color:' + wiz_active_numtxtcol + '!important;';
+				border_focus_str += '}';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps .uifm-current .uifm-number:before {';
+				border_focus_str += 'border-left-color: ' + wiz_active_bgcol + '!important;';
+				border_focus_str += '}';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps .uifm-current .uifm-number:after {';
+				border_focus_str += 'border-left-color: ' + wiz_active_bgcol + '!important;';
+				border_focus_str += '}';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li.uifm-current a,';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li.uifm-current a:hover,';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li.uifm-current a:active {';
+				border_focus_str += 'background:' + wiz_active_bgcol + '!important;';
+				border_focus_str += 'color:' + wiz_active_txtcol + ';';
+				border_focus_str += '} ';
+
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li.uifm-current .uifm-number:before{';
+				border_focus_str += ' border-left:14px solid ' + wiz_inactive_bgcol + ';';
+				border_focus_str += '} ';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps .uifm-complete .uifm-number {';
+				border_focus_str += 'color: ' + wiz_done_numtxtcol + '!important;';
+				border_focus_str += '}';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps .uifm-complete .uifm-number:before {';
+				border_focus_str += 'border-left-color: ' + wiz_done_bgcol + '!important;';
+				border_focus_str += '}';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps .uifm-complete .uifm-number:after {';
+				border_focus_str += 'border-left-color: ' + wiz_done_bgcol + '!important;';
+				border_focus_str += '}';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li.uifm-complete a,';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li.uifm-complete a:hover,';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li.uifm-complete a:active {';
+				border_focus_str += 'background:' + wiz_done_bgcol + '!important;';
+				border_focus_str += 'color:' + wiz_done_txtcol + ';';
+				border_focus_str += '} ';
+				border_focus_str += '.uiform-wiztheme0 .zgfm-pbar-steps li.uifm-complete .uifm-number:before{';
+				border_focus_str += ' border-left:14px solid ' + wiz_done_bgcol + ';';
+				border_focus_str += '} ';
+
+				border_focus_str += '</style>';
+				this.$uifm('head').append(border_focus_str);
+
+				break;
+			case 'numbers2':
+				defaultClass = ' uiform-wiztheme3';
+
+				var wiz_active_bgcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_bgcolor');
+
+				var wiz_active_txtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_txtcolor');
+
+				var wiz_inactive_bgcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_bgcolor');
+
+				var wiz_inactive_txtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_txtcolor');
+
+				this.$uifm('#' + f_id + '_tab').remove();
+				border_focus_str = '<style type="text/css" id="' + f_id + '_tab">';
+
+				border_focus_str += '.uiform-wiztheme3 .zgfm-pbar-steps li::before{';
+				border_focus_str += 'background: ' + wiz_inactive_bgcol + ';';
+				border_focus_str += 'color:' + wiz_inactive_txtcol + ';';
+				border_focus_str += '}';
+
+				border_focus_str += '.uiform-wiztheme3 .zgfm-pbar-steps li::after{';
+				border_focus_str += 'background: ' + wiz_inactive_bgcol + ';';
+				border_focus_str += '}';
+
+				border_focus_str += '.uiform-wiztheme3 .zgfm-pbar-steps li.uifm-current:before,';
+				border_focus_str += '.uiform-wiztheme3 .zgfm-pbar-steps li.uifm-current:after,';
+				border_focus_str += '.uiform-wiztheme3 .zgfm-pbar-steps li.uifm-complete:before,';
+				border_focus_str += '.uiform-wiztheme3 .zgfm-pbar-steps li.uifm-complete:after{';
+				border_focus_str += 'background-color: ' + wiz_active_bgcol + '!important;';
+				border_focus_str += 'color:' + wiz_active_txtcol + '!important;';
+				border_focus_str += '}';
+
+				border_focus_str += '</style>';
+				this.$uifm('head').append(border_focus_str);
+
+				break;
+			case 'numbers':
+				defaultClass = ' uiform-wiztheme1';
+
+				var wiz_active_bgcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_bgcolor');
+
+				var wiz_active_txtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_txtcolor');
+
+				var wiz_active_numtxtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_numtxtcolor');
+
+				var wiz_active_bg_numtxt = this.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_bg_numtxt');
+
+				var wiz_inactive_bgcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_bgcolor');
+
+				var wiz_inactive_txtcol = this.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_txtcolor');
+
+				this.$uifm('#' + f_id + '_tab').remove();
+				border_focus_str = '<style type="text/css" id="' + f_id + '_tab">';
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li.uifm-current::before,';
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li.uifm-complete::before,';
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li.uifm-current .uifm-number,';
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li.uifm-complete .uifm-number {';
+				border_focus_str += 'border-color:' + wiz_active_bgcol + '!important;';
+				border_focus_str += '} ';
+
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li .uifm-number{';
+				border_focus_str += 'background-color: ' + wiz_active_bg_numtxt + ';';
+				border_focus_str += 'color:' + wiz_active_numtxtcol + ';';
+				border_focus_str += 'border: 5px solid ' + wiz_inactive_bgcol + ';';
+				border_focus_str += '}';
+
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li .uifm-title{';
+				border_focus_str += 'color:' + wiz_inactive_txtcol + ';';
+				border_focus_str += '}';
+
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li::before{';
+				border_focus_str += 'border-top: 4px solid ' + wiz_inactive_bgcol + ';';
+				border_focus_str += '}';
+
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li.uifm-complete .uifm-title,';
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li.uifm-current .uifm-title {';
+				border_focus_str += 'color:' + wiz_active_txtcol + '!important;';
+				border_focus_str += '}';
+
+				border_focus_str += '.uiform-wiztheme1 .zgfm-pbar-steps li.uifm-complete .uifm-number:before{';
+				border_focus_str += 'background-color: ' + wiz_active_bg_numtxt + ';';
+				border_focus_str += '}';
+
+				border_focus_str += '</style>';
+				this.$uifm('head').append(border_focus_str);
+
+				break;
+			default:
+				break;
+		}
+
+		let progressBarObj = container.find('.zgfm-progress-bar');
+
+		if (!progressBarObj.length) {
+			container.append(`<div class="zgfm-progress-bar">
+				
+			</div>`);
+			progressBarObj = container.find('.zgfm-progress-bar');
+		}
+		progressBarObj.html('');
+		progressBarObj.append(`
+			<div class="${defaultClass}">
+					<ul class="zgfm-pbar-steps">     
+	                </ul>
+				</div>
+		`);
+
+		progressBarObj.find('.zgfm-pbar-steps').html('');
+
+		var setCurrentStatus = false;
+		var CurrentStatusGiven = false;
+
+		if (this.multistepSettings['progressBar']['progressBarAssigned'].includes(String(this.activeFormId))) {
+			setCurrentStatus = true;
+		}
+
+		let counter = 1;
+		for (const key in progressBar.steps) {
+			if (progressBar.steps.hasOwnProperty(key)) {
+				const element = progressBar.steps[key];
+
+				let className = '';
+				if (setCurrentStatus === true) {
+					if (element['forms'].includes(String(this.activeFormId))) {
+						className = 'uifm-current';
+						CurrentStatusGiven = true;
+					}
+
+					if (CurrentStatusGiven === false) {
+						className = 'uifm-complete';
+					}
+				}
+
+				let content;
+
+				switch (type) {
+					case 'numbers2':
+						content = `
+						<li data-index="${element.id}" class="${className}"></li>
+					`;
+						break;
+					default:
+						content = `
+						<li data-index="${element.id}" class="${className}">
+							<a >
+								<span class="uifm-number">${counter}</span>
+								<span class="uifm-title">${element.title}</span>
+							</a>
+						</li>
+					`;
+						break;
+				}
+
+				progressBarObj.find('.zgfm-pbar-steps').append(content);
+			}
+			counter++;
+		}
+	}
+	progresstab_tabManualEvt(element) {
+		let el = this.$uifm(element);
+
+		let index = el.closest('.uifm_frm_skin_tab_content').attr('data-tab-key');
+		this.setUiData4('progressBar', 'steps', index, 'title', el.val());
+
+		this.progresstab_refreshPreview();
+	}
+	progresstab_addNewTab() {
+		let progressBar = this.multistepSettings.progressBar;
+		var order = parseInt(Object.keys(progressBar.steps).length);
+		var newNum = zgfm_back_helper.generateUniqueID(5);
+
+		if (order === 0) {
+			this.multistepSettings.progressBar.steps = {};
+		}
+
+		this.addIndexUiData2('progressBar', 'steps', newNum);
+
+		let newStep = {
+			title: `Tab title ${order + 1}`,
+			forms: [],
+			order: order,
+			id: newNum,
+		};
+		this.setUiData3('progressBar', 'steps', newNum, newStep);
+
+		this.progresstab_addTabController(newStep);
+
+		this.progresstab_select2_refresh();
+
+		this.progresstab_refreshPreview();
+	}
+	progresstab_cleanTabs() {
+		this.$uifm('#uifm_frm_skin_tabs_box').html('');
+
+		this.multistepSettings.progressBar.steps = {};
+
+		this.progresstab_refreshPreview();
+	}
+	progresstab_deleteTab(element) {
+		const self = this;
+		var el = this.$uifm(element);
+		var el_num = el.closest('.uifm_frm_skin_tab_content').data('tab-key');
+
+		el.closest('.uifm_frm_skin_tab_content').remove();
+
+		let steps = this.getUiData3('progressBar', 'steps', el_num);
+
+		for (const key in steps['forms']) {
+			const element = steps['forms'][key];
+			let arr = this.multistepSettings['progressBar'].progressBarAssigned;
+			let index = arr.indexOf(element);
+			if (index > -1) {
+				this.multistepSettings['progressBar'].progressBarAssigned.splice(index, 1);
+			}
+		}
+
+		this.delUiData3('progressBar', 'steps', el_num);
+
+		this.progresstab_refreshPreview();
+	}
+	progresstab_addTabController(newStep) {
+		const self = this;
+		var tmp_tmpl = wp.template('zgfm-frm-pbar-templates');
+		var tmpTpl2 = this.$uifm('<div class="uifm_temporal_div"></div>');
+		if (newStep.title === '') {
+			newStep.title = 'Tab title ' + (parseInt(newStep.order) + 1);
+		}
+
+		tmpTpl2.append(tmp_tmpl());
+		tmpTpl2.find('.uifm_frm_skin_tab_content').attr('data-tab-key', newStep.id);
+		tmpTpl2.find('.uifm_frm_skin_tab_title_evt').attr('id', 'uifm_frm_skin_tab' + newStep.id + '_title');
+		tmpTpl2.find('.uifm_frm_skin_tab_forms_evt').attr('id', 'uifm_frm_skin_tab' + newStep.id + '_forms');
+
+		tmpTpl2.find('.uifm_frm_skin_tab_title_evt').val(newStep.title);
+		tmpTpl2
+			.find('.uifm_frm_skin_tab_title_evt')
+			.parent()
+			.find('label span')
+			.html(parseInt(newStep.order) + 1);
+
+		this.$uifm('#uifm_frm_skin_tabs_box').append(tmpTpl2.find('.uifm_frm_skin_tab_content'));
+
+		if (newStep['forms'].length > 0) {
+			let tmpOptions = this.progresstab_select2_data_load();
+			let obj = this.$uifm('#uifm_frm_skin_tabs_box').find('#uifm_frm_skin_tab' + newStep.id + '_forms');
+			obj.empty();
+			tmpOptions.forEach(function(option) {
+				obj.append(
+					self.$uifm('<option>', {
+						value: option.id,
+						text: option.text,
+					})
+				);
+			});
+
+			obj.val(this.multistepSettings['progressBar']['steps'][newStep.id]['forms']);
+		}
+	}
+
+	progresstab_select2_onUnselect(key, idToRemove) {
+		let arr = this.multistepSettings['progressBar'].progressBarAssigned;
+		let index = arr.indexOf(idToRemove);
+
+		if (index > -1) {
+			this.multistepSettings['progressBar'].progressBarAssigned.splice(index, 1);
+		}
+
+		let currentForms = this.multistepSettings['progressBar']['steps'][key]['forms'];
+		index = currentForms.indexOf(idToRemove);
+
+		if (index > -1) {
+			this.multistepSettings['progressBar']['steps'][key]['forms'].splice(index, 1);
+		}
+	}
+	progresstab_select2_onChange(inputs, key) {
+		let currentForms = this.multistepSettings['progressBar']['steps'][key]['forms'];
+		for (let index = 0; index < inputs.length; index++) {
+			const element = inputs[index];
+
+			if (!this.multistepSettings['progressBar'].progressBarAssigned.includes(element)) {
+				currentForms.push(element);
+				this.multistepSettings['progressBar'].progressBarAssigned.push(element);
+			}
+		}
+		this.multistepSettings['progressBar']['steps'][key]['forms'] = currentForms;
+
+		this.progresstab_select2_refresh();
+
+		this.progresstab_refreshPreview();
+	}
+
+	progresstab_select2_refresh() {
+		const self = this;
+		let objs = this.$uifm('.uifm_frm_skin_tab_forms_evt');
+
+		objs.each(function(index, element) {
+			element = self.$uifm(element);
+
+			if (element.data('select2')) {
+				element.select2('destroy');
+			}
+
+			element.find('option').each(function() {
+				let optionTmp = self.$uifm(this);
+
+				if (self.multistepSettings['progressBar'].progressBarAssigned.includes(optionTmp.val())) {
+					optionTmp.attr('disabled', true);
+				} else {
+					optionTmp.attr('disabled', false);
+				}
+			});
+
+			element.select2({
+				placeholder: 'Select an option',
+				theme: 'classic',
+				width: '100%',
+				data: self.progresstab_select2_data(),
+			});
+
+			element.on('change.select2', function(e) {
+				if (e) {
+					e.stopPropagation();
+					e.preventDefault();
+				}
+				let id = self.$uifm(e.target).attr('id');
+
+				let currentObj = self.$uifm(`#${id}`);
+				let inputs = currentObj.val();
+				let key = currentObj.closest('.uifm_frm_skin_tab_content').attr('data-tab-key');
+				self.progresstab_select2_onChange(inputs, key);
+
+				self.$uifm(this).select2('open');
+				self.$uifm(this).select2('close');
+			});
+
+			element.on('select2:unselect', function(e) {
+				if (e) {
+					e.stopPropagation();
+					e.preventDefault();
+				}
+				var data = e.params.data;
+
+				let id = self.$uifm(e.target).attr('id');
+
+				let currentObj = self.$uifm(`#${id}`);
+				let inputs = currentObj.val();
+				let key = currentObj.closest('.uifm_frm_skin_tab_content').attr('data-tab-key');
+
+				self.progresstab_select2_onUnselect(key, data.id);
+				self.progresstab_select2_onChange(inputs, key);
+
+				self.$uifm(this).select2('open');
+				self.$uifm(this).select2('close');
+			});
+		});
+	}
+	progresstab_select2_data_load() {
+		let newArr = [];
+		for (const key in this.availableForms) {
+			if (Object.hasOwnProperty.call(this.availableForms, key)) {
+				const element = this.availableForms[key];
+
+				newArr.push({
+					id: element.id,
+					text: element.name,
+				});
+			}
+		}
+
+		return newArr;
+	}
+	progresstab_select2_data() {
+		let newArr = [];
+		for (const key in this.availableForms) {
+			if (Object.hasOwnProperty.call(this.availableForms, key)) {
+				const element = this.availableForms[key];
+
+				if (!this.multistepSettings['progressBar'].progressBarAssigned.includes(element.id)) {
+					newArr.push({
+						id: element.id,
+						text: element.name,
+					});
+				}
+			}
+		}
+
+		return newArr;
+	}
+	progresstab_hidePreview() {
+		let progressBar = this.multistepSettings.progressBar;
+		let container;
+		switch (progressBar.position) {
+			case 'outertop':
+				container = this.$uifm('.rockfm_form_hook_outertop');
+				break;
+			case 'innertop':
+				container = this.$uifm('.rockfm_form_hook_innertop');
+				break;
+			default:
+				break;
+		}
+
+		let progressBarObj = container.find('.zgfm-progress-bar');
+		if (progressBarObj.length) {
+			progressBarObj.hide();
+		}
+	}
+	progresstab_enableStatus() {
+		var wiz_st = this.$uifm('#uifm_frm_pbar_st').prop('checked') ? 1 : 0;
+		this.multistepSettings['progressBar']['enable_st'] = wiz_st;
+		if (wiz_st === 1) {
+			this.$uifm('.uiform_frm_pbar_main_content').show();
+
+			this.progresstab_refreshPreview();
+		} else {
+			this.$uifm('.uiform_frm_pbar_main_content').hide();
+
+			this.progresstab_hidePreview();
+		}
+	}
+	progresstab_updateSettingsTheme(fval) {
+		this.$uifm('.zgfm_pbar_theme_options_container').hide();
+		switch (fval) {
+			case 'numbers':
+				this.$uifm('#zgfm_pbar_theme_options_number').show();
+
+				break;
+			case 'numbers2':
+				this.$uifm('#zgfm_pbar_theme_options_number2').show();
+				break;
+			case 'default':
+				this.$uifm('#zgfm_pbar_theme_options_default').show();
+
+				break;
+		}
+	}
+
+	progresstab_loadSettings(self, skipType = true, skipSteps = true) {
+		try {
+			const self = this;
+			if (!skipSteps) {
+				self.$uifm('#uifm_frm_skin_tabs_box').html('');
+
+				let steps = self.getUiData2('progressBar', 'steps');
+				for (const key in steps) {
+					if (Object.hasOwnProperty.call(steps, key)) {
+						const element = steps[key];
+						self.progresstab_addTabController(element);
+					}
+				}
+
+				self.progresstab_select2_refresh();
+			}
+
+			var status = parseInt(self.getUiData2('progressBar', 'enable_st')) === 1 ? true : false;
+			self.$uifm('#uifm_frm_pbar_st').bootstrapSwitchZgpb('state', status);
+
+			var type = self.getUiData2('progressBar', 'theme_type');
+
+			if (type && !skipType) {
+				self.$uifm('#uifm_frm_pbar_theme_type').val(type);
+			}
+
+			var position = self.getUiData2('progressBar', 'position');
+			self.$uifm('#uifm_frm_pbar_theme_position').val(position);
+			switch (type) {
+				case 'default':
+					var skin_tab_default_txt_bgcolor = self.getUiData4('progressBar', 'theme', type, 'skin_tab_default_txt_bgcolor');
+
+					if (skin_tab_default_txt_bgcolor) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_inactive_bgcolor')
+							.parent()
+							.colorpicker('setValue', skin_tab_default_txt_bgcolor);
+						self.$uifm('#uifm_frm_pbar_tab_inactive_bgcolor').val(skin_tab_default_txt_bgcolor);
+					}
+
+					var wiz_active_bgcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_bgcolor');
+
+					if (wiz_active_bgcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_active_bgcolor')
+							.parent()
+							.colorpicker('setValue', wiz_active_bgcol);
+						self.$uifm('#uifm_frm_pbar_tab_active_bgcolor').val(wiz_active_bgcol);
+					}
+					var wiz_active_txtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_txtcolor');
+					if (wiz_active_txtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_active_txtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_active_txtcol);
+						self.$uifm('#uifm_frm_pbar_tab_active_txtcolor').val(wiz_active_txtcol);
+					}
+					var wiz_active_numtxtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_numtxtcolor');
+					if (wiz_active_numtxtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_active_numtxtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_active_numtxtcol);
+						self.$uifm('#uifm_frm_pbar_tab_active_numtxtcolor').val(wiz_active_numtxtcol);
+					}
+
+					var wiz_inactive_bgcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_bgcolor');
+					if (wiz_inactive_bgcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_inactive_bgcolor')
+							.parent()
+							.colorpicker('setValue', wiz_inactive_bgcol);
+						self.$uifm('#uifm_frm_pbar_tab_inactive_bgcolor').val(wiz_inactive_bgcol);
+					}
+					var wiz_inactive_txtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_txtcolor');
+					if (wiz_inactive_txtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_inactive_txtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_inactive_txtcol);
+						self.$uifm('#uifm_frm_pbar_tab_inactive_txtcolor').val(wiz_inactive_txtcol);
+					}
+					var wiz_inactive_numtxtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_numtxtcolor');
+					if (wiz_inactive_numtxtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_inactive_numtxtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_inactive_numtxtcol);
+						self.$uifm('#uifm_frm_pbar_tab_inactive_numtxtcolor').val(wiz_inactive_numtxtcol);
+					}
+					var wiz_done_bgcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_done_bgcolor');
+					if (wiz_done_bgcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_done_bgcolor')
+							.parent()
+							.colorpicker('setValue', wiz_done_bgcol);
+						self.$uifm('#uifm_frm_pbar_tab_done_bgcolor').val(wiz_done_bgcol);
+					}
+					var wiz_done_txtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_done_txtcolor');
+					if (wiz_done_txtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_done_txtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_done_txtcol);
+						self.$uifm('#uifm_frm_pbar_tab_done_txtcolor').val(wiz_done_txtcol);
+					}
+					var wiz_done_numtxtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_done_numtxtcolor');
+					if (wiz_done_numtxtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_done_numtxtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_done_numtxtcol);
+						self.$uifm('#uifm_frm_pbar_tab_done_numtxtcolor').val(wiz_done_numtxtcol);
+					}
+
+					var wiz_cont_bgcolor = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cont_bgcolor');
+					if (wiz_cont_bgcolor) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_cont_bgcolor')
+							.parent()
+							.colorpicker('setValue', wiz_cont_bgcolor);
+						self.$uifm('#uifm_frm_pbar_tab_cont_bgcolor').val(wiz_cont_bgcolor);
+					}
+					var wiz_cont_borcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cont_borcol');
+					if (wiz_cont_borcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab_cont_borcol')
+							.parent()
+							.colorpicker('setValue', wiz_cont_borcol);
+						self.$uifm('#uifm_frm_pbar_tab_cont_borcol').val(wiz_cont_borcol);
+					}
+
+					break;
+				case 'numbers':
+					var wiz_active_bgcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_bgcolor');
+					if (wiz_active_bgcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab2_active_bgcolor')
+							.parent()
+							.colorpicker('setValue', wiz_active_bgcol);
+						self.$uifm('#uifm_frm_pbar_tab2_active_bgcolor').val(wiz_active_bgcol);
+					}
+					var wiz_active_txtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_txtcolor');
+					if (wiz_active_txtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab2_active_txtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_active_txtcol);
+						self.$uifm('#uifm_frm_pbar_tab2_active_txtcolor').val(wiz_active_txtcol);
+					}
+					var wiz_active_numtxtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_numtxtcolor');
+					if (wiz_active_numtxtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab2_active_numtxtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_active_numtxtcol);
+						self.$uifm('#uifm_frm_pbar_tab2_active_numtxtcolor').val(wiz_active_numtxtcol);
+					}
+					var wiz_active_bg_numtxt = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_bg_numtxt');
+
+					if (wiz_active_bg_numtxt) {
+						self
+							.$uifm('#uifm_frm_pbar_tab2_active_bg_numtxt')
+							.parent()
+							.colorpicker('setValue', wiz_active_bg_numtxt);
+						self.$uifm('#uifm_frm_pbar_tab2_active_bg_numtxt').val(wiz_active_bg_numtxt);
+					}
+
+					var wiz_inactive_bgcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_bgcolor');
+					if (wiz_inactive_bgcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab2_inactive_bgcolor')
+							.parent()
+							.colorpicker('setValue', wiz_inactive_bgcol);
+						self.$uifm('#uifm_frm_pbar_tab2_inactive_bgcolor').val(wiz_inactive_bgcol);
+					}
+					var wiz_inactive_txtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_txtcolor');
+					if (wiz_inactive_txtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab2_inactive_txtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_inactive_txtcol);
+						self.$uifm('#uifm_frm_pbar_tab2_inactive_txtcolor').val(wiz_inactive_txtcol);
+					}
+
+					break;
+				case 'numbers2':
+					var wiz_active_bgcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_bgcolor');
+					if (wiz_active_bgcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab3_active_bgcolor')
+							.parent()
+							.colorpicker('setValue', wiz_active_bgcol);
+						self.$uifm('#uifm_frm_pbar_tab3_active_bgcolor').val(wiz_active_bgcol);
+					}
+					var wiz_active_txtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_cur_txtcolor');
+					if (wiz_active_txtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab3_active_txtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_active_txtcol);
+						self.$uifm('#uifm_frm_pbar_tab3_active_txtcolor').val(wiz_active_txtcol);
+					}
+
+					var wiz_inactive_bgcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_bgcolor');
+					if (wiz_inactive_bgcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab3_inactive_bgcolor')
+							.parent()
+							.colorpicker('setValue', wiz_inactive_bgcol);
+						self.$uifm('#uifm_frm_pbar_tab3_inactive_bgcolor').val(wiz_inactive_bgcol);
+					}
+					var wiz_inactive_txtcol = self.getUiData4('progressBar', 'theme', type, 'skin_tab_inac_txtcolor');
+					if (wiz_inactive_txtcol) {
+						self
+							.$uifm('#uifm_frm_pbar_tab3_inactive_txtcolor')
+							.parent()
+							.colorpicker('setValue', wiz_inactive_txtcol);
+						self.$uifm('#uifm_frm_pbar_tab3_inactive_txtcolor').val(wiz_inactive_txtcol);
+					}
+
+					break;
+			}
+		} catch (ex) {
+			console.error(' progresstab_setDataToTabSettings : ', ex.message);
+		}
+
+		self.progresstab_updateSettingsTheme(self.getUiData2('progressBar', 'theme_type'));
+	}
+
+		progresstab_cost_loadSettings(self, skipType = true) {
+		try {
+			const self = this;
+
+
+			 			var status = parseInt(self.getUiData2('progressBarCost', 'enable_st')) === 1 ? true : false;
+			self.$uifm('#uifm_frm_pbar_cost_st').bootstrapSwitchZgpb('state', status);
+
+			var type = self.getUiData2('progressBarCost', 'theme_type');
+
+			if (type && !skipType) {
+				self.$uifm('#uifm_frm_pbar_cost_theme_type').val(type);
+			}
+
+			var position = self.getUiData2('progressBarCost', 'position');
+			self.$uifm('#uifm_frm_pbar_cost_theme_position').val(position);
+
+
+									self.$uifm('#uifm_frm_pbar_cost_topref').val(self.getUiData2('progressBarCost', 'avg_top_cost'));
+
+						var commonColor = '';
+			switch (type) {
+				case 'default':
+					commonColor = self.getUiData4('progressBarCost', 'theme', type, 'skin_tab_default_bgcolor');
+
+					if (commonColor) {
+						self
+							.$uifm('#uifm_frm_pbar_cost_theme1_bg')
+							.parent()
+							.colorpicker('setValue', commonColor);
+						self.$uifm('#uifm_frm_pbar_cost_theme1_bg').val(commonColor);
+					}
+
+				 					commonColor = self.getUiData4('progressBarCost', 'theme', type, 'skin_tab_default_shadowcolor');
+
+					if (commonColor) {
+						self
+							.$uifm('#uifm_frm_pbar_cost_theme1_shadowcolor')
+							.parent()
+							.colorpicker('setValue', commonColor);
+						self.$uifm('#uifm_frm_pbar_cost_theme1_shadowcolor').val(commonColor);
+					}
+
+					commonColor = self.getUiData4('progressBarCost', 'theme', type, 'skin_tab_default_active_bg');
+
+					if (commonColor) {
+						self
+							.$uifm('#uifm_frm_pbar_cost_theme1_active_bg')
+							.parent()
+							.colorpicker('setValue', commonColor);
+						self.$uifm('#uifm_frm_pbar_cost_theme1_active_bg').val(commonColor);
+					}
+
+										commonColor = self.getUiData4('progressBarCost', 'theme', type, 'skin_tab_default_active_txt');
+
+					if (commonColor) {
+						self
+							.$uifm('#uifm_frm_pbar_cost_theme1_active_txt')
+							.parent()
+							.colorpicker('setValue', commonColor);
+						self.$uifm('#uifm_frm_pbar_cost_theme1_active_txt').val(commonColor);
+					}
+
+										break;
+				default:
+					break;
+			}
+		} catch (ex) {
+			console.error(' progresstab_setDataToTabSettings : ', ex.message);
+		}
+
+		self.progresstab_updateSettingsTheme(self.getUiData2('progressBarCost', 'theme_type'));
+	}
+	progresstab_cost_refreshPreview() {
+		let progressBar = this.multistepSettings.progressBarCost;
+
+				if (parseInt(progressBar.enable_st) === 0) { 
+			return;
+		}
+
+				let container;
+		switch (progressBar.position) {
+			case 'outertop':
+				container = this.$uifm('.rockfm_form_hook_outertop');
+
+				break;
+			case 'innertop':
+				container = this.$uifm('.rockfm_form_hook_innertop');
+				break;
+			default:
+				break;
+		}
+		this.$uifm('.rockfm_form_hook_outertop')
+			.find('.zgfm-progress-bar-cost')
+			.remove();
+		this.$uifm('.rockfm_form_hook_innertop')
+			.find('.zgfm-progress-bar-cost')
+			.remove();
+
+
+
+		 		let type = progressBar.theme_type;
+		var border_focus_str;
+		var f_id = 'uifm_frm_pbcost_css_head';
+		switch (type) {
+			case 'default':
+				var skin_tab_default_bgcolor = this.getUiData4('progressBarCost', 'theme', type, 'skin_tab_default_bgcolor');
+
+				var skin_tab_default_shadowcolor = this.getUiData4('progressBarCost', 'theme', type, 'skin_tab_default_shadowcolor');
+
+				var skin_tab_default_active_bg = this.getUiData4('progressBarCost', 'theme', type, 'skin_tab_default_active_bg');
+
+				var skin_tab_default_active_txt = this.getUiData4('progressBarCost', 'theme', type, 'skin_tab_default_active_txt');
+				this.$uifm('#' + f_id + '_tab').remove();
+				border_focus_str = '<style type="text/css" id="' + f_id + '_tab">';
+
+				border_focus_str += '.zgfm-progress-container {';
+				if (parseInt(skin_tab_default_shadowcolor.length) != 0) {
+					border_focus_str += ' box-shadow: 0 4px 5px ' + skin_tab_default_shadowcolor + ';';
+				}
+				border_focus_str += '} ';
+
+								border_focus_str += '.zgfm-progress-container,';
+				border_focus_str += '.zgfm-progress {';
+				if (parseInt(skin_tab_default_bgcolor.length) != 0) {
+					border_focus_str += ' background-color: ' + skin_tab_default_bgcolor + ';';
+				}
+				border_focus_str += '} ';
+
+
+												border_focus_str += '.zgfm-progress {';
+				if (parseInt(skin_tab_default_active_bg.length) != 0) {
+					border_focus_str += ' background-color: ' + skin_tab_default_active_bg + ';';
+				}
+				border_focus_str += '} ';
+
+								border_focus_str += '.zgfm-percentage {';
+				if (parseInt(skin_tab_default_active_bg.length) != 0) {
+					border_focus_str += ' background-color: ' + skin_tab_default_active_bg + ';';
+				}
+				if (parseInt(skin_tab_default_shadowcolor.length) != 0) {
+					border_focus_str += ' box-shadow: 0 4px 5px ' + skin_tab_default_shadowcolor + ';';
+				}
+				if (parseInt(skin_tab_default_active_txt.length) != 0) {
+					border_focus_str += ' color:  ' + skin_tab_default_active_txt + ';';
+				}
+				border_focus_str += '} ';
+				border_focus_str += '</style>';
+				this.$uifm('head').append(border_focus_str);
+
+								break;
+			case 'theme2':
+
+			 				break;
+			case 'theme3':
+
+			 				break; 
+		}
+
+		let progressBarObj = container.find('.zgfm-progress-bar-cost');
+
+		if (!progressBarObj.length) {
+			container.append(`<div class="zgfm-progress-bar-cost">
+				
+			</div>`);
+			progressBarObj = container.find('.zgfm-progress-bar-cost');
+		}
+		progressBarObj.html('');
+		progressBarObj.append(`
+			<div>
+				<div class="zgfm-progress-container" data-percentage='70'>
+				  <div class="zgfm-progress"></div>
+				  <div class="zgfm-percentage">$ 99</div>
+				</div>
+			</div>
+		`);
+
+ 	}
+
+		progresstab_cost_enableStatus() {
+		var wiz_st = this.$uifm('#uifm_frm_pbar_cost_st').prop('checked') ? 1 : 0;
+		this.multistepSettings['progressBarCost']['enable_st'] = wiz_st;
+		if (wiz_st === 1) {
+			this.$uifm('.uiform_frm_pbar_cost_main_content').show();
+
+			this.progresstab_cost_refreshPreview();
+		} else {
+			this.$uifm('.uiform_frm_pbar_cost_main_content').hide();
+
+			this.progresstab_cost_hidePreview();
+		}
+	}
+	progresstab_cost_updateSettingsTheme(fval) {
+	}
+	progresstab_cost_hidePreview() {
+		let progressBar = this.multistepSettings.progressBarCost;
+		let container;
+		switch (progressBar.position) {
+			case 'outertop':
+				container = this.$uifm('.rockfm_form_hook_outertop');
+				break;
+			case 'innertop':
+				container = this.$uifm('.rockfm_form_hook_innertop');
+				break;
+			default:
+				break;
+		}
+
+		let progressBarObj = container.find('.zgfm-progress-bar-cost');
+		if (progressBarObj.length) {
+			progressBarObj.hide();
+		}
+	}
+
+
+
+	 	}

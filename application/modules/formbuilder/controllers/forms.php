@@ -57,9 +57,17 @@ class Forms extends BackendController
     private $current_data_onsubm      = array();
     private $current_data_calculation = array();
     private $current_data_main        = array();
+    private $current_data_progressbar = [];
+    private $current_data_progressbar_cost = [];
     private $saveform_clogic          = array();
     private $current_data_summbox     = array();
+    private $is_multistep         = false;
+    private $current_data_conn = [];
+    
 
+    private $current_mm_form_init;
+    // private $current_mm_form_child_id;
+    private $current_mm_children;
     public $gen_post_src;
     /**
      * Forms::__construct()
@@ -82,8 +90,223 @@ class Forms extends BackendController
         $this->load->model('gateways/model_gateways_logs');
         $this->load->model('gateways/model_gateways_records');
         $this->load->library('cache');
+        
+         //ms filters
+         add_filter('uifm_ms_render_field_front', [&$this, 'ms_filter_render_field_front'], 1, 4);
+
+        add_filter('zgfm_front_ms_form_outertop', [&$this, 'ms_progressbar_outertop'], 1, 1);
+        add_filter('zgfm_front_ms_form_innertop', [&$this, 'ms_progressbar_innertop'], 1, 1);
+        
+
+        add_filter('zgfm_front_ms_aditional_css', [&$this, 'ms_filter_form_css'], 1, 2);
+        add_filter('zgfm_front_ms_aditional_js', [&$this, 'ms_filter_form_js'], 1, 1);
+        
+        
+        add_filter('zgfm_front_ms_form_outertop', [&$this, 'ms_progressbarcost_outertop'], 1, 1);
+        add_filter('zgfm_front_ms_form_innertop', [&$this, 'ms_progressbarcost_innertop'], 1, 1);
+        
+        add_filter('zgfm_front_ms_aditional_css', [&$this, 'ms_progressbarcost_css'], 1, 2);
+        
+    }
+    public function ms_filter_form_js($default)
+    {
+        $steps = $this->current_data_progressbar['steps'];
+        $newArr = [];
+        foreach ($steps as $key => $value) {
+            foreach ($value['forms'] as $key2 => $value2) {
+                $newArr[$value2] = $value['id'];
+            }
+        }
+
+
+        $default['progressbar'] = [
+            'steps' => $this->current_data_progressbar['steps'],
+            'forms' => $newArr
+        ];
+        return $default;
+    }
+    public function ms_filter_form_css($default,$formid)
+    {
+        $progressBar = $this->current_data_progressbar;
+        if (intval($progressBar['enable_st']) !== 1) {
+            return $default;
+        }
+        $data           = array();
+        $data['idform'] = $formid;
+        $data['wizard'] = $this->current_data_progressbar;
+        return $default.$this->load->view('formbuilder/forms/formhtml_css_progressbar', $data, true);
+    }
+    public function ms_progressbarcost_css($default, $formid)
+    {
+        $progressBar = $this->current_data_progressbar_cost;
+        if (intval($progressBar['enable_st']) !== 1) {
+            return $default;
+        }
+        $data           = array();
+        $data['idform'] = $formid;
+        $data['progress'] = $this->current_data_progressbar_cost;
+        return $default.$this->load->view('formbuilder/forms/formhtml_css_progressbar_cost', $data, true);
+    }
+    private function progressBarCostGenerateFront($progressBar)
+    {
+        $content = '<div class="zgfm-progress-bar-cost">';
+        switch ($progressBar['theme_type']) {
+            case 'theme3':
+                $type = 'zgfm-theme1';
+                break;
+            case 'theme2':
+                $type = 'zgfm-theme3';
+                break;
+            case 'theme1':
+            default:
+                $type = 'zgfm-theme0';
+                break;
+        }
+        $content .= sprintf('<div class="%s">', $type);
+            $content .= '<div class="zgfm-progress-container" data-percentage="70">';
+                $content .= '<div class="zgfm-progress"></div>';
+                $content .= '<div class="zgfm-percentage"><div class="zgfm-pb-cur-symbol"></div><div class="zgfm-pb-totalcost"><span class="uiform-stickybox-total">0</span></div></div>';
+            $content .= '</div>';
+        $content .= '</div>';
+        $content .= '</div>';
+
+        return $content;
+    }
+    private function progressBarGenerateFront($progressBar)
+    {
+        $content = '<div class="zgfm-progress-bar">';
+        switch ($progressBar['theme_type']) {
+            case 'numbers':
+                $type = 'uiform-wiztheme1';
+                break;
+            case 'numbers2':
+                $type = 'uiform-wiztheme3';
+                break;
+            case 'default':
+            default:
+                $type = 'uiform-wiztheme0';
+                break;
+        }
+        $content .= sprintf('<div class="%s">', $type);
+        $content .= '<ul class="zgfm-pbar-steps">';
+        $counter = 1;
+        foreach ($progressBar['steps'] as $key => $value) {
+            $className = "";
+
+            if ($counter === 1) {
+                $className = "uifm-current";
+            }
+
+
+            switch ($progressBar['theme_type']) {
+                case 'numbers2':
+                    $content .= sprintf('
+                    <li data-index="%s" class="%s"></li>
+                    ', $value['id'], $className);
+
+                    break;
+
+                default:
+                    $content .= sprintf('
+                    <li data-index="%s" class="%s">
+                            <a>
+                                <span class="uifm-number">%s</span>
+                                <span class="uifm-title">%s</span>
+                            </a>
+                        </li>
+                    ', $value['id'], $className, $counter, $value['title']);
+                    break;
+            }
+
+            $counter++;
+        }
+        $content .= '</ul>';
+        $content .= '</div>';
+
+        $content .= '</div>';
+
+
+
+        return $content;
+    }
+    public function ms_progressbar_innertop($default)
+    {
+
+        $progressBar = $this->current_data_progressbar;
+        if (intval($progressBar['enable_st']) !== 1) {
+            return $default;
+        }
+
+        if (strval($progressBar['position']) !== "innertop") {
+            return $default;
+        }
+
+        return $this->progressBarGenerateFront($progressBar);
+    }
+    public function ms_progressbar_outertop($default)
+    {
+
+        $progressBar = $this->current_data_progressbar;
+        if (intval($progressBar['enable_st']) !== 1) {
+            return $default;
+        }
+
+        if (strval($progressBar['position']) !== "outertop") {
+            return $default;
+        }
+
+        return $this->progressBarGenerateFront($progressBar);
     }
 
+    public function ms_progressbarcost_innertop($default)
+    {
+
+        $progressBar = $this->current_data_progressbar_cost;
+        if (intval($progressBar['enable_st']) !== 1) {
+            return $default;
+        }
+
+        if (strval($progressBar['position']) !== "innertop") {
+            return $default;
+        }
+
+        return $this->progressBarCostGenerateFront($progressBar);
+    }
+    public function ms_progressbarcost_outertop($default)
+    {
+
+        $progressBar = $this->current_data_progressbar_cost;
+        if (intval($progressBar['enable_st']) !== 1) {
+            return $default;
+        }
+
+        if (strval($progressBar['position']) !== "outertop") {
+            return $default;
+        }
+
+        return $this->progressBarCostGenerateFront($progressBar);
+    }
+
+    public function ms_filter_render_field_front($default, $field_id = '', $type = 0, $value = '')
+    {
+
+        if ($this->is_multistep === true) {
+            switch (intval($type)) {
+                case 9:
+                    $default = sprintf("uiform_fields[%s][%s][%s]", $this->saved_form_id, $field_id, $value);
+                    break;
+                case 11:
+                    $default = sprintf("uiform_fields[%s][%s][]", $this->saved_form_id, $field_id);
+                    break;
+
+                default:
+                    $default = sprintf("uiform_fields[%s][%s]", $this->saved_form_id, $field_id);
+                    break;
+            }
+        }
+
+        return $default;
+    }
     public function ajax_pdf_showsample()
     {
 
@@ -195,24 +418,49 @@ class Forms extends BackendController
 
     public function ajax_rollback_process()
     {
-
-        // check_ajax_referer( 'zgfm_ajax_nonce', 'zgfm_security' );
-
-        $log_id = ( isset($_POST['log_id']) ) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['log_id'])) : '';
+ 
+        $log_id = (isset($_POST['log_id'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['log_id'])) : '';
+        $isMultistep = (isset($_POST['is_multistep'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['is_multistep'])) : '0';
 
         $query_obj = $this->model_form_log->getLogById($log_id);
 
-        $json = array();
-        /*
-         $json['log_frm_data'] =  $query_obj->log_frm_data;
-        $json['log_frm_name'] =  $query_obj->log_frm_name;
-        $json['log_frm_html_backend'] =  $query_obj->log_frm_html_backend;
-        $json['log_frm_id'] =  $query_obj->log_frm_id;  */
+        if (intval($isMultistep) === 1) {
+            $children = $this->model_form_log->getLogChildrenByParentId($log_id);
+            $data                     = array();
+            $data['parent']         = [
+                'data' => json_decode($query_obj->log_frm_data, true),
+                'name' => $query_obj->log_frm_name
+            ];
 
-        $data                     = array();
-        $data['fmb_data']         = json_decode($query_obj->log_frm_data, true);
-        $data['fmb_name']         = $query_obj->log_frm_name;
-        $data['fmb_html_backend'] = Uiform_Form_Helper::encodeHex($query_obj->log_frm_html_backend);
+            $childrenFiltered = [];
+            foreach ($children as $key => $value) {
+                $childrenFiltered[] = [
+                    'data' => json_decode($value->log_frm_data, true),
+                    'name' => $value->log_frm_name,
+                    'id' => $value->log_frm_id,
+                    'preview' => $value->log_frm_html_backend
+
+                ];
+            }
+
+            $data['children'] = [
+                'data' => $childrenFiltered
+            ];
+        } else {
+            $json = array();
+            /*
+             $json['log_frm_data'] =  $query_obj->log_frm_data;
+            $json['log_frm_name'] =  $query_obj->log_frm_name;
+            $json['log_frm_html_backend'] =  $query_obj->log_frm_html_backend;
+            $json['log_frm_id'] =  $query_obj->log_frm_id;  */
+
+            $data                     = array();
+            $data['fmb_data']         = json_decode($query_obj->log_frm_data, true);
+            $data['fmb_name']         = $query_obj->log_frm_name;
+            $data['fmb_html_backend'] = Uiform_Form_Helper::encodeHex($query_obj->log_frm_html_backend);
+        }
+
+
 
         $json['data'] = $data;
 
@@ -225,9 +473,7 @@ class Forms extends BackendController
 
     public function ajax_rollback_openmodal()
     {
-
-        // check_ajax_referer( 'zgfm_ajax_nonce', 'zgfm_security' );
-
+ 
         $form_id = ( isset($_POST['form_id']) ) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['form_id'])) : '';
 
         $data = array();
@@ -259,9 +505,7 @@ class Forms extends BackendController
 
     public function ajax_integrity_openmodal()
     {
-
-        // check_ajax_referer( 'zgfm_ajax_nonce', 'zgfm_security' );
-
+ 
         $form_id = ( isset($_POST['form_id']) ) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['form_id'])) : '';
 
         $data = array();
@@ -283,7 +527,7 @@ class Forms extends BackendController
 
         $data                 = array();
         $form_id              = ( isset($_POST['form_id']) ) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['form_id'])) : '';
-        $fmb_data             = ( isset($_POST['form_data']) ) ? $_POST['form_data'] : '';
+        $fmb_data             = (isset($_POST['form_data'])) ? Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data']) : '';
         $fmb_data             = urldecode($fmb_data);
         $fmb_data             = ( isset($fmb_data) && $fmb_data ) ? array_map(array( 'Uiform_Form_Helper', 'sanitizeRecursive_html' ), json_decode($fmb_data, true)) : array();
             $data['fmb_data'] = $fmb_data;
@@ -352,7 +596,265 @@ class Forms extends BackendController
         echo json_encode($json);
         die();
     }
+    
+    
+    
+    public function ajax_load_import_template_form()
+    {
+        
+        $slug                      = (isset($_POST['slug']) && $_POST['slug']) ? Uiform_Form_Helper::sanitizeInput($_POST['slug']) : '';
 
+        $codeStored = file_get_contents(FCPATH . '/assets/backend/templates/' . $slug . '.txt');
+        $dump_form                     = unserialize(Uiform_Form_Helper::base64url_decode($codeStored));
+
+        $this->processImportExportCode($dump_form, true);
+    }
+
+    private function processImportExportCode($dump_form , $is_template = false )
+    {
+        $redirectUrl = '';
+        if ((isset($dump_form['app_ver']) && $dump_form['app_ver'] == '7.0.0') ||
+
+        $is_template === true ||
+
+            isset($dump_form['app_ver']) && version_compare($dump_form['app_ver'], '7.0.0') >= 0
+        ) {
+            $data_form                     = [];
+
+            $data_form['fmb_html_backend'] = @$dump_form['form']['fmb_html_backend'];
+            $data_form['fmb_name']         = @$dump_form['form']['fmb_name'].' - copy';
+            $data_form['fmb_rec_tpl_html'] = @$dump_form['form']['fmb_rec_tpl_html'];
+            $data_form['fmb_rec_tpl_st']   = @$dump_form['form']['fmb_rec_tpl_st'];
+            $data_form['fmb_type']   = @$dump_form['form']['fmb_type'];
+            $data_form['fmb_parent']   = @$dump_form['form']['fmb_parent'];
+
+            if (isset($dump_form['type']) && intval($dump_form['type']) === 0) {
+                //multistep
+                $data_form['fmb_data']         = @$dump_form['form']['fmb_data'];
+            }
+
+
+            $this->db->set($data_form);
+            $this->db->insert($this->model_forms->table);
+             
+            $idCreated     = $this->db->insert_id();
+
+
+            if (isset($dump_form['type']) && intval($dump_form['type']) === 1) {
+                //multistep
+                $storeChildIds = [];
+                if (!empty(@$dump_form['children'])) {
+                    foreach ($dump_form['children'] as $key2 => $child) {
+                        $data_form                     = [];
+                        $data_form['fmb_data']         = $child['fmb_data'];
+                        $data_form['fmb_html_backend'] = $child['fmb_html_backend'];
+                        $data_form['fmb_name']         = $child['fmb_name'];
+                        $data_form['fmb_rec_tpl_html'] = $child['fmb_rec_tpl_html'];
+                        $data_form['fmb_rec_tpl_st']   = $child['fmb_rec_tpl_st'];
+                        $data_form['fmb_type']   = $child['fmb_type'];
+                        $data_form['fmb_parent']   = $idCreated;
+                        
+                            
+                        $this->db->set($data_form);
+                        $this->db->insert($this->model_forms->table);
+                        
+                        $childIdCreated     = $this->db->insert_id();
+                        $storeChildIds[$child['fmb_id']] = $childIdCreated;
+                    }
+                }
+
+                //save addons
+                if (!empty($dump_form['addons'])) {
+                    foreach ($dump_form['addons'] as $key => $value) {
+                        $data_form2 = [];
+                        $data_form2['add_name'] = $value['add_name'];
+                        $data_form2['fmb_id'] = $idCreated;
+
+                        if ($value['add_name'] == 'func_anim') {
+                            $adetDataTmp = json_decode($value['adet_data'], true);
+                            $newArr = [];
+                            foreach ($adetDataTmp as $key2 => $value2) {
+                                $newArr[$storeChildIds[$key2]] = $value2;
+                            }
+                            $data_form2['adet_data'] = json_encode($newArr);
+                        } else {
+                            $data_form2['adet_data'] = $value['adet_data'];
+                        }
+
+                        $data_form2['flag_status'] = $value['flag_status'];
+                        
+                        $this->db->set($data_form2);
+                        $this->db->insert($this->model_addon_details->table);
+                    }
+                }
+
+                //update parent with new children ids
+                $data_form = [];
+
+                $tmpData1 = json_decode(@$dump_form['form']['fmb_data'], true);
+                foreach ($tmpData1['data'] as $key3 => $value3) {
+                    $tmpData1['data'][$key3]['data']['id'] = $storeChildIds[$tmpData1['data'][$key3]['data']['id']];
+                }
+                @$dump_form['form']['fmb_data'] = $tmpData1;
+                $data_form['fmb_data']         = json_encode($dump_form['form']['fmb_data']);
+
+                //multistep
+                
+                $tmpData2 = json_decode($dump_form['form']['fmb_data2'], true);
+                $tmpData2['initial'] = $storeChildIds[intval($tmpData2['initial'])];
+
+                if (!empty($tmpData2['availableConnections'])) {
+                    $newArr = new stdClass();
+                    foreach ($tmpData2['availableConnections'] as $key => $value) {
+                        $tmpkeys =  explode('__', $key);
+                        $newKey = $storeChildIds[$tmpkeys[0]] . '__' . $storeChildIds[$tmpkeys[1]];
+
+                        $value['start']['id'] = $storeChildIds[$value['start']['id']];
+                        $value['end']['id'] = $storeChildIds[$value['end']['id']];
+
+                        $newArr->$newKey = $value;
+                    }
+                    $tmpData2['availableConnections'] = $newArr;
+                }
+
+                if (!empty($tmpData2['availableNodes'])) {
+                    $newArr = new stdClass();
+                    foreach ($tmpData2['availableNodes'] as $key => $value) {
+                        $newKey = $storeChildIds[$key];
+                        $newArr->$newKey = $value;
+                    }
+                    $tmpData2['availableNodes'] = $newArr;
+                }
+
+                if (!empty($tmpData2['connections'])) {
+                    $newArr = new stdClass();
+                    foreach ($tmpData2['connections'] as $key => $value) {
+                        $newKey = $storeChildIds[$key];
+
+                        if (isset($value['inputs']) && count($value['inputs']) > 0) {
+                            foreach ($value['inputs'] as $key2 => $value2) {
+                                $value['inputs'][$key2]['form'] = $storeChildIds[$value2['form']];
+                                $tmpkeys =  explode('__', $value2['conn']);
+                                $value['inputs'][$key2]['conn'] = $storeChildIds[$tmpkeys[0]] . '__' . $storeChildIds[$tmpkeys[1]];
+                            }
+                        }
+                        if (isset($value['outputs']) && count($value['outputs']) > 0) {
+                            foreach ($value['outputs'] as $key2 => $value2) {
+                                $value['outputs'][$key2]['form'] = $storeChildIds[$value2['form']];
+                                $tmpkeys =  explode('__', $value2['conn']);
+                                $value['outputs'][$key2]['conn'] = $storeChildIds[$tmpkeys[0]] . '__' . $storeChildIds[$tmpkeys[1]];
+                            }
+                        }
+
+                        $newArr->$newKey = $value;
+                    }
+                    $tmpData2['connections'] =  $newArr;
+                }
+                if (!empty($tmpData2['progressBar'])) {
+                    if (!empty($tmpData2['progressBar']['steps'])) {
+                        //$newArr = new stdClass();
+                        foreach ($tmpData2['progressBar']['steps'] as $key => $value) {
+                            $newArr=[];
+                            foreach ($value['forms'] as $key2 => $value2 ) {
+                                $newArr[]= strval($storeChildIds[$value2]);
+                            }
+                           
+                            $tmpData2['progressBar']['steps'][$key]['forms'] = $newArr;
+                        }
+                        
+                    }   
+                    
+                    
+                    if (!empty($tmpData2['progressBar']['progressBarAssigned'])) {
+                        $newArr =[];
+                        foreach ($tmpData2['progressBar']['progressBarAssigned'] as  $value) {
+                             
+                            $newArr[] = strval($storeChildIds[$value]);
+                        
+                            
+                        }
+                        $tmpData2['progressBar']['progressBarAssigned'] = $newArr;
+                    }  
+                }
+                
+                
+                $dump_form['form']['fmb_data2'] =  $tmpData2;
+                $data_form['fmb_data2']   = json_encode($dump_form['form']['fmb_data2']);
+                
+                $this->db->set($data_form);
+                $this->db->where('fmb_id', $idCreated);
+                $this->db->update($this->model_forms->table);
+                 
+
+                $redirectUrl = site_url() . 'formbuilder/forms/create_uiform?is_multistep=yes&form_id=' . $idCreated;
+            } else {
+                //single form new version
+
+                //save addons
+                if (!empty($dump_form['addons'])) {
+                    foreach ($dump_form['addons'] as $key => $value) {
+                        $data_form2 = [];
+                        $data_form2['add_name'] = $value['add_name'];
+                        $data_form2['fmb_id'] = $idCreated;
+
+                        if ($value['add_name'] == 'func_anim') {
+                            $adetDataTmp = json_decode($value['adet_data'], true);
+                            $newArr = [];
+                            foreach ($adetDataTmp as $key2 => $value2) {
+                                $newIndex = $idCreated;
+                                $newArr[$newIndex] = $value2;
+                            }
+                            $data_form2['adet_data'] = json_encode($newArr);
+                        } else {
+                            $data_form2['adet_data'] = $value['adet_data'];
+                        }
+
+                        $data_form2['flag_status'] = $value['flag_status'];
+                       
+                        $this->db->set($data_form2);
+                        $this->db->insert($this->model_addon_details->table);
+                    }
+                }
+                $redirectUrl = site_url() . 'formbuilder/forms/create_uiform?form_id=' . $idCreated;
+            }
+        } else {
+            //old
+            $data_form                     = array();
+            $data_form['fmb_data']         = @$dump_form['fmb_data'];
+            $data_form['fmb_html_backend'] = @$dump_form['fmb_html_backend'];
+            $data_form['fmb_name']         = @$dump_form['fmb_name'] . ' - copy';
+            $data_form['fmb_rec_tpl_html'] = @$dump_form['fmb_rec_tpl_html'];
+            $data_form['fmb_rec_tpl_st']   = @$dump_form['fmb_rec_tpl_st'];
+            $data_form['fmb_type']   = 0;
+            $data_form['fmb_parent']   = 0;
+            
+            
+            $this->db->set($data_form);
+            $this->db->insert($this->model_forms->table);
+            
+            $idCreated     = $this->db->insert_id();
+            $redirectUrl = site_url() . 'formbuilder/forms/create_uiform?create_uiform&form_id=' . $idCreated;
+        }
+
+
+
+        $json                          = array();
+        $json['redirect_url'] = $redirectUrl;
+        header('Content-Type: application/json');
+        echo json_encode($json);
+        die();
+    }
+
+    public function ajax_load_import_code_form()
+    {
+
+       
+        $imp_form                      = (isset($_POST['importcode']) && $_POST['importcode']) ? Uiform_Form_Helper::sanitizeInput($_POST['importcode']) : '';
+        $dump_form                     = unserialize(Uiform_Form_Helper::base64url_decode($imp_form));
+
+        $this->processImportExportCode($dump_form);
+    }
+    
     /**
      * Forms::ajax_load_import_form()
      *
@@ -384,7 +886,7 @@ class Forms extends BackendController
 
         $saveform_clogic = array();
 
-        $fmb_data = ( ! empty($_POST['form_data']) ) ? $_POST['form_data'] : '';
+        $fmb_data = (!empty($_POST['form_data'])) ? Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data']) : '';
         $fmb_data = ( ! empty($fmb_data) ) ? array_map(array( 'Uiform_Form_Helper', 'sanitizeRecursive_html' ), json_decode($fmb_data, true)) : array();
 
         // creating again
@@ -672,9 +1174,19 @@ class Forms extends BackendController
         $data['content_top'] = __('Success! The form was created. Now just copy and paste the shortcode to your content', 'FRocket_admin');
         $data['form_id']     = $form_id;
         $json                = array();
-        $json['html_title']  = __('Success', 'FRocket_admin');
-        $json['html']        = $this->load->view('formbuilder/forms/form_show_shortcodes', $data, true);
+        
+        $data_form = $this->model_forms->getFormById($form_id);
+        if (intval($data_form->fmb_type) === 1) {
+            //multistep
+            $onclick = "rocketform.goToMultiStepForm('" . $form_id . "');";
+        } elseif (intval($data_form->fmb_type) === 0) {
+            $onclick = "rocketform.goToSingleForm('" . $form_id . "')";
+        }
 
+        $json['header'] = sprintf('<h4 class="sfdc-modal-title">%s</h4>', __('Success', 'FRocket_admin'));
+        $json['html']        = $this->load->view('formbuilder/forms/form_show_shortcodes', $data, true);
+        $json['footer'] = sprintf('<button type="button" onclick="rocketform.goToList();" class="btn btn-warning" >%s</button> <button type="button" onclick="%s" class="btn btn-info" >%s</button>', __('Go to List', 'FRocket_admin'), $onclick, __('Back to Form', 'FRocket_admin'));
+        
         // return data to ajax callback
         header('Content-type: text/html');
         echo json_encode($json);
@@ -705,7 +1217,7 @@ class Forms extends BackendController
     public function ajax_refresh_previewpanel()
     {
         $data     = array();
-        $fmb_data = ( isset($_POST['form_data']) ) ? $_POST['form_data'] : '';
+        $fmb_data = (isset($_POST['form_data'])) ? Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data']) : '';
         $fmb_data = urldecode($fmb_data);
         $fmb_data = ( isset($fmb_data) && $fmb_data ) ? array_map(array( 'Uiform_Form_Helper', 'sanitizeRecursive_html' ), json_decode($fmb_data, true)) : array();
 
@@ -757,28 +1269,533 @@ class Forms extends BackendController
     public function ajax_save_newform()
     {
 
+         
         $json = array();
         try {
-            if ( ! Uiform_Form_Helper::check_User_Access()) {
+            if (!Uiform_Form_Helper::check_User_Access()) {
                 throw new Exception(__('Error! User has no permission to edit this form', 'FRocket_admin'));
             }
             $data             = array();
-            $data['fmb_name'] = ( ! empty($_POST['uifm_frm_main_title']) ) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['uifm_frm_main_title'])) : '';
+            $data['fmb_name'] = (!empty($_POST['uifm_frm_main_title'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['uifm_frm_main_title'])) : '';
+            $isMultiStep = (!empty($_POST['uifm_frm_main_ismultistep'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['uifm_frm_main_ismultistep'])) : '';
+
+            $fmb_data = (isset($_POST['form_data'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data'])) : '';
+            
+            $fmb_data         = (isset($fmb_data) && $fmb_data) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), json_decode($fmb_data, true)) : array();
+            $data['fmb_data'] = json_encode($fmb_data);
+
+
+
+            if ($isMultiStep === 'yes') {
+                $fmb_data = (isset($_POST['form_data2'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data2'])) : '';
+                $fmb_data         = (isset($fmb_data) && $fmb_data) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), json_decode($fmb_data, true)) : array();
+                $data['fmb_data2'] = json_encode($fmb_data);
+
+                $data['fmb_type'] = 1;
+            }  
+
             $this->db->set($data);
             $this->db->insert($this->model_forms->table);
-
             $idActivate = $this->db->insert_id();
 
             $json['status'] = 'created';
             $json['id']     = $idActivate;
-        } catch ( Exception $e) {
+        } catch (Exception $e) {
         }
         // return data to ajax callback
         header('Content-Type: application/json');
         echo json_encode($json);
         die();
     }
+    public function ajax_build_multistep()
+    {
 
+        try {
+            if (!Uiform_Form_Helper::check_User_Access()) {
+                throw new Exception(__('Error! User has no permission to edit this form', 'FRocket_admin'));
+            }
+
+            ob_start();
+            $formId               = (isset($_POST['form_id'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['form_id'])) : 0;
+            if ($formId === 0) {
+                throw new Exception(__('form id not found', 'FRocket_admin'));
+            }
+            /*global for fonts*/
+            global $global_fonts_stored;
+            $global_fonts_stored = array();
+
+            $parentForm = $this->model_forms->getFormById($formId);
+            $fmb_data2  = json_decode($parentForm->fmb_data2, true);
+
+
+            $formInitId = $fmb_data2['initial'];
+            
+            if(intval($formInitId) ===  0){
+                $json = [];
+                $json['success'] = true;
+                $json['id'] = $formId;
+                header('Content-Type: application/json');
+                echo json_encode($json);
+                die();
+            }
+             
+            
+            $this->current_mm_form_init = $this->model_forms->getFormById($formInitId);
+            
+            
+            
+            $this->current_mm_children =  $this->model_forms->getChildFormByParentId($formId);
+
+            $this->current_data_skin     = $fmb_data2['skin'];
+            $this->current_data_onsubm   = ($fmb_data2['onsubm']) ? $fmb_data2['onsubm'] : array();
+            $this->current_data_main     = ($fmb_data2['main']) ? $fmb_data2['main'] : array();
+            $this->current_data_conn     = [
+                'conns' => ($fmb_data2['availableConnections']) ? $fmb_data2['availableConnections'] : array(),
+                'conns_route' => ($fmb_data2['connections']) ? $fmb_data2['connections'] : array()
+            ];
+            $this->current_data_progressbar = ($fmb_data2['progressBar']) ? $fmb_data2['progressBar'] : array();
+            $this->current_data_progressbar_cost = ($fmb_data2['progressBarCost']) ? $fmb_data2['progressBarCost'] : array();
+            $this->current_data_calculation = ($fmb_data2['calculation']) ? $fmb_data2['calculation'] : array();
+            
+            // generate form html
+            $gen_return = $this->generate_form_html_multistep($formId);
+            $data4                     = array();
+            // get global style
+            $data2                     = array();
+            $data2['idform']           = $formId;
+            $data2['addition_css']     = $this->current_data_main['add_css'];
+            $data2['skin']             = $this->current_data_skin;
+            $gen_return['output_css'] .= $this->load->view('formbuilder/forms/formhtml_css_global', $data2, true);
+            $data3                     = array();
+            $data3['fonts']            = $global_fonts_stored;
+            $gen_return['output_css']  = $this->load->view('formbuilder/forms/formhtml_css_init', $data3, true) . $gen_return['output_css'];
+            $data4['fmb_html_css']     = $gen_return['output_css'];
+            $data4['fmb_html']         = $gen_return['output_html'];
+             
+             
+            $this->db->set($data4);
+                $this->db->where('fmb_id', $formId);
+                $this->db->update($this->model_forms->table);
+            
+            //attaching css content of children
+            foreach ($this->current_mm_children as $key => $child) {
+                $gen_return['output_css'] .= $child->fmb_html_css;
+            }
+
+            if ($this->createCustomFolder()) {
+                $newPublicDir = FCPATH . '/uploads/form-styles';
+            } else {
+                $newPublicDir = FCPATH . '/assets/frontend/css/';
+            }
+
+            // generate form css
+            ob_start();
+            $pathCssFile = $newPublicDir . '/rockfm_form' . $formId . '.css';
+            $f           = fopen($pathCssFile, 'w');
+            fwrite($f, $gen_return['output_css']);
+            fclose($f);
+            ob_end_clean();
+
+
+            // checking errors
+            $output_error = ob_get_contents();
+            ob_end_clean();
+            if (!empty($output_error)) {
+                throw new Exception($output_error);
+            }
+
+            $json = [];
+            $json['success'] = true;
+            $json['id'] = $formId;
+        } catch (Exception $e) {
+            $json                 = array();
+            $json['status']       = 'failed';
+            $json['modal_header'] = __('Error on saving form', 'FRocket_admin');
+            $json['modal_footer'] = '';
+            $json['Message']      = $e->getMessage();
+        }
+
+        // return data to ajax callback
+        header('Content-Type: application/json');
+        echo json_encode($json);
+        die();
+    }
+    public function generate_form_html_multistep($form_id = null)
+    {
+
+        // all fields position
+
+
+        // generating
+
+        $str_output_2   = '';
+        $str_output_tab = '';
+
+
+        // generate form css
+        $str_output_2 .= $this->generate_form_css($form_id);
+
+        //generate css hook
+        $str_output_2 .= do_filter('zgfm_front_ms_aditional_css', '', $form_id);
+
+        $return                = array();
+        $return['output_html'] = $this->generate_form_container_multistep($form_id);
+        $return['output_css']  = $str_output_2;
+
+        return $return;
+    }
+
+
+    public function generate_form_container_multistep($id)
+    {
+        $data = array();
+        $data['form_id']      = $id;
+        $data['formInitHtml'] =  $this->current_mm_form_init->fmb_html;
+        $data['formInit'] =  $this->current_mm_form_init->fmb_id;
+        $data['onsubm']       = $this->current_data_onsubm;
+        $data['main']         = $this->current_data_main;
+        $data['connections'] = $this->current_data_conn;
+        $data['clogic']              = $this->saveform_clogic;
+        $data['calculation']         = $this->current_data_calculation;
+        $data['progresscost']         = $this->current_data_progressbar_cost;
+        $data['outertop'] = do_filter('zgfm_front_ms_form_outertop', '');
+        $data['innertop'] = do_filter('zgfm_front_ms_form_innertop', '');
+        return $this->load->view('formbuilder/forms/formhtml_form_parent', $data, true);
+    }
+
+    public function ajax_save_parentform()
+    {
+
+       
+        try {
+            if (!Uiform_Form_Helper::check_User_Access()) {
+                throw new Exception(__('Error! User has no permission to edit this form', 'FRocket_admin'));
+            }
+
+            ob_start();
+
+            $data     = array();
+            
+            $fmb_data =Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data']);
+            /*if(!Uiform_Form_Helper::isJson($fmb_data)){
+                $fmb_data =urldecode($fmb_data);
+            }*/
+            
+            $fmb_data = (isset($_POST['form_data'])) ? $fmb_data : '';
+            $fmb_data         = (isset($fmb_data) && $fmb_data) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), json_decode($fmb_data, true)) : array();
+            $data['fmb_data'] = json_encode($fmb_data);
+            
+            
+            $fmb_data =Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data2']);
+            /*if(!Uiform_Form_Helper::isJson($fmb_data)){
+                $fmb_data =urldecode($fmb_data);
+            }*/
+            
+            $fmb_data = (isset($_POST['form_data2'])) ? $fmb_data : '';
+             
+            $fmb_data         = (isset($fmb_data) && $fmb_data) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), json_decode($fmb_data, true)) : array();
+            $data['fmb_data2'] = json_encode($fmb_data);
+
+            // form_inputs
+            //$fmb_data['fm_inputs'] = ( isset($_POST['form_inputs']) ) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['form_inputs'])) : '';
+
+            // more options
+            $new_hash = (isset($_POST['hash_data'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['hash_data'])) : '';
+
+            // addon data
+            $fmb_addon_data = (isset($_POST['addon_data'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['addon_data'])) : '';
+            $fmb_addon_data = (isset($fmb_addon_data) && $fmb_addon_data) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), json_decode($fmb_addon_data, true)) : array();
+
+
+            $data['fmb_rec_tpl_html'] = (isset($_POST['uifm_frm_rec_tpl_html'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['uifm_frm_rec_tpl_html'])) : '';
+            $data['fmb_rec_tpl_st']   = (isset($_POST['uifm_frm_rec_tpl_st'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['uifm_frm_rec_tpl_st'])) : '';
+
+
+            //$tmp_data2            = array();
+            //$tmp_data2['onsubm']  = isset($fmb_data['onsubm']) ? $fmb_data['onsubm'] : '';
+            //$tmp_data2['main']    = isset($fmb_data['main']) ? $fmb_data['main'] : '';
+            //$data['fmb_data2']    = ! empty($tmp_data2) ? json_encode($tmp_data2) : '';
+            $data['fmb_name']     = (!empty($_POST['name'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['name'])) : '';
+            $data['created_ip']   = $_SERVER['REMOTE_ADDR'];
+            $data['created_by']   = 1;
+            $data['created_date'] = date('Y-m-d h:i:s');
+            $fmb_id               = (isset($_POST['form_id'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['form_id'])) : 0;
+
+            /*global for fonts*/
+            global $global_fonts_stored;
+            $global_fonts_stored = array();
+
+            $json = array();
+            if (intval($fmb_id) > 0) {
+                
+                $this->db->set($data);
+                $this->db->where('fmb_id', $fmb_id);
+                $this->db->update($this->model_forms->table);
+                
+                $json['status'] = 'updated';
+                $json['id']     = $fmb_id;
+            } else {
+                 
+                $this->db->set($data);
+            $this->db->insert($this->model_forms->table);
+            $idActivate = $this->db->insert_id();
+                
+                
+                $json['status'] = 'created';
+                $json['id']     = $idActivate;
+            }
+
+            $data_form = $this->model_forms->getFormById($json['id']);
+            $fmb_data  = json_decode($data_form->fmb_data2, true);
+
+            // all data fields
+            $fmb_data['addons'] = $fmb_addon_data;
+
+            if (intval($json['id']) === 0) {
+                throw new Exception('Form id error');
+            }
+            $where = array(
+                'fmb_id' => $json['id'],
+            );
+
+            // process addons
+            do_action('zgfm_saveForm_store', $fmb_data, (int)$json['id']);
+
+            // add to log
+            $save_log_st   = false;
+            $count_log_rec = $this->model_form_log->CountLogsByFormId($json['id']);
+
+            if (intval($count_log_rec) > 0) {
+                $last_rec = $this->model_form_log->getLastLogById($json['id']);
+
+                $old_hash = $last_rec->log_frm_hash;
+                if ($new_hash != $old_hash) {
+                    $save_log_st = true;
+                }
+            } else {
+                $save_log_st = true;
+            }
+
+            if ($save_log_st) {
+                $data5                         = array();
+                $data5['log_frm_data']         = json_encode(
+                    [
+                        'data' => json_decode($data['fmb_data'], true),
+                        'data2' => json_decode($data['fmb_data2'], true)
+                    ]
+                );
+                $data5['log_frm_name']         = $data['fmb_name'];
+                $data5['log_frm_html']         = '';
+                $data5['log_frm_html_backend'] = '';
+                $data5['log_frm_html_css']     = '';
+                $data5['log_frm_id']           = $json['id'];
+                $data5['log_frm_hash']         = $new_hash;
+                $data5['created_ip']           = $_SERVER['REMOTE_ADDR'];
+                $data5['created_by']           = 1;
+                $data5['created_date']         = date('Y-m-d h:i:s');
+
+               
+                $this->db->set($data5);
+            $this->db->insert($this->model_form_log->table);
+            $lastLogId = $this->db->insert_id();
+                
+                
+                $json['log_id'] = $lastLogId;
+               
+                if (intval($count_log_rec) > 50) {
+                    $tmp_log = $this->model_form_log->getOldLogById($json['id']);
+ 
+                    $this->db->where('log_frm_hash', $tmp_log->log_frm_hash)->delete($this->model_form_log->table);
+                }
+            }
+
+            // process addons
+            //do_action('zgfm_OnSaveForm_saveLog', $json['id'], $save_log_st, $log_lastid, $this->current_data_addon[ 'OnSaveForm_saveLog' ]['data']);
+
+            // checking errors
+            $output_error = ob_get_contents();
+            ob_end_clean();
+            if (!empty($output_error)) {
+                throw new Exception($output_error);
+            }
+        } catch (Exception $e) {
+            $json                 = array();
+            $json['status']       = 'failed';
+            $json['modal_header'] = __('Error on saving form', 'FRocket_admin');
+            $json['modal_footer'] = '';
+            $json['Message']      = $e->getMessage();
+        }
+
+        // return data to ajax callback
+        header('Content-Type: application/json');
+        echo json_encode($json);
+        die();
+    }
+
+    public function ajax_save_childform()
+    {
+
+        
+        try {
+            if (!Uiform_Form_Helper::check_User_Access()) {
+                throw new Exception(__('Error! User has no permission to edit this form', 'FRocket_admin'));
+            }
+            $this->is_multistep = true;
+            ob_start();
+
+            $data     = array();
+            
+            $fmb_data =Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data']);
+            
+            $fmb_data         = (isset($fmb_data) && $fmb_data) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), json_decode($fmb_data, true)) : array();
+            $data['fmb_data'] = json_encode($fmb_data);
+
+
+            // form_inputs
+            //$fmb_data['fm_inputs'] = ( isset($_POST['form_inputs']) ) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['form_inputs'])) : '';
+
+            // more options
+            $hash_data = (isset($_POST['hash_data'])) ? Uiform_Form_Helper::sanitizeInput_html($_POST['hash_data']) : '';
+            $log_id   = (isset($_POST['log_id'])) ? Uiform_Form_Helper::sanitizeInput($_POST['log_id']) : '';
+
+            //$tmp_data2            = array();
+            //$tmp_data2['onsubm']  = isset($fmb_data['onsubm']) ? $fmb_data['onsubm'] : '';
+            //$tmp_data2['main']    = isset($fmb_data['main']) ? $fmb_data['main'] : '';
+            //$data['fmb_data2']    = ! empty($tmp_data2) ? json_encode($tmp_data2) : '';
+            $data['fmb_name']     = (!empty($_POST['uifm_frm_main_title'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['uifm_frm_main_title'])) : '';
+            $data['created_ip']   = $_SERVER['REMOTE_ADDR'];
+            $data['created_by']   = 1;
+            $data['created_date'] = date('Y-m-d h:i:s');
+            $fmb_id               = (isset($_POST['uifm_frm_main_id'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['uifm_frm_main_id'])) : 0;
+
+            // $this->current_mm_form_child_id = $fmb_id;
+
+            /*global for fonts*/
+            global $global_fonts_stored;
+            $global_fonts_stored = array();
+
+            $json = array();
+            if (intval($fmb_id) > 0) {
+                
+                $this->db->set($data);
+                $this->db->where('fmb_id', $fmb_id);
+                $this->db->update($this->model_forms->table);
+                
+                $json['status'] = 'updated';
+                $json['id']     = $fmb_id;
+            } else {
+               
+                
+                $this->db->set($data);
+                $this->db->insert($this->model_forms->table);
+                $idActivate = $this->db->insert_id();
+                
+                $json['status'] = 'created';
+                $json['id']     = $idActivate;
+            }
+            $this->saved_form_id = $json['id'];
+
+            $data_form = $this->model_forms->getFormById($json['id']);
+            $fmb_data  = json_decode($data_form->fmb_data, true);
+
+
+            // addon data
+            $fmb_addon_data =  do_filter('zgfm_back_addon_obtain_data', [], $data_form->fmb_parent);
+
+            // all data fields
+            $fmb_data['addons'] = $fmb_addon_data;
+
+
+            // all data fields
+            //$fmb_data['addons'] = $fmb_addon_data;
+
+            if (intval($json['id']) === 0) {
+                throw new Exception('Form id error');
+            }
+            $where = array(
+                'fmb_id' => $json['id'],
+            );
+
+            // process addons
+            $fmb_data = do_filter('zgfm_back_animtocore', $fmb_data, $json['id']);
+
+            // all data fields
+            //$this->current_data_addon    = $fmb_data['addons'];
+            $this->current_data_form     = $fmb_data['steps_src'];
+            $this->current_data_num_tabs = $fmb_data['num_tabs'];
+            $this->current_data_tab_cont = $fmb_data['steps']['tab_cont'];
+            $this->current_data_steps    = $fmb_data['steps'];
+            $this->current_data_skin     = $fmb_data['skin'];
+            $this->current_data_wizard   = ($fmb_data['wizard']) ? $fmb_data['wizard'] : array();
+            $this->current_data_onsubm   = ($fmb_data['onsubm']) ? $fmb_data['onsubm'] : array();
+            $this->current_data_main     = ($fmb_data['main']) ? $fmb_data['main'] : array();
+
+            // save fields to table
+
+            $this->save_data_fields($json['id']);
+            // save fields to table
+            $this->save_form_clogic();
+            // generate form html
+            $gen_return = $this->generate_form_html($json['id']);
+
+            $data4                     = array();
+            $data4['fmb_html']         = $gen_return['output_html'];
+            $data4['fmb_html_backend'] = $this->generate_admin_form_html($json['id']);
+
+            // get global style
+            $data2                     = array();
+            $data2['idform']           = $json['id'];
+            $data2['addition_css']     = $this->current_data_main['add_css'];
+            $data2['skin']             = $this->current_data_skin;
+            $gen_return['output_css'] .= $this->load->view('formbuilder/forms/formhtml_css_global', $data2, true);
+            $data3                     = array();
+            $data3['fonts']            = $global_fonts_stored;
+            $gen_return['output_css']  = $this->load->view('formbuilder/forms/formhtml_css_init', $data3, true). $gen_return['output_css'];
+            $data4['fmb_html_css']     = $gen_return['output_css'];
+            
+            $this->db->set($data4);
+                $this->db->where('fmb_id', $json['id']);
+                $this->db->update($this->model_forms->table);
+            
+            
+
+            $data5                         = array();
+            $data5['log_frm_data']         = $data['fmb_data'];
+            $data5['log_frm_name']         = $data['fmb_name'];
+            $data5['log_frm_html']         = '';
+            $data5['log_frm_html_backend'] = $data4['fmb_html_backend'];
+            $data5['log_frm_html_css']     = '';
+            $data5['log_frm_id']           = $json['id'];
+            $data5['log_frm_parent']           = $log_id;
+            $data5['log_frm_hash']         = $hash_data;
+            $data5['created_ip']           = $_SERVER['REMOTE_ADDR'];
+            $data5['created_by']           = 1;
+            $data5['created_date']         = date('Y-m-d h:i:s');
+            $this->db->set($data5);
+            $this->db->insert($this->model_form_log->table);
+             
+            // process addons
+            //do_action('zgfm_OnSaveForm_saveLog', $json['id'], $save_log_st, $log_lastid, $this->current_data_addon[ 'OnSaveForm_saveLog' ]['data']);
+
+            // checking errors
+            $output_error = ob_get_contents();
+            ob_end_clean();
+            if (!empty($output_error)) {
+                throw new Exception($output_error);
+            }
+        } catch (Exception $e) {
+            $json                 = array();
+            $json['status']       = 'failed';
+            $json['modal_header'] = __('Error on saving form', 'FRocket_admin');
+            $json['modal_footer'] = '';
+            $json['Message']      = $e->getMessage();
+        }
+
+        // return data to ajax callback
+        header('Content-Type: application/json');
+        echo json_encode($json);
+        die();
+    }
     /**
      * Forms::ajax_save_form()
      *
@@ -793,9 +1810,8 @@ class Forms extends BackendController
              ob_start();
             $data = array();
 
-            $fmb_data = ( isset($_POST['form_data']) ) ? $_POST['form_data'] : '';
-            $fmb_data = urldecode($fmb_data);
-            $fmb_data = ( isset($fmb_data) && $fmb_data ) ? array_map(array( 'Uiform_Form_Helper', 'sanitizeRecursive_html' ), json_decode($fmb_data, true)) : array();
+            $fmb_data = (isset($_POST['form_data'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data'])) : '';
+            $fmb_data = (isset($fmb_data) && $fmb_data) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), json_decode($fmb_data, true)) : array();
 
             // here a message should be sent
             if ( empty($fmb_data)) {
@@ -805,7 +1821,7 @@ class Forms extends BackendController
             $data['fmb_data'] = json_encode($fmb_data);
 
             // addon data
-            $fmb_addon_data = ( isset($_POST['addon_data']) ) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['addon_data'])) : '';
+            $fmb_addon_data = (isset($_POST['addon_data'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_data_html($_POST['addon_data'])) : '';
             $fmb_addon_data = ( isset($fmb_addon_data) && $fmb_addon_data ) ? array_map(array( 'Uiform_Form_Helper', 'sanitizeRecursive_html' ), json_decode($fmb_addon_data, true)) : array();
 
             // form_inputs
@@ -864,26 +1880,7 @@ class Forms extends BackendController
              );
 
                  // process addons
-             if ( ! empty(self::$_addons_actions)) {
-                 foreach ( self::$_addons_actions as $zkey => $zvalue) {
-                     if ( strval($zkey) === 'saveForm_store') {
-                         foreach ( $zvalue as $zkey2 => $zvalue2) {
-                             foreach ( $zvalue2 as $zkey3 => $zvalue3) {
-                                 // call_user_func(array(self::$_addons[$zkey3][$zvalue3['controller']], $zvalue3['function']),$json['id'], $value['data'],$fmb_data);
-
-                                 self::$_addons[ $zkey3 ][ $zvalue3['controller'] ]->saveData($json['id'], $fmb_data);
-                             }
-                         }
-                     }
-                     /*
-                     if(isset(self::$_addons[$key][$value['controller']])){
-                         //call_user_func(array(self::$_addons[$key][$value['controller']] , 'saveData'));
-                         self::$_addons[$key][$value['controller']]->saveData($json['id'], $value['data'],$fmb_data);
-
-
-                     }*/
-                 }
-             }
+                 $fmb_data = do_filter('zgfm_saveForm_store', $fmb_data, $json['id']);
 
                 // all data fields
                 $this->current_data_addon    = $fmb_data['addons'];
@@ -971,8 +1968,7 @@ class Forms extends BackendController
                  $data5['created_ip']           = $_SERVER['REMOTE_ADDR'];
                  $data5['created_by']           = 1;
                  $data5['created_date']         = date('Y-m-d h:i:s');
-
-                 // $this->wpdb->insert($this->model_form_log->table, $data5);
+ 
                  $this->db->set($data5);
                  $this->db->insert($this->model_form_log->table);
                  $log_lastid = $this->db->insert_id();
@@ -985,7 +1981,7 @@ class Forms extends BackendController
              }
 
              // process addons
-             if ( ! empty(self::$_addons_actions)) {
+             /*if ( ! empty(self::$_addons_actions)) {
                  foreach ( self::$_addons_actions as $zkey => $zvalue) {
                      if ( strval($zkey) === 'OnSaveForm_saveLog') {
                          foreach ( $zvalue as $zkey2 => $zvalue2) {
@@ -997,7 +1993,7 @@ class Forms extends BackendController
                          }
                      }
                  }
-             }
+             }*/
 
              // checking errors
              $output_error = ob_get_contents();
@@ -1074,17 +2070,7 @@ class Forms extends BackendController
         $data['addon_extraclass'] = '';
 
         // process addons
-        if ( ! empty(self::$_addons_actions)) {
-            foreach ( self::$_addons_actions as $zkey => $zvalue) {
-                if ( strval($zkey) === 'field_addon_extraclass') {
-                    foreach ( $zvalue as $zkey2 => $zvalue2) {
-                        foreach ( $zvalue2 as $zkey3 => $zvalue3) {
-                                      self::$_addons[ $zkey3 ][ $zvalue3['controller'] ]->getExtraDataField($data);
-                        }
-                    }
-                }
-            }
-        }
+        $data = do_filter('zgfm_field_addon_extraclass', $data);
 
         switch ( intval($child_field['type'])) {
             case 6:
@@ -1931,7 +2917,6 @@ class Forms extends BackendController
                     $count_str   = 0;
                     if ( isset($child_field['inner'])) {
                         foreach ( $child_field['inner'] as $key => $value) {
-                            
                             // generate class
                             $tmpMobileClass = '';
                             if (isset($data['main']['skin']['mobile']['keep_grid_st'])) {
@@ -2216,6 +3201,11 @@ class Forms extends BackendController
         $data['clogic']              = $this->saveform_clogic;
         $data['summbox']             = $this->current_data_summbox;
         $data['calculation']         = $this->current_data_calculation;
+        
+        if ($this->is_multistep === true) {
+            return $this->load->view('formbuilder/forms/formhtml_form_multistep', $data, true);
+        };
+        
         return $this->load->view('formbuilder/forms/formhtml_form', $data, true);
     }
 
@@ -2514,7 +3504,9 @@ class Forms extends BackendController
         }
 
         // generate form css
-        $str_output_2 .= $this->generate_form_css($form_id);
+        if ($this->is_multistep === false) {
+            $str_output_2 .= $this->generate_form_css($form_id);
+        }
         if ( $tab_cont_num > 1) {
             $str_output_2 .= $this->generate_form_tab_css($form_id);
         }
@@ -2644,7 +3636,11 @@ class Forms extends BackendController
 
         return $return;
     }
-
+    public function import_form()
+    {
+        $data               = array();
+        $this->template->loadPartial('layout', 'forms/import_form', $data);
+    }
     /**
      * Forms::export_form()
      *
@@ -2664,17 +3660,74 @@ class Forms extends BackendController
      */
     public function ajax_load_export_form()
     {
-        $form_id                      = ( isset($_POST['form_id']) && $_POST['form_id'] ) ? Uiform_Form_Helper::sanitizeInput($_POST['form_id']) : 0;
-        $data_form                    = $this->model_forms->getFormById($form_id);
-        $data_exp                     = array();
+ 
+        $form_id   = (isset($_POST['form_id']) && $_POST['form_id']) ? Uiform_Form_Helper::sanitizeInput($_POST['form_id']) : 0;
+        $data_form = $this->model_forms->getFormById($form_id);
+        ;
+
+        if (empty($data_form)) {
+            return;
+        }
+
+        $type = $data_form->fmb_type;
+
+        $data_exp = [];
         $data_exp['fmb_data']         = $data_form->fmb_data;
         $data_exp['fmb_html_backend'] = $data_form->fmb_html_backend;
-        $data_exp['fmb_name']         = $data_form->fmb_name;
+        $data_exp['fmb_name']         = $data_form->fmb_name . ' - copy';
         $data_exp['fmb_rec_tpl_html'] = $data_form->fmb_rec_tpl_html;
-        $data_exp['fmb_inv_tpl_html'] = $data_form->fmb_inv_tpl_html;
         $data_exp['fmb_rec_tpl_st']   = $data_form->fmb_rec_tpl_st;
-        $data_exp['fmb_inv_tpl_st']   = $data_form->fmb_inv_tpl_st;
-        $code_export                  = Uiform_Form_Helper::base64url_encode(serialize($data_exp));
+        $data_exp['fmb_type']   = $data_form->fmb_type;
+        $data_exp['fmb_parent']   = $data_form->fmb_parent;
+        $data_exp['fmb_id']   = $data_form->fmb_id;
+
+        if (intval($type) === 1) {
+            $data_exp['fmb_data2']         = $data_form->fmb_data2;
+        }
+
+
+        $exportCode = [];
+        $exportCode['app_ver'] = UIFORM_VERSION;
+        $exportCode['form'] = $data_exp;
+        $exportCode['type'] = $type;
+
+
+
+        if (intval($type) === 1) {
+            $exportCode['children']         = [];
+            $children = $this->model_forms->getChildFormByParentId($form_id);
+            foreach ($children as $key => $child) {
+                $data_exp2 = [];
+                $data_exp2['fmb_data']         = $child->fmb_data;
+                $data_exp2['fmb_html_backend'] = $child->fmb_html_backend;
+                $data_exp2['fmb_name']         = $child->fmb_name;
+                $data_exp2['fmb_rec_tpl_html'] = $child->fmb_rec_tpl_html;
+                $data_exp2['fmb_rec_tpl_st']   = $child->fmb_rec_tpl_st;
+                $data_exp2['fmb_type']   = $child->fmb_type;
+                $data_exp2['fmb_parent']   = $child->fmb_parent;
+                $data_exp2['fmb_id'] = $child->fmb_id;
+
+                $exportCode['children'][] = $data_exp2;
+            }
+        }
+
+
+        //addons
+        $tmpData = $this->model_addon_details->getAddonsDataByForm($form_id);
+        $addsArr = [];
+        if (!empty($tmpData)) {
+            foreach ($tmpData as $key => $value) {
+                $addsArr2 = [
+                    'add_name' => $value->add_name,
+                    'flag_status' => $value->flag_status,
+                    'adet_data' => $value->adet_data
+                ];
+                $addsArr[] = $addsArr2;
+            }
+        }
+        $exportCode['addons'] = $addsArr;
+
+        $code_export                  = Uiform_Form_Helper::base64url_encode(serialize($exportCode));
         echo $code_export;
         die();
     }
@@ -2711,7 +3764,20 @@ class Forms extends BackendController
         $data['wizard'] = $this->current_data_wizard;
         return $this->load->view('formbuilder/forms/formhtml_css_wizard', $data, true);
     }
+    public function ajax_mm_load_childform()
+    {
+ 
+        $json    = array();
+        $form_id = (isset($_POST['uifm_frm_main_child_id'])) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['uifm_frm_main_child_id'])) : '';
 
+        $data_form           = $this->model_forms->getFormById($form_id);
+        $data_form->fmb_data = json_decode($data_form->fmb_data);
+        $json['data']        = $data_form;
+
+        header('Content-Type: application/json');
+        echo json_encode($json);
+        die();
+    }
     /**
      * Forms::ajax_load_form()
      *
@@ -2752,7 +3818,14 @@ class Forms extends BackendController
      */
     public function list_uiforms($offset = 0)
     {
-
+        if( ZIGAFORM_C_LITE  !== 1){
+            $validateLicense = get_option('zgfm_wpfb_code', []);
+            if (!isset($validateLicense['is_valid']) || (isset($validateLicense['is_valid']) && intval($validateLicense['is_valid']) === 0)) {
+                //$this->load->view('formbuilder/forms/verify_pcode', [], true);
+                $this->template->loadPartial('layout_blank', 'forms/verify_pcode',[]);
+                return;
+            }
+        }
         $filter_data = get_option('zgfm_listform_searchfilter', true);
 
         $data2 = array();
@@ -2771,8 +3844,8 @@ class Forms extends BackendController
 
         $form_data = $this->model_forms->ListTotals();
 
-        $data2['all'] = $form_data->r_all;
-        $data2['trash'] = $form_data->r_trash;
+        $data2['all'] = $form_data->r_all??'';
+        $data2['trash'] = $form_data->r_trash??'';
         $data2['subcurrent'] = 1;
         $data2['subsubsub'] = List_data::get()->subsubsub($data2);
 
@@ -3016,7 +4089,15 @@ class Forms extends BackendController
         $data = array();
         echo $this->load->view('formbuilder/forms/edit_form', $data, true);
     }
+    public function choose_mode()
+    {
 
+        $data = [];
+        $data['test'] = 'test';
+        //echo self::loadPartial('layout.php', 'formbuilder/views/forms/new_choose_mode.php', $data);
+        //echo $this->load->view('formbuilder/forms/new_choose_mode', $data, true);
+        $this->template->loadPartial('layout', 'formbuilder/forms/new_choose_mode', $data);
+    }
     /**
      * Forms::create_uiform()
      *
@@ -3027,6 +4108,9 @@ class Forms extends BackendController
 
         $data            = array();
         $data['form_id'] = ( isset($_GET['form_id']) && $_GET['form_id'] ) ? Uiform_Form_Helper::sanitizeInput(trim($_GET['form_id'])) : 0;
+        $data['multistep_id'] = (isset($_GET['multistep_id']) && $_GET['multistep_id']) ? Uiform_Form_Helper::sanitizeInput(trim($_GET['multistep_id'])) : 0;
+        $data['is_multistep'] = (isset($_GET['is_multistep']) && $_GET['is_multistep']) ? Uiform_Form_Helper::sanitizeFileName(trim($_GET['is_multistep'])) : '';
+            
         $data['action']  = 'create_uiform';
         $data['obj_sfm'] = Uiform_Form_Helper::get_font_library();
 

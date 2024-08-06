@@ -38,6 +38,7 @@ if (ZIGAFORM_C_LITE === 1) {
 			'blueimp-gallery-jquery': 'assets/common/js/blueimp/2.27.0/js/jquery.blueimp-gallery',
 			'bootstrap-image-gallery': 'assets/common/js/bgallery/3.1.3/js/bootstrap-image-gallery',
 			iframescript: 'assets/frontend/js/iframe/4.1.1/iframeResizer.min',
+			wphooks: 'assets/common/js/wp/wp-hooks.min', 
 		},
 		waitSeconds: 0,
 		map: {
@@ -130,6 +131,7 @@ if (ZIGAFORM_C_LITE === 1) {
 			'bootstrap-image-gallery': 'assets/common/js/bgallery/3.1.3/js/bootstrap-image-gallery',
 			waypoints: 'application/modules/addon_func_anim/views/frontend/assets/js/waypoints/2.0.5/waypoints.min',
 			iframescript: 'assets/frontend/js/iframe/4.1.1/iframeResizer.min',
+			wphooks: 'assets/common/js/wp/wp-hooks.min', 
 		},
 		waitSeconds: 0,
 		map: {
@@ -207,7 +209,7 @@ if (ZIGAFORM_C_LITE === 1) {
 			 */
 			window.$uifm = $uifm;
 			//window.$uifm = $uifm = $;
-			require(['b_slider', 'script1', 'b_touchspin', 'b_switch', 'bootstrap', 'flatpickr', 'flatpickr_moment', 'b_dtpicker2', 'b_star', 'b_cpicker', 'j_form', 'acclib', 'blueimp-gallery', 'blueimp-gallery-jquery', 'b_selpicker', 'b_selpicker2', 'iframescript', 'b_checkradios', 'b_jasny', 'placeholder'], function(
+			require(['b_slider', 'script1', 'b_touchspin', 'b_switch', 'bootstrap', 'flatpickr', 'flatpickr_moment', 'b_dtpicker2', 'b_star', 'b_cpicker', 'j_form', 'acclib', 'blueimp-gallery', 'blueimp-gallery-jquery', 'b_selpicker', 'b_selpicker2', 'iframescript', 'wphooks', 'b_checkradios', 'b_jasny', 'placeholder'], function(
 				bootstrapSlider,
 				script,
 				TouchSpin,
@@ -223,7 +225,8 @@ if (ZIGAFORM_C_LITE === 1) {
 				blueimpgal,
 				selectpicker,
 				select2,
-				iframescript
+				iframescript, 
+				wphooks 
 			) {
 				_zgfm_loader_form(script, blueimpgal, accounting);
 			});
@@ -237,7 +240,7 @@ if (ZIGAFORM_C_LITE === 1) {
 			 */
 			window.$uifm = $uifm;
 			//window.$uifm = $uifm = $;
-			require(['b_slider', 'script1', 'b_touchspin', 'b_switch', 'bootstrap', 'flatpickr', 'flatpickr_moment', 'b_dtpicker2', 'b_star', 'b_cpicker', 'j_form', 'acclib', 'blueimp-gallery', 'blueimp-gallery-jquery', 'b_selpicker', 'b_selpicker2', 'waypoints', 'iframescript', 'b_checkradios', 'b_jasny', 'placeholder'], function(
+			require(['b_slider', 'script1', 'b_touchspin', 'b_switch', 'bootstrap', 'flatpickr', 'flatpickr_moment', 'b_dtpicker2', 'b_star', 'b_cpicker', 'j_form', 'acclib', 'blueimp-gallery', 'blueimp-gallery-jquery', 'b_selpicker', 'b_selpicker2', 'waypoints', 'iframescript', 'wphooks', 'b_checkradios', 'b_jasny', 'placeholder'], function(
 				bootstrapSlider,
 				script,
 				TouchSpin,
@@ -254,7 +257,8 @@ if (ZIGAFORM_C_LITE === 1) {
 				selectpicker,
 				select2,
 				waypoints,
-				iframescript
+				iframescript, 
+				wphooks 
 			) {
 				_zgfm_loader_form(script, blueimpgal, accounting);
 			});

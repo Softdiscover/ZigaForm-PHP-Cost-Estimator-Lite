@@ -190,7 +190,9 @@ ob_start();
                 // end storing to global fonts
             ?>
         <?php } ?>
-            
+        <?php if (! empty($help_block['color'])) { ?>
+            color:<?php echo $help_block['color'] ?>;
+        <?php } ?>
    <?php } ?>
    }
    /*popover custom*/
