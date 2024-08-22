@@ -1,5 +1,5 @@
-# Copyright (C) 2024 Zigaform PHP Cost Estimation Form Builder 7.0.1
-# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 7.0.1 package.
+# Copyright (C) 2024 Zigaform PHP Cost Estimation Form Builder 7.0.5
+# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 7.0.5 package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rocket form\n"
@@ -58,19 +58,19 @@ msgstr "Error! Type of file is not allowed to upload"
 msgid "New form request"
 msgstr "新的形式要求"
 
-#: application/modules/formbuilder/controllers/records.php:435
+#: application/modules/formbuilder/controllers/records.php:450
 msgid " , version : "
 msgstr " , version : "
 
-#: application/modules/formbuilder/controllers/records.php:435
+#: application/modules/formbuilder/controllers/records.php:450
 msgid " , platform : "
 msgstr " , platform : "
 
-#: application/modules/formbuilder/controllers/records.php:490, application/modules/formbuilder/controllers/records.php:530, application/modules/formbuilder/views/frontend/mail_generate_fields.php:112, application/modules/formbuilder/views/frontend/mail_generate_fields.php:147
+#: application/modules/formbuilder/controllers/records.php:505, application/modules/formbuilder/controllers/records.php:545, application/modules/formbuilder/views/frontend/mail_generate_fields.php:112, application/modules/formbuilder/views/frontend/mail_generate_fields.php:147
 msgid "qty"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:493, application/modules/formbuilder/controllers/records.php:533, application/modules/formbuilder/views/frontend/form_invoice.php:109, application/modules/formbuilder/views/frontend/form_invoice.php:102
+#: application/modules/formbuilder/controllers/records.php:508, application/modules/formbuilder/controllers/records.php:548, application/modules/formbuilder/views/frontend/form_invoice.php:109, application/modules/formbuilder/views/frontend/form_invoice.php:102
 msgid "Amount"
 msgstr ""
 

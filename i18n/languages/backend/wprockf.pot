@@ -1,12 +1,12 @@
-# Copyright (C) 2024 Zigaform WP Cost Estimation Form Builder 7.0.1
-# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 7.0.1 package.
+# Copyright (C) 2024 Zigaform WP Cost Estimation Form Builder 7.0.5
+# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 7.0.5 package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Zigaform WP Cost Estimation Form Builder 7.0.1\n"
+"Project-Id-Version: Zigaform WP Cost Estimation Form Builder 7.0.5\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-07 16:26+0000\n"
+"POT-Creation-Date: 2024-08-22 09:30+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -714,51 +714,51 @@ msgstr ""
 msgid "Order summary"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:439
+#: application/modules/formbuilder/controllers/records.php:454
 msgid "Entry information"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:440, application/modules/formbuilder/views/records/info_record.php:28
+#: application/modules/formbuilder/controllers/records.php:455, application/modules/formbuilder/views/records/info_record.php:28
 msgid "Submitted form data"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:441, application/modules/formbuilder/views/records/info_record.php:63
+#: application/modules/formbuilder/controllers/records.php:456, application/modules/formbuilder/views/records/info_record.php:63
 msgid "Additional info"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:442, application/modules/formbuilder/views/records/info_record.php:66, application/modules/formbuilder/views/records/list_records_getdatatable.php:25, application/modules/formbuilder/views/settings/backup_settings.php:68
+#: application/modules/formbuilder/controllers/records.php:457, application/modules/formbuilder/views/records/info_record.php:66, application/modules/formbuilder/views/records/list_records_getdatatable.php:25, application/modules/formbuilder/views/settings/backup_settings.php:68
 msgid "Date"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:443, application/modules/formbuilder/views/records/info_record.php:70
+#: application/modules/formbuilder/controllers/records.php:458, application/modules/formbuilder/views/records/info_record.php:70
 msgid "IP"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:444, application/modules/formbuilder/views/records/info_record.php:74
+#: application/modules/formbuilder/controllers/records.php:459, application/modules/formbuilder/views/records/info_record.php:74
 msgid "Client PC info"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:445
+#: application/modules/formbuilder/controllers/records.php:460
 msgid "Form URL"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:446, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:78, application/modules/formbuilder/views/forms/create_form_main.php:104, application/modules/formbuilder/views/forms/create_form_modals.php:97, application/modules/formbuilder/views/forms/create_form_modals.php:131, application/modules/formbuilder/views/forms/settings_form_email.php:586, application/modules/formbuilder/views/records/info_record.php:82
+#: application/modules/formbuilder/controllers/records.php:461, application/modules/formbuilder/views/forms/ajax_variables_openmodal.php:78, application/modules/formbuilder/views/forms/create_form_main.php:104, application/modules/formbuilder/views/forms/create_form_modals.php:97, application/modules/formbuilder/views/forms/create_form_modals.php:131, application/modules/formbuilder/views/forms/settings_form_email.php:586, application/modules/formbuilder/views/records/info_record.php:82
 msgid "Form name"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:490, application/modules/formbuilder/controllers/records.php:530, application/modules/formbuilder/views/records/info_record_topdf.php:59
+#: application/modules/formbuilder/controllers/records.php:505, application/modules/formbuilder/controllers/records.php:545, application/modules/formbuilder/views/records/info_record_topdf.php:59
 msgid "Units"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:512, application/modules/gateways/views/records/list_records.php:39
+#: application/modules/formbuilder/controllers/records.php:527, application/modules/gateways/views/records/list_records.php:39
 msgid "Amount"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:594
+#: application/modules/formbuilder/controllers/records.php:609
 msgid "Records list"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:629
+#: application/modules/formbuilder/controllers/records.php:644
 msgid "Records in trash"
 msgstr ""
 
@@ -4526,7 +4526,7 @@ msgstr ""
 msgid "Remove all"
 msgstr ""
 
-#: application/modules/formbuilder/views/fields/render_front/type_subbtn.php:24, application/modules/formbuilder/views/fields/render_front/type_wizardbtn.php:41
+#: application/modules/formbuilder/views/fields/render_front/type_subbtn.php:24, application/modules/formbuilder/views/fields/render_front/type_wizardbtn.php:33
 msgid "Sending"
 msgstr ""
 

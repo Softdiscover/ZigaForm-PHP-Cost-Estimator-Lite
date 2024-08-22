@@ -1,12 +1,12 @@
-# Copyright (C) 2024 Zigaform PHP Cost Estimation Form Builder 7.0.1
-# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 7.0.1 package.
+# Copyright (C) 2024 Zigaform PHP Cost Estimation Form Builder 7.0.5
+# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 7.0.5 package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Zigaform PHP Cost Estimation Form Builder 7.0.1\n"
+"Project-Id-Version: Zigaform PHP Cost Estimation Form Builder 7.0.5\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-07 16:26+0000\n"
+"POT-Creation-Date: 2024-08-22 09:30+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -58,19 +58,19 @@ msgstr ""
 msgid "New form request"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:435
+#: application/modules/formbuilder/controllers/records.php:450
 msgid " , version : "
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:435
+#: application/modules/formbuilder/controllers/records.php:450
 msgid " , platform : "
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:490, application/modules/formbuilder/controllers/records.php:530, application/modules/formbuilder/views/frontend/mail_generate_fields.php:112, application/modules/formbuilder/views/frontend/mail_generate_fields.php:147
+#: application/modules/formbuilder/controllers/records.php:505, application/modules/formbuilder/controllers/records.php:545, application/modules/formbuilder/views/frontend/mail_generate_fields.php:112, application/modules/formbuilder/views/frontend/mail_generate_fields.php:147
 msgid "qty"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:493, application/modules/formbuilder/controllers/records.php:533, application/modules/formbuilder/views/frontend/form_invoice.php:109, application/modules/formbuilder/views/frontend/form_invoice.php:102
+#: application/modules/formbuilder/controllers/records.php:508, application/modules/formbuilder/controllers/records.php:548, application/modules/formbuilder/views/frontend/form_invoice.php:109, application/modules/formbuilder/views/frontend/form_invoice.php:102
 msgid "Amount"
 msgstr ""
 
