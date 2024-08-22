@@ -116,8 +116,8 @@ Enjoy top-notch support and regular updates to keep your forms up-to-date with t
 2. Enter the title for your form in the pop-up that appears.
 3. Drag and drop or click to add elements to your form.
 4. Customize the form options as needed and click "Save".
-5. A shortcode will be generated. Copy and paste it into your desired post or page.
+5. A widget code will be generated. Copy and paste it into your desired post or page.
 
-[Watch a quick tutorial here](https://www.youtube.com/watch?v=Zd4Hw6PsrV0).
+[![Watch the tutorial](https://img.youtube.com/vi/uPypNQILtdE/0.jpg)](https://www.youtube.com/watch?v=uPypNQILtdE)
 
 For more information, visit the [Zigaform website](https://php-cost-estimator.zigaform.com/).
