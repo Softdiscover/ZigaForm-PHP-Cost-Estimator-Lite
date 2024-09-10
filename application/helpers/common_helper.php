@@ -677,7 +677,7 @@ class Uiform_Form_Helper {
 		   // if (is_numeric($value)) { // is number
 
 		if ( isset( $opts['price_format_st'] ) && intval( $opts['price_format_st'] ) === 1 ) {
-			$value = number_format( (float) $value, $opts['price_sep_precision'], $opts['price_sep_decimal'], $opts['price_sep_thousand'] );
+			$value = number_format( (float) $value, (int) $opts['price_sep_precision'], $opts['price_sep_decimal'], $opts['price_sep_thousand'] );
 			return $value;
 		} else {
 			if ( strstr( $value, '.' ) ) { // is decimal
