@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: calculator, form builder, estimation, calculated, form, estimate, estimation, estimator, cost estimation, calculation, price calculator, wizard, bootstrap, AJAX, contact, contact form, email, feedback, multilingual  
 Requires at least: 5.0  
 Tested up to: 6.6.1  
-Stable tag: 7.0.9  
+Stable tag: 7.1.2  
 
 Create estimation forms using this powerful drag-and-drop estimation form builder, enabling you to build forms in just a few minutes.
 

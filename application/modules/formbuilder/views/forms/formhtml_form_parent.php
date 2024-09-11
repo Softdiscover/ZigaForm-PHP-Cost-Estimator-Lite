@@ -26,23 +26,23 @@ ob_start();
       data-zgfm-version="<?php echo UIFORM_VERSION; ?>" 
       data-zgfm-recaptchav3-active="<?php echo $main['recaptchav3_enable'] ?? 0; ?>"
       data-zgfm-recaptchav3-sitekey="<?php echo $main['recaptchav3_sitekey'] ?? ''; ?>"
-      data-zgfm-recaptchav3-errmsg="<?php echo __('Recaptcha failed, refresh page and try again', 'FRocket_admin'); ?>"
+      data-zgfm-recaptchav3-errmsg="<?php echo esc_attr(__('Recaptcha failed, refresh page and try again', 'FRocket_admin')); ?>"
       data-zgfm-is-ms="1"
       enctype="multipart/form-data" 
       id="rockfm_form_<?php echo $form_id; ?>">
  
-    <input type="hidden" value="<?php echo $form_id; ?>" class="_rockfm_form_parent_id" name="_rockfm_form_parent_id">
-    <input type="hidden" value="<?php echo $calculation['enable_st']; ?>" class="_rockfm_form_calc_math_enable" name="_rockfm_form_calc_math_enable">
-    <input type="hidden" value="<?php echo Uiform_Form_Helper::base64url_encode(urldecode($onsubm['sm_successtext'])); ?>" name="_rockfm_onsubm_smsg" class="_rockfm_onsubm_smsg" >
+    <input type="hidden" value="<?php echo esc_attr($form_id); ?>" class="_rockfm_form_parent_id" name="_rockfm_form_parent_id">
+    <input type="hidden" value="<?php echo esc_attr($calculation['enable_st']); ?>" class="_rockfm_form_calc_math_enable" name="_rockfm_form_calc_math_enable">
+    <input type="hidden" value="<?php echo esc_attr(Uiform_Form_Helper::base64url_encode(urldecode($onsubm['sm_successtext']))); ?>" name="_rockfm_onsubm_smsg" class="_rockfm_onsubm_smsg" >
     <!--- ajax  --->
      
         <input type="hidden" value="1" class="_rockfm_type_submit" name="_rockfm_type_submit">
         <input type="hidden" value="rocket_ms_front_submitajaxmode" name="action">
         <?php if ( isset($main['price_currency_symbol'])) { ?>
-        <input type="hidden" class="_rockfm_form_price_symbol" value="<?php echo urldecode($main['price_currency_symbol']); ?>">
+        <input type="hidden" class="_rockfm_form_price_symbol" value="<?php echo esc_attr(urldecode($main['price_currency_symbol'])); ?>">
     <?php } ?>
     <?php if ( isset($main['price_currency'])) { ?>
-        <input type="hidden" class="_rockfm_form_price_currency" value="<?php echo $main['price_currency']; ?>">
+        <input type="hidden" class="_rockfm_form_price_currency" value="<?php echo esc_attr($main['price_currency']); ?>">
     <?php } ?>  
     <div class="rockfm_form_hook_outertop"><?php echo $outertop; ?></div>
     <div class="uiform-main-form">
@@ -50,13 +50,14 @@ ob_start();
            <?php echo $formInitHtml; ?>
     </div>
      
-        <input type="hidden" class="rockfm_main_data" value="<?php echo htmlentities(Uiform_Form_Helper::raw_json_encode($main), ENT_QUOTES, 'UTF-8'); ?>">
-        <input type="hidden" class="rockfm_connection_data" value="<?php echo htmlentities(Uiform_Form_Helper::raw_json_encode($connections), ENT_QUOTES, 'UTF-8'); ?>">
-        <input type="hidden" class="rockfm_connection_extra" value="<?php echo htmlentities(Uiform_Form_Helper::raw_json_encode(do_filter('zgfm_front_ms_aditional_js', [])), ENT_QUOTES, 'UTF-8'); ?>">
-        <input type="hidden" class="rockfm_data_initform" value="<?php echo $formInit; ?>">
+    <textarea hidden="hidden" class="rockfm_main_data" style="display:none"><?php echo esc_html(htmlentities(Uiform_Form_Helper::raw_json_encode($main), ENT_QUOTES, 'UTF-8')); ?></textarea>
+        <textarea hidden="hidden" class="rockfm_connection_data" style="display:none"><?php echo esc_html(htmlentities(Uiform_Form_Helper::raw_json_encode($connections), ENT_QUOTES, 'UTF-8')); ?></textarea>
+        <textarea hidden="hidden" class="rockfm_connection_extra" style="display:none"><?php echo esc_html(htmlentities(Uiform_Form_Helper::raw_json_encode(apply_filters('zgfm_front_ms_aditional_js', [])), ENT_QUOTES, 'UTF-8')); ?></textarea>
+        <textarea hidden="hidden" class="rockfm_data_initform" style="display:none"><?php echo esc_html($formInit); ?></textarea>
+        
         <?php if ( isset($progresscost['enable_st']) && intval($progresscost['enable_st']) === 1) { ?>
         
-        <input type="hidden" class="rockfm_data_pgc_top_cost" value="<?php echo $progresscost['avg_top_cost']; ?>">
+        <input type="hidden" class="rockfm_data_pgc_top_cost" value="<?php echo esc_attr($progresscost['avg_top_cost']); ?>">
     <?php } ?>
     
      <!-- calculation variables -->
