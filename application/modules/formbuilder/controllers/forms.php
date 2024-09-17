@@ -998,17 +998,9 @@ class Forms extends BackendController
         if ( $list_ids) {
             foreach ( $list_ids as $value) {
                 $data_form                = $this->model_forms->getFormById($value);
-                $data                     = array();
-                $data['fmb_data']         = $data_form->fmb_data;
-                $data['fmb_data2']        = $data_form->fmb_data2;
-                $data['fmb_name']         = $data_form->fmb_name . ' - copy';
-                $data['fmb_html_backend'] = $data_form->fmb_html_backend;
-                $data['created_ip']       = $_SERVER['REMOTE_ADDR'];
-                $data['created_by']       = 1;
-                $data['created_date']     = date('Y-m-d h:i:s');
-
-                $this->db->set($data);
-                $this->db->insert($this->model_forms->table);
+                
+                $exportCode = $this->load_export_form_get_code($data_form);
+                $this->processImportExportCode($exportCode, true);
             }
         }
     }
@@ -1282,7 +1274,8 @@ class Forms extends BackendController
             $fmb_data = (isset($_POST['form_data'])) ? Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data']) : '';
             $fmb_data         = (isset($fmb_data) && $fmb_data) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), json_decode($fmb_data, true)) : array();
             $data['fmb_data'] = json_encode($fmb_data);
-
+            $data['fmb_type'] = 0;
+            $data['fmb_parent'] = 0;
             if ($isMultiStep === 'yes') {
                 $fmb_data = (isset($_POST['form_data2'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_data_html($_POST['form_data2'])) : '';
                 $fmb_data         = (isset($fmb_data) && $fmb_data) ? array_map(array('Uiform_Form_Helper', 'sanitizeRecursive_html'), json_decode($fmb_data, true)) : array();
@@ -3650,22 +3643,27 @@ class Forms extends BackendController
         $this->template->loadPartial('layout', 'forms/export_form', $data);
     }
 
-    /**
-     * Forms::ajax_load_export_form()
-     *
-     * @return
-     */
     public function ajax_load_export_form()
     {
- 
+
         $form_id   = (isset($_POST['form_id']) && $_POST['form_id']) ? Uiform_Form_Helper::sanitizeInput($_POST['form_id']) : 0;
         $data_form = $this->model_forms->getFormById($form_id);
-        ;
-
+       
         if (empty($data_form)) {
             return;
         }
 
+
+        $exportCode = $this->load_export_form_get_code($data_form);
+
+        $code_export                  = Uiform_Form_Helper::base64url_encode(serialize($exportCode));
+        echo $code_export;
+        die();
+    }
+    
+    private function load_export_form_get_code($data_form){
+ 
+         
         $type = $data_form->fmb_type;
 
         $data_exp = [];
@@ -3692,7 +3690,7 @@ class Forms extends BackendController
 
         if (intval($type) === 1) {
             $exportCode['children']         = [];
-            $children = $this->model_forms->getChildFormByParentId($form_id);
+            $children = $this->model_forms->getChildFormByParentId($data_form->fmb_id);
             foreach ($children as $key => $child) {
                 $data_exp2 = [];
                 $data_exp2['fmb_data']         = $child->fmb_data;
@@ -3710,7 +3708,7 @@ class Forms extends BackendController
 
 
         //addons
-        $tmpData = $this->model_addon_details->getAddonsDataByForm($form_id);
+        $tmpData = $this->model_addon_details->getAddonsDataByForm($data_form->fmb_id);
         $addsArr = [];
         if (!empty($tmpData)) {
             foreach ($tmpData as $key => $value) {
@@ -3724,9 +3722,7 @@ class Forms extends BackendController
         }
         $exportCode['addons'] = $addsArr;
 
-        $code_export                  = Uiform_Form_Helper::base64url_encode(serialize($exportCode));
-        echo $code_export;
-        die();
+        return $exportCode;
     }
 
     /**
