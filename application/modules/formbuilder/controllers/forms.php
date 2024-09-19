@@ -1372,7 +1372,7 @@ class Forms extends BackendController
                 $gen_return['output_css'] .= $child->fmb_html_css;
             }
 
-            if ($this->createCustomFolder()) {
+            if (Uiform_Form_Helper::createCustomFolder()) {
                 $newPublicDir = FCPATH . '/uploads/form-styles';
             } else {
                 $newPublicDir = FCPATH . '/assets/frontend/css/';
@@ -1914,7 +1914,7 @@ class Forms extends BackendController
              $this->db->update($this->model_forms->table);
             
             
-             if ($this->createCustomFolder()) {
+             if (Uiform_Form_Helper::createCustomFolder()) {
                  $newPublicDir = FCPATH . '/uploads/form-styles';
              } else {
                  $newPublicDir = FCPATH . '/assets/frontend/css/';
@@ -2027,21 +2027,7 @@ class Forms extends BackendController
         die();
     }
 
-    protected function createCustomFolder()
-    {
-        $folderPath = FCPATH . '/uploads/form-styles';
-        if (!file_exists($folderPath)) {
-            mkdir($folderPath, 0755, true);
-        }
-
-
-        if (file_exists($folderPath)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+  
 
 
     /**

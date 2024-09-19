@@ -33,8 +33,6 @@ $nameField =  do_filter('uifm_ms_render_field_front', "uiform_fields[".$id."]", 
                 name="<?php echo $nameField; ?>"
                 />
         <div class="rockfm-input4-output">
-            <div class="rockfm-input4-number"><?php echo floatval($input4['set_default']); ?></div>
-    
 <?php
 if ( isset($price['lbl_show_st']) && intval($price['lbl_show_st']) === 1) {
     $tmp_price_label = urldecode($price['lbl_show_format']);
