@@ -3800,7 +3800,6 @@ class Forms extends BackendController
         if( ZIGAFORM_C_LITE  !== 1){
             $validateLicense = get_option('zgfm_wpfb_code', []);
             if (!isset($validateLicense['is_valid']) || (isset($validateLicense['is_valid']) && intval($validateLicense['is_valid']) === 0)) {
-                //$this->load->view('formbuilder/forms/verify_pcode', [], true);
                 $this->template->loadPartial('layout_blank', 'forms/verify_pcode',[]);
                 return;
             }
