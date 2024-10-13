@@ -1,3 +1,6 @@
+version 7.2.5
+[new] - files integrity
+-----------------------------------------------------------------------------------------------------------------
 version 7.2.4
 [fixed] - form not adding in multistep
 [fixed] - modal not closing
