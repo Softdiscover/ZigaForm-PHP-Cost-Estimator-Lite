@@ -54,7 +54,7 @@ if ( ! defined('BASEPATH')) {
                    href="#uiformc-menu-sec6"><?php echo __('Calculation', 'FRocket_admin'); ?></a>
             </li>
         <?php if (!empty($modules_tab_extension)) { ?>
-          <li><a data-toggle="sfdc-tab" class="uiform-settings-extensions zgfm_fifthPanel zgfm_tabAnchor" data-color="#333333" data-intro="<?php echo __('Extensions', 'FRocket_admin'); ?>" href="#uiformc-menu-sec7"><?php echo __('Extensions', 'FRocket_admin'); ?></a>
+          <li><a data-toggle="sfdc-tab" class="uiform-settings-extensions zgfm_fifthPanel zgfm_tabAnchor" data-color="#00748A" data-intro="<?php echo __('Extensions', 'FRocket_admin'); ?>" href="#uiformc-menu-sec7"><?php echo __('Extensions', 'FRocket_admin'); ?></a>
           </li>
         <?php } ?>
 

@@ -146,7 +146,7 @@ if ( ! defined('BASEPATH')) {
                         </div>
                 </div>
                              <div class="space20"></div>
-                <h3><?php echo __('PHP Extensions', 'FRocket_admin'); ?></h3>
+                             <h3><?php echo __('PHP Extensions', 'FRocket_admin'); ?></h3>
                 <div class="uiform-systemcheck-directive-container">
                     <div class="sfdc-form-group">
                             <label class="sfdc-col-sm-2 control-label"><?php echo __('Simple XML', 'FRocket_admin'); ?> </label>
@@ -161,7 +161,29 @@ if ( ! defined('BASEPATH')) {
                                             ?>
                                                       <i class="fa fa-exclamation-triangle"></i>  <div class="sfdc-alert sfdc-alert-danger">
                                             <?php echo __('simplexml extension is important for the software. ask your webhost if this extension is not installed', 'FRocket_admin'); ?>
-</div>
+                                                </div>
+                                             <?php
+                                        }
+                                        ?>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="sfdc-form-group">
+                            <label class="sfdc-col-sm-2 control-label"><?php echo __('GD', 'FRocket_admin'); ?> </label>
+                            <div class="sfdc-col-sm-10">
+                               
+                                <div class="span4">
+                                     <?php
+                                        if ( extension_loaded('gd')) {
+                                            ?>
+                                                        <i class="fa fa-thumbs-up"></i>
+                                                        <?php
+                                        } else {
+                                            ?>
+                                                      <i class="fa fa-exclamation-triangle"></i>  <div class="sfdc-alert sfdc-alert-danger">
+                                            <?php echo __('GD extension is important for generating images in Captcha field. Ask your webhost if this extension is not installed. ', 'FRocket_admin'); ?>
+                                        </div>
                                              <?php
                                         }
 
@@ -169,6 +191,33 @@ if ( ! defined('BASEPATH')) {
                                 </div>
                             </div>
                         </div>
+                        <?php if ( extension_loaded('gd')) { 
+                        
+                        $gdInfo = gd_info();
+                        ?>
+                        <div class="sfdc-form-group">
+                            <label class="sfdc-col-sm-2 control-label"><?php echo __('FreeType', 'FRocket_admin'); ?> </label>
+                            <div class="sfdc-col-sm-10">
+                               
+                                <div class="span4">
+                                     <?php
+                                        if ($gdInfo['FreeType Support']) {
+                                            ?>
+                                                        <i class="fa fa-thumbs-up"></i>
+                                                        <?php
+                                        } else {
+                                            ?>
+                                                      <i class="fa fa-exclamation-triangle"></i>  <div class="sfdc-alert sfdc-alert-danger">
+                                            <?php echo __('FreeType support is not enabled. Ask your webhost if this extension is not installed.', 'FRocket_admin'); ?>
+                                        </div>
+                                             <?php
+                                        }
+
+                                        ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
                 </div>
                 <div class="space20"></div>
                 <h3><?php echo __('Files integrity', 'FRocket_admin'); ?></h3>

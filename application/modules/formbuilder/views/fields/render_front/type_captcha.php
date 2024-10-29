@@ -67,9 +67,8 @@ $captcha_rkver        = Uiform_Form_Helper::base64url_encode(json_encode($input6
                 data-val-tip-bg="<?php echo $validate['tip_bg']; ?>"
                <?php } ?>
                class="sfdc-form-control rockfm-inp6-captcha-inputcode">
-        <label for="rockfm-inp6-captcha-inputcode" 
-               class="rockfm-inp6-captcha-label"><?php echo __('CAPTCHA Code', 'FRocket_admin'); ?></label>
-        <span ><i class="sfdc-glyphicon sfdc-glyphicon-asterisk"></i></span>
+               <label for="rockfm-inp6-captcha-inputcode" 
+               class="rockfm-inp6-captcha-label"><?php echo $input6['indtext_txt']; ?></label>
     </div>
     </div>
     

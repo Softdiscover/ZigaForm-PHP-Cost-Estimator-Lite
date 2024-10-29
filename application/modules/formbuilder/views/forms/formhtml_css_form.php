@@ -15,7 +15,25 @@ if ( ! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 ob_start();
-?>
+            // padding
+            if ( isset($skin['form_font']['show_st']) && intval($skin['form_font']['show_st']) === 1) {
+                ?>
+                #rockfm_form_<?php echo $idform; ?> .uiform-main-form *:not(i):not(.fa)  {
+                <?php
+                $fontData =  json_decode($skin['form_font']['font'],true);
+                if (isset($fontData['family'])){
+                    Uiform_Form_Helper::form_store_fonts($fontData);
+                    ?>
+                    font-family: "<?php echo $fontData['family']; ?>" !important;
+                <?php
+                }
+                ?>
+                }
+                <?php
+                
+            } ?>  
+
+
 
 #rockfm_form_<?php echo $idform; ?> .uiform-main-form{    
 <?php

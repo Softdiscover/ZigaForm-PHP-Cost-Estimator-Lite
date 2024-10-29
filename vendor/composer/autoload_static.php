@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit547779495e67c150a99ede9894d9dde4
+class ComposerStaticInit54dd07f7ff20df0a81067c41888d3d65
 {
     public static $files = array (
         '7f55c0c8faca7d96e425512293db1ad1' => __DIR__ . '/../..' . '/includes/wp/wp-includes/formatting.php',
@@ -32,9 +32,9 @@ class ComposerStaticInit547779495e67c150a99ede9894d9dde4
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit547779495e67c150a99ede9894d9dde4::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit547779495e67c150a99ede9894d9dde4::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit547779495e67c150a99ede9894d9dde4::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit54dd07f7ff20df0a81067c41888d3d65::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit54dd07f7ff20df0a81067c41888d3d65::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit54dd07f7ff20df0a81067c41888d3d65::$classMap;
 
         }, null, ClassLoader::class);
     }

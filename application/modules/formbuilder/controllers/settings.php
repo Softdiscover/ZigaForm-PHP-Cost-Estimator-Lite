@@ -424,14 +424,15 @@ class Settings extends BackendController
             // Load the manifest file
             $cur = dirname(APPPATH).'/';
             $manifestPath = $cur.'assets/backend/json/manifest.json';
-            if(!file_exists($manifestPath)){
+            if(!file_exists($manifestPath) || empty(file_get_contents($manifestPath))){
                 return [
                     'status'=> $status,
                     'failed'=>[]
                     ];
             }
+             
             $manifest = json_decode(file_get_contents($manifestPath), true);
-            
+                        
             // Function to calculate checksum of a file
             
             $failed=[];
@@ -444,6 +445,10 @@ class Settings extends BackendController
                 ,'application/config/config.php'
                 ,'application/modules/formbuilder/views/forms/verify_pcode.php'
                 ])){
+                    continue;
+                }
+                
+                if (strpos($file, "install/") === 0) {
                     continue;
                 }
                 
