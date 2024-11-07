@@ -136,7 +136,7 @@ if (! defined('BASEPATH')) {
                                                         <li ><a 
                                                                 class="uiform-settings-globalconfig"
                                                                 data-intro="<?php echo __('Global settings', 'FRocket_admin'); ?>"
-                                                                href="#uiform-settings-tab3-4" data-toggle="sfdc-tab" ><?php echo __('Global', 'FRocket_admin'); ?></a>
+                                                                href="#uiform-settings-tab3-5" data-toggle="sfdc-tab" ><?php echo __('Global', 'FRocket_admin'); ?></a>
                                                         </li>
                                                         <?php if ( $is_multistep === 'yes') {?>
                                                         <li>
@@ -191,7 +191,7 @@ if (! defined('BASEPATH')) {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="sfdc-tab-pane" id="uiform-settings-tab3-4">
+                                                            <div class="sfdc-tab-pane" id="uiform-settings-tab3-5">
                                                                 <div class="uiform-tab-content  scroll-pane-arrows">
                                                                     <div class="uiform-tab-content-inner">
                                                                      <!--container -->

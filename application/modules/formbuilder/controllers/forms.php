@@ -1628,8 +1628,6 @@ class Forms extends BackendController
 
     public function ajax_save_childform()
     {
-
-        
         try {
             if (!Uiform_Form_Helper::check_User_Access()) {
                 throw new Exception(__('Error! User has no permission to edit this form', 'FRocket_admin'));
@@ -1731,7 +1729,7 @@ class Forms extends BackendController
             $this->save_form_clogic();
             // generate form html
             $gen_return = $this->generate_form_html($json['id']);
-
+             
             $data4                     = array();
             $data4['fmb_html']         = $gen_return['output_html'];
             $data4['fmb_html_backend'] = $this->generate_admin_form_html($json['id']);

@@ -42,7 +42,6 @@ if (!defined('BASEPATH')) {
                 <div class="sfdc-form-group">
                     <select id="uifm_frm_pbar_cost_theme_type" class="sfdc-form-control">
                         <option value="default"><?php echo __('Theme 1', 'FRocket_admin'); ?></option>
-                        <option value="theme2"><?php echo __('Theme 2', 'FRocket_admin'); ?></option>
                     </select>
                 </div>
             </div>
