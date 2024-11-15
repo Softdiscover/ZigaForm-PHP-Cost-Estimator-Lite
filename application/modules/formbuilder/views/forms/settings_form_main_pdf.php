@@ -17,28 +17,7 @@ if ( ! defined('BASEPATH')) {
 ?>
 <div class="uiform-set-field-wrap"  >
   <div class="space20"></div>
-    <div class="sfdc-row ">
-        
-            <div class="sfdc-form-group">
-                <div class="sfdc-col-md-4">
-                    <label for=""><?php echo __('SHOW PDF ON FRONTEND', 'FRocket_admin'); ?></label>
-                </div>
-                <div class="sfdc-col-md-8">
-                    
-                    <input class="switch-field"
-                                   id="uifm_frm_main_pdf_show_onpage"
-                                   name="uifm_frm_main_pdf_show_onpage"
-                                   type="checkbox"/>
-                     <a href="javascript:void(0);"
-                       data-toggle="tooltip" data-placement="right" 
-                       data-original-title="<?php echo __('this will be shown in the payment page', 'FRocket_admin'); ?>"
-                       ><span class="fa fa-question-circle"></span></a>
-                </div>    
-                      
-            </div>
-        
-    </div>
-    <div class="space10 zgfm-opt-divider-stl1"></div> 
+   
     <div class="sfdc-row">
         <div class="sfdc-form-group">
             <div class="sfdc-col-sm-4">

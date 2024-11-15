@@ -76,7 +76,7 @@ endforeach;
 							?>
 						<?php } else { ?>
 						<tr>
-							<td colspan="6">
+							<td colspan="9">
 							<div class="sfdc-alert sfdc-alert-info"><i class="fa fa-exclamation-triangle"></i> <?php echo __( 'there is nothing here', 'FRocket_admin' ); ?></div>
 							</td>
 						</tr>

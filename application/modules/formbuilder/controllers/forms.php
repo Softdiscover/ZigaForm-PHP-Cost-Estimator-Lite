@@ -87,6 +87,7 @@ class Forms extends BackendController
         $this->load->model('addon/model_addon');
         $this->load->model('addon/model_addon_details');
         $this->load->model('addon/model_addon_details_log');
+        $this->load->model('gateways/model_gateways');
         $this->load->model('gateways/model_gateways_logs');
         $this->load->model('gateways/model_gateways_records');
         $this->load->library('cache');
@@ -1503,8 +1504,9 @@ class Forms extends BackendController
 
             $data['fmb_rec_tpl_html'] = (isset($_POST['uifm_frm_rec_tpl_html'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['uifm_frm_rec_tpl_html'])) : '';
             $data['fmb_rec_tpl_st']   = (isset($_POST['uifm_frm_rec_tpl_st'])) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['uifm_frm_rec_tpl_st'])) : '';
-
-
+            $data['fmb_inv_tpl_st']   = ( isset($_POST['uifm_frm_inv_tpl_st']) ) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['uifm_frm_inv_tpl_st'])) : '';
+            $data['fmb_inv_tpl_html'] = ( isset($_POST['uifm_frm_inv_tpl_html']) ) ? urldecode(Uiform_Form_Helper::sanitizeInput_html($_POST['uifm_frm_inv_tpl_html'])) : '';
+            
             //$tmp_data2            = array();
             //$tmp_data2['onsubm']  = isset($fmb_data['onsubm']) ? $fmb_data['onsubm'] : '';
             //$tmp_data2['main']    = isset($fmb_data['main']) ? $fmb_data['main'] : '';
@@ -4169,7 +4171,9 @@ class Forms extends BackendController
         $data['fields_fastload'] = get_option('zgfm_fields_fastload', 0);
         $data['obj_sfm']            = Uiform_Form_Helper::get_font_library();
         // $data['modules_tab_extension']= self::$_modules['addon']['backend']->addons_doActions('back_exttab_block');
-
+        
+        $data['payment_methods_available'] = $this->model_gateways->getAvailableGateways();
+        
         $data['modules_tab_extension'] = modules::run('addon/zfad_backend/addons_doActions', 'back_exttab_block', true);
 
         $this->template->loadPartial('layout-editform', 'forms/create_form', $data);

@@ -66,7 +66,7 @@ class model_record extends CI_Model
             $this->tbform
         );
 
-        if ( $per_page != '' || $segment != '') {
+        if ( (int) $per_page > 0) {
             $segment = ( ! empty($segment) ) ? $segment : 0;
             $query  .= sprintf(' limit %s,%s', (int) $segment, (int) $per_page);
         }
@@ -144,7 +144,7 @@ class model_record extends CI_Model
 
         $query .= sprintf(' ORDER BY c.created_date %s ', $orderby);
 
-        if ( $per_page != '' || $segment != '') {
+        if ( (int) $per_page > 0) {
             $segment = ( ! empty($segment) ) ? $segment : 0;
             $query  .= sprintf(' limit %s,%s', (int) $segment, (int) $per_page);
         }
@@ -458,10 +458,10 @@ class model_record extends CI_Model
         return $query2->result();
     }
 
-    public function getNameInvoiceField($id_field)
+    public function getNameInvoiceField($id_rec)
     {
         $query  = sprintf(
-            'select f.fmf_uniqueid,f.fmf_id, coalesce(NULLIF(f.fmf_fieldname,""),CONCAT(t.fby_name,f.fmf_id)) as fieldname 
+            'select f.fmf_uniqueid,f.fmf_id, fm.fmb_type, coalesce(NULLIF(f.fmf_fieldname,""),CONCAT(t.fby_name,f.fmf_id)) as fieldname 
         from %s f 
         join %s t on f.type_fby_id=t.fby_id 
         join %s fm on fm.fmb_id=f.form_fmb_id
@@ -471,7 +471,7 @@ class model_record extends CI_Model
             $this->tbformtype,
             $this->tbform,
             $this->table,
-            (int) $id_field
+            (int) $id_rec
         );
         $query2 = $this->db->query($query);
         return $query2->result();

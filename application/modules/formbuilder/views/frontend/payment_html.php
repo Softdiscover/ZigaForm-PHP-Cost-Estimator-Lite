@@ -25,7 +25,9 @@ if ( ! defined('BASEPATH')) {
         <div class="sfdc-row">
             <div class="sfdc-col-sm-7 col-md-8 uiform-pg-section-1">
                 <div class="uiform-pg-table-header-box">
-                    <div class="sfdc-col-md-5 pull-left"><?php echo __('Payment Option', 'frocket_front'); ?></div>
+                    <div class="sfdc-col-md-5 pull-left">
+                        <h4><?php echo __('Payment Option', 'frocket_front'); ?></h4>
+                    </div>
                     <div class="sfdc-clearfix"></div>
                 </div>
                 <div class="uiform-pg-content">
@@ -49,11 +51,13 @@ if ( ! defined('BASEPATH')) {
             <div class="uiform-pg-section-2 col-sm-5 col-md-4">
                 <div class="sfdc-row uiform-pg-summary-head">
                     <div class="sfdc-col-sm-12 ">
-                        <?php echo __('Order Summary', 'frocket_front'); ?>
+                        <h4><?php echo __('Order Summary', 'frocket_front'); ?></h4>
                     </div>
                 </div>
                 <div class="sfdc-row uiform-pg-summary-body">
                     <div class="sfdc-col-xs-10 col-xs-offset-1">
+                    
+                        
                         <p class="uiform-pg-summbox-p text-right"> 
                             <a 
                                 onclick="javascript:rocketfm.payment_seeSummary(this);return false;"
@@ -61,8 +65,9 @@ if ( ! defined('BASEPATH')) {
                                    <i class="fa fa-list-ul"></i> <?php echo __('See summary', 'frocket_front'); ?>
                                 </a>
                         </p>
-                          <?php if ( ZIGAFORM_C_LITE == 1) { ?>
-                          <?php } else { ?>
+                        
+                         
+                          <?php if ( ZIGAFORM_C_LITE !== 1) { ?>
                             <p class="uiform-pg-summbox-p text-right"> 
                                 <a 
                                     onclick="javascript:rocketfm.payment_seeInvoice(this);return false;"
@@ -71,13 +76,12 @@ if ( ! defined('BASEPATH')) {
                                     </a>
 
                             </p>
-
                           <?php } ?>
                         
                         
                         
                         <p class="uiform-pg-summbox-p text-right"> <?php echo __('Total', 'frocket_front'); ?>:&nbsp;&nbsp; 
-                            <span class="uiform-pg-summbox-total "><?php echo urldecode($currency['symbol']); ?> <span class="uiform-pg-summbox-amount"> <?php echo $amount; ?></span> <?php echo $currency['cur']; ?></span>
+                        <span class="uiform-pg-summbox-total "><?php echo urldecode($currency['symbol']); ?> <span class="uiform-pg-summbox-amount"> <?php echo round($amount, 2); ?></span> <?php echo $currency['cur']; ?></span>
                         </p>
                         <div style="display:none;" class="uiform-pg-summbox-agreement text-right">
                             <label class="">

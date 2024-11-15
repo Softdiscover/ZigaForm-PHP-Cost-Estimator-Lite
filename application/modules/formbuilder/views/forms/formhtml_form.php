@@ -16,7 +16,7 @@ if ( ! defined('BASEPATH')) {
 }
 ob_start();
 ?>
-<div class="rockfm-form-container uiform-wrap sfdc-wrap">
+<div class="rockfm-form-container rockfm-form-container-single uiform-wrap sfdc-wrap">
 <div class="rockfm-alert-container" style="display:none;"></div>
 <form class="rockfm-form" 
       action="javascript:void(0);" 
@@ -57,7 +57,10 @@ ob_start();
         
      <!-- sticky content -->
        <?php
-        if ( isset($summbox['setting']['enable_st'])
+        if ( 
+            isset($calculation['enable_st'])
+            && isset($calculation['enable_st']) && intval($calculation['enable_st']) !== 1 
+            && isset($summbox['setting']['enable_st'])
                && isset($main['price_st']) && intval($main['price_st']) === 1
                && intval($summbox['setting']['enable_st']) === 1) {
             $tmp_sticky_pos = 'top';

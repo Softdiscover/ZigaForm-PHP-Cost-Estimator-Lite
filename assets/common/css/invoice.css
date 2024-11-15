@@ -1,0 +1,101 @@
+/* Grid Layout */
+.invoice-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.invoice-col-6 {
+    flex: 1 1 48%; /* Two columns, 48% width each, with some gap in between */
+    box-sizing: border-box;
+}
+
+.invoice-col-12 {
+    flex: 1 1 100%; /* Full width for single-column sections */
+}
+
+ 
+
+/* Other styling */
+#invoice_modal_content {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+#invoice_modal_content h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.invoice-date {
+    font-size: 14px;
+    color: #555;
+}
+
+.invoice-list-from,
+.invoice-list-to {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.invoice-table-responsive {
+    overflow-x: auto;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.invoice-table th,
+.invoice-table td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.invoice-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.invoice-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.invoice-total-txt {
+    text-align: right;
+}
+
+.invoice-amount-total {
+    color: #333;
+    font-size: 16px;
+    text-align: right;
+}
+
+@media print {
+    #invoice_modal_content {
+        color: #000;
+    }
+
+    .invoice-table th,
+    .invoice-table td {
+        border: 1px solid #000;
+    }
+
+    .invoice-table th {
+        background-color: #ddd !important;
+        color: #000;
+    }
+}

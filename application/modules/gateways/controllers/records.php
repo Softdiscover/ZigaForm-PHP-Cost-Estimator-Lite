@@ -338,7 +338,6 @@ class Records extends BackendController
 
     public function action_pdf_show_invoice()
     {
-
          $rec_id = isset($_GET['id']) ? Uiform_Form_Helper::sanitizeInput($_GET['id']) : '';
 
         if ( intval($rec_id) > 0) {
@@ -353,20 +352,8 @@ class Records extends BackendController
                         font-family: "DejaVu Sans Mono", monospace;
                         }
                 </style>
-                <link href="<?php echo base_url(); ?>/assets/common/bootstrap/2.3.2/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" >
+                <link href="<?php echo base_url(); ?>assets/common/css/invoice.css" rel="stylesheet" type="text/css" media="all" >
                 
-                <style type="text/css">
-                    .uifm_invoice_container h3{
-                        margin-left:-20px;
-                    }
-                    .uifm_invoice_container .invoice_date{
-                        margin-left:-20px;
-                        margin-bottom: 20px;
-                    }
-                    .uifm_invoice_container{
-                    margin: 10px 20px 20px;
-                    }
-                </style>
         </head> 
             <body>
                 <div style="width:600px;margin: 0 100px;">

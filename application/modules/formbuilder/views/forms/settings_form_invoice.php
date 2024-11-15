@@ -396,9 +396,10 @@ $default_template = ob_get_clean();
  
 jQuery(document).ready(function ($) {
     
- 
+    
   /* attach custom pdf to client*/
         $('#uifm_frm_invoice_tpl_enable').on('switchChange.bootstrapSwitchZgpb', function (event, state) {
+           
             var f_val = (state) ? 1 : 0;
             if (f_val === 1) {
                 $('#uifm-tab-inner-inv-tpl-3').show();
@@ -412,11 +413,11 @@ jQuery(document).ready(function ($) {
         var selectedValue = $('#uifm_frm_invoice_tpl_enable').bootstrapSwitchZgpb('state');
         if (selectedValue) {
             $('#uifm-tab-inner-inv-tpl-3').show();
+              
         } else {
             $('#uifm-tab-inner-inv-tpl-3').hide();
+             
         }
-   
-      
 });
 
 

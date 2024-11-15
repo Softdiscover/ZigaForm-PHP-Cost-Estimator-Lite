@@ -39,7 +39,7 @@ class Frontend extends FrontendController
     private $current_form_id   = '';
     private $form_rec_msg_summ = '';
     private $form_email_err    = array();
-    private $form_cur_data     = array();
+    private $form_cur;
     private $form_cur_data2    = array();
 
     private $format_price_conf = array();
@@ -478,12 +478,19 @@ class Frontend extends FrontendController
             $resp['show_summary_title'] = '<a class="sfdc-btn sfdc-btn-warning pull-right" onclick="javascript:rocketfm.genpdf_infoinvoice(' . $id_rec . ');" href="javascript:void(0);"><i class="fa fa-file-pdf-o"></i> ' . __('Export to PDF', 'frocket_front') . '</a>';
         }
 
-          $data                 = array();
-          $data['base_url']     = base_url() . '/';
-          $data['form_id']      = $form_id;
-          $data['url_form']     = site_url() . 'formbuilder/frontend/pdf_show_invoice/?uifm_mode=pdf&is_html=1&id=' . $id_rec;
-          $resp['show_summary'] = Uiform_Form_Helper::encodeHex($this->load->view('formbuilder/frontend/form_summary_custom', $data, true));
-
+          
+           
+          if ( isset($temp->fmb_inv_tpl_st) && intval($temp->fmb_inv_tpl_st) === 1) {
+            $data             = array();
+            $data['base_url'] = base_url() . '/';
+            $data['form_id']  = $form_id;
+            $data['url_form'] = site_url() . 'formbuilder/frontend/pdf_show_invoice/?uifm_mode=pdf&is_html=1&id=' . $id_rec;
+        $resp['show_summary'] = do_shortcode($this->load->view('formbuilder/frontend/form_invoice_custom', $data, true));
+    } else {
+        
+          $resp['show_summary'] = $this->get_summaryInvoice_process($id_rec);
+    }
+          
         // return data to ajax callback
         $data         = array();
         $data['json'] = $resp;
@@ -499,22 +506,20 @@ class Frontend extends FrontendController
         $form_data        = $this->model_forms->getFormById_2($form_id);
         $form_data_onsubm = json_decode($form_data->fmb_data2, true);
         $pdf_show_onpage  = ( isset($form_data_onsubm['main']['pdf_show_onpage']) ) ? $form_data_onsubm['main']['pdf_show_onpage'] : '0';
-
+        $this->flag_submitted = $id_rec;
         $resp = array();
 
         $resp['show_summary_title'] = __('Order summary', 'frocket_front');
         if ( intval($pdf_show_onpage) === 1) {
             $resp['show_summary_title'] .= ' <a class="sfdc-btn sfdc-btn-warning pull-right" onclick="javascript:rocketfm.genpdf_inforecord(' . $id_rec . ');" href="javascript:void(0);"><i class="fa fa-file-pdf-o"></i> ' . __('Export to PDF', 'frocket_front') . '</a>';
         }
-
+         
         if ( isset($temp->fmb_rec_tpl_st) && intval($temp->fmb_rec_tpl_st) === 1) {
-                $data             = array();
-                $data['base_url'] = base_url() . '/';
-                $data['form_id']  = $form_id;
-                $data['url_form'] = site_url() . 'formbuilder/frontend/pdf_show_record/?uifm_mode=pdf&is_html=1&id=' . $id_rec;
-            $resp['show_summary'] = Uiform_Form_Helper::encodeHex($this->load->view('formbuilder/frontend/form_summary_custom', $data, true));
+                $template_msg = do_shortcode($temp->fmb_rec_tpl_html);
+                $template_msg = html_entity_decode($template_msg, ENT_QUOTES, 'UTF-8');
+            $resp['show_summary'] = $template_msg;
         } else {
-            $resp['show_summary'] = Uiform_Form_Helper::encodeHex(do_shortcode($this->get_summaryRecord($id_rec)));
+            $resp['show_summary'] = do_shortcode($this->getDefaultSummaryTemplate());
         }
 
         $data         = array();
@@ -522,19 +527,59 @@ class Frontend extends FrontendController
 
         $this->load->view('html_view', $data);
     }
-
+    
+    public function getDefaultSummaryTemplate(){
+        ob_start();
+        ?>
+        <div class="zgfm-front-summary-table">
+<table cellspacing="5" cellpadding="5" border="0">
+<tbody>
+<tr>
+<th>Summary</th>
+</tr>
+<tr>
+<td valign="top"><br />Your information is shown below:<br /><br />[uifm_var opt="rec_summ"]<br /><br /></td>
+</tr>
+</tbody>
+</table>
+</div>
+        <?php
+        $cntACmp = ob_get_contents();
+        $cntACmp = Uiform_Form_Helper::sanitize_output($cntACmp);
+        ob_end_clean();
+        
+        return $cntACmp;
+    }
+    
     public function get_summaryInvoice()
     {
         $id_rec  = ( isset($_GET['id']) ) ? Uiform_Form_Helper::sanitizeInput($_GET['id']) : '';
-        $form_id = ( isset($_POST['form_id']) ) ? Uiform_Form_Helper::sanitizeInput($_POST['form_id']) : '';
-
-        $name_fields   = $this->model_record->getNameInvoiceField($id_rec);
+        
+        return $this->get_summaryInvoice_process($id_rec);
+    }
+    
+    public function get_summaryInvoice_process($id_rec){
+        
         $form_rec_data = $this->model_gateways_records->getInvoiceDataByFormRecId($id_rec);
-        if ( empty($form_id)) {
-            $form_id = $form_rec_data->fmb_id;
+        $form_id = $form_rec_data->fmb_id;
+        
+        if(intval($form_rec_data->fmb_type) === 1){
+            $name_fields = [];
+            $children = $this->model_forms->getChildFormByParentId($form_id);
+            foreach ($children as $key => $child) {
+                $fieldnamesArr = $this->model_forms->getFieldNamesById($child->fmb_id);
+                $name_fields = array_merge($name_fields, $fieldnamesArr);
+            }
+            
+            $mainData=$form_rec_data->fmb_data2;
+            
+        }else{
+            
+            $mainData=$form_rec_data->fmb_data;
+            $name_fields   = $this->model_record->getNameInvoiceField($id_rec);
         }
-
-        $form_data          = json_decode($form_rec_data->fmb_data, true);
+        
+        $form_data          = json_decode($mainData, true);
         $form_data_currency = ( isset($form_data['main']['price_currency']) ) ? $form_data['main']['price_currency'] : '';
         $form_data_invoice  = ( isset($form_data['invoice']) ) ? $form_data['invoice'] : '';
 
@@ -556,7 +601,17 @@ class Frontend extends FrontendController
         $record_user     = json_decode($data_record->fbh_data, true);
         $new_record_user = array();
         foreach ( $record_user as $key => $value) {
-            if ( isset($name_fields_check[ $key ]) && isset($value['price_st']) && intval($value['price_st']) === 1) {
+        
+                $isFieldChecked = false;
+                if(intval($form_rec_data->fmb_type) === 1){
+                    list($fieldName) = explode('_', $key);
+                    $key = $fieldName;
+                    $isFieldChecked = (isset($name_fields_check[ $fieldName ]))? true: false;
+                }else{
+                    $isFieldChecked = isset($name_fields_check[ $key ])? true: false;
+                }
+        
+            if ( $isFieldChecked && isset($value['price_st']) && intval($value['price_st']) === 1) {
                 $field_name      = '';
                 $field_id        = '';
                 $tmp_invoice_row = array();
@@ -566,29 +621,52 @@ class Frontend extends FrontendController
 
                 $tmp_invoice_row['item_uniqueid'] = $key;
                 $tmp_invoice_row['item_id']       = $field_id;
-                // $tmp_invoice_row['item_desc']=$value['label'];
-
+                 
                 if ( is_array($value['input'])) {
-                    foreach ( $value['input'] as $key2 => $value2) {
+                
+                    if(isset($value['input']['amount'])){
                         $tmp_invoice_row['item_qty']  = 1;
-                        $tmp_invoice_row['item_desc'] = '';
-                        if ( isset($value2['amount'])) {
-                            if ( isset($value2['qty'])) {
-                                $tmp_invoice_row['item_qty']    = $value2['qty'];
-                                $tmp_invoice_row['item_amount'] = $value2['amount'];
-                            } else {
-                                $tmp_invoice_row['item_amount'] = $value2['amount'];
+                            $tmp_invoice_row['item_desc'] = '';
+                            if ( isset($value['input']['amount'])) {
+                                if ( isset($value['input']['qty'])) {
+                                    $tmp_invoice_row['item_qty']    = $value['input']['qty'];
+                                    $tmp_invoice_row['item_amount'] = $value['input']['amount'];
+                                } else {
+                                    $tmp_invoice_row['item_amount'] = $value['input']['amount'];
+                                }
                             }
+    
+                            $tmp_inp_label = $value['label'];
+                            if ( ! empty($value['input']['label'])) {
+                                $tmp_inp_label .= ' - ' . $value['input']['label'];
+                            }
+                            $tmp_invoice_row['item_desc'] = $tmp_inp_label;
+    
+                            $new_record_user[] = $tmp_invoice_row;
+                    }else{
+                        foreach ( $value['input'] as $key2 => $value2) {
+                            $tmp_invoice_row['item_qty']  = 1;
+                            $tmp_invoice_row['item_desc'] = '';
+                            if ( isset($value2['amount'])) {
+                                if ( isset($value2['qty'])) {
+                                    $tmp_invoice_row['item_qty']    = $value2['qty'];
+                                    $tmp_invoice_row['item_amount'] = $value2['amount'];
+                                } else {
+                                    $tmp_invoice_row['item_amount'] = $value2['amount'];
+                                }
+                            }
+    
+                            $tmp_inp_label = $value['label'];
+                            if ( ! empty($value2['label'])) {
+                                $tmp_inp_label .= ' - ' . $value2['label'];
+                            }
+                            $tmp_invoice_row['item_desc'] = $tmp_inp_label;
+    
+                            $new_record_user[] = $tmp_invoice_row;
                         }
-
-                        $tmp_inp_label = $value['label'];
-                        if ( ! empty($value2['label'])) {
-                            $tmp_inp_label .= ' - ' . $value2['label'];
-                        }
-                        $tmp_invoice_row['item_desc'] = $tmp_inp_label;
-
-                        $new_record_user[] = $tmp_invoice_row;
                     }
+                
+                    
                 } else {
                     $tmp_invoice_row['item_qty']    = 1;
                     $tmp_invoice_row['item_desc']  .= ' ' . $value['input'];
@@ -634,7 +712,8 @@ class Frontend extends FrontendController
 
         return $form_summary;
     }
-
+    
+    
     public function get_summaryRecord($id_rec)
     {
         $form_id = ( isset($_POST['form_id']) ) ? Uiform_Form_Helper::sanitizeInput($_POST['form_id']) : '';
@@ -1185,7 +1264,9 @@ class Frontend extends FrontendController
                     $data             = $this->model_record->getFormDataById($rec_id);
                     $tmp_data         = json_decode($data->fbh_data, true);
                     $form_data_onsubm = json_decode($data->fmb_data2, true);
-
+                    
+                    $formDataFirst= json_decode($data->fmb_data, true);
+                    
                      // price numeric format
                     $format_price_conf                        = array();
                     $format_price_conf['price_format_st']     = ( isset($form_data_onsubm['main']['price_format_st']) ) ? $form_data_onsubm['main']['price_format_st'] : '0';
@@ -1202,6 +1283,8 @@ class Frontend extends FrontendController
                     $data2['current_cost_cur']    = ( isset($form_data_onsubm['main']['price_currency']) ) ? $form_data_onsubm['main']['price_currency'] : 'USD';
                     $data2['show_only_value'] = ($vars['atr2'] === 'show_only_value')?'yes':'no';
                     $data2['hide_total'] = ($vars['atr3'] === 'hide_total')?'yes':'no';
+                    $data2['is_custom_calc'] = (isset($formDataFirst['calculation']['enable_st'])) ? intval($formDataFirst['calculation']['enable_st']) : 0;
+                    
                     $output                       = $this->load->view('formbuilder/frontend/mail_generate_fields', $data2, true);
                     break;
                 case 'rec_url_fm':
@@ -1268,8 +1351,6 @@ class Frontend extends FrontendController
     }
     public function ajax_ms_submit_ajaxmode()
     {
-         
-
         $resp = array();
         $resp = $this->process_form(true);
 
@@ -1427,7 +1508,17 @@ class Frontend extends FrontendController
         modules::run('formbuilder/uifmrecaptcha/front_verify_recaptchav3', array());
     }
     public function process_form_fields($form_fields, $form_id)
-    {
+    {   
+    
+         // upload an image and document options
+			$config                  = array();
+			$config['upload_path']   = FCPATH . 'uploads';
+			$config['allowed_types'] = 'jpg|png|gif|jpeg|JPG|PNG|GIF|JPEG|pdf|doc|docx|xls|xlsx|zip|rar';
+			$config['max_size']      = '2097152'; // 0 = no file size limit
+			$config['overwrite']     = false;
+			$config['remove_spaces'] = true;
+			$this->load->library( 'upload', $config );
+    
         $form_f_tmp            = array();
         $form_f_rec_tmp        = array();
         $form_errors    = array();
@@ -1617,28 +1708,31 @@ class Frontend extends FrontendController
                             if (!in_array($ext, $custom_allowedext)) {
                                 $form_errors[] = __('Error! Type of file is not allowed to upload', 'frocket_front');
                             }
-                            if (empty($form_errors)) {
-                                $upload_data   = wp_upload_dir();  // look for this function in WordPress documentation at codex
-                                $upload_dir    = $upload_data['path'];
-                                $upload_dirurl = $upload_data['baseurl'];
-                                $upload_subdir = $upload_data['subdir'];
-                                $rename        = 'file_' . md5(uniqid($_FILES['uiform_fields']['name'][$key], true));
+                            if ( empty( $form_errors ) ) {
+                                $config['allowed_types'] = '*';
+                                $config['max_size']      = $custom_maxsize * 1024 * 1024; // 0 = no file size limit
+                                $this->upload->initialize( $config );
 
-                                $_FILES['uiform_fields']['name'][$key] = $rename . '.' . strtolower($ext);
+                                $rename = 'file_' . md5( uniqid( $_FILES['uiform_fields']['name'][ $key ], true ) );
 
-                                $form_f_tmp[$key]['input'] = $upload_dirurl . $upload_subdir . '/' . $_FILES['uiform_fields']['name'][$key];
-                                $form_f_rec_tmp[$key]      = $upload_dirurl . $upload_subdir . '/' . $_FILES['uiform_fields']['name'][$key];
-                                $form_fields[$key]         = $upload_dirurl . $upload_subdir . '/' . $_FILES['uiform_fields']['name'][$key];
+                                $_FILES['uiform_fields']['name'][ $key ] = $rename . '.' . strtolower( $ext );
 
                                 // attachment
 
-                                if ($_FILES['uiform_fields']['error'][$key] == UPLOAD_ERR_OK) {
-                                    $tmp_name = $_FILES['uiform_fields']['tmp_name'][$key]; // Get temp name of uploaded file
-                                    $name     = $_FILES['uiform_fields']['name'][$key];  // rename it to whatever
-                                    move_uploaded_file($tmp_name, "$upload_dir/$name"); // move file to new location
-                                    if (intval($custom_attach_st) === 1) {
-                                        $attachments[] = "$upload_dir/$name";  // push the new uploaded file in attachment array
+                                if ( ! $this->upload->do_upload2( $key ) ) {
+                                    $form_errors[] = __( 'Error! File not uploaded - ' . $this->upload->display_errors( '<span>', '</span>' ), 'frocket_front' );
+                                } else {
+                                    $data_upload_files = $this->upload->data();
+                                    $image             = base_url() . 'uploads/' . $data_upload_files['file_name'];
+                                    // getting image uploaed
+                                    if ( intval( $custom_attach_st ) === 1 ) {
+                                        $attachments[] = $data_upload_files['file_path'] . $data_upload_files['file_name'];
                                     }
+
+                                    $form_f_tmp[ $key ]['input'] = $image;
+                                    $form_f_rec_tmp[ $key ]      = $image;
+                                    $form_fields[ $key ]         = $image;
+
                                 }
                             }
                         } else {
@@ -1810,7 +1904,7 @@ class Frontend extends FrontendController
         }
 
 
-        return [$form_f_tmp, $form_f_rec_tmp, $form_errors, $attachments, $attachment_status];
+        return [$form_f_tmp, $form_f_rec_tmp, $form_errors, $attachments, $attachment_status, $form_cost_total];
     }
     /**
      * Frontend::process_form()
@@ -1847,9 +1941,11 @@ class Frontend extends FrontendController
                 $form_data        = $this->model_forms->getFormById_2($form_id);
                 $form_data_onsubm = json_decode($form_data->fmb_data2, true);
                 $form_data_name   = $form_data->fmb_name;
-
+                
+                
+                
                 // store to obj var
-                // $this->form_cur_data = json_decode($form_data->fmb_data, true);
+                $this->form_cur = $form_data;
                 $this->form_cur_data2 = json_decode($form_data->fmb_data2, true);
 
                 // prepare message
@@ -1896,11 +1992,11 @@ class Frontend extends FrontendController
 
                 // fields
             if ($isMultiStep) {
-                list($form_f_tmp, $form_f_rec_tmp, $form_errors, $attachments, $attachment_status) = [[], [], [], [], false];
+                list($form_f_tmp, $form_f_rec_tmp, $form_errors, $attachments, $attachment_status, $form_cost_total) = [[], [], [], [], false, 0];
     
                 if (!empty($form_fields)) {
                     foreach ($form_fields as $key2 => $value2) {
-                        list($form_f_tmp2, $form_f_rec_tmp2, $form_errors2, $attachments2, $attachment_status2) = $this->process_form_fields($value2, $key2);
+                        list($form_f_tmp2, $form_f_rec_tmp2, $form_errors2, $attachments2, $attachment_status2, $form_cost_total) = $this->process_form_fields($value2, $key2);
                             
                         $newArray = [];
                         foreach ($form_f_tmp2 as $key3 => $value3) {
@@ -1925,18 +2021,18 @@ class Frontend extends FrontendController
                 }
             } else {
                 // fields
-                list($form_f_tmp, $form_f_rec_tmp, $form_errors, $attachments, $attachment_status) = $this->process_form_fields($form_fields, $form_id);
+                list($form_f_tmp, $form_f_rec_tmp, $form_errors, $attachments, $attachment_status, $form_cost_total) = $this->process_form_fields($form_fields, $form_id);
             }
 
                     // process tax
                     $tmp_price_tax_st  = ( isset($form_data_onsubm['main']['price_tax_st']) ) ? $form_data_onsubm['main']['price_tax_st'] : '0';
                     $tmp_price_tax_val = ( isset($form_data_onsubm['main']['price_tax_val']) ) ? $form_data_onsubm['main']['price_tax_val'] : '0';
 
-                    // check if math calc is enabled
-
-            if ( intval($form_data_calc_enable) === 1) {
-                $form_cost_total = isset($zgfm_calc_math) ? $zgfm_calc_math : 0;
-            }
+            
+            
+            // check if math calc is enabled
+            $form_cost_total = (isset($zgfm_calc_math) && intval($zgfm_calc_math) > 0) ? $zgfm_calc_math : $form_cost_total;
+            
 
                     // check if tax is enabled
             if ( intval($tmp_price_tax_st) === 1) {
@@ -2238,7 +2334,7 @@ class Frontend extends FrontendController
             ?>
         
                     <!-- if p tag is removed, title will dissapear, idk -->
-                    <h1><?php echo $form_data->fmb_name; ?></h1>
+                    <h2><?php echo $form_data->fmb_name; ?></h2>
                     <h4><?php echo __('Order summary', 'FRocket_admin'); ?></h4>
                   
                   <?php
@@ -2275,7 +2371,7 @@ class Frontend extends FrontendController
             $data2                   = array();
             $data2['rec_id']         = $rec_id;
             $data2['html_wholecont'] = $full_page;
-            $data2['content']        = $content;
+            $data2['content']        = do_shortcode($content);
             $data2['is_html']        = $is_html;
             $tmp_res                 = modules::run('formbuilder/frontend/pdf_global_template', $data2);
 
@@ -2294,34 +2390,14 @@ class Frontend extends FrontendController
 
     public function pdf_show_invoice()
     {
-
         $rec_id    = isset($_GET['id']) ? Uiform_Form_Helper::sanitizeInput($_GET['id']) : '';
         $form_data = $this->model_gateways_records->getInvoiceDataByFormRecId($rec_id);
         $is_html   = isset($_GET['is_html']) ? Uiform_Form_Helper::sanitizeInput($_GET['is_html']) : 0;
-
         ob_start();
         ?>
-        <link href="<?php echo base_url(); ?>/assets/common/bootstrap/2.3.2/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" >
-               
-         <style type="text/css">
-                    .uifm_invoice_container h3{
-                        margin-left:-20px;
-                    }
-                    .uifm_invoice_container .invoice_date{
-                        margin-left:-20px;
-                        margin-bottom: 20px;
-                    }
-                    .uifm_invoice_container{
-                    margin: 10px 20px 20px;
-                    }
-                    html,body{
-                        /*background:#eee;*/
-                    }
-                    table{
-                        background:#fff;
-                    }
-                </style>
-
+        <style>
+            <?php echo file_get_contents(FCPATH . "/assets/common/css/invoice.css"); ?>
+        </style>
         <?php
         $head_extra = ob_get_contents();
         ob_end_clean();
@@ -2339,7 +2415,7 @@ class Frontend extends FrontendController
         $content = ob_get_contents();
         ob_end_clean();
 
-        // update form id
+        // update rec id
         $this->flag_submitted = $rec_id;
 
         // custom template
@@ -2367,8 +2443,9 @@ class Frontend extends FrontendController
         $data2['head_extra'] = $head_extra;
         $data2['content']    = $content;
         $data2['is_html']    = $is_html;
-        // $tmp_html = self::$_modules['formbuilder']['frontend']->pdf_global_template($data2);
-        $tmp_res = modules::run('formbuilder/frontend/pdf_global_template', $data2);
+        //$tmp_res = modules::run('formbuilder/frontend/pdf_global_template', $data2);
+        $tmp_res = $this->pdf_global_template($data2);
+        
         if ( intval($is_html) === 1) {
             header('Content-type: text/html');
 
@@ -2696,8 +2773,41 @@ class Frontend extends FrontendController
         $data['price_format'] = ( isset($this->form_response['price_format']) ) ? $this->form_response['price_format'] : array();
 
         $gateways = $this->model_gateways->getAvailableGateways();
-
+        
+        //paypal constants
+        $paypal_return_url = isset($pg_data['paypal_return_url']) ? $pg_data['paypal_return_url'] : '';
+        $paypal_cancel_url = isset($pg_data['paypal_cancel_url']) ? $pg_data['paypal_cancel_url'] : '';
+        
+        //custom payment methods
+        $customPaymentMethod=$this->form_cur_data2['main']['payment_method_st'];
+        $allowPaymentMethod=[];        
+        if(intval($customPaymentMethod) === 1){
+            $allowPaymentMethod = $this->form_cur_data2['main']['payment_method_list'];
+            $allowPaymentMethod = array_map('intval', $allowPaymentMethod);
+            
+            $payment_paypal_return_url = $this->form_cur_data2['main']['payment_paypal_return_url'];
+            if(!empty($payment_paypal_return_url)){
+                $paypal_return_url = $payment_paypal_return_url;
+            }
+            
+            $payment_paypal_cancel_url = $this->form_cur_data2['main']['payment_paypal_cancel_url'];
+            if(!empty($payment_paypal_cancel_url)){
+                $paypal_cancel_url = $payment_paypal_cancel_url;
+            }
+        }
+         
+        $data['fmb_rec_tpl_st']=$this->form_cur->fmb_rec_tpl_st;
+        $data['fmb_inv_tpl_st']=$this->form_cur->fmb_inv_tpl_st;
+        
+        $data['calculation_enable_st'] =  intval($this->form_cur_data2['calculation']['enable_st']);
+        
+        
         foreach ( $gateways as $key => $value) {
+        
+            if(!empty($allowPaymentMethod) && !in_array(intval($value->pg_id), $allowPaymentMethod, true)){
+                continue;
+            }
+        
             switch ( intval($value->pg_id)) {
                 case 1:
                     // offline
@@ -2737,8 +2847,8 @@ class Frontend extends FrontendController
                     $data2['pg_description']    = ( isset($value->pg_description) ) ? $value->pg_description : '';
                     $data2['item_number']       = ( isset($this->form_response['id_payrec']) ) ? $this->form_response['id_payrec'] : '';
                     $data2['paypal_email']      = ( isset($pg_data['paypal_email']) ) ? $pg_data['paypal_email'] : '';
-                    $data2['paypal_return_url'] = isset($pg_data['paypal_return_url']) ? $pg_data['paypal_return_url'] : '';
-                    $data2['paypal_cancel_url'] = isset($pg_data['paypal_cancel_url']) ? $pg_data['paypal_cancel_url'] : '';
+                    $data2['paypal_return_url'] = $paypal_return_url;
+                    $data2['paypal_cancel_url'] = $paypal_cancel_url;
                     $data2['paypal_currency']   = isset($pg_data['paypal_currency']) ? $pg_data['paypal_currency'] : '';
                     $data2['paypal_method']     = isset($pg_data['paypal_method']) ? $pg_data['paypal_method'] : 0;
 
@@ -2861,7 +2971,7 @@ class Frontend extends FrontendController
             }
         }
         $data['gateways'] = $gateways;
-
+        
         $output = $this->load->view('formbuilder/frontend/payment_html', $data, true);
         return $output;
     }

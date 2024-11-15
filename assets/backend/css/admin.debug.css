@@ -3249,9 +3249,9 @@
 .sfdc-wrap .sfdc-radio-inline input[type="radio"],
 .sfdc-wrap .sfdc-checkbox input[type="checkbox"],
 .sfdc-wrap .sfdc-checkbox-inline input[type="checkbox"] {
-  position: absolute;
-  margin-top: 4px \9;
-  margin-left: -20px;
+  /*position: absolute;*/
+  /*margin-top: 4px \9;
+  margin-left: -20px;*/
 }
 
 .sfdc-wrap .sfdc-radio + .sfdc-radio,
@@ -9994,11 +9994,6 @@ a:focus {
   background: #263147;
 }
 
-.uiform-set-field-wrap {
-  padding: 0 10px 10px;
-  position: relative;
-}
-
 /* spacer */
 .divider1 {
   margin: 5px 0 0 20px;
@@ -11664,7 +11659,7 @@ a:focus {
 .uiformc-tab-content-inner3 {
   background: #f9f9f9;
   position: relative;
-  padding: 20px 0;
+  padding: 20px;
 }
 
 /* field select */
@@ -16777,6 +16772,26 @@ ol.inline li {
   white-space: nowrap;
 }
 
+#zgfm-checkout-tab-container #uifm-tab-inner-payment-method-3 {
+  padding-left: 50px;
+}
+
+#zgfm-checkout-tab-container .sfdc-checkbox .toggle-icon {
+  margin-left: 8px;
+  /* Space between text and icon */
+  cursor: pointer;
+  transition: transform 0.3s;
+  /* Smooth transition for icon change */
+}
+
+#zgfm-checkout-tab-container .payment-options {
+  display: none;
+  margin-left: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
 /* calculation */
 #zgfm-calc-tab-header {
   background: #630c15;
@@ -16785,6 +16800,11 @@ ol.inline li {
 
 #zgfm-calc-tab-header label {
   color: #fff;
+}
+
+#zgfm-calc-tab-header .zgfm-opt-divider-stl2 {
+  border-bottom: 5px solid #6F131C;
+  margin-bottom: 10px;
 }
 
 #zgfm-tab-calc-sourcecode-wrapper {
@@ -18069,6 +18089,22 @@ body {
 .uiform-editing-dashboard .sfdc-nav-tabs li.sfdc-active a.zgfm_seventhPanel:focus:hover,
 .uiform-editing-dashboard .sfdc-nav-tabs li.sfdc-active a.zgfm_seventhPanel:hover:hover {
   background: #922f39;
+}
+
+.uiform-editing-dashboard .zgfm_eighthPanel,
+.uiform-editing-dashboard .sfdc-nav-tabs li a.zgfm_eighthPanel,
+.uiform-editing-dashboard .sfdc-nav-tabs li.sfdc-active a.zgfm_eighthPanel,
+.uiform-editing-dashboard .sfdc-nav-tabs li.sfdc-active a.zgfm_eighthPanel:focus,
+.uiform-editing-dashboard .sfdc-nav-tabs li.sfdc-active a.zgfm_eighthPanel:hover {
+  background: #FD6E8A;
+}
+
+.uiform-editing-dashboard .zgfm_eighthPanel:hover,
+.uiform-editing-dashboard .sfdc-nav-tabs li a.zgfm_eighthPanel:hover,
+.uiform-editing-dashboard .sfdc-nav-tabs li.sfdc-active a.zgfm_eighthPanel:hover,
+.uiform-editing-dashboard .sfdc-nav-tabs li.sfdc-active a.zgfm_eighthPanel:focus:hover,
+.uiform-editing-dashboard .sfdc-nav-tabs li.sfdc-active a.zgfm_eighthPanel:hover:hover {
+  background: #ce5b72;
 }
 
 .uiform-editing-dashboard .zgfmyourselectedform,

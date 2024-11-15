@@ -17,7 +17,7 @@ if (!defined('BASEPATH')) {
 }
 ob_start();
 ?>
-<table class="zgfm-mail-tmp-table" cellpadding="0" cellspacing="0">
+<table class="zgfm-mail-tmp-table" style="width:100%;" cellpadding="0" cellspacing="0">
 
     <?php
     if (!empty($data)) {
@@ -50,6 +50,7 @@ ob_start();
                                             
                                             if ($show_only_value !== 'yes') {
                                                 if (
+                                                    $is_custom_calc === 0  && 
                                                     isset($value['price_st'])
                                                     && intval($current_cost_st) === 1
                                                     && intval($value['price_st']) === 1
@@ -79,6 +80,7 @@ ob_start();
                                             $tmp_output_st .=  $value['input']['cost'];
                                         } else {
                                             if (
+                                                $is_custom_calc === 0  && 
                                                 isset($value['price_st'])
                                                 && intval($current_cost_st) === 1
                                                 && intval($value['price_st']) === 1
@@ -112,6 +114,7 @@ ob_start();
                                                 $tmp_output_st .= '  ' . __('qty', 'frocket_front') . ':  ' . $value['input']['qty'] . ' ' . __('Units', 'frocket_front');
                                             }
                                             if (
+                                                $is_custom_calc === 0  && 
                                                 isset($value['price_st'])
                                                 && intval($current_cost_st) === 1
                                                 && intval($value['price_st']) === 1
@@ -147,6 +150,7 @@ ob_start();
                                                     $tmp_output_st_inner .= ' - ' . __('qty', 'frocket_front') . ':  ' . $value2['qty'] . ' ' . __('Units', 'frocket_front');
                                                 }
                                                 if (
+                                                    $is_custom_calc === 0  && 
                                                     isset($value['price_st'])
                                                     && intval($current_cost_st) === 1
                                                     && intval($value['price_st']) === 1

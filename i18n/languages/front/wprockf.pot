@@ -1,12 +1,12 @@
-# Copyright (C) 2024 Zigaform PHP Cost Estimation Form Builder 7.3.1
-# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 7.3.1 package.
+# Copyright (C) 2024 Zigaform PHP Cost Estimation Form Builder 7.3.9
+# This file is distributed under the same license as the Zigaform PHP Cost Estimation Form Builder 7.3.9 package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Zigaform PHP Cost Estimation Form Builder 7.3.1\n"
+"Project-Id-Version: Zigaform PHP Cost Estimation Form Builder 7.3.9\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-07 19:15+0000\n"
+"POT-Creation-Date: 2024-11-15 01:56+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -22,39 +22,39 @@ msgstr ""
 msgid "Invoice"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:478, application/modules/formbuilder/controllers/frontend.php:507
+#: application/modules/formbuilder/controllers/frontend.php:478, application/modules/formbuilder/controllers/frontend.php:514
 msgid "Export to PDF"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:505
+#: application/modules/formbuilder/controllers/frontend.php:512
 msgid "Order summary"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:788
+#: application/modules/formbuilder/controllers/frontend.php:867
 msgid "Total cost"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:1282, application/modules/formbuilder/controllers/frontend.php:1312
+#: application/modules/formbuilder/controllers/frontend.php:1363, application/modules/formbuilder/controllers/frontend.php:1393
 msgid "warning! Form was not submitted"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:1279, application/modules/formbuilder/controllers/frontend.php:1308
+#: application/modules/formbuilder/controllers/frontend.php:1360, application/modules/formbuilder/controllers/frontend.php:1389
 msgid "Success! your form was submitted"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:1305
+#: application/modules/formbuilder/controllers/frontend.php:1386
 msgid "Error! something went wrong."
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:1611
+#: application/modules/formbuilder/controllers/frontend.php:1702
 msgid "Error! The file exceeds the allowed size of"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:1618
+#: application/modules/formbuilder/controllers/frontend.php:1709
 msgid "Error! Type of file is not allowed to upload"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:2077, application/modules/formbuilder/controllers/frontend.php:2122
+#: application/modules/formbuilder/controllers/frontend.php:2173, application/modules/formbuilder/controllers/frontend.php:2218
 msgid "New form request"
 msgstr ""
 
@@ -66,11 +66,11 @@ msgstr ""
 msgid " , platform : "
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:505, application/modules/formbuilder/controllers/records.php:545, application/modules/formbuilder/views/frontend/mail_generate_fields.php:112, application/modules/formbuilder/views/frontend/mail_generate_fields.php:147
+#: application/modules/formbuilder/controllers/records.php:505, application/modules/formbuilder/controllers/records.php:545, application/modules/formbuilder/views/frontend/mail_generate_fields.php:114, application/modules/formbuilder/views/frontend/mail_generate_fields.php:150
 msgid "qty"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/records.php:508, application/modules/formbuilder/controllers/records.php:548, application/modules/formbuilder/views/frontend/form_invoice.php:109, application/modules/formbuilder/views/frontend/form_invoice.php:102
+#: application/modules/formbuilder/controllers/records.php:508, application/modules/formbuilder/controllers/records.php:548, application/modules/formbuilder/views/frontend/form_invoice.php:83, application/modules/formbuilder/views/frontend/form_invoice.php:76
 msgid "Amount"
 msgstr ""
 
@@ -78,47 +78,47 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:30
+#: application/modules/formbuilder/views/frontend/form_invoice.php:29
 msgid "From"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:62
+#: application/modules/formbuilder/views/frontend/form_invoice.php:49
 msgid "To"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:106, application/modules/formbuilder/views/frontend/form_invoice.php:99
+#: application/modules/formbuilder/views/frontend/form_invoice.php:80, application/modules/formbuilder/views/frontend/form_invoice.php:74
 msgid "Item ID"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:107
+#: application/modules/formbuilder/views/frontend/form_invoice.php:81
 msgid "Quantity"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:108, application/modules/formbuilder/views/frontend/form_invoice.php:101
+#: application/modules/formbuilder/views/frontend/form_invoice.php:82, application/modules/formbuilder/views/frontend/form_invoice.php:75
 msgid "Description"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:181, application/modules/formbuilder/views/frontend/form_summary.php:72, application/modules/formbuilder/views/frontend/mail_generate_fields.php:224, application/modules/formbuilder/views/records/info_record.php:33
+#: application/modules/formbuilder/views/frontend/form_invoice.php:140, application/modules/formbuilder/views/frontend/form_summary.php:72, application/modules/formbuilder/views/frontend/mail_generate_fields.php:228, application/modules/formbuilder/views/records/info_record.php:33
 msgid "Sub total"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:189, application/modules/formbuilder/views/frontend/form_summary.php:77, application/modules/formbuilder/views/frontend/mail_generate_fields.php:229, application/modules/formbuilder/views/records/info_record.php:38
+#: application/modules/formbuilder/views/frontend/form_invoice.php:144, application/modules/formbuilder/views/frontend/form_summary.php:77, application/modules/formbuilder/views/frontend/mail_generate_fields.php:233, application/modules/formbuilder/views/records/info_record.php:38
 msgid "Tax"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/form_invoice.php:198
+#: application/modules/formbuilder/views/frontend/form_invoice.php:149
 msgid "Invoice Total"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/form_summary.php:82, application/modules/formbuilder/views/frontend/mail_generate_fields.php:235, application/modules/formbuilder/views/frontend/payment_html.php:79, application/modules/formbuilder/views/records/info_record.php:43
+#: application/modules/formbuilder/views/frontend/form_summary.php:82, application/modules/formbuilder/views/frontend/mail_generate_fields.php:239, application/modules/formbuilder/views/frontend/payment_html.php:83, application/modules/formbuilder/views/records/info_record.php:43
 msgid "Total"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/mail_generate_fields.php:64, application/modules/formbuilder/views/frontend/mail_generate_fields.php:62, application/modules/formbuilder/views/frontend/mail_generate_fields.php:93, application/modules/formbuilder/views/frontend/mail_generate_fields.php:91, application/modules/formbuilder/views/frontend/mail_generate_fields.php:126, application/modules/formbuilder/views/frontend/mail_generate_fields.php:124, application/modules/formbuilder/views/frontend/mail_generate_fields.php:161, application/modules/formbuilder/views/frontend/mail_generate_fields.php:159
+#: application/modules/formbuilder/views/frontend/mail_generate_fields.php:65, application/modules/formbuilder/views/frontend/mail_generate_fields.php:63, application/modules/formbuilder/views/frontend/mail_generate_fields.php:95, application/modules/formbuilder/views/frontend/mail_generate_fields.php:93, application/modules/formbuilder/views/frontend/mail_generate_fields.php:129, application/modules/formbuilder/views/frontend/mail_generate_fields.php:127, application/modules/formbuilder/views/frontend/mail_generate_fields.php:165, application/modules/formbuilder/views/frontend/mail_generate_fields.php:163
 msgid "amount"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/mail_generate_fields.php:112, application/modules/formbuilder/views/frontend/mail_generate_fields.php:147
+#: application/modules/formbuilder/views/frontend/mail_generate_fields.php:114, application/modules/formbuilder/views/frontend/mail_generate_fields.php:150
 msgid "Units"
 msgstr ""
 
@@ -126,34 +126,34 @@ msgstr ""
 msgid "Choose Payment Method"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/payment_html.php:28
+#: application/modules/formbuilder/views/frontend/payment_html.php:29
 msgid "Payment Option"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/payment_html.php:52
+#: application/modules/formbuilder/views/frontend/payment_html.php:54
 msgid "Order Summary"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/payment_html.php:61
+#: application/modules/formbuilder/views/frontend/payment_html.php:65
 msgid "See summary"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/payment_html.php:70
+#: application/modules/formbuilder/views/frontend/payment_html.php:75
 msgid "See invoice"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/payment_html.php:85
+#: application/modules/formbuilder/views/frontend/payment_html.php:89
 msgid "Agree To The"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/payment_html.php:85
+#: application/modules/formbuilder/views/frontend/payment_html.php:89
 msgid "Terms &amp; Conditions"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/payment_html.php:96
+#: application/modules/formbuilder/views/frontend/payment_html.php:100
 msgid "Complete Order"
 msgstr ""
 
-#: application/modules/formbuilder/views/frontend/payment_html.php:102
+#: application/modules/formbuilder/views/frontend/payment_html.php:106
 msgid "Select Payment"
 msgstr ""

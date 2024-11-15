@@ -66,7 +66,7 @@ class model_gateways_records extends CI_Model
     public function getInvoiceDataByFormRecId($id_rec)
     {
         $query  = sprintf(
-            'select  f.fmb_name,f.fmb_id,f.fmb_data,frec.fbh_total_amount,pr.pgr_id,pr.created_date,f.fmb_inv_tpl_html,f.fmb_inv_tpl_st
+            'select  f.fmb_name,f.fmb_id,f.fmb_data, f.fmb_data2, f.fmb_type, frec.fbh_total_amount,pr.pgr_id,pr.created_date,f.fmb_inv_tpl_html,f.fmb_inv_tpl_st
         from %s frec
         join %s f on f.fmb_id=frec.form_fmb_id
         join %s pr on pr.fbh_id=frec.fbh_id
@@ -77,6 +77,7 @@ class model_gateways_records extends CI_Model
             $this->table,
             $id_rec
         );
+         
         $query2 = $this->db->query($query);
 
         return $query2->row();
@@ -125,7 +126,7 @@ class model_gateways_records extends CI_Model
             $this->tbform
         );
 
-        if ( $per_page != '' || $segment != '') {
+        if ( (int) $per_page > 0) {
             $segment = ( ! empty($segment) ) ? $segment : 0;
             $query  .= sprintf(' limit %s,%s', $segment, $per_page);
         }
@@ -166,7 +167,7 @@ class model_gateways_records extends CI_Model
 
         $query .= sprintf(' ORDER BY gr.created_date %s ', $orderby);
 
-        if ( $per_page != '' || $segment != '') {
+        if ( (int) $per_page > 0) {
             $segment = ( ! empty($segment) ) ? $segment : 0;
             $query  .= sprintf(' limit %s,%s', (int) $segment, (int) $per_page);
         }
@@ -204,7 +205,7 @@ class model_gateways_records extends CI_Model
 
         $query .= sprintf(' ORDER BY gr.created_date %s ', $orderby);
 
-        if ( $per_page != '' || $segment != '') {
+        if ( (int) $per_page > 0) {
             $segment = ( ! empty($segment) ) ? $segment : 0;
             $query  .= sprintf(' limit %s,%s', (int) $segment, (int) $per_page);
         }

@@ -17,48 +17,8 @@ if ( ! defined('BASEPATH')) {
 ?>
 <div class="uiform-set-field-wrap " >
   <div class="space20"></div>
-    <div class="sfdc-row ">
-        <div class="sfdc-col-md-12">
-            <div class="sfdc-form-group">
-                <div class="sfdc-col-md-4">
-                    <label for=""><?php echo __('ENABLE COST ESTIMATION', 'FRocket_admin'); ?></label>
-                </div>
-                <div class="sfdc-col-md-8">
-                    <input class="switch-field"
-                                   id="uifm_frm_main_pricest"
-                                   name="uifm_frm_main_pricest"
-                                   type="checkbox"/>
-                     <a href="javascript:void(0);"
-                       data-toggle="tooltip" data-placement="right" 
-                       data-original-title="<?php echo __('this will enable cost estimation for the whole form.', 'FRocket_admin'); ?>"
-                       ><span class="fa fa-question-circle"></span></a>
-                </div>    
-                      
-            </div>
-        </div>
-    </div>
     
-    <div class="space10 zgfm-opt-divider-stl1"></div>
-    <div class="sfdc-row ">
-        <div class="sfdc-col-sm-12">
-            <div class="sfdc-form-group">
-                <div class="sfdc-col-md-4">
-                     <label for=""><?php echo __('ENABLE PAYMENT', 'FRocket_admin'); ?></label>
-                </div>
-                <div class="sfdc-col-md-8">
-                    <input class="switch-field"
-                                   id="uifm_frm_main_paymentst"
-                                   name="uifm_frm_main_paymentst"
-                                   type="checkbox"/>
-                     <a href="javascript:void(0);"
-                       data-toggle="tooltip" data-placement="right" 
-                       data-original-title="<?php echo __('it will allow to show a payment page after submitting form', 'FRocket_admin'); ?>"
-                       ><span class="fa fa-question-circle"></span></a>
-                </div>  
-            </div>
-        </div>
-    </div>
-    <div class="space10 zgfm-opt-divider-stl1"></div>
+    
     <div class="sfdc-row">
         <div class="sfdc-col-md-12">
             <div class="sfdc-col-sm-4">

@@ -1058,11 +1058,114 @@ select.uifm-input2-opt-main {
   opacity: 0;
 }
 
+/* Grid Layout */
+.invoice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.invoice-col-6 {
+  flex: 1 1 48%;
+  /* Two columns, 48% width each, with some gap in between */
+  box-sizing: border-box;
+}
+
+.invoice-col-12 {
+  flex: 1 1 100%;
+  /* Full width for single-column sections */
+}
+
+/* Other styling */
+#invoice_modal_content {
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+#invoice_modal_content h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.invoice-date {
+  font-size: 14px;
+  color: #555;
+}
+
+.invoice-list-from,
+.invoice-list-to {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.invoice-table-responsive {
+  overflow-x: auto;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: #333;
+  margin-top: 20px;
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.invoice-table th {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+.invoice-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.invoice-total-txt {
+  text-align: right;
+}
+
+.invoice-amount-total {
+  color: #333;
+  font-size: 16px;
+  text-align: right;
+}
+
+@media print {
+  #invoice_modal_content {
+    color: #000;
+  }
+  .invoice-table th,
+  .invoice-table td {
+    border: 1px solid #000;
+  }
+  .invoice-table th {
+    background-color: #ddd !important;
+    color: #000;
+  }
+}
+
+/* Main container styling */
+/* Main title styling */
 .uiform-pg-main-page h1 {
   font-size: 19px;
   line-height: 40px;
 }
 
+/* Section styling */
 .uiform-pg-section-1 {
   margin-bottom: 10px;
 }
@@ -1072,61 +1175,98 @@ select.uifm-input2-opt-main {
   box-shadow: 0 2px 3px rgba(50, 50, 50, 0.35);
 }
 
+/* Header box styling */
 .uiform-pg-table-header-box {
   background: #4391e5;
   border: 1px solid #aaa9a5;
   color: #f2f2f2;
   padding: 5px 0;
+  text-align: center;
 }
 
+/* Payment order container */
 .uiform-pg-order-cont {
   background: #f1f1f1;
-  border-bottom: 1px solid #cacaca;
-  border-left: 1px solid #cacaca;
-  border-right: 1px solid #cacaca;
+  border: 1px solid #cacaca;
+}
+
+.uiform-pg-order-cont:nth-child(odd) {
+  background-color: #eee;
+}
+
+.uiform-pg-order-cont:nth-child(even) {
+  background-color: #fff;
+}
+
+.uiform-pg-order-cont label {
   cursor: pointer;
+  width: 100%;
+  padding: 10px;
 }
 
-.uiform-pg-row-cont {
+/* Flex container for items */
+.uiform-pg-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Label and input container */
+.uiform-pg-order-cont .uiform-pg-row .uiform-pg-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Radio button container */
+.uiform-pg-radio-btn {
+  flex: 0 0 auto;
+}
+
+/* Card number container */
+.uiform-pg-card-number {
+  flex: 1;
+}
+
+/* Description container */
+.uiform-pg-description {
+  flex: 1;
   color: #525252;
-  line-height: 21px;
-  padding-bottom: 14px;
-  padding-top: 14px;
+  padding: 10px;
+  font-weight: normal;
 }
 
+/* Order summary */
 .uiform-pg-summary-head {
   background: #4391e5;
   color: #f2f2f2;
   padding: 5px 0;
+  text-align: center;
 }
 
 .uiform-pg-complete-box {
   background: #f2f2f2;
   text-align: center;
+  padding: 20px;
 }
 
 .uiform-pg-complete-box a {
-  margin-bottom: 18px !important;
-  margin-top: 18px;
-}
-
-.uiform-pg-radio-btn {
-  padding-left: 10px;
-  position: relative;
-  z-index: 99;
-}
-
-.uiform-pg-summary-body {
-  padding-top: 10px;
-}
-
-.uiform-pg-content .uiform-pg-order-cont.odd,
-.uiform-pg-content .uiform-pg-order-cont:nth-child(2n) {
-  background: #fff none repeat scroll 0 0;
+  display: inline-block;
+  margin: 18px 0;
+  padding: 8px 12px;
+  background-color: #4391e5;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
 }
 
 .uiform-pg-complete-box a:focus {
-  outline: none !important;
+  outline: none;
+}
+
+.uiform-pg-summbox-p {
+  padding-top: 10px;
 }
 
 /* responsive */
@@ -1183,6 +1323,47 @@ select.uifm-input2-opt-main {
     width: 100% !important;
     margin: 0px !important;
   }
+}
+
+.zgfm-front-summary-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.zgfm-front-summary-table th {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.2em;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+.zgfm-front-summary-table td {
+  padding: 0 15px;
+  font-size: 1em;
+  line-height: 1.5;
+  border-bottom: 1px solid #ddd;
+}
+
+.zgfm-front-summary-table tr:last-child td {
+  border-bottom: none;
+}
+
+.zgfm-front-summary-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.zgfm-front-summary-table {
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 /* row settings */

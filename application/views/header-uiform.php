@@ -132,7 +132,7 @@ if ( ! defined( 'BASEPATH' ) ) {
 		</li>
 		<li class="divider-menu"></li>
 		<li ><a href="<?php echo site_url() . 'gateways/settings/view_settings'; ?>">
-			<i class="fa fa-money"></i> <?php echo __( 'Payment Gateways', 'FRocket_admin' ); ?>
+			<i class="fa fa-money"></i> <?php echo __( 'Payment Methods', 'FRocket_admin' ); ?>
 			</a>
 		</li>
 		<li class="divider-menu"></li>

@@ -52,7 +52,12 @@ if ( ! defined('BASEPATH')) {
                    class="uiform-settings-calc zgfm_seventhPanel zgfm_tabAnchor" data-color="#6f131c"
                    data-intro="<?php echo __('Math Calculation', 'FRocket_admin'); ?>"
                    href="#uiformc-menu-sec6"><?php echo __('Calculation', 'FRocket_admin'); ?></a>
-            </li>
+        </li>
+        <li><a data-toggle="sfdc-tab"
+                   class="uiform-settings-checkout zgfm_eighthPanel zgfm_tabAnchor" data-color="#FD6E8A"
+                   data-intro="<?php echo __('Checkout', 'FRocket_admin'); ?>"
+                   href="#uiformc-menu-sec8"><?php echo __('Checkout', 'FRocket_admin'); ?></a>
+        </li>
         <?php if (!empty($modules_tab_extension)) { ?>
           <li><a data-toggle="sfdc-tab" class="uiform-settings-extensions zgfm_fifthPanel zgfm_tabAnchor" data-color="#00748A" data-intro="<?php echo __('Extensions', 'FRocket_admin'); ?>" href="#uiformc-menu-sec7"><?php echo __('Extensions', 'FRocket_admin'); ?></a>
           </li>
@@ -235,7 +240,12 @@ if ( ! defined('BASEPATH')) {
               
             </div>
         </div>
-        
+        <div id="uiformc-menu-sec8" class="sfdc-tab-pane ">
+            <div class="uiformc-tab-content-inner2">
+                <?php require 'settings_form_checkout.php'; ?>
+              
+            </div>
+        </div>
       <?php if (!empty($modules_tab_extension)) { ?>
         <div id="uiformc-menu-sec7" class="sfdc-tab-pane ">
           <div class="uiformc-tab-content-inner2 sfdc-clearfix">
