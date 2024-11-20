@@ -34,7 +34,7 @@ if ( ! defined('BASEPATH')) {
                             <div class="sfdc-row">
                                 <div class="sfdc-col-sm-12">
                                     <div class="sfdc-form-group">
-                                        <div class="sfdc-input-group uifm-skin-global-custom-font">
+                                        <div class="sfdc-input-group">
                                             <?php
                                             $attributes    = array(
                                                 'name'             => 'uifm_frm_global_font',

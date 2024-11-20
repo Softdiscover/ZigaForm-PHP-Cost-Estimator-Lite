@@ -618,7 +618,7 @@ class Forms extends BackendController
     private function processImportExportCode($dump_form , $is_template = false )
     {
         $redirectUrl = '';
-        if ((isset($dump_form['app_ver']) && $dump_form['app_ver'] == '7.0.0') ||
+        if ((isset($dump_form['app_ver']) && in_array($dump_form['app_ver'], ['7.0.0','7.4.1'], true) ) ||
 
         $is_template === true ||
 
@@ -630,6 +630,8 @@ class Forms extends BackendController
             $data_form['fmb_name']         = @$dump_form['form']['fmb_name'].' - copy';
             $data_form['fmb_rec_tpl_html'] = @$dump_form['form']['fmb_rec_tpl_html'];
             $data_form['fmb_rec_tpl_st']   = @$dump_form['form']['fmb_rec_tpl_st'];
+            $data_form['fmb_inv_tpl_html'] = @$dump_form['form']['fmb_inv_tpl_html'];
+            $data_form['fmb_inv_tpl_st']   = @$dump_form['form']['fmb_inv_tpl_st'];
             $data_form['fmb_type']   = @$dump_form['form']['fmb_type'];
             $data_form['fmb_parent']   = @$dump_form['form']['fmb_parent'];
 
@@ -782,6 +784,38 @@ class Forms extends BackendController
                     }  
                 }
                 
+                //update calculation
+                if (!empty($tmpData2['calculation'])) {
+                    if (!empty($tmpData2['calculation']['variables'])) {
+                        foreach ($tmpData2['calculation']['variables'] as $key => $value) {
+                            
+                           //front
+                           $newContentVal = $value['content'];
+                           
+                           foreach ($tmpData2['calculation']['variables'][$key]['fields'] as $key2 => $value2) {
+                                
+                                $newField = $value2['field'];
+                                preg_match('/fld_(\d+)_/', $newField, $matches);
+                                $keyField = (int)$matches[1];
+                                $newKey = $storeChildIds[$keyField];
+                                $updatedString = preg_replace('/fld_(\d+)_/', 'fld_' . $newKey . '_', $newField);
+
+                                $tmpData2['calculation']['variables'][$key]['fields'][$key2]['field'] = $updatedString;
+                                
+                                
+                                if (strpos($newContentVal, $newField) !== false) {
+                                    $newContentVal = str_replace($newField, $updatedString, $newContentVal);
+                                }
+                                
+                           }
+                            
+                            $tmpData2['calculation']['variables'][$key]['content'] = $newContentVal;
+                           
+                           
+                        }
+                        
+                    }  
+                }
                 
                 $dump_form['form']['fmb_data2'] =  $tmpData2;
                 $data_form['fmb_data2']   = json_encode($dump_form['form']['fmb_data2']);
@@ -3662,6 +3696,8 @@ class Forms extends BackendController
         $data_exp['fmb_name']         = $data_form->fmb_name . ' - copy';
         $data_exp['fmb_rec_tpl_html'] = $data_form->fmb_rec_tpl_html;
         $data_exp['fmb_rec_tpl_st']   = $data_form->fmb_rec_tpl_st;
+        $data_exp['fmb_inv_tpl_html'] = $data_form->fmb_inv_tpl_html;
+        $data_exp['fmb_inv_tpl_st']   = $data_form->fmb_inv_tpl_st;
         $data_exp['fmb_type']   = $data_form->fmb_type;
         $data_exp['fmb_parent']   = $data_form->fmb_parent;
         $data_exp['fmb_id']   = $data_form->fmb_id;

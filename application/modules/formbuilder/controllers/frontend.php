@@ -466,6 +466,8 @@ class Frontend extends FrontendController
     public function ajax_payment_seeinvoice()
     {
         $id_rec           = ( isset($_POST['form_r_id']) ) ? Uiform_Form_Helper::sanitizeInput($_POST['form_r_id']) : '';
+        $this->flag_submitted = $id_rec;
+        
         $temp             = $this->model_record->getFormDataById($id_rec);
         $form_id          = $temp->form_fmb_id;
         $form_data        = $this->model_forms->getFormById_2($form_id);
@@ -480,13 +482,12 @@ class Frontend extends FrontendController
 
           
            
-          if ( isset($temp->fmb_inv_tpl_st) && intval($temp->fmb_inv_tpl_st) === 1) {
-            $data             = array();
-            $data['base_url'] = base_url() . '/';
-            $data['form_id']  = $form_id;
-            $data['url_form'] = site_url() . 'formbuilder/frontend/pdf_show_invoice/?uifm_mode=pdf&is_html=1&id=' . $id_rec;
-        $resp['show_summary'] = do_shortcode($this->load->view('formbuilder/frontend/form_invoice_custom', $data, true));
-    } else {
+        if ( isset($temp->fmb_inv_tpl_st) && intval($temp->fmb_inv_tpl_st) === 1) {
+            $template_msg = $temp->fmb_inv_tpl_html;
+            $template_msg = html_entity_decode($template_msg, ENT_QUOTES, 'UTF-8');
+            $template_msg = do_shortcode($template_msg);
+            $resp['show_summary'] = $template_msg;
+        }  else {
         
           $resp['show_summary'] = $this->get_summaryInvoice_process($id_rec);
     }

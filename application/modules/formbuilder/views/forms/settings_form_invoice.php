@@ -41,86 +41,73 @@ ob_start();
 
 </head>
 <body>
+<div class="zgfm-invoice-custom-table-css">
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td valign="top">Acme company image test</td>
+                <td align="right">
+                    <h3>Your Name Company</h3>
+                    <ul>
+                        <li>Company representative name</li>
+                        <li>Company address</li>
+                        <li>Tax ID</li>
+                        <li>Phone</li>
+                        <li>Fax</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-  <table width="100%">
-    <tr>
-        <td valign="top">image here</td>
-        <td align="right">
-            <h3>Your Name Company</h3>
-            <pre>
-                Company representative name
-                Company address
-                Tax ID
-                phone
-                fax
-            </pre>
-        </td>
-    </tr>
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td><strong>From:</strong> XYZ company</td>
+                <td><strong>To:</strong> ABC company</td>
+            </tr>
+        </tbody>
+    </table>
 
-  </table>
+    <table width="100%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Unit Price $</th>
+                <th>Total $</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Service description</td>
+                <td align="right">1</td>
+                <td align="right">[uifm_var opt="form_total_amount"]</td>
+                <td align="right">[uifm_var opt="calc" atr1="0"]</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td align="right">Subtotal $</td>
+                <td align="right">[uifm_var opt="calc" atr1="0"]</td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td align="right">Tax $</td>
+                <td align="right">0</td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td align="right">Total $</td>
+                <td align="right" class="gray">$ [uifm_var opt="form_total_amount"]</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 
-  <table width="100%">
-    <tr>
-        <td><strong>From:</strong> XYZ company</td>
-        <td><strong>To:</strong> ABC company</td>
-    </tr>
-
-  </table>
-
-  <br/>
-
-  <table width="100%">
-    <thead style="background-color: lightgray;">
-      <tr>
-        <th>#</th>
-        <th>Description</th>
-        <th>Quantity</th>
-        <th>Unit Price $</th>
-        <th>Total $</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Playstation IV - Black</td>
-        <td align="right">1</td>
-        <td align="right">1400.00</td>
-        <td align="right">1400.00</td>
-      </tr>
-      <tr>
-          <th scope="row">1</th>
-          <td>Metal Gear Solid - Phantom</td>
-          <td align="right">1</td>
-          <td align="right">105.00</td>
-          <td align="right">105.00</td>
-      </tr>
-      <tr>
-          <th scope="row">1</th>
-          <td>Final Fantasy XV - Game</td>
-          <td align="right">1</td>
-          <td align="right">130.00</td>
-          <td align="right">130.00</td>
-      </tr>
-    </tbody>
-
-    <tfoot>
-        <tr>
-            <td colspan="3"></td>
-            <td align="right">Subtotal $</td>
-            <td align="right">1635.00</td>
-        </tr>
-        <tr>
-            <td colspan="3"></td>
-            <td align="right">Tax $</td>
-            <td align="right">294.3</td>
-        </tr>
-        <tr>
-            <td colspan="3"></td>
-            <td align="right">Total $</td>
-            <td align="right" class="gray">$ 1929.3</td>
-        </tr>
-    </tfoot>
-  </table>
 
 </body>
 </html>
