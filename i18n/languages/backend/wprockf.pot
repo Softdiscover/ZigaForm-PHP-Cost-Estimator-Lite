@@ -1,12 +1,12 @@
-# Copyright (C) 2025 Zigaform WP Cost Estimation Form Builder 7.4.3
-# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 7.4.3 package.
+# Copyright (C) 2025 Zigaform WP Cost Estimation Form Builder 7.4.7
+# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 7.4.7 package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Zigaform WP Cost Estimation Form Builder 7.4.3\n"
+"Project-Id-Version: Zigaform WP Cost Estimation Form Builder 7.4.7\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-22 01:59+0000\n"
+"POT-Creation-Date: 2025-02-16 22:07+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -698,19 +698,19 @@ msgstr ""
 msgid "Forms in trash"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:287
+#: application/modules/formbuilder/controllers/frontend.php:296
 msgid "paypal success message"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:290
+#: application/modules/formbuilder/controllers/frontend.php:299
 msgid "error found while submitting"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:293
+#: application/modules/formbuilder/controllers/frontend.php:302
 msgid "Offline success"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/frontend.php:2339
+#: application/modules/formbuilder/controllers/frontend.php:2368
 msgid "Order summary"
 msgstr ""
 
@@ -1518,7 +1518,7 @@ msgstr ""
 msgid "Generate field static data"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/create_form.php:334, application/modules/formbuilder/views/forms/settings_form_calc.php:107, application/modules/formbuilder/views/forms/settings_form_email.php:502, application/modules/formbuilder/views/forms/settings_form_email.php:509, application/modules/formbuilder/views/forms/settings_form_summbox.php:98
+#: application/modules/formbuilder/views/forms/create_form.php:334, application/modules/formbuilder/views/forms/settings_form_calc.php:106, application/modules/formbuilder/views/forms/settings_form_email.php:502, application/modules/formbuilder/views/forms/settings_form_email.php:509, application/modules/formbuilder/views/forms/settings_form_summbox.php:98
 msgid "Variables"
 msgstr ""
 
@@ -2190,63 +2190,63 @@ msgstr ""
 msgid "Regenerate all variables"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:112
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:111
 msgid "CHOOSE FIELD"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:130
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:129
 msgid "CHOOSE ACTION"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:147
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:146
 msgid "CHOOSE OPTION"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:164
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:163
 msgid "DATA TYPE"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:170
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:169
 msgid "Select an option"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:171
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:170
 msgid "Numeric"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:172
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:171
 msgid "Character"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:185, application/modules/formbuilder/views/forms/settings_form_calc.php:249
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:184, application/modules/formbuilder/views/forms/settings_form_calc.php:248
 msgid "COPY AND PASTE VARIABLE"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:198, application/modules/formbuilder/views/forms/settings_form_calc.php:262
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:197, application/modules/formbuilder/views/forms/settings_form_calc.php:261
 msgid "Place the cursor on the source code and press button"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:204, application/modules/formbuilder/views/forms/settings_form_calc.php:268
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:203, application/modules/formbuilder/views/forms/settings_form_calc.php:267
 msgid "ADD VARIABLE"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:225
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:224
 msgid "Optional Variables"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:230
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:229
 msgid "CHOOSE OPTIONAL VARIABLE"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:296
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:295
 msgid "Temporal variable title"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:311, application/modules/formbuilder/views/forms/settings_form_progressbar.php:553, application/modules/formbuilder/views/forms/settings_form_wizard.php:99, application/modules/formbuilder/views/forms/settings_form_wizard.php:430, application/modules/formbuilder/views/records/list_records.php:75, application/modules/formbuilder/views/records/list_records.php:78, application/modules/formbuilder/views/settings/backup_settings.php:96, application/modules/gateways/views/records/list_records.php:81, application/modules/gateways/views/records/list_records.php:84, application/modules/user/views/intranet/index.php:89, application/modules/user/views/intranet/index.php:86
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:310, application/modules/formbuilder/views/forms/settings_form_progressbar.php:553, application/modules/formbuilder/views/forms/settings_form_wizard.php:99, application/modules/formbuilder/views/forms/settings_form_wizard.php:430, application/modules/formbuilder/views/records/list_records.php:75, application/modules/formbuilder/views/records/list_records.php:78, application/modules/formbuilder/views/settings/backup_settings.php:96, application/modules/gateways/views/records/list_records.php:81, application/modules/gateways/views/records/list_records.php:84, application/modules/user/views/intranet/index.php:89, application/modules/user/views/intranet/index.php:86
 msgid "Delete"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_calc.php:329
+#: application/modules/formbuilder/views/forms/settings_form_calc.php:328
 msgid "Form Variables"
 msgstr ""
 

@@ -75,7 +75,6 @@ if ( ! defined('BASEPATH')) {
                             <a href="javascript:void(0);" data-dialog-callback="javascript:zgfm_back_calc.calc_dev_cleanAll();" class="sfdc-btn sfdc-btn-info uiform-confirmation-func-action">
                              <?php echo __('Regenerate all variables', 'FRocket_admin'); ?> </a>
                         </div>
-                        <div class="space20"></div>
                         <div>
                             
                             <div id="zgfm-tab-calc-sourcecode-wrapper">  
