@@ -1089,7 +1089,7 @@ $vars = array_map(function($v) {
             case 'label':
                 ob_start();
                 ?>
-               <span data-zgfm-id="<?php echo $vars['id']; ?>" data-zgfm-type="0" data-zgfm-atr="0" class="zgfm-recfvar-obj"></span>             
+               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-type="0" data-zgfm-atr="0" class="zgfm-recfvar-obj"></span>             
                 <?php
                 $output = ob_get_contents();
                 ob_end_clean();
@@ -1097,7 +1097,7 @@ $vars = array_map(function($v) {
             case 'input':
                 ob_start();
                 ?>
-               <span data-zgfm-id="<?php echo $vars['id']; ?>" data-zgfm-atr="1" class="zgfm-recfvar-obj"></span>             
+               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-atr="1" class="zgfm-recfvar-obj"></span>             
                 <?php
                 $output = ob_get_contents();
                 ob_end_clean();
@@ -1105,7 +1105,7 @@ $vars = array_map(function($v) {
             case 'amount':
                 ob_start();
                 ?>
-               <span data-zgfm-id="<?php echo $vars['id']; ?>" data-zgfm-atr="2" class="zgfm-recfvar-obj"></span>             
+               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-atr="2" class="zgfm-recfvar-obj"></span>             
                 <?php
                 $output = ob_get_contents();
                 ob_end_clean();
@@ -1113,7 +1113,7 @@ $vars = array_map(function($v) {
             case 'qty':
                 ob_start();
                 ?>
-               <span data-zgfm-id="<?php echo $vars['id']; ?>" data-zgfm-atr="3" class="zgfm-recfvar-obj"></span>             
+               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-atr="3" class="zgfm-recfvar-obj"></span>             
                 <?php
                 $output = ob_get_contents();
                 ob_end_clean();
@@ -1138,6 +1138,12 @@ $vars = array_map(function($v) {
             ),
             $atts
         );
+        
+        // Automatically sanitize & validate each attribute.
+        $vars = array_map(function($v) {
+            return sanitize_text_field($v);
+        }, $vars);
+        
         $output = '';
 
         if ( ! empty($vars['opt'])) {
@@ -1146,7 +1152,7 @@ $vars = array_map(function($v) {
                     ob_start();
                     if ( isset($vars['atr1']) && intval($vars['atr1']) >= 0) {
                         ?>
-                            <div class="zgfm-f-calc-var-lbl zgfm-f-calc-var<?php echo $vars['atr1']; ?>-lbl"></div>             
+                            <div class="zgfm-f-calc-var-lbl zgfm-f-calc-var<?php echo esc_attr($vars['atr1']); ?>-lbl"></div>             
                         <?php
                     }
                       $output = ob_get_contents();
