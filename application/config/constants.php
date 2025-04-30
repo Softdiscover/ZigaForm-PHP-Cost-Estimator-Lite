@@ -1,7 +1,7 @@
 <?php  if ( ! defined( 'BASEPATH' ) ) {
 	exit( 'No direct script access allowed' );}
 
-define( 'UIFORM_VERSION', '7.4.9' );
+define( 'UIFORM_VERSION', '7.5.1' );
 define( 'ZIGAFORM_C_LITE', 1 );
 define( 'UIFORM_DEBUG', 0 );
 define( 'UIFORM_DEMO', 0 );

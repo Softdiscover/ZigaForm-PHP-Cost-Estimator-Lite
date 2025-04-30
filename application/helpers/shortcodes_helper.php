@@ -373,7 +373,7 @@ function shortcode_atts( $pairs, $atts, $shortcode = '' ) {
 	 */
 	global $hooks;
 	if ( $shortcode ) {
-		$out = $hooks->do_filter( "shortcode_atts_{$shortcode}", $out, $pairs, $atts );
+		$out = $hooks->apply_filters( "shortcode_atts_{$shortcode}", $out, $pairs, $atts );
 	}
 
 	return $out;

@@ -341,7 +341,7 @@ class Frontend extends FrontendController
             $form_variables['_uifmvar']['is_dev']  = 0;
             $form_variables['onload_scroll']       = $onload_scroll;
             $form_variables['preload_noconflict']  = $preload_noconflict;
-            $enqueue_scripts                       = do_filter('zgfm_front_enqueue_scripts', array());
+            $enqueue_scripts                       = apply_filters('zgfm_front_enqueue_scripts', array());
 
             $data_scripts = array();
             $data_styles  = array();
@@ -452,7 +452,7 @@ class Frontend extends FrontendController
             $form_variables['_uifmvar']['is_dev']  = 0;
             $form_variables['onload_scroll']       = $onload_scroll;
             $form_variables['preload_noconflict']  = $preload_noconflict;
-            $form_variables['enqueue_scripts']     = do_filter('zgfm_front_enqueue_scripts', array());
+            $form_variables['enqueue_scripts']     = apply_filters('zgfm_front_enqueue_scripts', array());
             $form_variables['ajaxurl']             = '';
             $form_variables['uifm_baseurl']        = base_url();
             $form_variables['uifm_siteurl']        = site_url();
@@ -2810,27 +2810,7 @@ $vars = array_map(function($v) {
 
         $gateways = $this->model_gateways->getAvailableGateways();
         
-        //paypal constants
-        $paypal_return_url = isset($pg_data['paypal_return_url']) ? $pg_data['paypal_return_url'] : '';
-        $paypal_cancel_url = isset($pg_data['paypal_cancel_url']) ? $pg_data['paypal_cancel_url'] : '';
         
-        //custom payment methods
-        $customPaymentMethod=$this->form_cur_data2['main']['payment_method_st'];
-        $allowPaymentMethod=[];        
-        if(intval($customPaymentMethod) === 1){
-            $allowPaymentMethod = $this->form_cur_data2['main']['payment_method_list'];
-            $allowPaymentMethod = array_map('intval', $allowPaymentMethod);
-            
-            $payment_paypal_return_url = $this->form_cur_data2['main']['payment_paypal_return_url'];
-            if(!empty($payment_paypal_return_url)){
-                $paypal_return_url = $payment_paypal_return_url;
-            }
-            
-            $payment_paypal_cancel_url = $this->form_cur_data2['main']['payment_paypal_cancel_url'];
-            if(!empty($payment_paypal_cancel_url)){
-                $paypal_cancel_url = $payment_paypal_cancel_url;
-            }
-        }
          
         $data['fmb_rec_tpl_st']=$this->form_cur->fmb_rec_tpl_st;
         $data['fmb_inv_tpl_st']=$this->form_cur->fmb_inv_tpl_st;
@@ -2874,6 +2854,29 @@ $vars = array_map(function($v) {
                         break 1;
                     }
                     $pg_data                    = json_decode($value->pg_data, true);
+                    
+                    //paypal constants
+        $paypal_return_url = isset($pg_data['paypal_return_url']) ? $pg_data['paypal_return_url'] : '';
+        $paypal_cancel_url = isset($pg_data['paypal_cancel_url']) ? $pg_data['paypal_cancel_url'] : '';
+        
+        //custom payment methods
+        $customPaymentMethod=$this->form_cur_data2['main']['payment_method_st'];
+        $allowPaymentMethod=[];        
+        if(intval($customPaymentMethod) === 1){
+            $allowPaymentMethod = $this->form_cur_data2['main']['payment_method_list'];
+            $allowPaymentMethod = array_map('intval', $allowPaymentMethod);
+            
+            $payment_paypal_return_url = $this->form_cur_data2['main']['payment_paypal_return_url'];
+            if(!empty($payment_paypal_return_url)){
+                $paypal_return_url = $payment_paypal_return_url;
+            }
+            
+            $payment_paypal_cancel_url = $this->form_cur_data2['main']['payment_paypal_cancel_url'];
+            if(!empty($payment_paypal_cancel_url)){
+                $paypal_cancel_url = $payment_paypal_cancel_url;
+            }
+        }
+                    
                     $data2                      = array();
                     $data2['amount']            = ( isset($this->form_response['amount']) ) ? $this->form_response['amount'] : 0;
                     $data2['amount']            = number_format(round($data2['amount'], 2, PHP_ROUND_HALF_EVEN), 2, '.', '');
