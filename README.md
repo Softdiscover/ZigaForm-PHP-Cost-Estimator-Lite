@@ -35,7 +35,7 @@ For support, please visit our [contact page](https://php-cost-estimator.zigaform
 
 > **Zigaform Premium Features**
 >
-> Upgrade to [Zigaform Premium](https://codecanyon.net/item/zigaform-php-calculator-cost-estimation-form-builder/15883447?ref=softdiscover) for additional functionalities like:
+> Upgrade to [Zigaform Premium](https://shop.softdiscover.com/downloads/zigaform-php-calculator-cost-estimation-form-builder/?utm_source=github&utm_medium=referral) for additional functionalities like:
 > - PayPal payment integration
 > - Advanced conditional logic
 > - Wizard forms with real-time preview

@@ -66,9 +66,25 @@ if ( ! defined( 'BASEPATH' ) ) {
   <body class="sfdc-wrap" style="margin:0!important;" >
    <div id="wrap" >
    <div class="sfdc-container theme-showcase wrapper wrapper-white">
-		<?php $this->load->view( 'frontend/header' ); ?> 
-	   <?php echo $content; ?>
-   </div>   
+		<?php
+    if(intval(model_settings::$db_config['opt_hide_form_front']) !== 1){
+        $this->load->view( 'frontend/header' );
+        echo $content;
+    }else{
+      ?>
+      <div class="sfdc-panel sfdc-panel-default" style="margin: 60px auto; max-width: 600px; text-align: center; padding: 40px;">
+        <div class="sfdc-panel-body">
+          <i class="fa fa-info-circle" style="font-size: 48px; color: #888;"></i>
+          <h3 style="margin-top: 20px;"><?php echo __( 'No public forms available', 'FRocket_admin' ); ?></h3>
+          <p style="color: #555;"><?php echo __( 'Forms have been hidden by the site administrator.', 'FRocket_admin' ); ?></p>
+        </div>
+      </div>
+        <?php
+    }
+    ?>
+	 </div>
+
+   </div><!-- wrap ends--> 
    </div><!-- wrap ends-->
 	<?php $this->load->view( 'frontend/footer' ); ?>
 	 

@@ -127,7 +127,10 @@ class model_settings extends CI_Model
                 self::$db_config['sendmail_path'] = $row->sendmail_path;
                 self::$db_config['language']      = $row->language;
                 self::$db_config['version']       = UIFORM_VERSION;
+                
+                self::$db_config['opt_hide_form_front'] = get_option('uifm_frm_forms_front_hide', 0);
 
+                
                 $this->cache->write(self::$db_config, 'settings');
             }
         } else {
@@ -142,6 +145,8 @@ class model_settings extends CI_Model
             self::$db_config['sendmail_path'] = $data['sendmail_path'];
             self::$db_config['language']      = $data['language'];
             self::$db_config['version']       = UIFORM_VERSION;
+            self::$db_config['opt_hide_form_front'] = isset($data['opt_hide_form_front'])?$data['opt_hide_form_front']:0;
+            
         }
     }
 

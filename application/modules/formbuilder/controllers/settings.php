@@ -266,6 +266,13 @@ class Settings extends BackendController
             update_option('zgfm_fields_fastload', 0);
         }
         
+        $uifm_frm_forms_front_hide = (isset($_POST['uifm_frm_forms_front_hide']) && $_POST['uifm_frm_forms_front_hide']) ? Uiform_Form_Helper::sanitizeInput($_POST['uifm_frm_forms_front_hide']) : 0;
+        if ((string) $uifm_frm_forms_front_hide === 'on') {
+            update_option('uifm_frm_forms_front_hide', 1);
+        } else {
+            update_option('uifm_frm_forms_front_hide', 0);
+        }
+        
         $recordexpsetting = (isset($_POST['uifm_frm_main_recordexpsetting']) && $_POST['uifm_frm_main_recordexpsetting']) ? filter_var($_POST['uifm_frm_main_recordexpsetting'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : '';
         if ($recordexpsetting !== '') {
             update_option('zgfm_frm_main_recexpdelimiter', $recordexpsetting);
@@ -305,6 +312,7 @@ class Settings extends BackendController
         $data['lang_list']       = Uiform_Form_Helper::getLanguageList($pofilespath);
         $data['zgfm_frm_main_recexpdelimiter']       = get_option('zgfm_frm_main_recexpdelimiter', '');
         $data['fields_fastload'] = get_option('zgfm_fields_fastload', 0);
+        $data['uifm_frm_forms_front_hide'] = get_option('uifm_frm_forms_front_hide', 0);
 
         $this->template->loadPartial('layout', 'settings/view_settings', $data);
     }

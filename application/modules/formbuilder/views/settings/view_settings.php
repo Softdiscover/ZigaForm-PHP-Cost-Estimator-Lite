@@ -73,7 +73,7 @@ if ( ! defined('BASEPATH')) {
                                 <div class="sfdc-form-group">
                                     
                                     <div class="sfdc-col-sm-4">
-                                        <label for=""><?php echo __('DISABLE FIELDS FAST LOAD', 'FRocket_admin'); ?><span style="color:red;"></span></label> <a href="javascript:void(0);"
+                                        <label for=""><?php echo __('Disable Fast Load for Fields', 'FRocket_admin'); ?><span style="color:red;"></span></label> <a href="javascript:void(0);"
                                            data-toggle="tooltip" data-placement="right" 
                                            data-original-title="<?php echo __('it allows to disable fast loading field.', 'FRocket_admin'); ?>"
                                            ><span class="fa fa-question-circle"></span></a>
@@ -92,6 +92,31 @@ if ( ! defined('BASEPATH')) {
                                 </div>
                                  
                             </div>
+                            
+                            <div class="space10 zgfm-opt-divider-stl1"></div>
+                         <div class="sfdc-col-md-12">
+                           <div class="sfdc-form-group">
+
+                             <div class="sfdc-col-sm-4">
+                               <label for=""><?php echo __('Hide forms from frontend', 'FRocket_admin'); ?><span style="color:red;"></span></label> <a href="javascript:void(0);"
+                                                                                                                                                       data-toggle="tooltip" data-placement="right"
+                                                                                                                                                       data-original-title="<?php echo __('it will hide all forms from public site.', 'FRocket_admin'); ?>"
+                               ><span class="fa fa-question-circle"></span></a>
+
+
+                             </div>
+
+                             <div class="sfdc-col-sm-8">
+                               <input class="switch-field"
+                                      id="uifm_frm_forms_front_hide"
+                                      name="uifm_frm_forms_front_hide"
+                                      type="checkbox"/>
+
+                             </div>
+
+                           </div>
+
+                         </div>
                             <div class="space10 zgfm-opt-divider-stl1"></div>
                             <div class="sfdc-col-md-12">
                                 <div class="sfdc-form-group">
@@ -164,9 +189,11 @@ if ( ! defined('BASEPATH')) {
 </div>
 <script type="text/javascript">
 //<![CDATA[
-$uifm(document).ready(function ($) {
-        set_modalmode=(parseInt(<?php echo $fields_fastload; ?>)===1)?true:false;
+    $uifm(document).ready(function ($) {
+       var set_modalmode=(parseInt(<?php echo $fields_fastload; ?>)===1)?true:false;
     $('#uifm_frm_fields_fastload').bootstrapSwitchZgpb('state',set_modalmode);
+  var uifm_frm_forms_front_hide=(parseInt(<?php echo $uifm_frm_forms_front_hide; ?>)===1)?true:false;
+  $('#uifm_frm_forms_front_hide').bootstrapSwitchZgpb('state',uifm_frm_forms_front_hide);
 });
 //]]>
 </script>
