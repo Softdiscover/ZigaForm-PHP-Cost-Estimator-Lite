@@ -7,7 +7,7 @@ if (false) {
 } else {
     error_reporting(0);
 }
-session_start();
+ 
 
 require_once(BASEPATH. '/application/helpers/common_helper.php');
 
