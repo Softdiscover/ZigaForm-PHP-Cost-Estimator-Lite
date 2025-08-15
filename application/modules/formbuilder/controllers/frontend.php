@@ -1216,6 +1216,7 @@ $vars = array_map(function($v) {
                 'atr2' => '',
                 'atr3' => '',
                 'atr4' => '',
+                'hide_fields' => '',
                 'opt'  => '', // quick option
             ),
             $atts
@@ -1319,6 +1320,7 @@ $vars = array_map(function($v) {
                     $data2['current_cost_cur']    = ( isset($form_data_onsubm['main']['price_currency']) ) ? $form_data_onsubm['main']['price_currency'] : 'USD';
                     $data2['show_only_value'] = ($vars['atr2'] === 'show_only_value')?'yes':'no';
                     $data2['hide_total'] = ($vars['atr3'] === 'hide_total')?'yes':'no';
+                    $data2['hide_fields_ids'] = !empty($vars['hide_fields'])? explode(',', $vars['hide_fields']):[];
                     $data2['is_custom_calc'] = (isset($formDataFirst['calculation']['enable_st'])) ? intval($formDataFirst['calculation']['enable_st']) : 0;
                     
                     $output                       = $this->load->view('formbuilder/frontend/mail_generate_fields', $data2, true);

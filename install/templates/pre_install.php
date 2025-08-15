@@ -307,7 +307,7 @@ $pathLogsFile   = '../application/logs/';
 		</tr>
 	</tbody>
 </table>
-<input type="submit" class="btn btn-primary pull-right " value="next" <?php echo $error ? 'disabled' : ''; ?> >
+<input type="submit" class="btn btn-primary pull-right " value="next" >
  
 	</div>
 </div>
