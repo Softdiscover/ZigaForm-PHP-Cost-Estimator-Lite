@@ -618,7 +618,7 @@ class Forms extends BackendController
     private function processImportExportCode($dump_form , $is_template = false )
     {
         $redirectUrl = '';
-        if ((isset($dump_form['app_ver']) && in_array($dump_form['app_ver'], ['7.0.0','7.6.4'], true) ) ||
+        if ((isset($dump_form['app_ver']) && in_array($dump_form['app_ver'], ['7.0.0','7.6.9'], true) ) ||
 
         $is_template === true ||
 

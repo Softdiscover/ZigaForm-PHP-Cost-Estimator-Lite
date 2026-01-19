@@ -106,4 +106,5 @@ if ( ! defined('BASEPATH')) {
         <input type="hidden" class="uifm_pg_msg_selectpay" value="<?php echo __('Select Payment', 'frocket_front'); ?>" >
     </div>
     <input type="hidden" class="_uifm_pg_record_id" value="<?php echo $fbh_id; ?>">
+    <input type="hidden" class="_uifm_record_nonce" value="<?php echo $record_nonce; ?>">
 </div>

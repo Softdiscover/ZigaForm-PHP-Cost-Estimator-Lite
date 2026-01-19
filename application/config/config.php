@@ -310,7 +310,7 @@ $config['xss_exclude_uris']     = array(
 	'formbuilder/forms/ajax_variables_openmodal',
 	'formbuilder/forms/ajax_refresh_previewpanel',
 	'multistep/dashboard/ajax_load_multistep',
-	'multistep/dashboard/ajax_save_newform',
+	'multistep/dashboard/ajax_save_newform'
 );
 /*
 |--------------------------------------------------------------------------

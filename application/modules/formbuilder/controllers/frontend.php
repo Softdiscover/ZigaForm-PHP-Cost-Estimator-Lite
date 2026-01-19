@@ -158,31 +158,31 @@ class Frontend extends FrontendController
             ),
             $atts
         );
-        
+
         // Automatically sanitize & validate each attribute.
         $vars = array_map(function($v) {
             return sanitize_text_field($v);
         }, $vars);
-        
+
         ob_start();
         ?>
-       
+
          <span class="uiform-stickybox-summary">
              <?php if ( ! empty($vars['heading'])) { ?>
              <span class="uiform-stickybox-summary-heading"><?php echo $vars['heading']; ?></span>
              <?php } ?>
              <span class="uiform-stickybox-summary-list">
-                 
+
              </span>
-             
+
              <input type="hidden" class="_rockfm_shortcode_summ_data"
                     data-zgfm-rows="<?php echo $vars['rows']; ?>"
                     data-zgfm-hidecurcode="<?php echo $vars['hide_cur_code']; ?>"
                     data-zgfm-hidecursymbol="<?php echo $vars['hide_cur_symbol']; ?>"
                     value="">
-             
-                <input type="hidden" class="_rockfm_stickybox_summ_rows" value="">                
-         </span>               
+
+                <input type="hidden" class="_rockfm_stickybox_summ_rows" value="">
+         </span>
         <?php
         $str_output = ob_get_contents();
         ob_end_clean();
@@ -202,7 +202,7 @@ class Frontend extends FrontendController
         $vars = array_map(function($v) {
             return sanitize_text_field($v);
         }, $vars);
-        
+
         ob_start();
         ?>
              <span class="uiform-stickybox-summary-link"><a href="javascript:void(0);" onclick="javascript:zgfm_front_cost.costest_summbox_linkPopUp(this);"><?php echo $vars['value']; ?></a></span>
@@ -474,14 +474,61 @@ class Frontend extends FrontendController
 
     public function ajax_payment_seeinvoice()
     {
-        $id_rec           = ( isset($_POST['form_r_id']) ) ? Uiform_Form_Helper::sanitizeInput($_POST['form_r_id']) : '';
+        $id_rec = isset( $_POST['form_r_id'] )
+                ? Uiform_Form_Helper::sanitizeInput( $_POST['form_r_id'] )
+                : '';
+        $id_form = isset( $_POST['form_id'] )
+                ? Uiform_Form_Helper::sanitizeInput( $_POST['form_id'] )
+                : '';
         $this->flag_submitted = $id_rec;
-        
+
         $temp             = $this->model_record->getFormDataById($id_rec);
+
+        if ( ! $temp ) {
+            header( 'Content-Type: application/json; charset=UTF-8' );
+            echo wp_json_encode(
+                    array(
+                            'success' => false,
+                            'error'   => 'Record not found',
+                    )
+            );
+            die();
+        }
+
+        // --- SECURITY: CHECK AUTHORIZATION WITHOUT COOKIES ---
+        $is_authorized = false;
+
+        // 1. Allow if user is admin/editor (or equivalent).
+        // 2. Require a record-specific nonce.
+            $record_nonce = isset( $_POST['record_nonce'] )
+                    ? Uiform_Form_Helper::sanitizeInput( wp_unslash( $_POST['record_nonce'] ) )
+                    : '';
+
+            if ( $record_nonce && wp_verify_nonce( $record_nonce, 'zgfm_view_record_' . $id_rec.'_'.$id_form ) ) {
+                $is_authorized = true;
+            }
+
+        if ( ! $is_authorized ) {
+            header( 'Content-Type: application/json; charset=UTF-8' );
+            echo wp_json_encode(
+                    array(
+                            'success' => false,
+                            'error'   => 'Unauthorized access',
+                    )
+            );
+            die();
+        }
+        // --- END SECURITY ---
+
+
+
+
         $form_id          = $temp->form_fmb_id;
         $form_data        = $this->model_forms->getFormById_2($form_id);
         $form_data_onsubm = json_decode($form_data->fmb_data2, true);
-        $pdf_show_onpage  = ( isset($form_data_onsubm['main']['pdf_show_onpage']) ) ? $form_data_onsubm['main']['pdf_show_onpage'] : '0';
+        $pdf_show_onpage  = isset( $form_data_onsubm['main']['pdf_show_onpage'] )
+                ? $form_data_onsubm['main']['pdf_show_onpage']
+                : '0';
 
         $resp                       = array();
         $resp['show_summary_title'] = __('Invoice', 'frocket_front');
@@ -489,18 +536,18 @@ class Frontend extends FrontendController
             $resp['show_summary_title'] = '<a class="sfdc-btn sfdc-btn-warning pull-right" onclick="javascript:rocketfm.genpdf_infoinvoice(' . $id_rec . ');" href="javascript:void(0);"><i class="fa fa-file-pdf-o"></i> ' . __('Export to PDF', 'frocket_front') . '</a>';
         }
 
-          
-           
+
+
         if ( isset($temp->fmb_inv_tpl_st) && intval($temp->fmb_inv_tpl_st) === 1) {
             $template_msg = $temp->fmb_inv_tpl_html;
             $template_msg = html_entity_decode($template_msg, ENT_QUOTES, 'UTF-8');
             $template_msg = do_shortcode($template_msg);
             $resp['show_summary'] = $template_msg;
         }  else {
-        
+
           $resp['show_summary'] = $this->get_summaryInvoice_process($id_rec);
     }
-          
+
         // return data to ajax callback
         $data         = array();
         $data['json'] = $resp;
@@ -511,7 +558,50 @@ class Frontend extends FrontendController
     public function ajax_payment_seesummary()
     {
         $id_rec           = ( isset($_POST['form_r_id']) ) ? Uiform_Form_Helper::sanitizeInput($_POST['form_r_id']) : '';
+
+         $id_form = isset( $_POST['form_id'] )
+                ? Uiform_Form_Helper::sanitizeInput( $_POST['form_id'] )
+                : '';
         $temp             = $this->model_record->getFormDataById($id_rec);
+
+
+
+        if ( ! $temp ) {
+            header( 'Content-Type: application/json; charset=UTF-8' );
+            echo json_encode(
+                    array(
+                            'success' => false,
+                            'error'   => 'Record not found',
+                    )
+            );
+            die();
+        }
+
+        // --- SECURITY: CHECK AUTHORIZATION WITHOUT COOKIES ---
+        $is_authorized = false;
+
+         // 2. Require a record-specific nonce.
+            $record_nonce = isset( $_POST['record_nonce'] )
+                    ? Uiform_Form_Helper::sanitizeInput( $_POST['record_nonce']  )
+                    : '';
+
+            if ( $record_nonce && wp_verify_nonce( $record_nonce, 'zgfm_view_record_' . $id_rec.'_'.$id_form ) ) {
+                $is_authorized = true;
+            }
+
+        if ( ! $is_authorized ) {
+            header( 'Content-Type: application/json; charset=UTF-8' );
+            echo json_encode(
+                    array(
+                            'success' => false,
+                            'error'   => 'Unauthorized access',
+                    )
+            );
+            die();
+        }
+        // --- END SECURITY ---
+
+
         $form_id          = $temp->form_fmb_id;
         $form_data        = $this->model_forms->getFormById_2($form_id);
         $form_data_onsubm = json_decode($form_data->fmb_data2, true);
@@ -523,7 +613,7 @@ class Frontend extends FrontendController
         if ( intval($pdf_show_onpage) === 1) {
             $resp['show_summary_title'] .= ' <a class="sfdc-btn sfdc-btn-warning pull-right" onclick="javascript:rocketfm.genpdf_inforecord(' . $id_rec . ');" href="javascript:void(0);"><i class="fa fa-file-pdf-o"></i> ' . __('Export to PDF', 'frocket_front') . '</a>';
         }
-         
+
         if ( isset($temp->fmb_rec_tpl_st) && intval($temp->fmb_rec_tpl_st) === 1) {
                 $template_msg = do_shortcode($temp->fmb_rec_tpl_html);
                 $template_msg = html_entity_decode($template_msg, ENT_QUOTES, 'UTF-8');
@@ -537,7 +627,7 @@ class Frontend extends FrontendController
 
         $this->load->view('html_view', $data);
     }
-    
+
     public function getDefaultSummaryTemplate(){
         ob_start();
         ?>
@@ -557,22 +647,22 @@ class Frontend extends FrontendController
         $cntACmp = ob_get_contents();
         $cntACmp = Uiform_Form_Helper::sanitize_output($cntACmp);
         ob_end_clean();
-        
+
         return $cntACmp;
     }
-    
+
     public function get_summaryInvoice()
     {
         $id_rec  = ( isset($_GET['id']) ) ? Uiform_Form_Helper::sanitizeInput($_GET['id']) : '';
-        
+
         return $this->get_summaryInvoice_process($id_rec);
     }
-    
+
     public function get_summaryInvoice_process($id_rec){
-        
+
         $form_rec_data = $this->model_gateways_records->getInvoiceDataByFormRecId($id_rec);
         $form_id = $form_rec_data->fmb_id;
-        
+
         if(intval($form_rec_data->fmb_type) === 1){
             $name_fields = [];
             $children = $this->model_forms->getChildFormByParentId($form_id);
@@ -580,15 +670,15 @@ class Frontend extends FrontendController
                 $fieldnamesArr = $this->model_forms->getFieldNamesById($child->fmb_id);
                 $name_fields = array_merge($name_fields, $fieldnamesArr);
             }
-            
+
             $mainData=$form_rec_data->fmb_data2;
-            
+
         }else{
-            
+
             $mainData=$form_rec_data->fmb_data;
             $name_fields   = $this->model_record->getNameInvoiceField($id_rec);
         }
-        
+
         $form_data          = json_decode($mainData, true);
         $form_data_currency = ( isset($form_data['main']['price_currency']) ) ? $form_data['main']['price_currency'] : '';
         $form_data_invoice  = ( isset($form_data['invoice']) ) ? $form_data['invoice'] : '';
@@ -611,7 +701,7 @@ class Frontend extends FrontendController
         $record_user     = json_decode($data_record->fbh_data, true);
         $new_record_user = array();
         foreach ( $record_user as $key => $value) {
-        
+
                 $isFieldChecked = false;
                 if(intval($form_rec_data->fmb_type) === 1){
                     list($fieldName) = explode('_', $key);
@@ -620,7 +710,7 @@ class Frontend extends FrontendController
                 }else{
                     $isFieldChecked = isset($name_fields_check[ $key ])? true: false;
                 }
-        
+
             if ( $isFieldChecked && isset($value['price_st']) && intval($value['price_st']) === 1) {
                 $field_name      = '';
                 $field_id        = '';
@@ -631,9 +721,9 @@ class Frontend extends FrontendController
 
                 $tmp_invoice_row['item_uniqueid'] = $key;
                 $tmp_invoice_row['item_id']       = $field_id;
-                 
+
                 if ( is_array($value['input'])) {
-                
+
                     if(isset($value['input']['amount'])){
                         $tmp_invoice_row['item_qty']  = 1;
                             $tmp_invoice_row['item_desc'] = '';
@@ -645,13 +735,13 @@ class Frontend extends FrontendController
                                     $tmp_invoice_row['item_amount'] = $value['input']['amount'];
                                 }
                             }
-    
+
                             $tmp_inp_label = $value['label'];
                             if ( ! empty($value['input']['label'])) {
                                 $tmp_inp_label .= ' - ' . $value['input']['label'];
                             }
                             $tmp_invoice_row['item_desc'] = $tmp_inp_label;
-    
+
                             $new_record_user[] = $tmp_invoice_row;
                     }else{
                         foreach ( $value['input'] as $key2 => $value2) {
@@ -665,18 +755,18 @@ class Frontend extends FrontendController
                                     $tmp_invoice_row['item_amount'] = $value2['amount'];
                                 }
                             }
-    
+
                             $tmp_inp_label = $value['label'];
                             if ( ! empty($value2['label'])) {
                                 $tmp_inp_label .= ' - ' . $value2['label'];
                             }
                             $tmp_invoice_row['item_desc'] = $tmp_inp_label;
-    
+
                             $new_record_user[] = $tmp_invoice_row;
                         }
                     }
-                
-                    
+
+
                 } else {
                     $tmp_invoice_row['item_qty']    = 1;
                     $tmp_invoice_row['item_desc']  .= ' ' . $value['input'];
@@ -722,8 +812,8 @@ class Frontend extends FrontendController
 
         return $form_summary;
     }
-    
-    
+
+
     public function get_summaryRecord($id_rec)
     {
         $form_id = ( isset($_POST['form_id']) ) ? Uiform_Form_Helper::sanitizeInput($_POST['form_id']) : '';
@@ -887,7 +977,7 @@ class Frontend extends FrontendController
                 <td width="20" align="center" valign="top">:</td>
                 <td width="200" align="left" valign="top"><?php echo $this->current_cost['symbol'] . $this->current_cost['total'] . ' ' . $this->current_cost['cur']; ?></td>
             </tr>
-        </table>              
+        </table>
         <?php
         $str_output = ob_get_contents();
         ob_end_clean();
@@ -910,7 +1000,7 @@ class Frontend extends FrontendController
             ),
             $atts
         );
-        
+
         // Automatically sanitize & validate each attribute.
         $vars = array_map(function($v) {
             return sanitize_text_field($v);
@@ -935,13 +1025,13 @@ class Frontend extends FrontendController
                     case 18:
                             $output = $this->model_record->getFieldOptRecord($this->flag_submitted, $f_data->type, $vars['id'], 'input', 'value');
                         break;
-                    
+
                     default:
                         $output = $this->model_record->getFieldOptRecord($this->flag_submitted, $f_data->type, $vars['id'], $vars['atr1']);
                         break;
                 }
-                
-                
+
+
 
                 break;
         }
@@ -1079,17 +1169,17 @@ $vars = array_map(function($v) {
             ),
             $atts
         );
-        
+
         // Automatically sanitize & validate each attribute.
         $vars = array_map(function($v) {
             return sanitize_text_field($v);
         }, $vars);
-        
+
         switch ( strval($vars['atr1'])) {
             case 'label':
                 ob_start();
                 ?>
-               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-type="0" data-zgfm-atr="0" class="zgfm-recfvar-obj"></span>             
+               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-type="0" data-zgfm-atr="0" class="zgfm-recfvar-obj"></span>
                 <?php
                 $output = ob_get_contents();
                 ob_end_clean();
@@ -1097,7 +1187,7 @@ $vars = array_map(function($v) {
             case 'input':
                 ob_start();
                 ?>
-               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-atr="1" class="zgfm-recfvar-obj"></span>             
+               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-atr="1" class="zgfm-recfvar-obj"></span>
                 <?php
                 $output = ob_get_contents();
                 ob_end_clean();
@@ -1105,7 +1195,7 @@ $vars = array_map(function($v) {
             case 'amount':
                 ob_start();
                 ?>
-               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-atr="2" class="zgfm-recfvar-obj"></span>             
+               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-atr="2" class="zgfm-recfvar-obj"></span>
                 <?php
                 $output = ob_get_contents();
                 ob_end_clean();
@@ -1113,7 +1203,7 @@ $vars = array_map(function($v) {
             case 'qty':
                 ob_start();
                 ?>
-               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-atr="3" class="zgfm-recfvar-obj"></span>             
+               <span data-zgfm-id="<?php echo esc_attr($vars['id']); ?>" data-zgfm-atr="3" class="zgfm-recfvar-obj"></span>
                 <?php
                 $output = ob_get_contents();
                 ob_end_clean();
@@ -1138,12 +1228,12 @@ $vars = array_map(function($v) {
             ),
             $atts
         );
-        
+
         // Automatically sanitize & validate each attribute.
         $vars = array_map(function($v) {
             return sanitize_text_field($v);
         }, $vars);
-        
+
         $output = '';
 
         if ( ! empty($vars['opt'])) {
@@ -1152,7 +1242,7 @@ $vars = array_map(function($v) {
                     ob_start();
                     if ( isset($vars['atr1']) && intval($vars['atr1']) >= 0) {
                         ?>
-                            <div class="zgfm-f-calc-var-lbl zgfm-f-calc-var<?php echo esc_attr($vars['atr1']); ?>-lbl"></div>             
+                            <div class="zgfm-f-calc-var-lbl zgfm-f-calc-var<?php echo esc_attr($vars['atr1']); ?>-lbl"></div>
                         <?php
                     }
                       $output = ob_get_contents();
@@ -1225,7 +1315,7 @@ $vars = array_map(function($v) {
         $vars = array_map(function($v) {
             return sanitize_text_field($v);
         }, $vars);
-        
+
         $output = '';
 
         $rec_id = $this->flag_submitted;
@@ -1301,9 +1391,9 @@ $vars = array_map(function($v) {
                     $data             = $this->model_record->getFormDataById($rec_id);
                     $tmp_data         = json_decode($data->fbh_data, true);
                     $form_data_onsubm = json_decode($data->fmb_data2, true);
-                    
+
                     $formDataFirst= json_decode($data->fmb_data, true);
-                    
+
                      // price numeric format
                     $format_price_conf                        = array();
                     $format_price_conf['price_format_st']     = ( isset($form_data_onsubm['main']['price_format_st']) ) ? $form_data_onsubm['main']['price_format_st'] : '0';
@@ -1322,7 +1412,7 @@ $vars = array_map(function($v) {
                     $data2['hide_total'] = ($vars['atr3'] === 'hide_total')?'yes':'no';
                     $data2['hide_fields_ids'] = !empty($vars['hide_fields'])? explode(',', $vars['hide_fields']):[];
                     $data2['is_custom_calc'] = (isset($formDataFirst['calculation']['enable_st'])) ? intval($formDataFirst['calculation']['enable_st']) : 0;
-                    
+
                     $output                       = $this->load->view('formbuilder/frontend/mail_generate_fields', $data2, true);
                     break;
                 case 'rec_url_fm':
@@ -1470,7 +1560,7 @@ $vars = array_map(function($v) {
     }
     public function ajax_mm_get_child()
     {
-         
+
 
         $form_parent_id     = (isset($_POST['form_parent_id'])) ? Uiform_Form_Helper::sanitizeInput($_POST['form_parent_id']) : '';
         $form_child_id  = (isset($_POST['form_child_id'])) ? Uiform_Form_Helper::sanitizeInput($_POST['form_child_id']) : '';
@@ -1539,15 +1629,15 @@ $vars = array_map(function($v) {
 
         modules::run('formbuilder/uifmrecaptcha/front_verify_recaptcha', array());
     }
-    
+
     public function ajax_check_recaptchav3()
     {
 
         modules::run('formbuilder/uifmrecaptcha/front_verify_recaptchav3', array());
     }
     public function process_form_fields($form_fields, $form_id)
-    {   
-    
+    {
+
          // upload an image and document options
 			$config                  = array();
 			$config['upload_path']   = FCPATH . 'uploads';
@@ -1556,7 +1646,7 @@ $vars = array_map(function($v) {
 			$config['overwrite']     = false;
 			$config['remove_spaces'] = true;
 			$this->load->library( 'upload', $config );
-    
+
         $form_f_tmp            = array();
         $form_f_rec_tmp        = array();
         $form_errors    = array();
@@ -1979,9 +2069,9 @@ $vars = array_map(function($v) {
                 $form_data        = $this->model_forms->getFormById_2($form_id);
                 $form_data_onsubm = json_decode($form_data->fmb_data2, true);
                 $form_data_name   = $form_data->fmb_name;
-                
-                
-                
+
+
+
                 // store to obj var
                 $this->form_cur = $form_data;
                 $this->form_cur_data2 = json_decode($form_data->fmb_data2, true);
@@ -2031,23 +2121,23 @@ $vars = array_map(function($v) {
                 // fields
             if ($isMultiStep) {
                 list($form_f_tmp, $form_f_rec_tmp, $form_errors, $attachments, $attachment_status, $form_cost_total) = [[], [], [], [], false, 0];
-    
+
                 if (!empty($form_fields)) {
                     foreach ($form_fields as $key2 => $value2) {
                         list($form_f_tmp2, $form_f_rec_tmp2, $form_errors2, $attachments2, $attachment_status2, $form_cost_total) = $this->process_form_fields($value2, $key2);
-                            
+
                         $newArray = [];
                         foreach ($form_f_tmp2 as $key3 => $value3) {
                             $newIndex = $key3.'_'.$key2;
                             $newArray[$newIndex] = $value3;
                         }
-                            
+
                         $newArray2 = [];
                         foreach ($form_f_rec_tmp2 as $key3 => $value3) {
                             $newIndex = $key3.'_'.$key2;
                             $newArray2[$newIndex] = $value3;
                         }
-                            
+
                         $form_f_tmp = array_merge($form_f_tmp, $newArray);
                         $form_f_rec_tmp = array_merge($form_f_rec_tmp, $newArray2);
                         $form_errors = array_merge($form_errors, $form_errors2);
@@ -2066,11 +2156,11 @@ $vars = array_map(function($v) {
                     $tmp_price_tax_st  = ( isset($form_data_onsubm['main']['price_tax_st']) ) ? $form_data_onsubm['main']['price_tax_st'] : '0';
                     $tmp_price_tax_val = ( isset($form_data_onsubm['main']['price_tax_val']) ) ? $form_data_onsubm['main']['price_tax_val'] : '0';
 
-            
-            
+
+
             // check if math calc is enabled
             $form_cost_total = (isset($zgfm_calc_math) && intval($zgfm_calc_math) > 0) ? $zgfm_calc_math : $form_cost_total;
-            
+
 
                     // check if tax is enabled
             if ( intval($tmp_price_tax_st) === 1) {
@@ -2370,15 +2460,15 @@ $vars = array_map(function($v) {
         if ( intval($rec_id) > 0) {
             ob_start();
             ?>
-        
+
                     <!-- if p tag is removed, title will dissapear, idk -->
                     <h2><?php echo $form_data->fmb_name; ?></h2>
                     <h4><?php echo __('Order summary', 'FRocket_admin'); ?></h4>
-                  
+
                   <?php
                     echo modules::run('formbuilder/frontend/get_summaryRecord', $rec_id);
                     ?>
-                
+
             <?php
             $content = ob_get_contents();
             ob_end_clean();
@@ -2442,13 +2532,13 @@ $vars = array_map(function($v) {
 
         ob_start();
         ?>
-        
+
                     <!-- if p tag is removed, title will dissapear, idk -->
                     <p>&nbsp;</p>
                    <?php
                     echo modules::run('formbuilder/frontend/get_summaryInvoice', $rec_id);
                     ?>
-                
+
         <?php
         $content = ob_get_contents();
         ob_end_clean();
@@ -2483,7 +2573,7 @@ $vars = array_map(function($v) {
         $data2['is_html']    = $is_html;
         //$tmp_res = modules::run('formbuilder/frontend/pdf_global_template', $data2);
         $tmp_res = $this->pdf_global_template($data2);
-        
+
         if ( intval($is_html) === 1) {
             header('Content-type: text/html');
 
@@ -2599,9 +2689,9 @@ $vars = array_map(function($v) {
             return $mail_errors;
         }
 
-         
+
                 $data['from_name'] = ! empty($data['from_name']) ? $data['from_name'] : model_settings::$db_config['site_title'];
- 
+
                 $to = trim($data['to']);
 
         if ( preg_match('/^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/', $to)) {
@@ -2615,7 +2705,7 @@ $vars = array_map(function($v) {
                 // Create a new PHPMailer instance
                 $mail = new PHPMailer();
             }
- 
+
             if ( ! empty($data['mail_replyto'])
                 && preg_match('/^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/', $data['mail_replyto'])) {
                 $mail_replyto_name = substr($data['mail_replyto'], 0, strrpos($data['mail_replyto'], '@'));
@@ -2809,23 +2899,24 @@ $vars = array_map(function($v) {
         $data['currency'] = ( isset($this->form_response['currency']) ) ? $this->form_response['currency'] : array();
 
         $data['price_format'] = ( isset($this->form_response['price_format']) ) ? $this->form_response['price_format'] : array();
+$data['form_id']            = (isset($this->form_response['form_id'])) ? $this->form_response['form_id'] : '';
 
         $gateways = $this->model_gateways->getAvailableGateways();
-        
-        
-         
+
+
+
         $data['fmb_rec_tpl_st']=$this->form_cur->fmb_rec_tpl_st;
         $data['fmb_inv_tpl_st']=$this->form_cur->fmb_inv_tpl_st;
-        
+
         $data['calculation_enable_st'] =  intval($this->form_cur_data2['calculation']['enable_st']);
-        
-        
+
+
         foreach ( $gateways as $key => $value) {
-        
+
             if(!empty($allowPaymentMethod) && !in_array(intval($value->pg_id), $allowPaymentMethod, true)){
                 continue;
             }
-        
+
             switch ( intval($value->pg_id)) {
                 case 1:
                     // offline
@@ -2833,6 +2924,7 @@ $vars = array_map(function($v) {
                     $data2                   = array();
                     $data2['pg_name']        = ( isset($value->pg_name) ) ? $value->pg_name : '';
                     $data2['pg_description'] = ( isset($value->pg_description) ) ? $value->pg_description : '';
+                    $data2['form_id']            = $data['form_id'];
                     $data2['form_id']        = ( isset($this->form_response['form_id']) ) ? $this->form_response['form_id'] : '';
                     $data2['item_number']    = ( isset($this->form_response['id_payrec']) ) ? $this->form_response['id_payrec'] : '';
 
@@ -2856,29 +2948,29 @@ $vars = array_map(function($v) {
                         break 1;
                     }
                     $pg_data                    = json_decode($value->pg_data, true);
-                    
+
                     //paypal constants
         $paypal_return_url = isset($pg_data['paypal_return_url']) ? $pg_data['paypal_return_url'] : '';
         $paypal_cancel_url = isset($pg_data['paypal_cancel_url']) ? $pg_data['paypal_cancel_url'] : '';
-        
+
         //custom payment methods
         $customPaymentMethod=$this->form_cur_data2['main']['payment_method_st'];
-        $allowPaymentMethod=[];        
+        $allowPaymentMethod=[];
         if(intval($customPaymentMethod) === 1){
             $allowPaymentMethod = $this->form_cur_data2['main']['payment_method_list'];
             $allowPaymentMethod = array_map('intval', $allowPaymentMethod);
-            
+
             $payment_paypal_return_url = $this->form_cur_data2['main']['payment_paypal_return_url'];
             if(!empty($payment_paypal_return_url)){
                 $paypal_return_url = $payment_paypal_return_url;
             }
-            
+
             $payment_paypal_cancel_url = $this->form_cur_data2['main']['payment_paypal_cancel_url'];
             if(!empty($payment_paypal_cancel_url)){
                 $paypal_cancel_url = $payment_paypal_cancel_url;
             }
         }
-                    
+
                     $data2                      = array();
                     $data2['amount']            = ( isset($this->form_response['amount']) ) ? $this->form_response['amount'] : 0;
                     $data2['amount']            = number_format(round($data2['amount'], 2, PHP_ROUND_HALF_EVEN), 2, '.', '');
@@ -3012,7 +3104,8 @@ $vars = array_map(function($v) {
             }
         }
         $data['gateways'] = $gateways;
-        
+        $data['record_nonce'] = wp_create_nonce( 'zgfm_view_record_' . $data['fbh_id'].'_'.$data['form_id'] );
+
         $output = $this->load->view('formbuilder/frontend/payment_html', $data, true);
         return $output;
     }
