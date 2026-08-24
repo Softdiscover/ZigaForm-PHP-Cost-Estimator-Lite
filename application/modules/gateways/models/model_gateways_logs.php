@@ -60,17 +60,16 @@ class model_gateways_logs extends CI_Model
         $query = sprintf(
             '
             DELETE from %s where pgr_id IN (
-				select pgr_id from %s where pgr_id IN (
-				select fbh_id from %s where form_fmb_id=%s
-				)
-				);
+					select pgr_id from %s where pgr_id IN (
+					select fbh_id from %s where form_fmb_id=?
+					)
+					);
             ',
             $this->table,
             $this->tbpay_record,
-            $this->tbform_record,
-            $form_id
+            $this->tbform_record
         );
 
-        $this->db->query($query);
+        $this->db->query($query, array((int) $form_id));
     }
 }

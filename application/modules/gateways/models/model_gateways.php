@@ -86,13 +86,12 @@ class model_gateways extends CI_Model
             '
             select c.pg_id,c.pg_name,c.pg_modtest,c.pg_data,c.flag_status,c.pg_order,c.pg_description
             from %s c
-            where c.pg_id=%s
+            where c.pg_id=?
             ',
-            $this->table,
-            $id
+            $this->table
         );
 
-        $query2 = $this->db->query($query);
+        $query2 = $this->db->query($query, array((int) $id));
         return $query2->row();
     }
 }

@@ -68,6 +68,19 @@ class zfad_backend extends BackendController
         $add_name   = ( $_POST['add_name'] ) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['add_name'])) : '';
         $add_status = ( $_POST['add_status'] ) ? Uiform_Form_Helper::sanitizeInput(trim($_POST['add_status'])) : '0';
 
+        if ( $this->model_addon->isRequiredAddon($add_name)) {
+            $this->model_addon->ensureRequiredAddons();
+
+            $json = array(
+                'status'  => 'locked',
+                'message' => 'This addon is required by the cost estimation form builder.',
+            );
+
+            header('Content-Type: application/json');
+            echo json_encode($json);
+            die();
+        }
+
         $data['flag_status'] = $add_status;
         $json                = array();
         if ( $this->model_addon->existAddon($add_name)) {
@@ -98,6 +111,7 @@ class zfad_backend extends BackendController
 
         $data          = array();
         $data['query'] = $this->model_addon->getListAddons(100, 0);
+        $data['locked_addons'] = $this->model_addon->getRequiredAddonNames();
         $data['wp_version'] = UIFORM_VERSION;
         // $this->template->loadPartial('layout', 'addon/zfad_backend/list_extensions', $data);
         $this->template->loadPartial('layout', 'backend/list_extensions', $data);

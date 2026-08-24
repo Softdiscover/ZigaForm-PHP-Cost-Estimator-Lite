@@ -1,12 +1,12 @@
-# Copyright (C) 2026 Zigaform WP Cost Estimation Form Builder 7.6.9
-# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 7.6.9 package.
+# Copyright (C) 2026 Zigaform WP Cost Estimation Form Builder 7.7.23
+# This file is distributed under the same license as the Zigaform WP Cost Estimation Form Builder 7.7.23 package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Zigaform WP Cost Estimation Form Builder 7.6.9\n"
+"Project-Id-Version: Zigaform WP Cost Estimation Form Builder 7.7.23\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-19 03:47+0000\n"
+"POT-Creation-Date: 2026-08-23 23:26+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Saving"
 msgstr ""
 
-#: application/views/footer-global.php:18, application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:95, application/modules/formbuilder/views/forms/create_form_main.php:435, application/modules/formbuilder/views/forms/create_form_modals.php:31, application/modules/formbuilder/views/forms/create_form_modals.php:146, application/modules/formbuilder/views/forms/formhtml_form.php:234, application/modules/formbuilder/views/forms/formhtml_form_parent.php:120, application/modules/formbuilder/views/forms/modal1_footer.php:19, application/modules/formbuilder/views/forms/templates_fields.php:1908, application/modules/formbuilder/views/fields/render_front/block_label.php:89, application/modules/formbuilder/views/fields/templates/prevpanel_main.php:44, application/modules/formbuilder/views/fields/options/select/impbulkdata_footer.php:21
+#: application/views/footer-global.php:18, application/modules/addon_mgtranslate/controllers/zfad_mgtranslate_back.php:95, application/modules/default/views/intranet/changepassword.php:33, application/modules/default/views/intranet/login.php:36, application/modules/default/views/intranet/login.php:45, application/modules/formbuilder/views/forms/create_form_main.php:435, application/modules/formbuilder/views/forms/create_form_modals.php:31, application/modules/formbuilder/views/forms/create_form_modals.php:146, application/modules/formbuilder/views/forms/formhtml_form.php:234, application/modules/formbuilder/views/forms/formhtml_form_parent.php:120, application/modules/formbuilder/views/forms/modal1_footer.php:19, application/modules/formbuilder/views/forms/templates_fields.php:1908, application/modules/formbuilder/views/fields/render_front/block_label.php:89, application/modules/formbuilder/views/fields/templates/prevpanel_main.php:44, application/modules/formbuilder/views/fields/options/select/impbulkdata_footer.php:21
 msgid "Close"
 msgstr ""
 
@@ -686,11 +686,11 @@ msgstr ""
 msgid "Back to Form"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/forms.php:1234, application/modules/formbuilder/controllers/forms.php:4270, application/modules/formbuilder/controllers/forms.php:4330
+#: application/modules/formbuilder/controllers/forms.php:1234, application/modules/formbuilder/controllers/forms.php:4280, application/modules/formbuilder/controllers/forms.php:4340
 msgid "Shortcodes"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/forms.php:1311, application/modules/formbuilder/controllers/forms.php:1348, application/modules/formbuilder/controllers/forms.php:1505, application/modules/formbuilder/controllers/forms.php:1669, application/modules/formbuilder/controllers/forms.php:1836, application/modules/multistep/controllers/dashboard.php:106
+#: application/modules/formbuilder/controllers/forms.php:1311, application/modules/formbuilder/controllers/forms.php:1348, application/modules/formbuilder/controllers/forms.php:1515, application/modules/formbuilder/controllers/forms.php:1679, application/modules/formbuilder/controllers/forms.php:1846, application/modules/multistep/controllers/dashboard.php:106
 msgid "Error! User has no permission to edit this form"
 msgstr ""
 
@@ -698,11 +698,11 @@ msgstr ""
 msgid "form id not found"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/forms.php:1446, application/modules/formbuilder/controllers/forms.php:1654, application/modules/formbuilder/controllers/forms.php:1817, application/modules/formbuilder/controllers/forms.php:2058
+#: application/modules/formbuilder/controllers/forms.php:1446, application/modules/formbuilder/controllers/forms.php:1664, application/modules/formbuilder/controllers/forms.php:1827, application/modules/formbuilder/controllers/forms.php:2068
 msgid "Error on saving form"
 msgstr ""
 
-#: application/modules/formbuilder/controllers/forms.php:3897
+#: application/modules/formbuilder/controllers/forms.php:3907
 msgid "Forms in trash"
 msgstr ""
 
@@ -782,27 +782,31 @@ msgstr ""
 msgid "Error! Data was not saved"
 msgstr ""
 
-#: application/modules/addon/views/backend/list_extensions.php:66
+#: application/modules/addon/views/backend/list_extensions.php:72
 msgid "locked"
 msgstr ""
 
-#: application/modules/addon/views/backend/list_extensions.php:60
+#: application/modules/addon/views/backend/list_extensions.php:66
 msgid "This addon is not compatible with your site. try to upgrade your site and fullfil the requirements."
 msgstr ""
 
-#: application/modules/addon/views/backend/list_extensions.php:54, application/modules/formbuilder/views/forms/list_forms.php:49
+#: application/modules/addon/views/backend/list_extensions.php:60, application/modules/formbuilder/views/forms/list_forms.php:49
 msgid "Disable"
 msgstr ""
 
-#: application/modules/addon/views/backend/list_extensions.php:51, application/modules/formbuilder/views/forms/list_forms.php:58, application/modules/formbuilder/views/records/custom_report_getAllfields.php:25
+#: application/modules/addon/views/backend/list_extensions.php:57, application/modules/formbuilder/views/forms/list_forms.php:58, application/modules/formbuilder/views/records/custom_report_getAllfields.php:25
 msgid "Enable"
 msgstr ""
 
-#: application/modules/addon/views/backend/list_extensions.php:79
+#: application/modules/addon/views/backend/list_extensions.php:50, application/modules/gateways/views/settings/editoffline.php:59, application/modules/gateways/views/settings/editpaypal.php:111, application/modules/user/views/intranet/createuser.php:67
+msgid "Enabled"
+msgstr ""
+
+#: application/modules/addon/views/backend/list_extensions.php:85
 msgid "Requirements"
 msgstr ""
 
-#: application/modules/addon/views/backend/list_extensions.php:81
+#: application/modules/addon/views/backend/list_extensions.php:87
 msgid "PHP"
 msgstr ""
 
@@ -1014,15 +1018,39 @@ msgstr ""
 msgid "Ultimate PHP Cost Estimator by zigaform.com"
 msgstr ""
 
-#: application/modules/default/views/intranet/changepassword.php:32
+#: application/modules/default/views/intranet/changepassword.php:25
 msgid "Change password"
 msgstr ""
 
-#: application/modules/default/views/intranet/changepassword.php:74
+#: application/modules/default/views/intranet/changepassword.php:26
+msgid "Choose a new password for your account"
+msgstr ""
+
+#: application/modules/default/views/intranet/changepassword.php:43, application/modules/default/views/intranet/login.php:55, application/modules/user/views/intranet/createuser.php:39
+msgid "Username"
+msgstr ""
+
+#: application/modules/default/views/intranet/changepassword.php:48, application/modules/default/views/intranet/login.php:60, application/modules/formbuilder/views/forms/fields_available.php:316, application/modules/user/views/intranet/createuser.php:51
+msgid "Password"
+msgstr ""
+
+#: application/modules/default/views/intranet/changepassword.php:50, application/modules/default/views/intranet/changepassword.php:50, application/modules/default/views/intranet/changepassword.php:58, application/modules/default/views/intranet/changepassword.php:58, application/modules/default/views/intranet/login.php:61, application/modules/default/views/intranet/login.php:61
+msgid "Show password"
+msgstr ""
+
+#: application/modules/default/views/intranet/changepassword.php:50, application/modules/default/views/intranet/changepassword.php:58, application/modules/default/views/intranet/login.php:61
+msgid "Hide password"
+msgstr ""
+
+#: application/modules/default/views/intranet/changepassword.php:57
 msgid "Confirm Password"
 msgstr ""
 
-#: application/modules/default/views/intranet/changepassword.php:78
+#: application/modules/default/views/intranet/changepassword.php:64
+msgid "Password not matches"
+msgstr ""
+
+#: application/modules/default/views/intranet/changepassword.php:67
 msgid "Update password"
 msgstr ""
 
@@ -1082,16 +1110,32 @@ msgstr ""
 msgid "Get support"
 msgstr ""
 
-#: application/modules/default/views/intranet/login.php:32
+#: application/modules/default/views/intranet/login.php:25
+msgid "Welcome back"
+msgstr ""
+
+#: application/modules/default/views/intranet/login.php:26
 msgid "Enter your username and password"
 msgstr ""
 
-#: application/modules/default/views/intranet/login.php:71
+#: application/modules/default/views/intranet/login.php:37
+msgid "Your session expired before the form was submitted. Please sign in again."
+msgstr ""
+
+#: application/modules/default/views/intranet/login.php:68
 msgid "Forgot Password"
 msgstr ""
 
-#: application/modules/default/views/intranet/login.php:75
+#: application/modules/default/views/intranet/login.php:72
 msgid "Sign in"
+msgstr ""
+
+#: application/modules/default/views/intranet/recoverpass.php:25
+msgid "Password recovery"
+msgstr ""
+
+#: application/modules/default/views/intranet/recoverpass.php:30
+msgid "Back to sign in"
 msgstr ""
 
 #: application/modules/default/views/intranet/settings.php:50, application/modules/default/views/intranet/settings.php:52
@@ -1740,10 +1784,6 @@ msgstr ""
 
 #: application/modules/formbuilder/views/forms/fields_available.php:302
 msgid "Hidden Input"
-msgstr ""
-
-#: application/modules/formbuilder/views/forms/fields_available.php:316, application/modules/user/views/intranet/createuser.php:51
-msgid "Password"
 msgstr ""
 
 #: application/modules/formbuilder/views/forms/fields_available.php:330
@@ -2928,11 +2968,11 @@ msgstr ""
 msgid "Box Shadow"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_skin.php:470, application/modules/formbuilder/views/forms/settings_form_summbox.php:568, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:552, application/modules/formbuilder/views/fields/modal/settings_field_label.php:157
+#: application/modules/formbuilder/views/forms/settings_form_skin.php:470, application/modules/formbuilder/views/forms/settings_form_summbox.php:568, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:552, application/modules/formbuilder/views/fields/modal/settings_field_label.php:157, application/modules/formbuilder/views/fields/modal/settings_field_label.php:363
 msgid "horizontal"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_skin.php:487, application/modules/formbuilder/views/forms/settings_form_summbox.php:585, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:568, application/modules/formbuilder/views/fields/modal/settings_field_label.php:173
+#: application/modules/formbuilder/views/forms/settings_form_skin.php:487, application/modules/formbuilder/views/forms/settings_form_summbox.php:585, application/modules/formbuilder/views/fields/modal/settings_field_input_18.php:568, application/modules/formbuilder/views/fields/modal/settings_field_label.php:173, application/modules/formbuilder/views/fields/modal/settings_field_label.php:380
 msgid "vertical"
 msgstr ""
 
@@ -3016,7 +3056,7 @@ msgstr ""
 msgid "Text Color"
 msgstr ""
 
-#: application/modules/formbuilder/views/forms/settings_form_summbox.php:222, application/modules/formbuilder/views/fields/modal/settings_field_helpblock.php:82, application/modules/formbuilder/views/fields/modal/settings_field_input.php:195, application/modules/formbuilder/views/fields/modal/settings_field_label.php:93, application/modules/formbuilder/views/fields/modal/settings_field_misc.php:65
+#: application/modules/formbuilder/views/forms/settings_form_summbox.php:222, application/modules/formbuilder/views/fields/modal/settings_field_helpblock.php:82, application/modules/formbuilder/views/fields/modal/settings_field_input.php:195, application/modules/formbuilder/views/fields/modal/settings_field_label.php:93, application/modules/formbuilder/views/fields/modal/settings_field_label.php:304, application/modules/formbuilder/views/fields/modal/settings_field_misc.php:65
 msgid "Text Font"
 msgstr ""
 
@@ -3432,10 +3472,6 @@ msgstr ""
 msgid "Type return URL"
 msgstr ""
 
-#: application/modules/gateways/views/settings/editoffline.php:59, application/modules/gateways/views/settings/editpaypal.php:111, application/modules/user/views/intranet/createuser.php:67
-msgid "Enabled"
-msgstr ""
-
 #: application/modules/gateways/views/settings/editoffline.php:63, application/modules/gateways/views/settings/editpaypal.php:115, application/modules/user/views/intranet/createuser.php:71
 msgid "Disabled"
 msgstr ""
@@ -3502,10 +3538,6 @@ msgstr ""
 
 #: application/modules/user/views/intranet/createuser.php:24
 msgid "User Information"
-msgstr ""
-
-#: application/modules/user/views/intranet/createuser.php:39
-msgid "Username"
 msgstr ""
 
 #: application/modules/user/views/intranet/createuser.php:41
@@ -4316,7 +4348,7 @@ msgstr ""
 msgid "Label text"
 msgstr ""
 
-#: application/modules/formbuilder/views/fields/modal/settings_field_label.php:125
+#: application/modules/formbuilder/views/fields/modal/settings_field_label.php:125, application/modules/formbuilder/views/fields/modal/settings_field_label.php:332
 msgid "Text Shadow"
 msgstr ""
 
@@ -4326,22 +4358,6 @@ msgstr ""
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:226
 msgid "Sublabel text"
-msgstr ""
-
-#: application/modules/formbuilder/views/fields/modal/settings_field_label.php:304
-msgid "Text font"
-msgstr ""
-
-#: application/modules/formbuilder/views/fields/modal/settings_field_label.php:332
-msgid "Text shadow"
-msgstr ""
-
-#: application/modules/formbuilder/views/fields/modal/settings_field_label.php:363
-msgid "x"
-msgstr ""
-
-#: application/modules/formbuilder/views/fields/modal/settings_field_label.php:380
-msgid "y"
 msgstr ""
 
 #: application/modules/formbuilder/views/fields/modal/settings_field_label.php:424

@@ -73,6 +73,7 @@ class BackendController extends CommonController {
 
 	public function __construct() {
 		 parent::__construct();
+		$this->load->library( 'zgfm_security' );
 		$this->auth->authenticate( true );
 		$this->init();
 
@@ -89,4 +90,3 @@ class BackendController extends CommonController {
 
 
 }
-

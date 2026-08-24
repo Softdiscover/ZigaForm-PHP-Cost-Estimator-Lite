@@ -1,9 +1,13 @@
 <?php  if ( ! defined( 'BASEPATH' ) ) {
 	exit( 'No direct script access allowed' );}
 
-define( 'UIFORM_VERSION', '7.6.9' );
+define( 'UIFORM_VERSION', '7.7.23' );
+if ( ! defined( 'ZIGAFORM_C_LITE' ) ) {
 define( 'ZIGAFORM_C_LITE', 1 );
+}
+if ( ! defined( 'UIFORM_DEBUG' ) ) {
 define( 'UIFORM_DEBUG', 0 );
+}
 define( 'UIFORM_DEMO', 0 );
 /*fix timezone problem in some hostings*/
 if ( ! ini_get( 'date.timezone' ) ) {

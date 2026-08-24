@@ -105,6 +105,7 @@ class Auth {
 	function checkupdate() {
 			$version     = UIFORM_VERSION;
 			$install_ver = ( ! empty( model_settings::$db_config['version'] ) ) ? model_settings::$db_config['version'] : UIFORM_VERSION;
+			$this->ensure_cost_estimation_addon();
 
 		if ( version_compare( $version, $install_ver, '>' ) ) {
 
@@ -445,7 +446,8 @@ class Auth {
 
 			}
 		}
-					// update
+			$this->ensure_cost_estimation_addon();
+			// update
 
 					$data  = array(
 						'version' => $version,
@@ -461,6 +463,80 @@ class Auth {
 					$this->CI->cache->delete( 'settings' );
 
 		}
+	}
+
+	private function ensure_cost_estimation_addon() {
+		$tbname = 'cepf_cest_addon';
+		$query2 = $this->CI->db->query( 'SHOW TABLES LIKE ?', array( $tbname ) );
+		$row    = (array) $query2->row();
+
+		if ( (string) reset( $row ) !== $tbname ) {
+			return;
+		}
+
+		$sql = "INSERT INTO $tbname (
+			`add_name`,
+			`add_title`,
+			`add_info`,
+			`add_system`,
+			`add_hasconfig`,
+			`add_version`,
+			`add_icon`,
+			`add_installed`,
+			`add_order`,
+			`add_params`,
+			`add_log`,
+			`addonscol`,
+			`flag_status`,
+			`created_date`,
+			`updated_date`,
+			`created_ip`,
+			`updated_ip`,
+			`created_by`,
+			`updated_by`,
+			`add_xml`,
+			`add_load_back`,
+			`add_load_front`,
+			`is_field`
+		) VALUES (
+			'cost_estimation',
+			'Cost Estimation',
+			'Required calculation engine for the cost estimation form builder.',
+			1,
+			0,
+			'1.0',
+			NULL,
+			1,
+			99,
+			'{\"locked\":true}',
+			NULL,
+			NULL,
+			1,
+			'2026-06-15 00:00:00',
+			'2026-06-15 00:00:00',
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			1,
+			1,
+			0
+		) ON DUPLICATE KEY UPDATE
+			`add_title` = VALUES(`add_title`),
+			`add_info` = VALUES(`add_info`),
+			`add_system` = 1,
+			`add_hasconfig` = 0,
+			`add_installed` = 1,
+			`add_order` = 99,
+			`add_params` = VALUES(`add_params`),
+			`flag_status` = 1,
+			`updated_date` = VALUES(`updated_date`),
+			`add_load_back` = 1,
+			`add_load_front` = 1,
+			`is_field` = 0;";
+
+		$this->CI->db->query( $sql );
 	}
 
 

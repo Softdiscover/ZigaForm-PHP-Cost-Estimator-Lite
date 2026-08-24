@@ -52,13 +52,12 @@ class model_gateways_records extends CI_Model
             '
             select uf.pgr_id,uf.type_pg_id,uf.pgr_payment_status,uf.pgr_payment_amount,uf.pgr_currency,uf.pgr_data,uf.flag_status,uf.created_date,uf.updated_date,uf.fbh_id
             from %s uf
-            where uf.pgr_id=%s
+            where uf.pgr_id=?
             ',
-            $this->table,
-            $id
+            $this->table
         );
 
-        $query2 = $this->db->query($query);
+        $query2 = $this->db->query($query, array((int) $id));
 
         return $query2->row();
     }
@@ -71,14 +70,13 @@ class model_gateways_records extends CI_Model
         join %s f on f.fmb_id=frec.form_fmb_id
         join %s pr on pr.fbh_id=frec.fbh_id
         where frec.flag_status>=0
-        and frec.fbh_id=%s',
+        and frec.fbh_id=?',
             $this->tbform_record,
             $this->tbform,
-            $this->table,
-            $id_rec
+            $this->table
         );
-         
-        $query2 = $this->db->query($query);
+
+        $query2 = $this->db->query($query, array((int) $id_rec));
 
         return $query2->row();
     }
@@ -225,15 +223,14 @@ class model_gateways_records extends CI_Model
         $query = sprintf(
             '
             DELETE from %s where pgr_id IN (
-				select fbh_id from %s where form_fmb_id=%s
-				);
+					select fbh_id from %s where form_fmb_id=?
+					);
             ',
             $this->table,
-            $this->tbform_record,
-            $form_id
+            $this->tbform_record
         );
 
-        $this->db->query($query);
+        $this->db->query($query, array((int) $form_id));
     }
 
     /*
