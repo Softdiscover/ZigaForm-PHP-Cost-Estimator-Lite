@@ -28,7 +28,7 @@ if ( ! defined('BASEPATH')) {
             <option value="<?php echo $value->fmb_id; ?>" <?php echo ($chosen_form == (int)$value->fmb_id)?'selected':''; ?> ><?php echo $value->fmb_name; ?></option>
             <?php } ?>
             </select>
-            <?php if (ZIGAFORM_F_LITE === 1) { ?>
+            <?php if (ZIGAFORM_C_LITE === 1) { ?>
             <a  href="javascript:void(0);"
                 onclick="javascript:rocketform.showFeatureLocked(this);"
                 data-blocked-feature="<?php echo __('Export Records', 'FRocket_admin'); ?>"
